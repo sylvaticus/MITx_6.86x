@@ -33,6 +33,7 @@ The course covers these 3 topics
 Interesting stuff (solving real problems) happens at the mix of these 3 categories.
 
 ## Lecture 1. Introduction to Machine Learning
+[Slides](https://github.com/sylvaticus/MITx_6.86x/blob/master/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Slides%20lecture%2001.pdf)
 
 ### 1.1. Unit 1 Overview
 
@@ -167,6 +168,7 @@ Classification maps feature vectors to categories. The number of categories need
 Fully labelled training and test examples corresponds to supervised learning. Limited annotation is semi-supervised learning, and no annotation is unsupervised learning. Using knowledge from one task on another task means you're “transferring" information. Learning how to navigate a robot means learning to act and optimize your actions, or reinforcement learning. Deciding which examples are needed to learn is the definition of active learning.
 
 ## Lecture 2. Linear Classifier and Perceptron Algorithm
+[Slides](https://github.com/sylvaticus/MITx_6.86x/blob/master/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Slides%20lecture%2002.pdf)
 
 ### 2.1. Objectives
 
@@ -334,6 +336,7 @@ So now we have a general learning algorithm.
 The simplest one, but it can be generalized to be quite powerful and therefore, hence it is a useful algorithm to understand.
 
 ## Lecture 3 Hinge loss, Margin boundaries and Regularization
+[Slides](https://github.com/sylvaticus/MITx_6.86x/blob/master/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Slides%20lecture%2003.pdf)
 
 ### 3.1. Objective
 
@@ -438,6 +441,7 @@ Then the number of $k$ updates of the perceptron algorithm is bounded by $k<\fra
 
 
 ## Lecture 4. Linear Classification and Generalization
+[Slides](https://github.com/sylvaticus/MITx_6.86x/blob/master/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Slides%20lecture%2004.pdf)
 
 ### 4.1. Objectives
 
@@ -728,6 +732,9 @@ We then compute the average accuracy for $\alpha_k$: $S(\alpha_k) = \frac{1}{n} 
 Finally we "choose" the $\alpha^* ~$ with the lowest  $S(\alpha_k)$.
 
 ### Tumor Diagnosis Demo
+
+- [Python code](https://github.com/sylvaticus/MITx_6.86x/blob/master/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/recitation01_code_tumorDiagnosisDemo.py)
+- [Julia code](https://github.com/sylvaticus/MITx_6.86x/blob/master/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/recitation01_code_tumorDiagnosisDemo.jl)
 
 In this demo we found the best value of alpha in a SVM model that links breast cancer characteristics (such as cancer texture or size) with its benign/malign nature.
 
