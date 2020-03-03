@@ -1,7 +1,4 @@
-$\newcommand\array[1]{\begin{bmatrix}#1\end{bmatrix}}$
-
-_Disclaimer: The following notes are a mesh of my own notes, selected transcripts, some useful forum threads and various course material. I do not claim any authorship of this notes, but at the same time any error could well be arising from my own interpretation of the material._
-
+$\newcommand\array[1]{\begin{bmatrix}#1\end{bmatrix}}$ [[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)
 
 # Unit 02 - Nonlinear Classification, Linear regression, Collaborative Filtering
 
@@ -37,9 +34,7 @@ With regression we want to predict things that are continuous in nature.
 
 The set up is very similar to before with $x^{(t)} \in \mathbb{R}^d$. The only differences is that now we consider $y^{(t)} \in \mathbb{R}$).
 
-The goal of our model will be to map--
-to learn how to map-- feature vectors
-into these continuous values.
+The goal of our model will be to map-- to learn how to map-- feature vectors into these continuous values.
 
 We will consider for now only linear regression:
 
@@ -47,8 +42,7 @@ $f(\mathbf{x};\mathbf{\theta},\theta_0) = \sum_{i=1}^d \theta_i x_i + \theta_0 =
 
 For compactness of the equations we will consider $\theta_0 = 0$ (we can always think of $\theta_0$ of being just a $d+1$ dimension of $\theta$).
 
-Are we limiting ourself to just linear relations? No, we can still
-use linear classifier by doing an appropriate representation of the feature vector, by mapping into some kind of complex space and from that mapping then apply linear regression (note that at this point we will not yet talk about how we can construct this feature vector position. We will assume instead that somebody already gave us an appropriate feature vector).
+Are we limiting ourself to just linear relations? No, we can still use linear classifier by doing an appropriate representation of the feature vector, by mapping into some kind of complex space and from that mapping then apply linear regression (note that at this point we will not yet talk about how we can construct this feature vector position. We will assume instead that somebody already gave us an appropriate feature vector).
 
 3 questions to address:
 
@@ -64,10 +58,7 @@ We call our objective **empirical risk** (here denoted with $R$) and will be a s
 
 $R_n(\mathbf{\theta}) = \frac{1}{n} \sum_{t=1}^n \text{Loss}_h(y^{(t)} - \mathbf{\theta} \cdot \mathbf{x}^{(t)}) = \frac{1}{n} \sum_{t=1}^n \frac{(y^{(t)} - \mathbf{\theta} \cdot \mathbf{x}^{(t)})^2}{2}$
 
-Why squaring the deviation? Intuitively, since our training data may be noisy
-and the values that we record may be noisy, if it is a small deviation between our prediction and the true value, it's OK. However, if the deviation is large,
-we want really, truly penalize. And this is the behaviour we are getting
-from the squared function, that the bigger difference would actually result in much higher loss.
+Why squaring the deviation? Intuitively, since our training data may be noisy and the values that we record may be noisy, if it is a small deviation between our prediction and the true value, it's OK. However, if the deviation is large, we want really, truly penalize. And this is the behaviour we are getting from the squared function, that the bigger difference would actually result in much higher loss.
 
 Note that the above equation use the squared error as loss function, but other loss functions could also be used, e.g. the hinge loss we already saw in unit 1:
 
@@ -81,10 +72,7 @@ I will minimise this risk for the known data, but what I really want to do it so
 
 2 mistakes are possible:
 
- 1. **structural mistakes** Maybe the linear function is not sufficient
-for you to model your training data. Maybe the mapping between your training
-vectors and y’s is actually highly nonlinear. Instead of just considering
-linear mappings, you should consider a much broader set of function. This is one class of mistakes.
+1. **structural mistakes** Maybe the linear function is not sufficient for you to model your training data. Maybe the mapping between your training vectors and y’s is actually highly nonlinear. Instead of just considering linear mappings, you should consider a much broader set of function. This is one class of mistakes.
 2. **estimation mistakes** The mapping itself is indeed linear, but we don't have enough training data to estimate the parameters correctly.
 
 There is a trade-off between these two kind of error: on one side, minimising the structural mistakes ask for a broader set of functions with more parameters, but this, at equal training set size, would increase the estimation mistakes. On the other side, minimising the estimation mistakes call for simpler set of functions, with less parameters, where however I become susceptible for structural mistakes.
@@ -155,8 +143,7 @@ The first term is our empirical risk, and it catches how well we are fitting the
 In other words, we don't want any weak piece of evidence to pull our thetas very strongly.
 We want to keep them grounded in some area and only pulls them when we have enough evidence that it would really, in substantial way, impact the empirical loss.
 
-What's very nice about using the squared norm as regularisation term is that actually everything that we discussed before, both the gradient and closed form
-solution, can be very easily adjusted to this new loss function.
+What's very nice about using the squared norm as regularisation term is that actually everything that we discussed before, both the gradient and closed form solution, can be very easily adjusted to this new loss function.
 
 #### Gradient based approach with regularisation
 
@@ -204,3 +191,5 @@ At the end of this lecture, you will be able to
 ## Homework 3
 
 ## Project 2: Digit recognition (Part 1)
+
+[[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)

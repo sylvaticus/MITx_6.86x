@@ -1,14 +1,8 @@
-$\newcommand\array[1]{\begin{bmatrix}#1\end{bmatrix}}$
+$\newcommand\array[1]{\begin{bmatrix}#1\end{bmatrix}}$ [[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)
 
 #  Unit 00 - Course Overview, Homework 0, Project 0
 
 ## Recitation 1 - Brief Review of Vectors, Planes, and Optimization
-
-_Updated 20200213 8:36 UTC: Displayed full equations for the hidden Homework 0 topics_
-
-_Updated 20200209 21:00 UTC: Improved vectors projections. Equations hidden up to the deadline of Homework 0_
-
-_Updated 20200206 9:50 UTC: Added vector projections and geometric series_
 
 ### Points and Vectors
 
@@ -111,7 +105,7 @@ Starting from the information on the point and the normal we can retrieve the al
 
 Note that when $\theta$ is a unit vector (a vector whose 2-norm is equal to 1) the offset $\theta_0$ is equal to the offset of the plane with the origin.
 
- Using the above example, we find that the algebraic equation of the plane is $2x_1+2x_2-(6+2)=0$, or, equivalently, $\frac{x_1}{\sqrt{2}}+\frac{x_2}{\sqrt{2}}-\frac{4}{\sqrt{2}}=0$.
+Using the above example, we find that the algebraic equation of the plane is $2x_1+2x_2-(6+2)=0$, or, equivalently, $\frac{x_1}{\sqrt{2}}+\frac{x_2}{\sqrt{2}}-\frac{4}{\sqrt{2}}=0$.
 
 **Distance of a point to a plane**
 
@@ -205,3 +199,5 @@ Closed formula exist for both finite geometric series and, provided $|r| < 1$, f
 Where m is the first element of the series that you want to consider for the summation. Typically $m=0$, i.e. the summation considers the whole series from the scale factor onward.
 
 For many more details on geometric progressions and series consult the relative excellent [Wikipedia entry](https://en.wikipedia.org/wiki/Geometric_progression).
+
+[[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)

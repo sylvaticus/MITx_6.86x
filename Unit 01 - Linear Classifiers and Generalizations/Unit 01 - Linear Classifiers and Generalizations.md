@@ -1,19 +1,10 @@
-$\newcommand\array[1]{\begin{bmatrix}#1\end{bmatrix}}$
-
-_Disclaimer: The following notes are a mesh of my own notes, selected transcripts, some useful forum threads and various course material. I do not claim any authorship of this notes, but at the same time any error could well be arising from my own interpretation of the material._
-
+$\newcommand\array[1]{\begin{bmatrix}#1\end{bmatrix}}$ [[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)
 
 # Unit 01 - Linear Classifiers and Generalizations
 
 ## Course Introduction
 
-There are lots and lots of applications
-out there, but what's so interesting about it is
-that, in terms of algorithms, there
-is a relatively small toolkit of algorithms
-you need to learn to understand how
-these different applications can work so nicely
-and be integrated in our daily life.
+There are lots and lots of applications out there, but what's so interesting about it is that, in terms of algorithms, there is a relatively small toolkit of algorithms you need to learn to understand how these different applications can work so nicely and be integrated in our daily life.
 
 
 The course covers these 3 topics
@@ -45,7 +36,7 @@ Interesting stuff (solving real problems) happens at the mix of these 3 categori
 
 ### 1.1. Unit 1 Overview
 
-Unit 1 -> Linear classification
+Unit 1 will cover Linear classification
 
 Exercise: predicting whether an Amazon product review, looking at only the text, will be positive or negative.
 
@@ -64,20 +55,21 @@ Many examples: Interpretation of web search queries, movie reccomendations, digi
 
 Machine learning as a discipline aims to design, understand, and apply computer programs that learn from experience (i.e. data) for the purpose of **modelling**, **prediction**, and **control**.
 
-There are many ways to learn or many reasons to learn.
-You can try to model, understand how things work.
-You can try to predict about, say, future outcomes
-or try to control towards a desired output configuration.
+There are many ways to learn or many reasons to learn:
+
+- You can try to model, understand how things work;
+- You can try to predict about, say, future outcomes;
+- Or you can try to control towards a desired output configuration.
 
 #### Prediction
 We will start with prediction as a core machine learning task. There are many types of predictions that we can make.:
+
 - We can predict outcomes of _events that occur in the future_ such as the market, weather tomorrow, the next word a text message user will type, or anticipate pedestrian behavior in self driving vehicles, and so on.
 - We can also try to predict _properties that we do not yet know_. For example, properties of materials such as whether a chemical is soluble in water, what the object is in an image, what an English sentence translates to in Hindi, whether a product review carries positive sentiment, and so on.
 
 ### 1.4. Introduction to Supervised Learning
 
-Common to all these “prediction problems" mentioned previously is that they would be very hard to solve
-in a traditional engineering way, where we specify rules or solutions directly to the problem. It is far easier to provide examples of correct behavior. For example, how would you encode rules for translation, or image classification? It is much easier to provide large numbers of translated sentences, or examples of what the objects are on a large set of images.
+Common to all these “prediction problems" mentioned previously is that they would be very hard to solve in a traditional engineering way, where we specify rules or solutions directly to the problem. It is far easier to provide examples of correct behavior. For example, how would you encode rules for translation, or image classification? It is much easier to provide large numbers of translated sentences, or examples of what the objects are on a large set of images.
 I don't have to specify the solution method to be able to illustrate the task implicitly through examples.
 The ability to learn the solution from examples is what has made machine learning so popular and pervasive.
 
@@ -87,56 +79,36 @@ More specifically, in supervised learning, we hypothesize a collection of functi
 
 We will automate this process of finding these parameters, and also specifying what the mappings are.
 
-So this is what the machine learning algorithms do for you.
-You can apply the same approach in different contexts.
+So this is what the machine learning algorithms do for you. You can then apply the same approach in different contexts.
 
 ### 1.5. A Concrete Example of a Supervised Learning Task
 
 Let's consider a movie recommender problem.
-I have a set of movies I've already seen (the **training set**),
-and I was to use the experience from those movies
-to make recommendations of whether I
-would like to see tens of thousands of other movies (the **test set**).
+I have a set of movies I've already seen (the **training set**), and I was to use the experience from those movies to make recommendations of whether I would like to see tens of thousands of other movies (the **test set**).
 
 We will compile a **feature vector** (a binary list of its characteristics.. genre, director, year..) for each movie in the training set as well for those I want to test (we will denote these feature vectors as $x$).
 
 I also give my recommendation (again binary) if I want to see again or not the films in the training set.
 
-Now I have the training set (feature vectors with associated labels), but I really
-wish to solve the task over the test set.
-It is this discrepancy that makes
-the learning task interesting.
-I wish to generalize what I extract from the training set
-and apply that information to the test set.
+Now I have the training set (feature vectors with associated labels), but I really wish to solve the task over the test set.
+It is this discrepancy that makes the learning task interesting. I wish to generalize what I extract from the training set and apply that information to the test set.
 
-More specifically, I wish to learn the mapping from
-x to labels (plus minus one) on the basis of the training set,
-and hope and guarantee that that mapping,
-if applied now in the same way to the test examples,
-it would work well.
+More specifically, I wish to learn the mapping from x to labels (plus minus one) on the basis of the training set, and hope and guarantee that that mapping, if applied now in the same way to the test examples, it would work well.
 
 I want to predict the films in the test set based on their characteristics and my previous recommendation on the training set.
 
 ### 1.6. Introduction to Classifiers: Let's bring in some geometry!
 
-On the basis of the training set, pairs of feature vectors associated with labels,
-I need to learn to map each each x, each future vector, to a corresponding label, which
-is a plus or minus 1.
+On the basis of the training set, pairs of feature vectors associated with labels, I need to learn to map each each x, each future vector, to a corresponding label, which is a plus or minus 1.
 
 What we need is a **classifier** (here denoted with $h$) that maps from points to corresponding labels.
 
-So what the classifier does is divide the space into essentially two halves-- one that's labeled 1, and the other one that's labeled minus 1.
+So what the classifier does is divide the space into essentially two halves -- one that's labeled 1, and the other one that's labeled minus 1.
 --> a "linear classifier" is a classifier that perform this division of the full space in the two half linearly
 
-We need to now, somehow, evaluate
-how good the classifier is in relation to the training
-examples that we have.
-To this end, we define something called **training error** (here denoted with $\epsilon$)
-It has a subscript n that refers to the number of training
-examples that I have.
-And I apply it to a particular classifier.
-I evaluate a particular classifier, in relation
-to the training examples that I have.
+We need to now, somehow, evaluate how good the classifier is in relation to the training examples that we have.
+To this end, we define something called **training error** (here denoted with $\epsilon$) It has a subscript n that refers to the number of training examples that I have.
+And I apply it to a particular classifier. I evaluate a particular classifier, in relation to the training examples that I have.
 
 $\epsilon_n(h) = \sum_{i=1}^n \frac{[\!\![ h(x^i) \neq y^i ]\!\!] }{n}$
 
@@ -153,29 +125,15 @@ We can build an "extreme" classifier that accept as +1 only a very narrow area a
 
 As a result, this classifier would still have training error equal to zero, but it would classify all the points in the test set, no matter how much close to the +1 training set points they are, as -1 !
 
-what is going on here is an issue called **generalization**--
-how well the classifier that we train on the training set
-generalizes or applies correctly, similarly
-to the test examples, as well?
-This is at the heart of machine-learning problems,
-the ability to generalize from the training set to the test
-set.
+what is going on here is an issue called **generalization** --how well the classifier that we train on the training set generalizes or applies correctly, similarly to the test examples, as well?
+This is at the heart of machine-learning problems, the ability to generalize from the training set to the test set.
 
-The problem here is that, in allowing
-these kind of classifiers that wrap themselves just
-around the examples (in the sense of allowing any kind of non-linear classifier), we are making the **hypothesis class**, the set of possible classifiers that we are considering, too large.
-We improve generalization, we generalize well,
-when we only have a very limited set of classifiers.
-And, out of those, we can find one that
-works well on the training set.
+The problem here is that, in allowing these kind of classifiers that wrap themselves just around the examples (in the sense of allowing any kind of non-linear classifier), we are making the **hypothesis class**, the set of possible classifiers that we are considering, too large.
+We improve generalization, we generalize well, when we only have a very limited set of classifiers. And, out of those, we can find one that works well on the training set.
 
-The more complex set of classifiers
-we consider, the less well we are likely to generalize (this is the same concept as overfitting in a statistical context).
+The more complex set of classifiers we consider, the less well we are likely to generalize (this is the same concept as overfitting in a statistical context).
 
-We would wish to, in general, solve these problems
-by finding a small set of possibilities that work well
-on the training set, so as to generalize well
-on the test set.
+We would wish to, in general, solve these problems by finding a small set of possibilities that work well on the training set, so as to generalize well on the test set.
 
 Training data can be graphically depicted on a (hyper)plane. Classifiers are mappings that take feature vectors as input and produce labels as output. A common kind of classifier is the linear classifier, which linearly divides space (the hyperplane where training data lies) into two. Given a point x in the space, the classifier $h$ outputs $h(x)=1$ or $h(x)=−1$, depending on where the point $x$ exists in among the two linearly divided spaces.
 
@@ -221,83 +179,49 @@ At the end of this lecture, you will be able to
 
 ### 2.2. Review of Basic Concepts
 
-A supervised learning task is when you
-are given the input and the corresponding output
-that you want, and you're supposed to learn irregularity between the two
-in order to make predictions for future examples, or inputs,
-or feature vectors x.
+A supervised learning task is when you are given the input and the corresponding output that you want, and you're supposed to learn irregularity between the two in order to make predictions for future examples, or inputs, or feature vectors x.
 
-**Test error** is defined exactly similarly over the test
-examples. So defined similarly to the training error, but over a disjoint set of examples, those future examples that you actually wish to do well.
+**Test error** is defined exactly similarly over the test examples. So defined similarly to the training error, but over a disjoint set of examples, those future examples that you actually wish to do well.
 
 We typically drop the n on it, assuming that the test set is relatively large,
 
-Much of machine learning, really, the theory part
-is in relating how a classifier that
-might do well on the training set
-would also do well on the test set.
-That's the problem called Generalization,
-as we've already seen.
-We can effect generalization by limiting the choices
-that we have at the time of considering
-minimizing the training error.
+Much of machine learning, really, the theory part is in relating how a classifier that might do well on the training set would also do well on the test set.
+That's the problem called Generalization, as we've already seen.
+We can effect generalization by limiting the choices that we have at the time of considering minimizing the training error.
 
 So our classifier here belongs to a **set of classifiers** (here denoted with $H$), that's not the set of all mappings, but it's a limited set of options that we constrain ourselves to.
 
-The trick here is to somehow guide
-the selection of the classifier based on the training
-example, such that it would do well on the examples
-that we have not yet seen.
+The trick here is to somehow guide the selection of the classifier based on the training example, such that it would do well on the examples that we have not yet seen.
 
-In order for this to be possible at all,
-you have to have some relationship
-between the training samples and the test examples.
-Typically, it is assumed that both sets are
-samples from some large collection of examples
-as a random subset.
+In order for this to be possible at all, you have to have some relationship between the training samples and the test examples.
+Typically, it is assumed that both sets are samples from some large collection of examples as a random subset.
 So you get a random subset as a training set.
 
 #### What is this lecture going to be about? ####
 
-This lecture we will consider only linear classifiers, such that we keep the problem well generalised (we will return to the question of generalization
-more formally later on in this course).
+This lecture we will consider only linear classifiers, such that we keep the problem well generalised (we will return to the question of generalization more formally later on in this course).
 
-We're going to formally define the set
-of linear classifiers, the set H restricted set of classifiers.
-We need to introduce parameters that index classifiers in this
-set so that we can search over the possible classifiers
-in the set.
+We're going to formally define the set of linear classifiers, the set H restricted set of classifiers.
+We need to introduce parameters that index classifiers in this set so that we can search over the possible classifiers in the set.
 
 We'll see what's the limitation of using linear classifiers.
 
-We'll next need to define the learning
-algorithm that takes in the training
-set and the set of classifiers and tries to find a classifier,
+We'll next need to define the learning algorithm that takes in the training set and the set of classifiers and tries to find a classifier,
 in that set, that somehow best fits the training set.
 
-We will consider initially the **perceptron algorithm**,
-which is a very simple online mistake driven algorithm that
-is still useful as it can be generalized
-to high dimensional problems.
-So perceptron algorithm finds a classifier $\hat h$,
-where hat denotes an estimate from the data.
-It's an algorithm that takes, as an input, the training
-set and the set of classifiers and then returns
-that estimated classifier,
+We will consider initially the **perceptron algorithm**, which is a very simple online mistake driven algorithm that is still useful as it can be generalized to high dimensional problems.
+So perceptron algorithm finds a classifier $\hat h$, where hat denotes an estimate from the data.
+It's an algorithm that takes, as an input, the training set and the set of classifiers and then returns that estimated classifier,
 
 ### 2.3. Linear Classifiers Mathematically Revisited
 
-The dividing line here is also called **decision boundary**.
-In 2D, that decision boundary is a line.
-If x was a one-dimensional quantity,
-the decision boundary would be a point.
-In 3D, it would be a plane.
-And in higher dimensions, it's called
-hyperplane that divides the space into two halves.
+The dividing line here is also called **decision boundary**:
+- If x was a one-dimensional quantity, the decision boundary would be a point.
+- In 2D, that decision boundary is a line.
+- In 3D, it would be a plane.
+- And in higher dimensions, it's called hyperplane that divides the space into two halves.
 
-So now we need to parameterize the linear classifiers,
-so that we can effectively search for the right one
-given the training set.
+So now we need to parameterize the linear classifiers, so that we can effectively search for the right one given the training set.
 
 #### Through the origin classifiers ####
 
@@ -315,12 +239,9 @@ But it also goes through origin.
 
 Our classifier become: $h(x;\theta) = sign(\theta \cdot x)$
 
-Note that this association between the classifier
-and the parameter vector theta is not unique.
-There are multiple parameter vectors theta
-that defined exactly the same classifier.
-the norm of the parameter vector of theta
-is not relevant in terms of the decision boundary.
+Note that this association between the classifier and the parameter vector theta is not unique.
+There are multiple parameter vectors theta that defined exactly the same classifier.
+The norm of the parameter vector of theta is not relevant in terms of the decision boundary.
 
 #### General linear classifiers ####
 
@@ -337,22 +258,17 @@ Given $\theta$ and $\theta_0$, a linear classifier $h: X \to \{−1,0,+1\}$ is a
 
 ### 2.5. The Perceptron Algorithm
 
-When the output of a classifier is exactly 0,
-if the example lies exactly on the linear boundary,
-we count that as an error, since we
-don't know which way we should really classify that point.
+When the output of a classifier is exactly 0, if the example lies exactly on the linear boundary, we count that as an error, since we don't know which way we should really classify that point.
 
 Training error for a linear classifier:
 
 $\epsilon_n(h) = \sum_{i=1}^n \frac{[\!\![ h(x^i) \neq y^i ]\!\!] }{n}$
 
-become:
+becomes:
 
 $\epsilon_n(\theta,\theta_0) = \sum_{i=1}^n \frac{[\!\![ y^i * (\theta \cdot x^i + \theta_0) \leq 0 ]\!\!] }{n}$
 
-We can now turn to the problem of actually finding
-a linear classifier that agrees with the training examples
-to the extent possible.
+We can now turn to the problem of actually finding a linear classifier that agrees with the training examples to the extent possible.
 
 #### Through the origin classifier
 
@@ -368,29 +284,14 @@ For example, given the pair $(x^1 = \array{2\\4}, y^1=-1)$, $\theta_1$ becomes $
 
 Its error is then $\epsilon_n(\theta^1) = [\!\!\![ y^i * (\theta¹ \cdot x^i)) \leq 0 ]\!\!\!] = [\!\!\![ ((y^i)^2 * || x^i||^2) \leq 0 ]\!\!\!] = 0$
 
-Now, what are we going to do here over the whole training
-set, is we start with the 0 parameter vector
-and then go over all the training examples.
-And if the i-th example is a mistake,
-then we perform that update that we just discussed.
+Now, what are we going to do here over the whole training set, is we start with the 0 parameter vector and then go over all the training examples.
+And if the i-th example is a mistake, then we perform that update that we just discussed.
 
-So we'd nudge the parameters in the right direction,
-based on an individual update.
-Now, since the different training examples
-might update the parameters in different directions,
-it is possible that the later updates actually
-make the earlier undo some of the earlier updates,
-and some of the earlier examples are no longer
-correctly classified.
-In other words, there may be cases where the perceptron algorithm needs
-to go over the training set multiple times
-before a separable solution is found.
+So we'd nudge the parameters in the right direction, based on an individual update.
+Now, since the different training examples might update the parameters in different directions, it is possible that the later updates actually make the earlier undo some of the earlier updates, and some of the earlier examples are no longer correctly classified.
+In other words, there may be cases where the perceptron algorithm needs to go over the training set multiple times before a separable solution is found.
 
-So we have to go through the training set here
-multiple times, here capital T times
-go through the training set, either in order
-or select at random, look at whether it's a mistake,
-and perform a simple update.
+So we have to go through the training set here multiple times, here capital T times go through the training set, either in order or select at random, look at whether it's a mistake, and perform a simple update.
 
 * function perceptron $\displaystyle \left(\big \{ (x^{(i)}, y^{(i)}), i=1,...,n\big \} , T \right)$:
   * initialize $\theta =0$ (vector);
@@ -400,27 +301,17 @@ and perform a simple update.
         * update $\theta = \theta + y^{(i)}x^{(i)}$
   * return $\theta$
 
-So the perceptron algorithm takes two parameters: the training set of data (pairs feature vectors => label) and the T parameter
-that tells you how many times you try
-to go over the training set.
+So the perceptron algorithm takes two parameters: the training set of data (pairs feature vectors => label) and the T parameter that tells you how many times you try to go over the training set.
 
 
-Now, this classifier
-for a sufficiently large T, if there
-exists a linear classifier through origin that correctly
-classifies the training samples, this simple algorithm actually will find a solution
-to that problem.
-There are many solutions typically,
-but this will find one. And note that the one found is not, generally, some "optimal" one, where the points are "best" separated, just one where the points _are_ separated.
+Now, this classifier for a sufficiently large T, if there exists a linear classifier through origin that correctly classifies the training samples, this simple algorithm actually will find a solution to that problem.
+There are many solutions typically, but this will find one. And note that the one found is not, generally, some "optimal" one, where the points are "best" separated, just one where the points _are_ separated.
 
 
 #### Generalised linear classifier
 
-we can generalize the perceptron
-algorithm to run with the general class
-of linear classifiers with the offset parameter.
-The only difference here is that now we
-initialize the parameter back to 0, as well as the scalar to 0, that we consider also $\theta_0$ in the error check, that we update $\theta_0$ as well and that we return it together with $\theta$:
+We can generalize the perceptron algorithm to run with the general class of linear classifiers with the offset parameter.
+The only difference here is that now we initialize the parameter back to 0, as well as the scalar to 0, that we consider also $\theta_0$ in the error check, that we update $\theta_0$ as well and that we return it together with $\theta$:
 
 
 * function perceptron $\displaystyle \left(\big \{ (x^{(i)}, y^{(i)}), i=1,...,n\big \} , T \right)$:
@@ -440,8 +331,7 @@ The model $\theta \cdot x + \theta_0$ can be then see equivalently as $\array{\t
 The update function $\theta = \theta + x^i*y^i$ becomes then $\array{\theta\\\theta_0} = \array{\theta\\\theta_0} + y^i * \array{x\\1}$ from which, going back to our original model, we obtain the given update functions.
 
 So now we have a general learning algorithm.
-The simplest one, but it can
-be generalized to be quite powerful and therefore, hence it is a useful algorithm to understand.
+The simplest one, but it can be generalized to be quite powerful and therefore, hence it is a useful algorithm to understand.
 
 ## Lecture 3 Hinge loss, Margin boundaries and Regularization
 
@@ -457,54 +347,34 @@ At the end of this lecture, you will be able to
 
 ### 3.2. Introduction
 
-Today, we will talk about how to turn machine learning problems
-into optimization problems.
-That is, we are going to turn the problem of finding
-a linear classifier on the basis of the training set
-into an optimization problem that
-can be solved in many ways.
-Today’s lesson we will talk about what linear large margin
-classification is and introduce notions such as margin loss
-and regularization.
+Today, we will talk about how to turn machine learning problems into optimization problems.
+That is, we are going to turn the problem of finding a linear classifier on the basis of the training set into an optimization problem that can be solved in many ways.
+Today’s lesson we will talk about what linear large margin classification is and introduce notions such as margin loss and regularization.
 
 Why optimisation ?
 
 The perceptron algorithm choose a correct classifier, but there are many possible correct classifiers.
-Between them, we would favor the solution
-that somehow is drawn between the two sets of training
-examples, leaving lots of space on both sides
-before hitting the training examples.
+Between them, we would favor the solution that somehow is drawn between the two sets of training examples, leaving lots of space on both sides before hitting the training examples.
 This is known as a **large margin classifier**.
 
-A large margin
-linear classifier still correctly classifies
-all of the test examples, even if these are noisy samples of unknown true values.
-A large margin classifier in this sense
-is more robust against noises in the examples.  In general, large margin means good generalization performance on test data.
+A large margin linear classifier still correctly classifies all of the test examples, even if these are noisy samples of unknown true values.
+A large margin classifier in this sense is more robust against noises in the examples.  In general, large margin means good generalization performance on test data.
 
 How to find such large margin classifier? --> optimisation problem
 
 We consider the parallel plane to the classifier passing by the closest positive and negative point as respectively positive and negative **margin boundaries**, and we want them to be equidistant from the classifier.
 
-The goal here is now to use these margin boundaries
-essentially to define a fat decision boundary
-that we will still try to fit with
+The goal here is now to use these margin boundaries essentially to define a fat decision boundary that we will still try to fit with
 the training examples.
-So we will push these margin boundaries apart
-that will force us to reorient there
-and move that system boundary into a place that carves out
+So we will push these margin boundaries apart that will force us to reorient there and move that system boundary into a place that carves out
 this large empty space between the two sets of examples.
 
 We will minimise an objective function made of two terms, the **regularisation term**, that push to set the boundaries as much apart as possible, but also a **loss function term**, that gives us the penalty from points that now, as the boundaries extend, got trapped inside the margin or even more to the other part (becoming misclassified)
 
 ### 3.3. Margin Boundary
 
-The first thing that we must do is
-to define what exactly the margin boundaries are
-and how we can control them, how far they are from the decision
-boundary.
-Remember that they are equidistant from the decision
-boundary.
+The first thing that we must do is to define what exactly the margin boundaries are and how we can control them, how far they are from the decision boundary.
+Remember that they are equidistant from the decision boundary.
 
 Given the linear equation $\theta \cdot x + \theta_0 = k$, the decision boundary is the set of points where $k=0$, the positive margin boundary is the set of points where $k$ is some positive constant and the negative margin boundary is where $k$ is some negative constant.
 
@@ -514,7 +384,7 @@ $\frac{\theta}{||\theta||} \cdot x + \frac{\theta_0}{||\theta||} = \frac{k}{||\t
 
 ### 3.4. Hinge Loss and Objective Function
 
-Obj is to maximise the distance of the decision boundary from the marginal boundaries, $k/||\theta||$ for the choosen $k$ (plus/minus 1 in the lesson). This is equivalent to minimise $||\theta||$, in turn equivalent to minimize $\frac{||\theta||^2}{2}$
+The objective is to maximise the distance of the decision boundary from the marginal boundaries, $k/||\theta||$ for the choosen $k$ (plus/minus 1 in the lesson). This is equivalent to minimise $||\theta||$, in turn equivalent to minimize $\frac{||\theta||^2}{2}$
 
 We can define the **Hinge loss** function as a function of the amount of _agreement_ (here denoted with $z$) between the classifier score and the data given by an equation we already saw: $y^i*(\theta \cdot x^i + \theta_0)$.
 
@@ -540,22 +410,14 @@ We are now ready to define the objective function (to minimise) as:
 
 $J(\theta , \theta_0) = \frac{1}{n} \sum_{i=1}^{n} \text{Loss}_h (y^{(i)} * (\theta \cdot x^{(i)} + \theta_0 )) + \frac{\lambda }{2} \mid \mid \theta \mid \mid ^2$
 
-Now, our objective function how we wish to guide the solution
-is a balance between the two.
-And we set the balance by defining a new parameter called
-**regularization parameter** (in the previous equation denoted by $\lambda$) that simply
-weighs how these two terms should affect our solution.
+Now, our objective function how we wish to guide the solution is a balance between the two.
+And we set the balance by defining a new parameter called **regularization parameter** (in the previous equation denoted by $\lambda$) that simply weighs how these two terms should affect our solution.
 Regularization parameter here is always greater than 0.
 
-Greater $\lambda$ : we will favor large margin
-solutions but potentially at a cost of incurring
-some further loss as the margin boundaries push
-past the examples.
+Greater $\lambda$ : we will favor large margin solutions but potentially at a cost of incurring some further loss as the margin boundaries push past the examples.
 
-Optimal value of $\theta$ and $\theta_0$
-is obtained by minimizing this objective function.
-So we have turned the learning problem
-into an optimization problem.
+Optimal value of $\theta$ and $\theta_0$ is obtained by minimizing this objective function.
+So we have turned the learning problem into an optimization problem.
 
 ## Homework 1
 
@@ -586,11 +448,8 @@ At the end of this lecture, you will be able to:
 
 ### 4.2. Review and the Lambda parameter
 
-Last time (lecture 3), we talked about how to formulate maximum margin
-linear classification as an optimization problem.
-Today, we're going to try to understand
-the solutions to that optimization problem
-and how to find those solutions.
+Last time (lecture 3), we talked about how to formulate maximum margin linear classification as an optimization problem.
+Today, we're going to try to understand the solutions to that optimization problem and how to find those solutions.
 
 The objective function to minimise is still
 
@@ -600,34 +459,21 @@ where the first term is the average loss and the second one is the regularisatio
 
 The average loss is what we are trying to minimize.
 
-Minimizing the regularization term
-will try instead to push the margin boundaries further and further
-apart.
+Minimizing the regularization term will try instead to push the margin boundaries further and further apart.
 
-And the balance between these two
-are controlled by the regularization parameter
-lambda.
+And the balance between these two are controlled by the regularization parameter lambda.
 
 Minimising the regularisation term $\frac{\lambda }{2} \mid \mid \theta \mid \mid ^2$ we maximise the distance of the margin boundary $\frac{1}{\mid \mid \theta \mid \mid}$.
 
-And as we do that, we start hitting the actual training
-examples.
-The boundary needs to orient itself,
-and we may start incurring losses.
+And as we do that, we start hitting the actual training examples.
+The boundary needs to orient itself, and we may start incurring losses.
 
 #### The role of the lambda parameter
 
-As we change the regularization parameter,
-lambda, we change the balance between these two terms.
-The larger the value lambda is, the more
-we try to push the margin boundaries apart;
-the smaller it is, the more emphasis
-we put on minimizing the average laws on the training example, reducing the distance of the margin boundaries  up to the extreme $\lambda=0$ where the margin boundaries themselves collapse towards the actual decision boundary.
+As we change the regularization parameter, lambda, we change the balance between these two terms.
+The larger the value lambda is, the more we try to push the margin boundaries apart; the smaller it is, the more emphasis we put on minimizing the average laws on the training example, reducing the distance of the margin boundaries  up to the extreme $\lambda=0$ where the margin boundaries themselves collapse towards the actual decision boundary.
 
-The further and further the margin
-boundaries are posed, the more the solution
-will be guided by the bulk of the points,
-rather than just the points that are right close to the decision boundary.
+The further and further the margin boundaries are posed, the more the solution will be guided by the bulk of the points, rather than just the points that are right close to the decision boundary.
 So the solution changes as we change the regularization parameter.
 
 In other terms:
@@ -661,12 +507,8 @@ Using this "new" training set we can find the optimal classifier as function of 
 
 ### 4.4. Gradient Descent
 
-Objective: So far we have seen how to qualitatively understand
-the type of solutions that we get
-when we vary the regularization parameter
-and optimize with respect to theta and theta naught.
-Now, we are going to talk about, actually, algorithms
-for finding those solutions.
+Objective: So far we have seen how to qualitatively understand the type of solutions that we get when we vary the regularization parameter and optimize with respect to theta and theta naught.
+Now, we are going to talk about, actually, algorithms for finding those solutions.
 
 Gradient descent algorithm to find the minimum of a function $J(\theta)$ with respect to a parameter $\theta \in \mathbb{R}$ (for simplicity).
 
@@ -738,24 +580,9 @@ $\mathbf{\theta} = \mathbf{\theta} - \eta_t * \left( \begin{cases}
 There are three differences
 between the update in the stochastic gradient descent method and the update in our earlier perception algorithm ($\mathbf{\theta} = \mathbf{\theta} + y^{(i)} \mathbf{x}^{(i)}$):
 
-- First, is that we are actually using a decreasing learning
-rate due to the stochasticity.
-- The second difference is that we are actually
-performing the update, even if we are correctly classifying
-the example, because the regularization term will always
-yield an update, regardless of what the loss is.
-And the role of that regularization term
-is to nudge the parameters a little bit
-backwards, so decrease the norm of the parameter
-vector at every stamp, which corresponds to trying
-to maximize the margin.
-- To counterbalance that, we will get a non-zero derivative
-from the last terms, if the loss is non-zero.
-And that update looks like the perceptor update,
-but it is actually made even if we correctly
-classify the example.
-If the example is within the margin boundaries,
-you would get a non-zero loss.
+- First, is that we are actually using a decreasing learning rate due to the stochasticity.
+- The second difference is that we are actually performing the update, even if we are correctly classifying the example, because the regularization term will always yield an update, regardless of what the loss is. And the role of that regularization term is to nudge the parameters a little bit backwards, so decrease the norm of the parameter vector at every stamp, which corresponds to trying to maximize the margin.
+- To counterbalance that, we will get a non-zero derivative from the last terms, if the loss is non-zero. And that update looks like the perceptor update, but it is actually made even if we correctly classify the example. If the example is within the margin boundaries, you would get a non-zero loss.
 
 #### An other point of view on SGD compared to a deterministic approach:
 
@@ -779,7 +606,7 @@ We want hence extend the margins as much as possible while keeping zero losses, 
 
 This is a problem quadratic in the objective and with linear constraints, and it can be solved with so-called quadratic solvers.
 
- Relaxing the loss constraint and incorporate the loss in the objective would still leave the problem as a quadratic one.
+Relaxing the loss constraint and incorporate the loss in the objective would still leave the problem as a quadratic one.
 
 
 ## Homework 2
@@ -811,13 +638,13 @@ But  $f_{data} \neq f$. Because of that we add to our loss function a regularisa
 A **hyperparameter** $\alpha$ then balance these two terms in our function to minimise. And we remain with the task to choose this parameter, as it is not determined by the minimisation of the function as it is for $(\theta,\theta_0)$.
 We'll see that to find $\alpha$ we will use indeed the cross validation using training data only and how choosing alpha will affect the performance of the model.
 
- We'll go trough cross the method of cross validation which this is actually how we find $\alpha$ in practice using training data only, not the test data.
+We'll go trough cross the method of cross validation which this is actually how we find $\alpha$ in practice using training data only, not the test data.
 
 ### Support Vector Machine
 
 What are the Loss and the regularisation functions for Support Vector Machines (SVM)
 
-SVm obj: maximise the margins of the decision boundary
+SVM obj: maximise the margins of the decision boundary
 
 Distance from point $i$ to the decision boundary:
 
@@ -910,3 +737,5 @@ We use the function `linear_model.SGDClassifier(loss='hinge', penalty='l2', alph
 
 We then use `ms.cross_val_score(model, X, y, cv=5)` to actually train the model on the training set divided in 5 different partitions. The function return already an array of the scores of the remaining validation partition.
 To compute the score for that particular alpha we now need just to average the score array obtained by that function.
+
+[[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)
