@@ -1,0 +1,1468 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+          xmlns:cwsp="http://www.dspace.org/xmlns/cwspace_imscp"
+          xmlns:ocw="https://ocw.mit.edu/xmlns/ocw_imscp"
+          xmlns:lom="https://ocw.mit.edu/xmlns/LOM"
+          identifier="urn_edu.mit.ocw_6-867-machine-learning-fall-2006"
+          version="2019-12-30T7:40:27"
+          cwsp:packageType="Course"
+          xml:base="6-867-fall-2006/"
+          xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 http://www.imsglobal.org/xsd/imscp_v1p1.xsd  http://www.adlnet.org/xsd/adlcp_rootv1p2 http://www.adlnet.org/xsd/adlcp_rootv1p2.xsd http://www.dspace.org/xmlns/cwspace_imscp http://www.dspace.org/xsd/cwspace_imscp/version10/cwspace_imscpv10.xsd https://ocw.mit.edu/xmlns/ocw_imscp https://ocw.mit.edu/xsd/ocw_imscp/version10/ocw_imscpv10.xsd https://ocw.mit.edu/xmlns/LOM https://ocw.mit.edu/xsd/LOM/lomv1.0/lomv1.0.xsd">
+   	<metadata>
+   		<schema>IMS Content</schema>
+        <schemaversion>1.1</schemaversion>
+        <cwsp:packageMetadata>
+            <cwsp:sourceSystem>OCW</cwsp:sourceSystem>
+            <cwsp:profile>CWSpace</cwsp:profile>
+            <cwsp:profileVersion>0.1</cwsp:profileVersion>
+        </cwsp:packageMetadata>
+        <lom:general uniqueElementName="general">
+            <lom:title uniqueElementName="title">
+				<lom:string language="en">Machine Learning</lom:string>
+			</lom:title>
+			<lom:identifier>
+				<lom:catalog uniqueElementName="catalog">OCW Master Course Number</lom:catalog>
+		      	<lom:entry uniqueElementName="entry">6.867</lom:entry>
+			</lom:identifier>
+        </lom:general>
+        <lom:lifecycle uniqueElementName="lifeCycle">
+            <lom:version uniqueElementName="version">
+				<lom:string language="en">Fall 2006</lom:string>
+			</lom:version>
+            <lom:contribute>
+	            <lom:role>
+	                <lom:source uniqueElementName="source">OCW_LOMv1.0</lom:source>
+	                <lom:value uniqueElementName="value">Author</lom:value>
+	            </lom:role>
+	            <lom:entity>Singh, Rohit</lom:entity>
+	            <lom:date uniqueElementName="date">
+	                <lom:dateTime uniqueElementName="dateTime">2019-12-30</lom:dateTime>
+	            </lom:date>
+        	</lom:contribute>
+            <lom:contribute>
+	            <lom:role>
+	                <lom:source uniqueElementName="source">OCW_LOMv1.0</lom:source>
+	                <lom:value uniqueElementName="value">Author</lom:value>
+	            </lom:role>
+	            <lom:entity>Jaakkola, Tommi</lom:entity>
+	            <lom:date uniqueElementName="date">
+	                <lom:dateTime uniqueElementName="dateTime">2019-12-30</lom:dateTime>
+	            </lom:date>
+        	</lom:contribute>
+            <lom:contribute>
+	            <lom:role>
+	                <lom:source uniqueElementName="source">OCW_LOMv1.0</lom:source>
+	                <lom:value uniqueElementName="value">Author</lom:value>
+	            </lom:role>
+	            <lom:entity>Mohammad, Ali</lom:entity>
+	            <lom:date uniqueElementName="date">
+	                <lom:dateTime uniqueElementName="dateTime">2019-12-30</lom:dateTime>
+	            </lom:date>
+        	</lom:contribute>
+        </lom:lifecycle>
+        <lom:relation uniqueElementName="relation">
+        	<lom:kind uniqueElementName="kind">
+        		<lom:source uniqueElementName="source">OCW_LOMv1.0</lom:source>
+        		<lom:value uniqueElementName="value">hasversion</lom:value>
+        	</lom:kind>
+        	<lom:resource uniqueElementName="resource">
+        		<lom:identifier>
+        			<lom:catalog uniqueElementName="catalog">URI</lom:catalog>
+        			<lom:entry uniqueElementName="entry">http://mit-ocw-thai.eng.chula.ac.th/MIT_THAI/e27e34e28e27e01e23e23e21e44e1fe1fe49e32e41e25e30e04e2de21e1ee34e27e40e15e2de23e4c-electrical-engineering-and-computer-science/6.867-e01e32e23e40e23e35e22e19e23e39e49e02e2de07e40e04e23e37e48e2de07-e24e14e39e43e1ae44e21e49e23e48e27e07-2002</lom:entry>
+        		</lom:identifier>
+        		<lom:description uniqueElementName="description">
+        			<lom:string language="en"></lom:string>
+        		</lom:description>
+        	</lom:resource>
+        </lom:relation>
+        <lom:relation uniqueElementName="relation">
+        	<lom:kind uniqueElementName="kind">
+        		<lom:source uniqueElementName="source">OCW_LOMv1.0</lom:source>
+        		<lom:value uniqueElementName="value">isbasedon</lom:value>
+        	</lom:kind>
+        	<lom:resource uniqueElementName="resource">
+        		<lom:identifier>
+        			<lom:catalog uniqueElementName="catalog">URI</lom:catalog>
+        			<lom:entry uniqueElementName="entry">http://hdl.handle.net/1721.1/46320</lom:entry>
+        		</lom:identifier>
+        		<lom:description uniqueElementName="description">
+        			<lom:string language="en">Previous version of the course</lom:string>
+        		</lom:description>
+        	</lom:resource>
+        </lom:relation>
+        <lom:taxonPath>
+            <lom:source uniqueElementName="source">
+                <lom:string language="en">OCW Course Topics</lom:string>
+            </lom:source>
+            <lom:taxon>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Engineering</lom:string>
+                </lom:entry>
+            </lom:taxon>
+            <lom:taxon>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Computer Science</lom:string>
+                </lom:entry>
+            </lom:taxon>
+            <lom:taxon>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Algorithms and Data Structures</lom:string>
+                </lom:entry>
+            </lom:taxon>
+        </lom:taxonPath>
+        <lom:taxonPath>
+            <lom:source uniqueElementName="source">
+                <lom:string language="en">OCW Course Topics</lom:string>
+            </lom:source>
+            <lom:taxon>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Engineering</lom:string>
+                </lom:entry>
+            </lom:taxon>
+            <lom:taxon>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Computer Science</lom:string>
+                </lom:entry>
+            </lom:taxon>
+            <lom:taxon>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Artificial Intelligence</lom:string>
+                </lom:entry>
+            </lom:taxon>
+        </lom:taxonPath>
+        <lom:taxonPath>
+            <lom:source uniqueElementName="source">
+                <lom:string language="en">OCW Course Topics</lom:string>
+            </lom:source>
+            <lom:taxon>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Science</lom:string>
+                </lom:entry>
+            </lom:taxon>
+            <lom:taxon>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Cognitive Science</lom:string>
+                </lom:entry>
+            </lom:taxon>
+            
+        </lom:taxonPath>
+        <lom:taxonPath>
+            <lom:source uniqueElementName="source">
+                <lom:string language="en">OCW Course Topics</lom:string>
+            </lom:source>
+            <lom:taxon>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Mathematics</lom:string>
+                </lom:entry>
+            </lom:taxon>
+            <lom:taxon>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Probability and Statistics</lom:string>
+                </lom:entry>
+            </lom:taxon>
+            
+        </lom:taxonPath>        
+        <adlcp:location>contents/index.htm.xml</adlcp:location>
+    </metadata>
+    <organizations default="ocw_6-867-machine-learning-fall-2006">
+        <organization identifier="ocw_6-867-machine-learning-fall-2006">
+            <title>Machine Learning</title>
+            <item identifier="i_6-867-machine-learning-fall-2006.CourseHome"
+                  identifierref="r_contents.index.htm"
+                  ocw:sectionTemplateType="CourseHomePage"
+                  ocw:sectionTemplateVersion="2019-12-30">
+				<title>Machine Learning</title>
+				<item identifier="i_6-867-machine-learning-fall-2006.6-867f06.jpg"
+          identifierref="r_contents.6-867f06.jpg">
+				<title>6-867f06.jpg</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.6-867f06-th.jpg"
+          identifierref="r_contents.6-867f06-th.jpg">
+				<title>6-867f06-th.jpg</title>
+				</item>
+			</item>
+            <item identifier="i_6-867-machine-learning-fall-2006.syllabus"
+                  identifierref="r_contents.syllabus.index.htm"
+                  ocw:sectionTemplateType="CourseSection"
+                  ocw:sectionTemplateVersion="2019-12-30">
+				<title>Syllabus</title>
+			</item>
+            <item identifier="i_6-867-machine-learning-fall-2006.readings"
+                  identifierref="r_contents.readings.index.htm"
+                  ocw:sectionTemplateType="CourseSection"
+                  ocw:sectionTemplateVersion="2019-12-30">
+				<title>Readings</title>
+				<item identifier="i_6-867-machine-learning-fall-2006.readings.lagrange.pdf"
+          identifierref="r_contents.readings.lagrange.pdf">
+				<title>lagrange.pdf</title>
+				</item>
+			</item>
+            <item identifier="i_6-867-machine-learning-fall-2006.lecture-notes"
+                  identifierref="r_contents.lecture-notes.index.htm"
+                  ocw:sectionTemplateType="CourseSection"
+                  ocw:sectionTemplateVersion="2019-12-30">
+				<title>Lecture Notes</title>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec1.pdf"
+          identifierref="r_contents.lecture-notes.lec1.pdf">
+				<title>lec1.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec2.pdf"
+          identifierref="r_contents.lecture-notes.lec2.pdf">
+				<title>lec2.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec22.pdf"
+          identifierref="r_contents.lecture-notes.lec22.pdf">
+				<title>lec22.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec12.pdf"
+          identifierref="r_contents.lecture-notes.lec12.pdf">
+				<title>lec12.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec17.pdf"
+          identifierref="r_contents.lecture-notes.lec17.pdf">
+				<title>lec17.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec13.pdf"
+          identifierref="r_contents.lecture-notes.lec13.pdf">
+				<title>lec13.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec16.pdf"
+          identifierref="r_contents.lecture-notes.lec16.pdf">
+				<title>lec16.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec18.pdf"
+          identifierref="r_contents.lecture-notes.lec18.pdf">
+				<title>lec18.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec4.pdf"
+          identifierref="r_contents.lecture-notes.lec4.pdf">
+				<title>lec4.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec20.pdf"
+          identifierref="r_contents.lecture-notes.lec20.pdf">
+				<title>lec20.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec7.pdf"
+          identifierref="r_contents.lecture-notes.lec7.pdf">
+				<title>lec7.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec8.pdf"
+          identifierref="r_contents.lecture-notes.lec8.pdf">
+				<title>lec8.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec15.pdf"
+          identifierref="r_contents.lecture-notes.lec15.pdf">
+				<title>lec15.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec9.pdf"
+          identifierref="r_contents.lecture-notes.lec9.pdf">
+				<title>lec9.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec10.pdf"
+          identifierref="r_contents.lecture-notes.lec10.pdf">
+				<title>lec10.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec3.pdf"
+          identifierref="r_contents.lecture-notes.lec3.pdf">
+				<title>lec3.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec14.pdf"
+          identifierref="r_contents.lecture-notes.lec14.pdf">
+				<title>lec14.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec23.pdf"
+          identifierref="r_contents.lecture-notes.lec23.pdf">
+				<title>lec23.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec19.pdf"
+          identifierref="r_contents.lecture-notes.lec19.pdf">
+				<title>lec19.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec5.pdf"
+          identifierref="r_contents.lecture-notes.lec5.pdf">
+				<title>lec5.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec21.pdf"
+          identifierref="r_contents.lecture-notes.lec21.pdf">
+				<title>lec21.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec6.pdf"
+          identifierref="r_contents.lecture-notes.lec6.pdf">
+				<title>lec6.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.lecture-notes.lec11.pdf"
+          identifierref="r_contents.lecture-notes.lec11.pdf">
+				<title>lec11.pdf</title>
+				</item>
+			</item>
+            <item identifier="i_6-867-machine-learning-fall-2006.assignments"
+                  identifierref="r_contents.assignments.index.htm"
+                  ocw:sectionTemplateType="CourseSection"
+                  ocw:sectionTemplateVersion="2019-12-30">
+				<title>Assignments</title>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.prob2_data.zip"
+          identifierref="r_contents.assignments.prob2_data.zip">
+				<title>prob2_data.zip</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw2.pdf"
+          identifierref="r_contents.assignments.hw2.pdf">
+				<title>hw2.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw4_soln.pdf"
+          identifierref="r_contents.assignments.hw4_soln.pdf">
+				<title>hw4_soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw1.pdf"
+          identifierref="r_contents.assignments.hw1.pdf">
+				<title>hw1.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.perceptron_train.m"
+          identifierref="r_contents.assignments.perceptron_train.m">
+				<title>perceptron_train.m</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw5_soln.pdf"
+          identifierref="r_contents.assignments.hw5_soln.pdf">
+				<title>hw5_soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.perceptron_test.m"
+          identifierref="r_contents.assignments.perceptron_test.m">
+				<title>perceptron_test.m</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.prob1_data.zip"
+          identifierref="r_contents.assignments.prob1_data.zip">
+				<title>prob1_data.zip</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw3_soln.pdf"
+          identifierref="r_contents.assignments.hw3_soln.pdf">
+				<title>hw3_soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw2errata.txt"
+          identifierref="r_contents.assignments.hw2errata.txt">
+				<title>hw2errata.txt</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.p3.zip"
+          identifierref="r_contents.assignments.p3.zip">
+				<title>p3.zip</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw1b_soln.pdf"
+          identifierref="r_contents.assignments.hw1b_soln.pdf">
+				<title>hw1b_soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw1a_soln.pdf"
+          identifierref="r_contents.assignments.hw1a_soln.pdf">
+				<title>hw1a_soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw3errata.txt"
+          identifierref="r_contents.assignments.hw3errata.txt">
+				<title>hw3errata.txt</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw5errata.txt"
+          identifierref="r_contents.assignments.hw5errata.txt">
+				<title>hw5errata.txt</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw4errata.txt"
+          identifierref="r_contents.assignments.hw4errata.txt">
+				<title>hw4errata.txt</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw4.pdf"
+          identifierref="r_contents.assignments.hw4.pdf">
+				<title>hw4.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.p1.zip"
+          identifierref="r_contents.assignments.p1.zip">
+				<title>p1.zip</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw5.pdf"
+          identifierref="r_contents.assignments.hw5.pdf">
+				<title>hw5.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw3.pdf"
+          identifierref="r_contents.assignments.hw3.pdf">
+				<title>hw3.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw1errata.txt"
+          identifierref="r_contents.assignments.hw1errata.txt">
+				<title>hw1errata.txt</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.strimage.m"
+          identifierref="r_contents.assignments.strimage.m">
+				<title>strimage.m</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.assignments.hw2_soln.pdf"
+          identifierref="r_contents.assignments.hw2_soln.pdf">
+				<title>hw2_soln.pdf</title>
+				</item>
+			</item>
+            <item identifier="i_6-867-machine-learning-fall-2006.exams"
+                  identifierref="r_contents.exams.index.htm"
+                  ocw:sectionTemplateType="CourseSection"
+                  ocw:sectionTemplateVersion="2019-12-30">
+				<title>Exams</title>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.midterm_f06soln.pdf"
+          identifierref="r_contents.exams.midterm_f06soln.pdf">
+				<title>midterm_f06soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.final_f04.pdf"
+          identifierref="r_contents.exams.final_f04.pdf">
+				<title>final_f04.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.final_f01soln.pdf"
+          identifierref="r_contents.exams.final_f01soln.pdf">
+				<title>final_f01soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.midterm_f04soln.pdf"
+          identifierref="r_contents.exams.midterm_f04soln.pdf">
+				<title>midterm_f04soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.final_f01.pdf"
+          identifierref="r_contents.exams.final_f01.pdf">
+				<title>final_f01.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.midterm_f02.pdf"
+          identifierref="r_contents.exams.midterm_f02.pdf">
+				<title>midterm_f02.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.midterm_f01.pdf"
+          identifierref="r_contents.exams.midterm_f01.pdf">
+				<title>midterm_f01.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.midterm_f03.pdf"
+          identifierref="r_contents.exams.midterm_f03.pdf">
+				<title>midterm_f03.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.midterm_f01soln.pdf"
+          identifierref="r_contents.exams.midterm_f01soln.pdf">
+				<title>midterm_f01soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.midterm_f02soln.pdf"
+          identifierref="r_contents.exams.midterm_f02soln.pdf">
+				<title>midterm_f02soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.final_f03soln.pdf"
+          identifierref="r_contents.exams.final_f03soln.pdf">
+				<title>final_f03soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.final_f02.pdf"
+          identifierref="r_contents.exams.final_f02.pdf">
+				<title>final_f02.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.midterm_f03soln.pdf"
+          identifierref="r_contents.exams.midterm_f03soln.pdf">
+				<title>midterm_f03soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.final_f02soln.pdf"
+          identifierref="r_contents.exams.final_f02soln.pdf">
+				<title>final_f02soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.final_f04soln.pdf"
+          identifierref="r_contents.exams.final_f04soln.pdf">
+				<title>final_f04soln.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.final_f03.pdf"
+          identifierref="r_contents.exams.final_f03.pdf">
+				<title>final_f03.pdf</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.exams.midterm_f04.pdf"
+          identifierref="r_contents.exams.midterm_f04.pdf">
+				<title>midterm_f04.pdf</title>
+				</item>
+			</item>
+            <item identifier="i_6-867-machine-learning-fall-2006.projects"
+                  identifierref="r_contents.projects.index.htm"
+                  ocw:sectionTemplateType="CourseSection"
+                  ocw:sectionTemplateVersion="2019-12-30">
+				<title>Projects</title>
+			</item>
+            <item identifier="i_6-867-machine-learning-fall-2006.tools"
+                  identifierref="r_contents.tools.index.htm"
+                  ocw:sectionTemplateType="CourseSection"
+                  ocw:sectionTemplateVersion="2019-12-30">
+				<title>Tools</title>
+				<item identifier="i_6-867-machine-learning-fall-2006.tools.plot.m"
+          identifierref="r_contents.tools.plot.m">
+				<title>plot.m</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.tools.matrix.m"
+          identifierref="r_contents.tools.matrix.m">
+				<title>matrix.m</title>
+				</item>
+				<item identifier="i_6-867-machine-learning-fall-2006.tools.files.m"
+          identifierref="r_contents.tools.files.m">
+				<title>files.m</title>
+				</item>
+			</item>
+            <item identifier="i_terms"
+                  identifierref="r_common.terms.index.htm"
+                  ocw:sectionTemplateType="GlobalSection"
+                  ocw:sectionTemplateVersion="2019-12-30">
+				<title>Legal Notices</title>
+			</item>
+            <item identifier="i_terms"
+                  identifierref="r_common.terms.index.htm"
+                  ocw:sectionTemplateType="GlobalSection"
+                  ocw:sectionTemplateVersion="2019-12-30">
+				<title>Privacy Statement</title>
+			</item>
+            <item identifier="i_terms.trademarks"
+                  identifierref="r_common.terms.trademarks.index.htm"
+                  ocw:sectionTemplateType="GlobalSection"
+                  ocw:sectionTemplateVersion="2019-12-30">
+				<title>Trademark Notices</title>
+			</item>
+        </organization>
+    </organizations>
+    <resources>
+        <resource identifier="r_contents.lecture-notes.lec19.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec19.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec19.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec19.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec7.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec7.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec7.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec7.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.tools.matrix.m"
+                  type="other"
+                  href="contents/tools/matrix.m">
+            <metadata>
+                <adlcp:location>contents/tools/matrix.m.xml</adlcp:location>
+            </metadata>
+            <file href="contents/tools/matrix.m"/>
+                        
+        </resource>
+        <resource identifier="r_contents.tools.files.m"
+                  type="other" href="contents/tools/files.m">
+            <metadata>
+                <adlcp:location>contents/tools/files.m.xml</adlcp:location>
+            </metadata>
+            <file href="contents/tools/files.m"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.perceptron_train.m"
+                  type="other"
+                  href="contents/assignments/perceptron_train.m">
+            <metadata>
+                <adlcp:location>contents/assignments/perceptron_train.m.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/perceptron_train.m"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.midterm_f03soln.pdf"
+                  type="other"
+                  href="contents/exams/midterm_f03soln.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/midterm_f03soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/midterm_f03soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.6-867f06.jpg"
+                  type="other" href="contents/6-867f06.jpg">
+            <metadata>
+                <adlcp:location>contents/6-867f06.jpg.xml</adlcp:location>
+            </metadata>
+            <file href="contents/6-867f06.jpg"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw3.pdf"
+                  type="other"
+                  href="contents/assignments/hw3.pdf">
+            <metadata>
+                <adlcp:location>contents/assignments/hw3.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw3.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec16.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec16.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec16.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec16.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec23.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec23.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec23.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec23.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.perceptron_test.m"
+                  type="other"
+                  href="contents/assignments/perceptron_test.m">
+            <metadata>
+                <adlcp:location>contents/assignments/perceptron_test.m.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/perceptron_test.m"/>
+                        
+        </resource>
+        <resource identifier="r_contents.tools.plot.m"
+                  type="other" href="contents/tools/plot.m">
+            <metadata>
+                <adlcp:location>contents/tools/plot.m.xml</adlcp:location>
+            </metadata>
+            <file href="contents/tools/plot.m"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec2.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec2.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec2.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec2.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.projects.index.htm"
+                  type="webcontent"
+                  href="contents/projects/index.htm">
+            <metadata>
+                <adlcp:location>contents/projects/index.htm.xml</adlcp:location>
+            </metadata>
+            <file href="contents/projects/index.htm"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="r_contents.assignments.hw3errata.txt"
+                  type="other"
+                  href="contents/assignments/hw3errata.txt">
+            <metadata>
+                <adlcp:location>contents/assignments/hw3errata.txt.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw3errata.txt"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec17.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec17.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec17.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec17.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.index.htm"
+                  type="webcontent"
+                  href="contents/exams/index.htm">
+            <metadata>
+                <adlcp:location>contents/exams/index.htm.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/index.htm"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="r_contents.tools.index.htm"
+                  type="webcontent"
+                  href="contents/tools/index.htm">
+            <metadata>
+                <adlcp:location>contents/tools/index.htm.xml</adlcp:location>
+            </metadata>
+            <file href="contents/tools/index.htm"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec9.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec9.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec9.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec9.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec3.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec3.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec3.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec3.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.final_f03.pdf"
+                  type="other"
+                  href="contents/exams/final_f03.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/final_f03.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/final_f03.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw3_soln.pdf"
+                  type="other"
+                  href="contents/assignments/hw3_soln.pdf">
+            <metadata>
+                <adlcp:location>contents/assignments/hw3_soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw3_soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.prob1_data.zip"
+                  type="other"
+                  href="contents/assignments/prob1_data.zip">
+            <metadata>
+                <adlcp:location>contents/assignments/prob1_data.zip.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/prob1_data.zip"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec5.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec5.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec5.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec5.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.midterm_f04soln.pdf"
+                  type="other"
+                  href="contents/exams/midterm_f04soln.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/midterm_f04soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/midterm_f04soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec20.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec20.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec20.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec20.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec10.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec10.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec10.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec10.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec6.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec6.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec6.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec6.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec22.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec22.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec22.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec22.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec18.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec18.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec18.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec18.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.final_f02.pdf"
+                  type="other"
+                  href="contents/exams/final_f02.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/final_f02.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/final_f02.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw5.pdf"
+                  type="other"
+                  href="contents/assignments/hw5.pdf">
+            <metadata>
+                <adlcp:location>contents/assignments/hw5.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw5.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.midterm_f02soln.pdf"
+                  type="other"
+                  href="contents/exams/midterm_f02soln.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/midterm_f02soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/midterm_f02soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.final_f04.pdf"
+                  type="other"
+                  href="contents/exams/final_f04.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/final_f04.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/final_f04.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.p3.zip"
+                  type="other"
+                  href="contents/assignments/p3.zip">
+            <metadata>
+                <adlcp:location>contents/assignments/p3.zip.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/p3.zip"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec15.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec15.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec15.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec15.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw4errata.txt"
+                  type="other"
+                  href="contents/assignments/hw4errata.txt">
+            <metadata>
+                <adlcp:location>contents/assignments/hw4errata.txt.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw4errata.txt"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.midterm_f01.pdf"
+                  type="other"
+                  href="contents/exams/midterm_f01.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/midterm_f01.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/midterm_f01.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.midterm_f01soln.pdf"
+                  type="other"
+                  href="contents/exams/midterm_f01soln.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/midterm_f01soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/midterm_f01soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.6-867f06-th.jpg"
+                  type="other"
+                  href="contents/6-867f06-th.jpg">
+            <metadata>
+                <adlcp:location>contents/6-867f06-th.jpg.xml</adlcp:location>
+            </metadata>
+            <file href="contents/6-867f06-th.jpg"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec8.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec8.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec8.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec8.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw1a_soln.pdf"
+                  type="other"
+                  href="contents/assignments/hw1a_soln.pdf">
+            <metadata>
+                <adlcp:location>contents/assignments/hw1a_soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw1a_soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw2_soln.pdf"
+                  type="other"
+                  href="contents/assignments/hw2_soln.pdf">
+            <metadata>
+                <adlcp:location>contents/assignments/hw2_soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw2_soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.midterm_f02.pdf"
+                  type="other"
+                  href="contents/exams/midterm_f02.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/midterm_f02.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/midterm_f02.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec13.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec13.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec13.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec13.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec11.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec11.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec11.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec11.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec21.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec21.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec21.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec21.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.index.htm"
+                  type="webcontent"
+                  href="contents/assignments/index.htm">
+            <metadata>
+                <adlcp:location>contents/assignments/index.htm.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/index.htm"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="r_contents.assignments.p1.zip"
+                  type="other"
+                  href="contents/assignments/p1.zip">
+            <metadata>
+                <adlcp:location>contents/assignments/p1.zip.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/p1.zip"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.final_f03soln.pdf"
+                  type="other"
+                  href="contents/exams/final_f03soln.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/final_f03soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/final_f03soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.readings.index.htm"
+                  type="webcontent"
+                  href="contents/readings/index.htm">
+            <metadata>
+                <adlcp:location>contents/readings/index.htm.xml</adlcp:location>
+            </metadata>
+            <file href="contents/readings/index.htm"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="r_contents.assignments.hw2.pdf"
+                  type="other"
+                  href="contents/assignments/hw2.pdf">
+            <metadata>
+                <adlcp:location>contents/assignments/hw2.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw2.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw1.pdf"
+                  type="other"
+                  href="contents/assignments/hw1.pdf">
+            <metadata>
+                <adlcp:location>contents/assignments/hw1.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw1.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw1errata.txt"
+                  type="other"
+                  href="contents/assignments/hw1errata.txt">
+            <metadata>
+                <adlcp:location>contents/assignments/hw1errata.txt.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw1errata.txt"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.strimage.m"
+                  type="other"
+                  href="contents/assignments/strimage.m">
+            <metadata>
+                <adlcp:location>contents/assignments/strimage.m.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/strimage.m"/>
+                        
+        </resource>
+        <resource identifier="r_contents.readings.lagrange.pdf"
+                  type="other"
+                  href="contents/readings/lagrange.pdf">
+            <metadata>
+                <adlcp:location>contents/readings/lagrange.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/readings/lagrange.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw4.pdf"
+                  type="other"
+                  href="contents/assignments/hw4.pdf">
+            <metadata>
+                <adlcp:location>contents/assignments/hw4.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw4.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.midterm_f06soln.pdf"
+                  type="other"
+                  href="contents/exams/midterm_f06soln.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/midterm_f06soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/midterm_f06soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.syllabus.index.htm"
+                  type="webcontent"
+                  href="contents/syllabus/index.htm">
+            <metadata>
+                <adlcp:location>contents/syllabus/index.htm.xml</adlcp:location>
+            </metadata>
+            <file href="contents/syllabus/index.htm"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="r_contents.assignments.hw5_soln.pdf"
+                  type="other"
+                  href="contents/assignments/hw5_soln.pdf">
+            <metadata>
+                <adlcp:location>contents/assignments/hw5_soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw5_soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.index.htm"
+                  type="webcontent"
+                  href="contents/index.htm">
+            <metadata>
+                <adlcp:location>contents/index.htm.xml</adlcp:location>
+            </metadata>
+            <file href="contents/index.htm"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="r_contents.exams.final_f01.pdf"
+                  type="other"
+                  href="contents/exams/final_f01.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/final_f01.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/final_f01.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec12.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec12.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec12.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec12.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw1b_soln.pdf"
+                  type="other"
+                  href="contents/assignments/hw1b_soln.pdf">
+            <metadata>
+                <adlcp:location>contents/assignments/hw1b_soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw1b_soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw2errata.txt"
+                  type="other"
+                  href="contents/assignments/hw2errata.txt">
+            <metadata>
+                <adlcp:location>contents/assignments/hw2errata.txt.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw2errata.txt"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.final_f04soln.pdf"
+                  type="other"
+                  href="contents/exams/final_f04soln.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/final_f04soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/final_f04soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.final_f02soln.pdf"
+                  type="other"
+                  href="contents/exams/final_f02soln.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/final_f02soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/final_f02soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec1.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec1.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec1.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec1.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.index.htm"
+                  type="webcontent"
+                  href="contents/lecture-notes/index.htm">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/index.htm.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/index.htm"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="r_contents.assignments.hw5errata.txt"
+                  type="other"
+                  href="contents/assignments/hw5errata.txt">
+            <metadata>
+                <adlcp:location>contents/assignments/hw5errata.txt.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw5errata.txt"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.prob2_data.zip"
+                  type="other"
+                  href="contents/assignments/prob2_data.zip">
+            <metadata>
+                <adlcp:location>contents/assignments/prob2_data.zip.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/prob2_data.zip"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.final_f01soln.pdf"
+                  type="other"
+                  href="contents/exams/final_f01soln.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/final_f01soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/final_f01soln.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.midterm_f03.pdf"
+                  type="other"
+                  href="contents/exams/midterm_f03.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/midterm_f03.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/midterm_f03.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec14.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec14.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec14.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec14.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.exams.midterm_f04.pdf"
+                  type="other"
+                  href="contents/exams/midterm_f04.pdf">
+            <metadata>
+                <adlcp:location>contents/exams/midterm_f04.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/exams/midterm_f04.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.lecture-notes.lec4.pdf"
+                  type="other"
+                  href="contents/lecture-notes/lec4.pdf">
+            <metadata>
+                <adlcp:location>contents/lecture-notes/lec4.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/lecture-notes/lec4.pdf"/>
+                        
+        </resource>
+        <resource identifier="r_contents.assignments.hw4_soln.pdf"
+                  type="other"
+                  href="contents/assignments/hw4_soln.pdf">
+            <metadata>
+                <adlcp:location>contents/assignments/hw4_soln.pdf.xml</adlcp:location>
+            </metadata>
+            <file href="contents/assignments/hw4_soln.pdf"/>
+                        
+        </resource>        
+        <resource identifier="r_common.search.AdvancedSearch.htm"
+                  type="webcontent"
+                  href="common/search/AdvancedSearch.htm">
+            <file href="common/search/AdvancedSearch.htm"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="r_common.jsp.feedback.htm"
+                  type="webcontent"
+                  href="common/jsp/feedback.htm">
+            <file href="common/jsp/feedback.htm"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="r_common.terms.index.htm"
+                  type="webcontent"
+                  href="common/terms/index.htm">
+            <file href="common/terms/by.png"/>
+            <file href="common/terms/nc.png"/>
+            <file href="common/terms/sa.png"/>
+            <file href="common/terms/deedheadyellow.png"/>
+            <file href="common/terms/freedomsheader.png"/>
+            <file href="common/terms/limitationsheader.png"/>
+            <file href="common/terms/understandingheader.jpg"/>
+            <file href="common/terms/deedfootyellow.png"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="r_common.terms.trademarks.index.htm"
+                  type="webcontent"
+                  href="common/terms/trademarks/index.htm">
+            <file href="common/terms/trademarks/index.htm"/>
+            <dependency identifierref="webrenderrequirements.6-867-machine-learning-fall-2006"/>            
+        </resource>
+        <resource identifier="webrenderrequirements.6-867-machine-learning-fall-2006"
+                  type="webcontent">
+        	<file href="common/styles/base.css"/>
+        	<file href="common/styles/courses.css"/>
+        	<file href="common/styles/courses_new.css"/>
+        	<file href="common/styles/educator.css"/>
+        	<file href="common/styles/global.css"/>
+        	<file href="common/styles/grid.css"/>
+        	<file href="common/styles/highslide.css"/>
+        	<file href="common/styles/highslide-ie6.css"/>
+        	<file href="common/styles/jquery.bubblepopup.css"/>
+        	<file href="common/styles/jquery.jscrollpane.css"/>
+        	<file href="common/styles/jquery-ui.css"/>
+        	<file href="common/styles/menu.css"/>
+        	<file href="common/styles/scholar2.css"/>
+        	<file href="common/styles/media_tabs.css"/>
+        	<file href="common/styles/three_play.css"/>
+        	<file href="common/scripts/bubble-popup-offline.js"/>
+        	<file href="common/scripts/jquery.js"/>
+        	<file href="common/scripts/ocw-media-utils.js"/>
+        	<file href="common/scripts/ocw-media-utils-offline.js"/>
+        	<file href="common/scripts/highslide-with-gallery.js"/>
+        	<file href="common/scripts/jquery.bubblepopup.min.js"/>
+        	<file href="common/scripts/jquery.jscrollpane.min.js"/>
+        	<file href="common/scripts/jquery-ui.min.js"/>
+        	<file href="common/scripts/jQuizMe-uncompressed.js"/>
+        	<file href="common/scripts/ocw-offline.js"/>
+        	<file href="common/scripts/expandy.js"/>
+        	<file href="common/scripts/chart.js"/>
+        	<file href="common/scripts/jquery.anythingslider.js"/>
+        	<file href="common/images/ocw_mast.png"/>
+        	<file href="common/images/button_subscribe.png"/>
+        	<file href="common/images/icon_fb.png"/>
+        	<file href="common/images/icon_gp.png"/>
+        	<file href="common/images/icon_pin.png"/>
+        	<file href="common/images/icon_tw.png"/>
+        	<file href="common/images/icon-question-ovt.png"/>
+        	<file href="common/images/icon-question-svt.png"/>
+        	<file href="common/images/icon-question-avt.png"/>
+        	<file href="common/images/icon-question-cl.png"/>
+        	<file href="common/images/top-nav_home.png"/>
+        	<file href="common/images/button_search.png"/>
+        	<file href="common/images/bg_top.png"/>
+        	<file href="common/images/bg_social.png"/>
+        	<file href="common/images/bg_social2.png"/>
+        	<file href="common/images/bg_mega-courses.png"/>
+        	<file href="common/images/bg_center2.png"/>
+        	<file href="common/images/bg_course-nav_current.png"/>
+        	<file href="common/images/button_donate-now.png"/>
+        	<file href="common/images/logo_mit.png"/>
+        	<file href="common/images/logo_ocwc.gif"/>
+        	<file href="common/images/cc_by-nc-sa.png"/>
+        	<file href="common/images/logo_dow.png"/>
+        	<file href="common/images/logo_lockheed.png"/>
+        	<file href="common/images/logo_mathworks.png"/>
+        	<file href="common/images/logo_abinitio.png"/>
+        	<file href="common/images/logo_sapient.png"/>
+        	<file href="common/images/bg_bottom.png"/>
+        	<file href="common/images/nav_arrow.png"/>
+        	<file href="common/images/news-subscibe_bg.png"/>
+        	<file href="common/images/3play_logo.png"/>
+        	<file href="common/images/black-arrow.gif"/>
+        	<file href="common/images/trans.gif"/>
+        	<file href="common/images/arrow-bullet.gif"/>
+        	<file href="common/images/apple-touch-icon.png"/>
+        	<file href="common/images/highslide/graphics/zoomin.cur"/>
+        	<file href="common/images/highslide/graphics/zoomout.cur"/>
+        	<file href="common/images/highslide/graphics/controlbar2.gif"/>
+        	<file href="common/images/highslide/graphics/controlbar3.gif"/>
+        	<file href="common/images/highslide/graphics/controlbar4.gif"/>
+        	<file href="common/images/highslide/graphics/controlbar4-hover.gif"/>
+        	<file href="common/images/highslide/graphics/controlbar-black-border.gif"/>
+        	<file href="common/images/highslide/graphics/controlbar-white.gif"/>
+        	<file href="common/images/highslide/graphics/controlbar-white-small.gif"/>
+        	<file href="common/images/highslide/graphics/fullexpand.gif"/>
+        	<file href="common/images/highslide/graphics/icon.gif"/>
+        	<file href="common/images/highslide/graphics/loader.gif"/>
+        	<file href="common/images/highslide/graphics/loader.white.gif"/>
+        	<file href="common/images/highslide/graphics/resize.gif"/>
+        	<file href="common/images/highslide/graphics/close.png"/>
+        	<file href="common/images/highslide/graphics/closeX.png"/>
+        	<file href="common/images/highslide/graphics/controlbar-text-buttons.png"/>
+        	<file href="common/images/highslide/graphics/geckodimmer.png"/>
+        	<file href="common/images/highslide/graphics/scrollarrows.png"/>
+        	<file href="common/images/highslide/graphics/outlines/beveled.png"/>
+        	<file href="common/images/highslide/graphics/outlines/drop-shadow.png"/>
+        	<file href="common/images/highslide/graphics/outlines/glossy-dark.png"/>
+        	<file href="common/images/highslide/graphics/outlines/outer-glow.png"/>
+        	<file href="common/images/highslide/graphics/outlines/rounded-black.png"/>
+        	<file href="common/images/highslide/graphics/outlines/rounded-white.png"/>
+        	<file href="common/images/highslide/graphics/outlines/Outlines.psd"/>
+        	<file href="common/images/button_continue.jpg"/>
+        	<file href="common/images/button_donate.jpg"/>
+        	<file href="common/images/button_start.jpg"/>
+        	<file href="common/images/scholar_bar_chp.png"/>
+        	<file href="common/images/scholar_bar.png"/>
+        	<file href="common/images/logo_pdf.jpg"/>
+        	<file href="common/images/h2_trigger_open_close.gif"/>
+        	<file href="common/images/bookmark.gif"/>
+        	<file href="common/images/check.png"/>
+        	<file href="common/images/lightbulb.png"/>
+        	<file href="common/images/audio_file.gif"/>
+        	<file href="common/images/audio_only_slate.gif"/>
+        	<file href="common/images/video_file.gif"/>
+        	<file href="common/images/back-5.png"/>
+        	<file href="common/images/btn_next_resource.png"/>
+        	<file href="common/images/btn_previous_resource.png"/>
+        	<file href="common/images/close.png"/>
+        	<file href="common/images/inacessible.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/bottom-left.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/bottom-middle.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/bottom-right.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/middle-left.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/middle-right.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/tail-bottom.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/tail-left.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/tail-right.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/tail-top.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/top-left.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/top-middle.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/ie/top-right.gif"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/bottom-left.png"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/bottom-middle.png"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/bottom-right.png"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/middle-left.png"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/middle-right.png"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/tail-bottom.png"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/tail-left.png"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/tail-right.png"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/tail-top.png"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/top-left.png"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/top-middle.png"/>
+        	<file href="common/images/jquerybubblepopup-theme/grey/top-right.png"/>
+        	<file href="common/images/educator/classroom_next.png"/>
+        	<file href="common/images/educator/classroom_next_dim.png"/>
+        	<file href="common/images/educator/classroom_prev.png"/>
+        	<file href="common/images/educator/classroom_prev_dim.png"/>
+        	<file href="common/images/educator/edu_b-blank.png"/>
+        	<file href="common/images/educator/edu_b-blank-key.png"/>
+        	<file href="common/images/educator/edu_b-duedate.png"/>
+        	<file href="common/images/educator/edu_b-duedate-key.png"/>
+        	<file href="common/images/educator/edu_b-exam.png"/>
+        	<file href="common/images/educator/edu_b-exam-key.png"/>
+        	<file href="common/images/educator/edu_b-lab.png"/>
+        	<file href="common/images/educator/edu_b-lab-key.png"/>
+        	<file href="common/images/educator/edu_b-lab-team.png"/>
+        	<file href="common/images/educator/edu_b-lab-duedate.png"/>
+        	<file href="common/images/educator/edu_b-leclab.png"/>
+        	<file href="common/images/educator/edu_b-leclab-key.png"/>
+        	<file href="common/images/educator/edu_b-lecture.png"/>
+        	<file href="common/images/educator/edu_b-lecture-duedate.png"/>
+        	<file href="common/images/educator/edu_b-lecture-exam.png"/>
+        	<file href="common/images/educator/edu_b-lecture-key.png"/>
+        	<file href="common/images/educator/edu_b-lecture-lunch.png"/>
+        	<file href="common/images/educator/edu_b-lecture-preslab.png"/>
+        	<file href="common/images/educator/edu_b-lecture-quiz.png"/>
+        	<file href="common/images/educator/edu_b-lecture-team.png"/>
+        	<file href="common/images/educator/edu_b-lecrec-key.png"/>
+        	<file href="common/images/educator/edu_b-leclab-duedate.png"/>
+        	<file href="common/images/educator/edu_b-lecrec.png"/>
+        	<file href="common/images/educator/edu_b-lecrec-duedate.png"/>
+        	<file href="common/images/educator/edu_b-noclass-quiz.png"/>
+        	<file href="common/images/educator/edu_b-lunch.png"/>
+        	<file href="common/images/educator/edu_b-lunch-key.png"/>
+        	<file href="common/images/educator/edu_b-noclass.png"/>
+        	<file href="common/images/educator/edu_b-noclass-duedate.png"/>
+        	<file href="common/images/educator/edu_b-noclass-exam.png"/>
+        	<file href="common/images/educator/edu_b-noclass-key.png"/>
+        	<file href="common/images/educator/edu_b-office.png"/>
+        	<file href="common/images/educator/edu_b-office-key.png"/>
+        	<file href="common/images/educator/edu_b-present.png"/>
+        	<file href="common/images/educator/edu_b-present-duedate.png"/>
+        	<file href="common/images/educator/edu_b-present-key.png"/>
+        	<file href="common/images/educator/edu_b-preslab.png"/>
+        	<file href="common/images/educator/edu_b-preslab-key.png"/>
+        	<file href="common/images/educator/edu_b-quiz-key.png"/>
+        	<file href="common/images/educator/edu_b-reclab-key.png"/>
+        	<file href="common/images/educator/edu_b-reclab-concert.png"/>
+        	<file href="common/images/educator/edu_b-reclab.png"/>
+        	<file href="common/images/educator/edu_b-noclass-concert.png"/>
+        	<file href="common/images/educator/edu_b-leclab-concert.png"/>
+        	<file href="common/images/educator/edu_b-concert-key.png"/>
+        	<file href="common/images/educator/edu_b-concert.png"/>
+        	<file href="common/images/educator/edu_b-recitation.png"/>
+        	<file href="common/images/educator/edu_b-recitation-duedate.png"/>
+        	<file href="common/images/educator/edu_b-recitation-exam.png"/>
+        	<file href="common/images/educator/edu_b-recitation-key.png"/>
+        	<file href="common/images/educator/edu_b-team.png"/>
+        	<file href="common/images/educator/edu_b-team-key.png"/>
+        	<file href="common/images/educator/edu_b-team-preslab.png"/>
+        	<file href="common/images/educator/edu_b-work.png"/>
+        	<file href="common/images/educator/edu_b-work-key.png"/>
+        	<file href="common/images/educator/icon-question-cih.png"/>
+        	<file href="common/images/educator/icon-question-cihw.png"/>
+        	<file href="common/images/educator/icon-question-cim.png"/>
+        	<file href="common/images/educator/icon-question-collab.png"/>
+        	<file href="common/images/educator/icon-question-coop.png"/>
+        	<file href="common/images/educator/icon-question-fas.png"/>
+        	<file href="common/images/educator/icon-question-gir.png"/>
+        	<file href="common/images/educator/icon-question-hass.png"/>
+        	<file href="common/images/educator/icon-question-hass-s.png"/>
+        	<file href="common/images/educator/icon-question-iap.png"/>
+        	<file href="common/images/educator/icon-question-lab.png"/>
+        	<file href="common/images/educator/icon-question-urop.png"/>
+        	<file href="common/images/educator/icon-question-active.png"/>
+        	<file href="common/images/educator/icon-question-clickq.png"/>
+        	<file href="common/images/educator/icon-question-conq.png"/>
+        	<file href="common/images/educator/icon-question-flip.png"/>
+        	<file href="common/images/educator/icon-question-form.png"/>
+        	<file href="common/images/educator/icon-question-immed.png"/>
+        	<file href="common/images/educator/icon-question-learn.png"/>
+        	<file href="common/images/educator/icon-question-ped.png"/>
+        	<file href="common/images/educator/icon-question-readq.png"/>
+        	<file href="common/images/educator/icon-question-service.png"/>
+        	<file href="common/images/educator/icon-question-sum.png"/>
+        	<file href="common/images/educator/icon-question-unrestricted-elective-credits.png"/>
+        	<file href="common/webfonts/TitilliumText22L002-webfont.woff"/>
+        	<file href="common/webfonts/TitilliumText22L002-webfont.ttf"/>
+        	<file href="common/webfonts/TitilliumText22L002-webfont.svg"/>
+        	<file href="common/webfonts/TitilliumText22L002-webfont.eot"/>
+        	<file href="common/webfonts/TitilliumText22L003-webfont.woff"/>
+        	<file href="common/webfonts/TitilliumText22L003-webfont.ttf"/>
+        	<file href="common/webfonts/TitilliumText22L003-webfont.eot"/>
+        	<file href="common/webfonts/TitilliumText22L003-webfont.svg"/>
+        	<file href="common/webfonts/TitilliumText22L005-webfont.woff"/>
+        	<file href="common/webfonts/TitilliumText22L005-webfont.ttf"/>
+        	<file href="common/webfonts/TitilliumText22L005-webfont.svg"/>
+        	<file href="common/webfonts/TitilliumText22L005-webfont.eot"/>
+        </resource>        
+  </resources>
+</manifest>

@@ -1,0 +1,531 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* THIS COURSE AT MIT styles -- to be split off into a new file from courses_new.css */
+
+		.edu_grid {
+			margin-left: auto;
+			margin-right: auto;
+			width: 780px;
+		}
+		.edu_grid div {
+			margin-bottom: 6px;
+		}
+		.edu_breakdown_key div {
+			margin-bottom: 10px;
+		}
+		.edu_grid h2.title {
+			background-color: #931101;
+			color: #fff;
+			font-family: TitilliumWeb400Regular, Verdana;
+			font-size: 1.1em;
+			padding: 6px 3px 5px 8px;
+			margin-bottom: 11px;
+			margin-top: 0;
+			text-transform: uppercase;
+			line-height: 17px;
+		}
+		.edu_grid div.quick {
+			background-color: #f3f3f3;
+			color: #555;
+			font-family: TitilliumWeb400Regular, Verdana;
+			text-transform: uppercase;
+		}
+		.edu_grid div.quick ul {
+			margin: 11px 20px 20px 20px;
+			padding-left: 0;
+		}
+		.edu_grid div.quick ul li {
+			list-style-type: none;
+			margin: 5px 0;
+		}
+		.edu_grid div.quick ul li a,
+		.edu_grid div.quick ul li a:visited {
+			color: #555;
+			margin: 6px 8px;
+			font-size: 1.1em;
+		}
+		.edu_grid div.quick ul li a:active,
+		.edu_grid div.quick ul li a:hover {
+			color: #b30838;
+			font-size: 1.1em;
+		}
+		img.question {
+			width: 15px;
+			height: 15px;
+			vertical-align: text-bottom;
+		}
+		.edu_grid div.edu_hours_left {
+			float: left;
+			vertical-align: top;
+			text-align: center;
+			width: 100px;
+			margin-top: 10px;
+		}
+		.edu_grid div.edu_hours_right {
+			float: right;
+			vertical-align: top;
+			width: 275px;
+			margin-bottom: -15px;
+		}
+		.edu_hours_left p,
+		.side_stat p {
+			font-family: TitilliumWeb700Bold, Verdana;
+			font-size: 1.1em;
+		}
+		.side_stat {
+			float: left;
+			vertical-align: top;
+			text-align: center;
+			width: 105px;
+		}
+		.remainder {
+			float: right;
+			vertical-align: top;
+			width: 660px;
+		}
+		.edu_grid h2.subhead {
+			border-bottom: thin solid #000000;
+			padding-bottom: 2px;
+		}
+		.onethird,
+		.onehalf,
+		.twothirds,
+		.full {
+			display:inline;
+			float: left;
+			position: relative;
+			margin-left: 10px;
+			margin-right: 10px;
+			margin-top: 0;
+		}
+		.alpha {
+			margin-left: 0;
+		}
+		.omega {
+			margin-right: 0;
+		}
+		.edu_grid .onethird {
+			width:245px;
+		}
+		.edu_grid .onehalf {
+			width:380px;
+		}
+		.edu_grid .twothirds {
+			width:515px;
+		}
+		.edu_grid .full {
+			width:780px;
+		}
+		.edu_grid div.aboutbox {
+			border: 1px solid #333;
+			background-color: #f3f3f3;
+			padding: 10px;
+			padding-bottom: 0;
+			margin-top: 14px;
+			margin-bottom: 14px;
+			width: 758px;
+		}
+		.edu_breakdown {
+			border: none;
+			border-collapse: collapse;
+			margin-top: 14px;
+		}
+		.edu_breakdown th,
+		.edu_breakdown td {
+			vertical-align: center;
+			text-align: center;
+			font-weight: bold;
+			border-right: 1px solid #ccc;
+			margin: 0;
+			padding: 0;
+		}
+		.edu_breakdown th.week_col {
+			width: 108px;
+		}
+		.edu_breakdown tbody th {
+			background-color: #eee;
+			margin: 2px 0; 
+			border-bottom: 1px solid #fff;
+		}
+		.edu_breakdown th.day_col,
+		.edu_breakdown td {
+			width: 40px;
+			max-height: 24px;
+			padding: 2px 7px;
+		}
+		.edu_breakdown td img {
+			vertical-align: middle;
+		}
+		.edu_breakdown_key {
+			margin-top: 15px;
+		}
+		.edu_breakdown_key img {
+			margin-right: 7px;
+			float: left;
+			margin-top: -3px;
+		}
+		.edu_breakdown_key div {
+			font-size: 8pt;
+			width: 175px;
+			vertical-align: middle;
+		}
+		.edu_pullquote {
+			float: right;
+			margin: -4px 0 auto 20px;
+			padding-left: 20px;
+			width: 150px;
+			border-right: none;
+			border-left: 1px solid #D5C9BA;
+		}
+		
+		div.toggle1, div.toggle2, div.toggle3, div.toggle4, div.toggle5,
+		div.toggle6, div.toggle7, div.toggle8, div.toggle9, div.toggle10 {
+		    margin-left: 0;
+		    width: inherit;
+			display: none;
+		}
+		div.reveal1, div.reveal2, div.reveal3, div.reveal4, div.reveal5,
+		div.reveal6, div.reveal7, div.reveal8, div.reveal9, div.reveal10 {
+		    margin-left: 0;
+		}
+		@media print { 
+			div.toggle1, div.toggle2, div.toggle3, div.toggle4, div.toggle5, 
+			div.toggle6, div.toggle7, div.toggle8, div.toggle9, div.toggle10 {
+				display: block !important;
+				visibility: visible;
+			}
+			div.reveal1, div.reveal2, div.reveal3, div.reveal4, div.reveal5, 
+			div.reveal6, div.reveal7, div.reveal8, div.reveal9, div.reveal10 {
+				display: none;
+			}
+		}
+
+		.edu_grid .classroom {
+			background-color: #f3f3f3;
+			margin-top: -11px;
+			padding: 12px;
+			width: 490px;
+			height: 183px;
+		}
+		.edu_grid .classroom p.nav {
+			text-align: center;
+			padding: 10px 17px 10px 315px;
+		}
+		.edu_grid .classroom p {
+			padding-left: 20px;
+		}
+		.edu_grid .classroom img.photo {
+			float: left;
+			margin: 0 15px 2px 0;
+			border: 1px solid #000;
+		}
+		.edu_grid .classroom img {
+			border: none;
+			vertical-align: text-bottom;
+		}
+		.textSlide {
+			width: 490px;
+		}
+
+/* -- ANYTHING SLIDER SPECIFIC FOR EDUCATOR PAGES -- */
+
+/*
+	AnythingSlider v1.8+ Default theme
+	By Chris Coyier: http://css-tricks.com
+	with major improvements by Doug Neiner: http://pixelgraphics.us/
+	based on work by Remy Sharp: http://jqueryfordesigners.com/
+*/
+
+/*****************************
+  SET DEFAULT DIMENSIONS HERE
+ *****************************/
+/* change the ID & dimensions to match your slider */
+#slider {
+	width: 490px;
+	height: 183px;
+	list-style: none;
+	margin: 0;
+	padding: 0px;
+	/* Prevent FOUC (see FAQ page) and keep things readable if javascript is disabled */
+	overflow-y: hidden;
+	overflow-x: hidden;
+	margin-bottom: 0 !important;
+}
+
+/******************
+  SET STYLING HERE
+ ******************
+ =================================
+ Default state (no keyboard focus)
+ ==================================*/
+/* Overall Wrapper */
+.anythingSlider-default {
+	/* margin: 0 auto; */
+	/* 45px right & left padding for the arrows, 28px @ bottom for navigation */
+	/* padding: 0 45px 28px 45px; */
+}
+/* slider window - top & bottom borders, default state */
+.anythingSlider-default .anythingWindow {
+	border: none;
+}
+/* Navigation buttons + start/stop button, default state */
+.anythingSlider-default .anythingControls a {
+	/* top shadow */
+	background: #777 url(../images/default.png) center -288px repeat-x;
+	color: #000;
+	border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+}
+/* Make sure navigation text is visible */
+.anythingSlider-default .anythingControls a span {
+	visibility: visible;
+}
+/* Navigation current button, default state */
+.anythingSlider-default .anythingControls a.cur {
+	background: #888;
+	color: #000;
+}
+
+/* start-stop button, stopped, default state */
+.anythingSlider-default .anythingControls a.start-stop {
+	background-color: #040;
+	color: #ddd;
+}
+/* start-stop button, playing, default state */
+.anythingSlider-default .anythingControls a.start-stop.playing {
+	background-color: #800;
+}
+
+/* start-stop button, default hovered text color (when visible) */
+/* hide nav/start-stop background image shadow on hover - makes the button appear to come forward */
+.anythingSlider-default .anythingControls a.start-stop:hover,
+.anythingSlider-default .anythingControls a.start-stop.hover,
+.anythingSlider-default .anythingControls a.start-stop .anythingControls ul a:hover {
+	background-image: none;
+	color: #ddd;
+}
+
+/*
+ =================================
+ Active State (has keyboard focus)
+ =================================
+*/
+/* slider window - top & bottom borders, active state */
+.anythingSlider-default.activeSlider .anythingWindow {
+	border-color: #7C9127;
+}
+/* Navigation buttons, active state */
+.anythingSlider-default.activeSlider .anythingControls a {
+	/* background image = top shadow */
+	background-color: #7C9127;
+}
+/* Navigation current & hovered button, active state */
+.anythingSlider-default.activeSlider .anythingControls a.cur,
+.anythingSlider-default.activeSlider .anythingControls a:hover {
+	/* background image removed */
+	background: #7C9127;
+}
+
+/* start-stop button, stopped, active state */
+.anythingSlider-default.activeSlider .anythingControls a.start-stop {
+	background-color: #080;
+	color: #fff;
+}
+/* start-stop button, playing, active state */
+.anythingSlider-default.activeSlider .anythingControls a.start-stop.playing {
+	background-color: #d00;
+	color: #fff;
+}
+/* start-stop button, active slider hovered text color (when visible) */
+.anythingSlider-default.activeSlider .start-stop:hover,
+.anythingSlider-default.activeSlider .start-stop.hover {
+	color: #fff;
+}
+
+/************************
+  NAVIGATION POSITIONING
+ ************************/
+/* Navigation Arrows */
+.anythingSlider-default .arrow {
+	top: 0px;
+	position: absolute;
+	display: block;
+	left: 317px;
+}
+
+.anythingSlider-default .arrow a {
+	display: block;
+	width: 45px;
+	height: 45px;
+	margin-top: -4px;
+	text-align: center;
+	outline: 0;
+	/* background: url(../images/default.png) no-repeat; */
+}
+
+/* back arrow */
+/*.anythingSlider-default .back { left: 0; }
+.anythingSlider-default .back a { background-position: left top; }
+.anythingSlider-default .back a:hover,
+.anythingSlider-default .back a.hover { background-position: left -140px; }
+/* forward arrow */
+.anythingSlider-default .forward { left: 426px; }
+.anythingSlider-default .forward a { background-position: right top; } 
+.anythingSlider-default .forward a:hover,
+.anythingSlider-default .forward a.hover { background-position: right -140px; }
+
+/* Navigation Links */
+.anythingSlider-default .anythingControls { outline: 0; display: none; }
+.anythingSlider-default .anythingControls ul { margin: 0; padding: 0; float: left; }
+.anythingSlider-default .anythingControls ul li { display: inline; }
+.anythingSlider-default .anythingControls ul a {
+	font: 11px/18px Georgia, Serif;
+	display: inline-block;
+	text-decoration: none;
+	padding: 2px 8px;
+	height: 18px;
+	margin: 0 5px 0 0;
+	text-align: center;
+	outline: 0;
+}
+
+/* navigationSize window */
+.anythingSlider-default .anythingControls .anythingNavWindow {
+	overflow: hidden;
+	float: left;
+}
+
+/* Autoplay Start/Stop button */
+.anythingSlider-default .anythingControls .start-stop {
+	padding: 2px 5px;
+	width: 40px;
+	text-align: center;
+	text-decoration: none;
+	float: right;
+	z-index: 100;
+	outline: 0;
+}
+
+/***********************
+  IE8 AND OLDER STYLING
+ ***********************/
+
+/* Navigation Arrows */
+.as-oldie .anythingSlider-default .arrow {
+	top: 30%;
+}
+.as-oldie .anythingSlider-default .arrow a {
+	margin: 0;
+}
+
+/* margin between nav buttons just looks better */
+.as-oldie .anythingSlider-default .anythingControls li {
+	margin-left: 3px;
+}
+
+/* When using the navigationSize option, the side margins need to be zero
+	None of the navigation panels look good in IE7 now =( */
+.as-oldie .anythingSlider-default .anythingControls a {
+	margin: 0;
+}
+.as-oldie .anythingSlider-default .anythingNavWindow {
+	margin: 0 2px;
+}
+.as-oldie .anythingSlider-default .anythingNavWindow li {
+	padding: 3px 0 0 0;
+}
+
+/***********************
+  COMMON SLIDER STYLING
+ ***********************/
+/* Overall Wrapper */
+.anythingSlider {
+	display: block;
+	overflow: visible !important;
+	position: relative;
+}
+/* anythingSlider viewport window */
+.anythingSlider .anythingWindow {
+	overflow: hidden;
+	position: relative;
+	width: 490px; /* was 100% */
+	height: 100%;
+}
+/* anythingSlider base (original element) */
+.anythingSlider .anythingBase {
+	background: transparent;
+	list-style: none;
+	position: absolute;
+	overflow: visible !important;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/* Navigation arrow text; indent moved to span inside "a", for IE7;
+  apparently, a negative text-indent on an "a" link moves the link as well as the text */
+.anythingSlider .arrow span {
+	display: block;
+	visibility: hidden;
+}
+/* disabled arrows, hide or reduce opacity: opacity: .5; filter: alpha(opacity=50); */
+.anythingSlider .arrow.disabled {
+	display: none;
+}
+/* all panels inside the slider; horizontal mode */
+.anythingSlider .panel {
+	background: transparent;
+	display: block;
+	overflow: hidden;
+	float: left;
+	padding: 0;
+	width: 490px;
+
+}
+/* vertical mode */
+.anythingSlider .vertical .panel {
+	float: none;
+}
+/* fade mode */
+.anythingSlider .fade .panel {
+	float: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+/* fade mode active page - visible & on top */
+.anythingSlider .fade .activePage {
+	z-index: 1;
+}
+
+/***********************
+  RTL STYLING
+ ***********************/
+/* slider autoplay right-to-left, reverse order of nav links to look better */
+.anythingSlider.rtl .anythingWindow {
+	direction: ltr;
+	unicode-bidi: bidi-override;
+}
+.anythingSlider.rtl .anythingControls ul { float: left; } /* move nav link group to left */
+.anythingSlider.rtl .anythingControls ul a { float: right; } /* reverse order of nav links */
+.anythingSlider.rtl .start-stop { /* float: right; */ } /* move start/stop button - in case you want to switch sides */
+
+/* probably not necessary, but added just in case */
+.anythingSlider,
+.anythingSlider .anythingWindow,
+.anythingSlider .anythingControls ul a,
+.anythingSlider .arrow a,
+.anythingSlider .start-stop {
+	transition-duration: 0;
+	-o-transition-duration: 0;
+	-moz-transition-duration: 0;
+	-webkit-transition-duration: 0;
+}
+
+
+ 

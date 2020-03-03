@@ -1,0 +1,1059 @@
+/*********************************************************************************
+	MIT OpenCourseWare
+	http://ocw.mit.edu/
+
+	courses.css - styles specific to course pages
+	v3.0
+	17 October 2012		
+***********************************************************************************/
+
+/* LEGACY STYLES SPECIFIC TO INISIDE OF COURSES C-CLAMP */
+
+a img {
+	border:0px;
+}
+blockquote {
+	margin-left:2em;
+}
+/* main content */
+
+.maincontent {
+	padding-left:0px;
+	clear:both;
+}
+.maincontent a:link {
+	text-decoration: underline;
+	color:#680a12;
+}
+.maincontent a:visited {
+	text-decoration: underline;
+	color:#ab4347;
+}
+.maincontent a:hover {
+	text-decoration: underline;
+	color:#5151a6;
+}
+/* right */
+
+.right a:link {
+	text-decoration: underline;
+	color:#000000;
+}
+.right a:visited {
+	text-decoration: underline;
+	color:#8e8e6f;
+}
+/* title and dotted line */
+
+.maincontent h1 {
+	margin:0px;
+	padding:5px 0px 1em 0px;
+	color:#990000;
+	font-size:1.0em;
+	border-bottom:1px dashed #999;
+	position:relative;
+	margin-bottom:7px;
+}
+/* right column global spacing */
+.global-spacing {
+	font-size:1em;
+	padding-bottom:5.4em;
+}
+/* lists in two column divs */
+.twocol {
+	width:100%;
+	clear:both;
+}
+ul.list-left {
+	float:left;
+	width:45%;
+}
+ul.list-right {
+	float:right;
+	width:45%;
+}
+/* global non-course modules */
+
+/* Course Pages */
+
+.mod8 {
+	padding: 0em 2px 2em 2px;
+}
+
+.mod8 hr {
+	border-top: 1px solid #777;
+}
+/* ~~~~~~~~~~~~~~~~~~~ */
+/* course page modules */
+/* ~~~~~~~~~~~~~~~~~~~ */
+
+/* course module 1 - home page main graphic, caption, highlights, course desc, etc. */
+.course1 {
+	padding:1em 0.5em;
+}
+/*Course Level Area*/
+.mainContentBottomArea {
+	width:auto;
+	height:auto;
+	margin-top:10px;
+	margin-bottom:0px;
+	clear:both;
+}
+/* CHP Top area */
+.mainContentTopArea {
+	width:auto;
+	height:auto;
+	margin:none;
+	padding:none;
+}
+
+/*CHP left part of top area */
+.mainContentTopLeftArea {
+	width:328px;
+	float:left;
+	padding-bottom: 12px;
+}
+.mainContentTopLeftArea .image-caption {
+	font-size:0.6em;
+	color:#666;
+	padding-right:8px;
+	margin:0.5em 0 0;
+}
+.mainContentTopLeftArea .image-caption p {
+	font-size:1em;
+	color:#666;
+	margin:0.5em 0 0;
+}
+/*end of top left area */
+
+/* CHP right side of top area */
+
+.mainContentTopRightArea {
+	width:187px;
+	float:right;
+	margin:0;
+	padding:0 0 0 3px;
+}
+.chpCourseDetailLinks {
+	margin-bottom:10px;
+	text-decoration:none;
+}
+.chpCourseDetailLinks p {
+	font-size:0.75em;
+	margin-bottom:5px;
+	margin-top:0;
+}
+.mainContentTopRightArea p a.class1:hover, .chpCourseDetailLinks a.class1:hover {
+	color:#5151A6;
+	text-decoration:underline;
+}
+.mainContentTopRightArea p a.class1:link, .chpCourseDetailLinks a.class1:link {
+	color:#AB4347;
+	text-decoration:none;
+}
+.mainContentTopRightArea p a.class1:visited, .chpCourseDetailLinks a.class1:visited {
+	text-decoration:none;
+	color:#AB4347;
+}
+.dottedLine {
+	background:transparent url(../images/horizontal_dots_red.gif) bottom left repeat-x;
+	overflow:hidden;
+	padding-bottom:10px;
+	margin-bottom:10px;
+}
+.mainContentTopRightArea h3, .RHPMainContentTopRight h3 {
+	font-size:.8em;
+	padding-bottom:2px;
+}
+.chpcourselevel {
+	padding-top:3px;
+	font-size:0.75em;
+}
+/*END of top right area */
+
+/*Supplemental Resource Classes*/
+
+.RHPMainContent {
+	height:auto;
+	width:auto;
+}
+.RHPMainContentTopLeft {
+	width:320px;
+	float:left;
+	padding-right:8px;
+	margin:0;
+}
+.RHPMainContentTopRight {
+	width:187px;
+	float:right;
+	margin:0;
+	padding:0 0 10px 3px;
+}
+.RHPMainContentTopRight p {
+	margin-top:0;
+}
+.RHPMainContentTopLeft .image-caption p, .RHPMainContentTopLeft .image-caption {
+	_margin-bottom:0;
+}
+/*End Supplemental Resource classes*/
+
+.image-caption {
+	font-size:0.6em;
+	color:#666;
+	margin:0.5em 0 2em;
+}
+.image-caption p {
+	font-size:1em;
+	color:#666;
+	margin:0.5em 0 2em;
+}
+h2 {
+	margin:0.5em 0 0;
+	padding:0 0 5px;
+}
+/* course module 2 - right column info box */
+.course2 {
+	font-size:0.7em;
+	border:1px solid #8E8E6F;
+	background-color:#EBEBEB;
+	margin:2.2em 1.5em 0.5em 0.8em;
+	padding:0.5em;
+}
+.course2 h3 {
+	font-size:1em;
+	margin:0 0 0.75em;
+	padding:5px 0 0;
+}
+.course2 p {
+	margin:0 0 0.75em;
+	padding:0;
+}
+/*
+.info {
+	font-size:0.75em;
+	text-align:right;  
+}
+*/
+/* helper text - suggested search */
+
+.helper {
+	color:#c00;
+}
+.helper a:link, .helper a:visited {
+	font-weight:bold;
+	font-style:italic;
+}
+div.coursedescription {
+	padding-top:5px;
+	margin-bottom:12px;
+}
+div.maincontent div.bodycopy span {
+	display:block;
+	margin-top:12px;
+}
+div.maincontent div.bodycopy span.tablecopy {
+	display:inline;
+	margin:0;
+}
+div.maincontent div.bodycopy p span {
+	display:inline;
+}
+.mod2 .globalfloat .floatright {
+	padding:0 1.5em 0 1em;
+}
+.mod2 .globalfloat .float-left {
+	padding:0 1em 0 0;
+}
+div.bodycopy table.datatable, table + table caption {
+	margin-top:10px;
+}
+/* CMS AUTHOR STYLES */
+
+/* Outline List Styles */
+
+ol.nobullet {
+	list-style-type: none;
+}
+ul.nobullet {
+	list-style-type: none;
+}
+ul.nobullet-tab {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+ul.nobullet-tab-space {
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+ul.nobullet-tab-space li {
+	padding-bottom:10px;
+}
+ul.nobullet-tab li {
+	margin:0;
+	padding:0;
+}
+ul.li-space li {
+	padding-bottom:10px;
+}
+ul.displayinline li {
+	display:inline;
+	list-style-type: none;
+	margin:0;
+	padding:0;
+	margin-right:5px;
+}
+ul#li-space li {
+	padding-bottom:10px;
+}
+ol.third {
+	list-style-type: decimal;
+}
+ol.fifth {
+	list-style-type: decimal;
+}
+ol.fourth {
+	list-style-type: lower-alpha;
+}
+ol.sixth {
+	list-style-type: lower-alpha;
+}
+ol.second {
+	list-style-type: upper-alpha;
+}
+ol.seventh {
+	list-style-type: lower-roman;
+}
+ol.first {
+	list-style-type: upper-roman;
+}
+ol.li-space li {
+	padding-bottom:10px;
+}
+ol#li-space li {
+	padding-bottom:10px;
+}
+ul.disc {
+	list-style-type: disc;
+	list-style-image: none;
+}
+ul.circle {
+	list-style-type: circle;
+	list-style-image: none;
+}
+ul.square {
+	list-style-type: square;
+	list-style-image: none;
+}
+/* Table Styles */
+
+caption.subhead {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 1.3em;
+	font-weight: bold;
+	color: #000;
+	text-align:left;
+	padding-bottom:10px;
+}
+caption.subsubhead {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 0.75em;
+	font-style: italic;
+	color: #000;
+	text-align:left;
+	padding-bottom:10px;
+}
+caption.bodycopy {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 0.75em;
+	color: #000;
+	text-align:left;
+	padding-bottom:10px;
+}
+caption.invisible {
+	display:none;
+}
+table.datatable ul li {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 0.69em;
+	color: #000;
+}
+th.nowrap {
+	white-space:nowrap;
+}
+tr#nowrap {
+	white-space:nowrap;
+}
+td.nowrap {
+	white-space:nowrap;
+}
+table.datatable#nowrap {
+	white-space:nowrap;
+}
+/* Legacy Datatables - v. 2.5 */
+
+table.datatable {
+	border-collapse: collapse;
+	border-spacing:0;
+	border: 1px solid #999;
+	empty-cells:show;
+	width:100%;
+}
+table.datatable td {
+	padding:8px;
+	border: 1px solid #999;
+	font-family: verdana, arial, helvetica, sans-serif;
+	background-color: #fff;
+	font-size: 0.69em;
+}
+table.datatable th {
+	padding:8px;
+	border: 1px solid #999;
+}
+table.datatable tr.gray-row td {
+	padding:8px;
+	border: 1px solid #999;
+	font-family: verdana, arial, helvetica, sans-serif;
+	background-color: #e2e1d4;
+	font-size: 0.69em;
+}
+/* Legacy Datatables - v. 2.0 */
+
+.datatable {
+	border-collapse: collapse;
+}
+div.bodycopy table.tbloutline table.datatable {
+	margin-top:0px;
+}
+.tbloutline {
+	background-color: #727266;
+}
+/* margin-bottom does not show up in IE/win when table at bottom of page, so use border */
+.tbloutline {
+	border-bottom: 15px solid white;
+}
+.tbloutline th {
+	background-color: #727266;
+	color: #fff;
+	font-size: 0.9em;
+	text-transform:uppercase;
+}
+.tbloutline th.columndiv {
+	width: 1px;
+}
+.tbloutline {
+	background-color: #b4b1a2;
+}
+/* Layout Tables */
+
+#mainlayouttable {
+	border-collapse: collapse;
+	border-spacing:0;
+	border-width:0;
+	empty-cells:hide;
+	width:780px;
+	background-color: #fff;
+}
+#standardlayouttable {
+	border-collapse: collapse;
+	border-spacing:0;
+	border-width:0;
+	width:100%;
+}
+#homepageheaderimage {
+	vertical-align:top;
+	margin-right:auto;
+	width:200px;
+}
+#layoutaligntopleft {
+	vertical-align:top;
+	margin-right:auto;
+}
+#mainsitenavtable {
+	border-collapse: collapse;
+	border-spacing:0;
+	border-width:0;
+	margin-left:auto;
+}
+#mainsitenavtable td {
+	margin-right:auto;
+}
+#mainsitenavtable td a img {
+	border-width:0;
+}
+/* Branding Colors - Main Site*/
+.headercolors {
+	background-color: #cac3b5;
+	color: #333;
+}
+/* Header Styles */
+
+.subhead {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 0.92em;
+	font-weight: bold;
+	color: #000;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+table + h2.subhead {
+	padding-top:10px;
+}
+table + br + h2.subhead {
+	padding-top:5px;
+}
+table + br + br + h2.subhead {
+	padding-top:10px;
+}
+
+/* Body Styles */
+
+p.bodycopy {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 0.75em;
+	color: #000;
+}
+p.caption {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 0.69em;
+	color: #666;
+}
+.instruction {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 0.9em;
+	color: #666;
+	margin-top: 6px;
+}
+#Instructions {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 0.69em;
+	color: #666;
+}
+.bodycopy p.instruction {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 0.69em;
+	color: #666;
+}
+p.underline {
+	text-decoration: underline;
+}
+div#BodyCopy1 p {
+	margin-top:10px;
+	margin-bottom:10px;
+}
+div#Htmlplaceholder2 p {
+	margin-top:0px;
+	margin-bottom:0px;
+	padding-top:4px;
+	padding-bottom:4px;
+}
+div#Htmlplaceholder3 p {
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+div#description h2{
+	margin-bottom:0px;
+	padding-bottom:0px
+}
+
+div#description h2.subhead,
+div#description h4.custom {
+	font-weight:bold;
+	font-size:1.2em;					/* changed from 1.1em in prep for 2012 redesign */
+	margin-bottom:0;
+	padding-bottom:0;
+	color:#000;
+}
+
+div#description h2.subhead p {
+	margin-bottom:0px;
+}
+div#Highlights {
+	margin-top:5px;
+	margin-bottom:12px;
+}
+div#Highlights p {
+	margin-top:10px;
+	margin-bottom:10px;
+}
+#Highlights {
+	/*font-size:0.75em;*/
+}
+.underline {
+	text-decoration: underline;
+}
+/* END CMS AUTHOR STYLES */
+
+/* C-SHELL STYLES - CMS TEMPLATES ONLY */
+
+/* Body Content */
+
+a.red:link, a.red:visited {
+	font-family: verdana, arial, helvetica, sans-serif;
+	color: #8a0a0a;
+	text-decoration: none;
+}
+a.red:hover, a.red:active {
+	font-family: verdana, arial, helvetica, sans-serif;
+	color: #8a0a0a;
+	text-decoration: underline;
+}
+.red {
+	font-family: verdana, arial, helvetica, sans-serif;
+	color: #8a0a0a;
+}
+.active {
+	background-color: #cccc99;
+}
+.bodycopy-small {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 0.69em;
+	color: #000000;
+}
+.forty {
+	margin-bottom: 40px;
+}
+.floatright {
+	float:right;
+}
+.floatleft {
+	float:left;
+}
+.floatrightpad5 {
+	float:right;
+	padding: 2% 2% 2% 2%;
+}
+.floatleftpad5 {
+	float:left;
+	padding: 2% 2% 2% 2%;
+}
+.spothead {
+	font-family: verdata, arial, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 0.88em;
+	color: #990000;
+}
+.ten {
+	margin-left: 10px;
+}
+.tenten {
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+.myth {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 0.69em;
+	background-color: black;
+	color:#fff;
+}
+.presheadcolor {
+	background-color: #217793;
+}
+.presbodycolor {
+	background-color: #f5f4e8;
+}
+.ocwhome {
+	background-color: #fff;
+}
+.whitebackground {
+	background-color: #fff;
+}
+.dotted-line {
+	background-image:  url("https://ocw.mit.edu/OcwWeb/images/dottedline_small.gif");
+}
+.headline {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 0.88em;
+	color:#000;
+	margin-bottom:5px;
+}
+div.bodycopy {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-weight: normal;
+	font-size: 0.75em;
+	color: #000;
+}
+.ocwhome {
+	background-color: #97a2a8;
+}
+/* END C-SHELL STYLES */
+
+/* UNIQUE BODY CONTENT STYLES */
+
+/* Additional Information Sidebar Styles - Course Home Page Specific  */
+
+.infobdr {
+	background-color: #8e8e6f;
+}
+.addlnfo {
+	background-color: #ebebeb;
+}
+.fieldlabel {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 0.69em;
+	color: #000;
+}
+.searchborder {
+	background-color: #666;
+}
+.searchinfo {
+	background-color: #aeae8a;
+}
+/* END UNIQUE BODY CONTENT STYLES */
+
+
+/* NEW STYLES FROM ORIGINAL GLOBAL.CSS */
+
+.mod8 a:link {
+	color:#680a12;
+}
+.mod8 a:visited {
+	color:#ab4347;
+}
+.mod8 a:hover {
+	color:#5151a6;
+}
+.mod2 h2 {
+	font-weight:bold;
+	font-size:.75em;
+	padding-bottom:10px;
+	color:#000;
+	padding-top:10px;
+}
+div#highlights {
+	margin-top:8px;
+	margin-bottom:10px;
+}
+#highlights {
+	font-size:0.75em;
+}
+div.bodycopy span.tablecopy {
+	display:inline;
+	margin:0;
+}
+div.bodycopy p span {
+	display:inline;
+}
+.columndiv {
+	background-color:#999;
+}
+caption.invisible {
+	display:none;
+}
+/* .tablecopy {
+	font-size:0.69em;
+	color:#000;
+} */
+.tablecopy a:link {
+	color:#680a12;
+	text-decoration:underline;
+}
+.tablecopy a:visited {
+	color:#ab4347;
+	text-decoration:underline;
+}
+.tablecopy a:hover {
+	color:#5151a6;
+	text-decoration:underline;
+}
+.mod4 p {
+	margin-left:15px;
+}
+div#Description p,
+div#description p,
+div#highlights p {
+	margin-top:10px;
+	margin-bottom:10px;
+}
+/* END: NEW STYLES */
+
+/* new classes to stabilize CHP and sub pages from Mayur Jain 8/2 */
+
+#callout .module h3 {
+	margin-bottom:3px;
+	font-size:.8em;
+}
+#callout .module p {
+	margin-top:5px;
+	margin-bottom:5px;
+}
+.bodycopy ol, .bodycopy ul, .mod8 .bodycopy ol, .mod8 .bodycopy ul, .mod8 ul, .mod8 ol {
+	margin-left:30px;
+	/* line-height:1.2em;  		test removal */
+}
+html>/**/body .bodycopy ol, html>/**/body .bodycopy ul {
+	margin-left:inherit;
+}
+#main_content {
+	margin:0;
+}
+#main_content_course {
+	margin:0;
+}
+#courses_inner {
+	margin:0 0 0 2px;
+	padding:0;
+}
+#courses_inner h1 {
+	margin:0 0 5px;
+	padding:0;
+}
+#courses h1 {
+	margin-left:3px;
+}
+.mainContentBottomArea h4 {
+	font-size:0.8em;
+	margin-bottom:0;
+}
+.module .chpmeetingtimes p, .module .chpstaff p, #callout .module span, .module .chpmeetingtimes, .module .chpstaff, #callout .module h3 span, #callout .module span, #callout .module li, .course1 p, .bodycopy p, .course1 li, .bodycopy li {
+	font-size:0.75em;
+}
+/*Download page styles - starts*/
+.dbutton1 {
+	margin-bottom:20px;
+	_margin-bottom:17px;
+	margin-right:10px;
+	margin-left:110px;
+}
+#download_main_content {
+	width:724px;
+	height:auto;
+	overflow:hidden;
+	margin:5px;
+}
+#download_inner_main {
+	width:400px;
+	float:left;
+}
+#download_inner_main .downloadLink {
+	margin-left:0;
+	width:0;
+}
+#download_rsi {
+	width:300px;
+	float:right;
+}
+.btnDownloadNow {
+	background: #5985B2 url(../images/btn_downloadNow.gif) no-repeat left top;
+	width:211px;
+	margin:25px 0 0 25px;
+	padding:50px 0 10px;
+}
+.btnDownloadNow span {
+	display:block;
+	margin-left:60px;
+	margin-right:25px;
+	margin-top:3px;
+	_padding-top:2px;
+	padding-top:2px;
+	text-align:center;
+	color:#fefcf6;
+	font-weight:lighter;
+	font-size:0.65em;
+	text-decoration:none;
+}
+
+.downloadNowButton {
+	background: #5985B2 url(../images/btn_downloadNow.gif) no-repeat left top;
+	height: 200px;
+	padding: 60px 0 0 210px; 
+	margin: 100px 0px 0px 25px;
+}
+
+.downloadSizeStyle {
+	position: relative;
+    top: -18px;
+    left: 120px;
+    width: 200px;
+    color: #fefcf6;
+    font-weight: lighter;
+    font-size: 0.65em;
+    text-decoration: none;
+	cursor: pointer;
+}
+
+.downloadLink
+{
+margin-top: 80px;
+}
+
+.downloadLink a:link, .downloadLink a:visited, .downloadLink a:hover {
+	text-decoration:none;
+	color:#fefcf6;
+}
+/*Download page styles - ends*/
+
+#Description.coursedescription ol,
+#Description.coursedescription ul {
+	margin-left: 25px;
+}
+.mainContentBottomArea p.instruction {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+.tablecopy {
+	padding-left:0;
+}
+a:link .tablecopy {
+	color:#680a12;
+}
+a:visited .tablecopy {
+	color:#ab4347;
+}
+a:hover .tablecopy {
+	color:#5151ab;
+}
+table.datatable td, table.datatable th {
+	padding:8px;
+}
+div.bodycopy table {
+	border:1px solid #999;
+}
+.coursedescription h2 {
+	font-size:1.1em;
+	color:#000;
+	line-height:1.6em;
+	font-weight:bold;
+}
+#callout .module .normaltext {
+	font-size:0.75em;
+}
+#courses h3.term {
+	font-size:1.2em;
+	font-weight:normal;
+	color:#A33033;
+	margin:0 0 10px 3px;
+}
+#courses h3.chpTermInfo {
+	font-size:0.8em;
+	font-weight:normal;
+	color:#A33033;
+	margin:0 0 10px 3px;
+}
+.specialfeatures {
+	_margin:10px 0 15px 0;
+	list-style-type:none;
+	overflow:hidden;
+	_height:1%;
+	width:550px;
+	_width:500px;
+	margin:10px 0 12px;
+}
+.specialfeatures li {
+	padding-left:7px;
+	display:block;
+	background:transparent url(../images/black-arrow.gif) no-repeat 0 5px;
+	float:left;
+	width:240px;
+	margin:0 0 .3em;
+}
+.specialfeatures a:link,
+.specialfeatures a:visited {
+	text-decoration:none;
+}
+.specialfeatures a:hover {
+	text-decoration:underline;
+}
+
+/* Lab Warning Notice styles */
+
+div.labwarning {
+	border: 1px dotted #333;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 5px 5px 0 8px;
+}
+div.labwarning p {
+	font-size:0.9em;
+}
+div.labwarning p.title {
+	font-size: 1em;
+	color:#b30838;
+	font-weight: bold;
+}
+/* large font styles for foreign character legibility */
+
+span.lgtxt, p.lgtxt, ol.lgtxt li, ul.lgtxt li, div.maintabletemplate table.lgtxt tr td {
+	font-size:1.5em;
+	line-height:1.2em;
+}
+ol.lgtxt li p, ul.lgtxt li p {
+	font-size:1em;
+	line-height:1.2em;
+}
+/* two column styles overflow faculty listing on CHP */
+
+.addfac_ext {
+	margin:3px 10px 2px 0;
+}
+.addfac_int {
+	float:left;
+	font-size:1em;
+	padding-right:20px;
+	width:225px;
+}
+a:link.addfac, a:hover.addfac, a:visited.addfac {
+	text-decoration:none;
+	color:#ab4347;
+}
+
+/* Old Image Gallery - being maintained until redesign - 2010may19 */
+
+.gallery { padding: 10px 10px 10px 10px; margin: 0;}
+#galleryframe{ border:1px solid #ccc; padding: 10px;	position: relative;	
+/* fixes IE bug causing border not to display */ }
+ul.thumbnail img{ border:none;display:block;padding-bottom:20px;}
+ul.thumbnail { list-style: none; margin: 0; padding: 0;}
+ul.thumbnail li { display: block; float: left; width: 24.5%; height: 190px; overflow: auto;}
+
+ul.thumnail li.newrow { clear: both;}
+ul.thumbnail li a { display: block; width: 75%; color:#666; text-decoration:none; font-family: verdana, arial, helvetica, sans-serif; font-size: 11px;}
+ul.thumbnail li a:link { 
+	color:#680a12; 
+	text-decoration: none; 
+	font-family: verdana, arial, helvetica, sans-serif; 
+	font-size: 11px;
+}
+ul.thumbnail li a:visited { 
+	color:#ab4347;
+	text-decoration: none;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 11px;
+}
+ul.thumbnail li a:hover { 
+	color:#5151ab;
+	text-decoration: none;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.clearer { clear: both; height: 0; line-height: 0;}
+
+div.gallery + h2.subhead { clear: both; height: 0; line-height: 0; }
+div.gallery + h3.subsubhead { clear: both; height: 0; line-height: 0;} 
+div.gallery + p { clear: both; height: 0; line-height: 0;}
+
+/* Individual Image Pages */
+.gallerybody { margin-left:auto;margin-right:auto;text-align:center;margin-top:80px; }
+#gallerynav { display:inline; }
+a.gallerynav { display:inherit; }
+img.gallerybody { padding-top:20px; }
+
+.gallerycaption { margin-left:30%;margin-right:30%;margin-top:1%;text-align:left;font-family: verdana, arial, helvetica, sans-serif;	font-size: 11px; color: #666666;}
+
+
+/* music character font support */
+
+.music_symbol {
+	font-family: Arial Unicode MS, Lucida Sans Unicode;
+}

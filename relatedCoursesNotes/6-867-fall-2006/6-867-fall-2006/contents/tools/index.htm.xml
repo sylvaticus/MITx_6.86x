@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<lom:lom xmlns="https://ocw.mit.edu/xmlns/LOM"
+         xmlns:lom="https://ocw.mit.edu/xmlns/LOM"
+         xmlns:ocwlom="https://ocw.mit.edu/xmlns/ocwLOM"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://ocw.mit.edu/xmlns/LOM https://ocw.mit.edu/xsd/LOM/lomv1.0/lomv1.0.xsd https://ocw.mit.edu/xmlns/ocwLOM https://ocw.mit.edu/xsd/ocwLOM/ocwlomv1.0/ocwlomv1.0.xsd">
+  <!--************************************************************ 
+  This LOM record was produced by an automatic transformation to IEEE LOM, from OpenCourseWare's (OCW) initial version of Learning Object Metadata (LOM). (The initial version was based on IMS Global Consortium's LOM.)
+			********************************************************-->
+<!--***************************-->
+<!--**** GENERAL ****-->
+<!--***************************-->
+    <lom:general uniqueElementName="general">
+        <lom:title uniqueElementName="title">
+            <lom:string language="en">Tools</lom:string>
+        </lom:title>
+        <lom:description>
+            <lom:string language="en">The tools section provides links to information on using the MATLAB? computational environment.</lom:string>
+        </lom:description>
+        <lom:language>en</lom:language>
+        <lom:aggregationLevel uniqueElementName="aggregationLevel">
+            <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+            <lom:value uniqueElementName="value">3</lom:value>
+        </lom:aggregationLevel>
+    </lom:general>
+<!--***************************-->
+<!--**** LIFECYCLE ****-->
+<!--***************************-->
+    <lom:lifeCycle uniqueElementName="lifeCycle">
+        <lom:version uniqueElementName="version">
+            <lom:string language="en">Fall 2006</lom:string>
+        </lom:version>
+        <lom:contribute>
+            <lom:role>
+                <lom:source uniqueElementName="source">OCW_LOMv1.0</lom:source>
+                <lom:value uniqueElementName="value">Author</lom:value>
+            </lom:role>
+            <lom:entity>Singh, Rohit</lom:entity>
+            <lom:date uniqueElementName="date">
+                <lom:dateTime uniqueElementName="dateTime">2019-12-30</lom:dateTime>
+            </lom:date>
+        </lom:contribute>
+        <lom:contribute>
+            <lom:role>
+                <lom:source uniqueElementName="source">OCW_LOMv1.0</lom:source>
+                <lom:value uniqueElementName="value">Author</lom:value>
+            </lom:role>
+            <lom:entity>Jaakkola, Tommi</lom:entity>
+            <lom:date uniqueElementName="date">
+                <lom:dateTime uniqueElementName="dateTime">2019-12-30</lom:dateTime>
+            </lom:date>
+        </lom:contribute>
+        <lom:contribute>
+            <lom:role>
+                <lom:source uniqueElementName="source">OCW_LOMv1.0</lom:source>
+                <lom:value uniqueElementName="value">Author</lom:value>
+            </lom:role>
+            <lom:entity>Mohammad, Ali</lom:entity>
+            <lom:date uniqueElementName="date">
+                <lom:dateTime uniqueElementName="dateTime">2019-12-30</lom:dateTime>
+            </lom:date>
+        </lom:contribute>
+        
+    </lom:lifeCycle>
+<!--***************************-->
+<!--**** TECHNICAL ****-->
+<!--***************************-->
+    <lom:technical uniqueElementName="technical">
+        <lom:location>/courses/electrical-engineering-and-computer-science/6-867-machine-learning-fall-2006/tools/index.htm</lom:location>
+        
+        
+		
+        <lom:requirement>
+            <lom:orComposite>
+                <lom:type uniqueElementName="type">
+                    <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+                    <lom:value uniqueElementName="value">Browser</lom:value>
+                </lom:type>
+                <lom:name uniqueElementName="name">
+                    <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+                    <lom:value uniqueElementName="value">Chrome</lom:value>
+                </lom:name>
+                <lom:minimumVersion
+    uniqueElementName="minimumVersion">40.0</lom:minimumVersion>
+            </lom:orComposite>
+            <lom:orComposite>
+                <lom:type uniqueElementName="type">
+                    <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+                    <lom:value uniqueElementName="value">Browser</lom:value>
+                </lom:type>
+                <lom:name uniqueElementName="name">
+                    <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+                    <lom:value uniqueElementName="value">Safari</lom:value>
+                </lom:name>
+                <lom:minimumVersion
+    uniqueElementName="minimumVersion">8.0</lom:minimumVersion>
+            </lom:orComposite>
+            <lom:orComposite>
+                <lom:type uniqueElementName="type">
+                    <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+                    <lom:value uniqueElementName="value">Browser</lom:value>
+                </lom:type>
+                <lom:name uniqueElementName="name">
+                    <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+                    <lom:value uniqueElementName="value">Mozilla Firefox</lom:value>
+                </lom:name>
+                <lom:minimumVersion
+    uniqueElementName="minimumVersion">38.0</lom:minimumVersion>
+            </lom:orComposite>
+            <lom:orComposite>
+                <lom:type uniqueElementName="type">
+                    <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+                    <lom:value uniqueElementName="value">Browser</lom:value>
+                </lom:type>
+                <lom:name uniqueElementName="name">
+                    <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+                    <lom:value uniqueElementName="value">Internet Explorer</lom:value>
+                </lom:name>
+                <lom:minimumVersion
+    uniqueElementName="minimumVersion">9.0</lom:minimumVersion>
+            </lom:orComposite>
+            <lom:orComposite>
+                <lom:type uniqueElementName="type">
+                    <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+                    <lom:value uniqueElementName="value">Browser</lom:value>
+                </lom:type>
+                <lom:name uniqueElementName="name">
+                    <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+                    <lom:value uniqueElementName="value">Edge</lom:value>
+                </lom:name>
+                <lom:minimumVersion
+    uniqueElementName="minimumVersion">13.1</lom:minimumVersion>
+            </lom:orComposite>
+        </lom:requirement>
+    </lom:technical>
+<!--***************************-->
+<!--**** EDUCATIONAL ****-->
+<!--***************************-->
+    <lom:educational>
+        <lom:context>
+            <lom:source uniqueElementName="source">OCW_LOMv1.0</lom:source>
+            <lom:value uniqueElementName="value">Graduate</lom:value>
+        </lom:context>
+        
+    </lom:educational>
+<!--***************************-->
+<!--**** RIGHTS ****-->
+<!--***************************-->
+    <lom:rights uniqueElementName="rights">
+        <lom:copyrightAndOtherRestrictions uniqueElementName="copyrightAndOtherRestrictions">
+            <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+            <lom:value uniqueElementName="value">yes</lom:value>
+        </lom:copyrightAndOtherRestrictions>
+        <lom:description>
+            <lom:string language="en">This site (c) Massachusetts Institute of Technology 2019.  Content within individual courses is (c) by the individual authors unless otherwise noted. The Massachusetts Institute of Technology is providing this Work (as defined below) under the terms of this Creative Commons public license ("CCPL" or "license") unless otherwise noted. The Work is protected by copyright and/or other applicable law. Any use of the work other than as authorized under this license is prohibited. By exercising any of the rights to the Work provided here, You (as defined below) accept and agree to be bound by the terms of this license. The Licensor, the Massachusetts Institute of Technology, grants You the rights contained here in consideration of Your acceptance of such terms and conditions.</lom:string>
+        </lom:description>
+    </lom:rights>
+<!--***************************-->
+<!--**** RELATION ****-->
+<!--***************************-->
+    <lom:relation>
+        <lom:kind uniqueElementName="kind">
+            <lom:source uniqueElementName="source">LOMv1.0</lom:source>
+            <lom:value uniqueElementName="value">ispartof</lom:value>
+        </lom:kind>
+        <lom:resource uniqueElementName="resource">
+            <lom:identifier>
+                <lom:catalog uniqueElementName="catalog">OCW Master Course Number</lom:catalog>
+                <lom:entry uniqueElementName="entry">6.867 Machine Learning Fall 2006</lom:entry>
+            </lom:identifier>
+            <lom:description>
+                <lom:string language="en">
+6.867 is an introductory course on machine learning which gives an overview of many concepts, techniques, and algorithms in machine learning, beginning with topics such as classification and linear regression and ending up with more recent topics such as boosting, support vector machines, hidden Markov models, and Bayesian networks. The course will give the student the basic ideas and intuition behind modern machine learning methods as well as a bit more formal understanding of how, why, and when they work. The underlying theme in the course is statistical inference as it provides the foundation for most of the methods covered. </lom:string>
+            </lom:description>
+        </lom:resource>
+    </lom:relation>
+<!--***************************-->
+<!--**** CLASSIFICATION ****-->
+<!--***************************-->
+    <lom:classification>
+        <lom:taxonPath>
+            <lom:source uniqueElementName="source">
+                <lom:string language="en">CIP</lom:string>
+            </lom:source>
+            <lom:taxon>
+                <lom:id uniqueElementName="id">141001</lom:id>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Electrical, Electronics and Communications Engineering</lom:string>
+                </lom:entry>
+            </lom:taxon>
+        </lom:taxonPath>
+        <lom:taxonPath>
+            <lom:source uniqueElementName="source">
+                <lom:string language="en">CIP</lom:string>
+            </lom:source>
+            <lom:taxon>
+                <lom:id uniqueElementName="id">140901</lom:id>
+                <lom:entry uniqueElementName="entry">
+                    <lom:string language="en">Computer Engineering, General</lom:string>
+                </lom:entry>
+            </lom:taxon>
+        </lom:taxonPath>
+    </lom:classification>
+</lom:lom>

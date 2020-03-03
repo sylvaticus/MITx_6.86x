@@ -1,0 +1,319 @@
+@charset "utf-8";
+/*******************************************************************************************
+		MIT OpenCourseWare
+		http://ocw.mit.edu/
+	
+		media_tabs.css - styles used for media gallery and tabbed player templates
+		v0.2
+		17 October 2012
+********************************************************************************************/
+
+
+#course_wrapper_media {
+	float: left;
+	min-width: 720px;
+	margin-top: 15px; 
+}
+
+#course_inner_media {
+	max-width: 538px;
+	float: left;
+}
+
+/* tab styles */
+#media_tabs {
+	min-height: 300px;
+	width: 547px;
+	margin-bottom: 30px;
+	/* margin-right: 30px; */
+}
+
+ul#tabs { 
+	list-style-type: none;
+	margin-top: 19px;
+	margin: 19px 0 0 0\9;		/* IE-only fix */
+	padding: 0 0 3px 0;
+	position: relative;
+	width: 547px;
+}
+
+ul#tabs li { 
+	display: inline-block;
+	font-family: TitilliumWeb700Bold, Verdana;
+	line-height: 1.28em;
+	font-size: 1.1em;
+	font-weight: 100;
+	width: 90px;
+	margin-bottom: 2px;
+	margin-bottom: 1px\9;		/* IE-only fix */
+	margin-right: -3px;
+	text-align: center;
+	border-top: 1px solid #c9c3ba;
+	vertical-align: top;
+}
+
+
+/* Chrome/Safari-only CHP tab border fix */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+ 
+	ul#tabs li {
+		margin-bottom: 3px;
+	}
+
+}
+
+
+ul#tabs li a { 
+	color: #a09b95;
+	padding: 6px 15px;
+	text-decoration: none;
+	display: block;
+	height: 3em;
+	vertical-align: top;
+	border-bottom: 1px solid #c9c3ba;
+	border-right: 1px solid #c9c3ba;
+	background-color: #ffffff;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f3efeb)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #ffffff, #f3efeb); /* Chrome 10+, Saf5.1+, iOS 5+ */
+	background-image:    -moz-linear-gradient(top, #ffffff, #f3efeb); /* FF3.6+ */
+	background-image:      -o-linear-gradient(top, #ffffff, #f3efeb); /* Opera 11.10+ */
+	background-image:         linear-gradient(to bottom, #ffffff, #f3efeb);
+}
+
+ul#tabs li a:hover {
+	color: #b30838;
+}
+
+ul#tabs li a.selected {
+	color: #b30838;
+	background-color: #fff;
+	background-image: none;
+	border-bottom: 1px solid #fff;
+}
+
+ul#tabs li.first a {
+	border-left: 1px solid #c9c3ba;	
+}
+
+ul#tabs li.last a {
+	border-right: 1px solid #c9c3ba;
+}
+
+div.tabContent {
+	border: 1px solid #c9c3ba;
+	padding: 15px;
+	margin-top: 8px;
+	background-color: #fff;
+	height: 250px;
+	max-width: 514px;
+	overflow: auto;
+}
+
+div.tabContent.hide {
+	display: none;
+}
+
+.tabContent ul li {
+	margin-left: 30px;	
+}
+
+.related-media-thumbnail {
+    float: left;
+    font-family: arial,helvetica,sans-serif;
+    font-size: 0.9em;
+    height: 130px;
+    overflow: hidden;
+    padding: 10px 5px 10px 25px;
+    width: 120px;
+	text-decoration: none;
+}
+
+.related-media-thumbnail a:hover {
+	text-decoration: none;
+}
+
+.related-media-thumbnail p {
+	color: #b30838
+}
+
+.related-media-thumbnail p:hover,
+.related-media-thumbnail p:active {
+	text-decoration: underline;
+	text-decoration-color: #b30838;
+}
+
+.related-media-thumbnail-nolink {
+    float: left;
+    font-family: arial,helvetica,sans-serif;
+    font-size: 0.9em;
+    height: 130px;
+    padding: 10px 5px 10px 25px;
+    position: relative;
+    width: 120px;
+}
+
+.related-media-thumbnail a img{
+	height:90px;
+	width:120px;
+	}
+	
+.now-playing-resource {
+    float: left;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: 42px;
+    position: absolute;
+}
+/* Media Gallery styles */
+
+#course_inner_media_gallery {
+    float: left;
+    width: 542px;
+	padding-bottom: 25px;
+}
+
+.media_rss_link {
+    border-bottom: 1px dotted #C0C0C0;
+    font-size: 0.9em;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-top: 20px;
+}
+
+.media_rss_link a {
+    text-decoration: none;
+}
+
+.media_rss_link img {
+    margin-right: 10px;
+	margin-bottom: -1px;
+}
+
+.medialisting {
+    border-bottom: 1px dotted #C0C0C0;
+    clear: both;
+    height: 100px;
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 25px;
+}
+
+.mediathumbnail {
+    float: left;    
+	width: 120px;
+	height: 90px;
+}
+
+.mediatext {
+    float: left;
+    padding-left: 25px;
+	padding-top: 15px;
+}
+
+.mediatitle {
+    width: 350px;
+	text-indent: -1em;
+}
+
+p.mediatitle a.bullet:before {
+	content: '»';
+	display: inline;
+	color: #000;
+	margin-right: 4px;
+	top: -2px;
+	position: relative;
+}
+
+.medialink {
+    font-size: 1.0em;
+    text-decoration: none !important;
+}
+
+.srt 
+{ 
+	float: left; 
+	border: 1px solid black; 
+	width: 481px;
+	background-color: #000; 
+	color: #ffffff; 
+	height: 49px; 
+	font-size:14px;
+	padding-top: 9px;
+	text-align:center;
+}
+
+#cc-control 
+{ 
+	float: right; 
+	clear: right;
+	background-color:black;
+	height:60px;
+}
+
+.cc-caption
+{
+	
+	height: 36px;
+	width: 37px; 
+	color: #c0c0c0; 
+	padding: 5px; 
+	align: left;
+	float:right;
+	background-color: #000;
+	background-image:url(../images/cc_on.PNG);
+}
+
+.cc-caption-table
+{
+ border: 1px solid black; 
+	height: 62px; 
+	width: 530px; 
+	padding: 0px; 
+	border: 0px solid black;
+}
+
+#media-embed
+{
+	height: 325px;
+}
+
+
+.related-media-thumbnail-nolink img {
+    height: 90px;
+    opacity: 0.2;
+    overflow: hidden;
+	width:120px;
+}
+
+#media_resource_next_prev_nav {
+    clear: right;
+    margin-bottom: 0.5em !important;
+    margin-left: 0;
+    margin-top: -1px;
+}
+
+#vid_transcript li,
+#vid_index li,
+#vid_related li {
+	list-style-type: none;
+}
+
+#vid_transcript li:before,
+#vid_index li:before,
+#vid_related li:before {
+	content: '»';
+	display: inline;
+	color: #b30838;
+	left: -5px;
+	top: -2px;
+	top: -1px\9;					/* IE-only fix */
+	position: relative;
+}
+
+#vid_index li p {
+	margin-top: -15px;
+	margin-top: -14px\9;			/* IE-only fix */
+	margin-left: 7px;
+}
+

@@ -1,0 +1,264 @@
+@charset "utf-8";
+/*******************************************************************************************
+		MIT OpenCourseWare
+		http://ocw.mit.edu/
+
+		menu.css - styles used in the August 2012 implementation of the mega-menu.
+		v0.3
+		6 August 2012
+********************************************************************************************/
+
+
+#menu {
+	padding: 0;
+	margin: 0;
+	bottom: 1px;
+	list-style:none;
+	width:670px;
+	height: 100%;
+	display: table;
+	position: relative;
+	z-index: 500;
+	border: hidden solid #000;
+	border-width: 1px;
+	border-top-style: hidden;
+	border-bottom-style: hidden;
+
+		}
+
+/* These id's correspond to the dropdown list items. This was a hack -
+   the template engine only allows one class ("selected") to be used, so I
+   used id's instead. - Erik */
+
+#menu_home, #drop_1, #drop_2, #drop_3, #drop_4, #drop_5, #drop_6 {
+	text-align:center;
+	position:relative;
+	display: table-cell;
+	vertical-align: middle;
+	border: hidden #000;
+	border-width: 1px;
+	background-clip: padding-box;
+	border-top-style: solid;
+	border-right-style: solid;
+}
+
+#menu_home {
+	border-left-style: solid;
+}
+#drop_1, #drop_2, #drop_3, #drop_4, #drop_5, #drop_6  {
+	padding: 0em 2em 0 0em;
+	margin-top: -4px\9;				/* IE-only fix */
+	padding-top: 10px\9;			/* IE-only fix */
+	background:url("../images/nav_arrow.png") no-repeat;
+	background-position: right 10% top 60%;
+	}
+
+#menu .selected, #menu_home:hover, #drop_1:hover, #drop_2:hover, #drop_3:hover, #drop_4:hover, #drop_5:hover, #drop_6:hover, #menu_home.selected, #drop_1.selected, #drop_2.selected, #drop_3.selected, #drop_4.selected, #drop_5.selected, #drop_6.selected  {
+	/* Background color for all dropdown choices, specifying this after the arrow will display both. */
+	background-color: #b30838;
+	border-top: 2px solid #000;
+	}
+
+#drop_1:hover, #drop_2:hover, #drop_3:hover, #drop_4:hover, #drop_5:hover, #drop_6:hover {}
+
+
+#menu_home {
+	width: 5em;
+}
+
+#menu_home.selected, #menu_home:hover, #menu li.selected {
+	border-bottom: 2px solid #000;
+}
+
+#menu li a {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 1.52em;
+	color: #fff;
+	outline:0;
+	text-decoration:none;
+	margin-top: 1px\9;				/* IE-only fix */
+}
+
+.dropdown_1column-a,
+.dropdown_5columns-a {
+	border-width: 1px 1px 1px 0px;
+	border-color: #000;
+	border-style: solid;
+	border-left-style: hidden;
+	margin: 10px auto;
+	position:absolute;
+	left:-999em; /* Hides the drop down */
+	text-align:left;
+	padding: 10px 5px 0 5px;
+	background: #fff;
+	z-index: 1000;
+
+	/* Rounded Corners */
+	-moz-border-radius: 0px 5px 5px 5px;
+	-webkit-border-radius: 0px 5px 5px 5px;
+	border-radius: 0px 5px 5px 5px;
+
+	/* Drop Shadow */
+	-webkit-box-shadow: 2px 2px 5px 0px #000; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  		    box-shadow: 2px 2px 5px 0px #000; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+}
+
+.dropdown_1column {
+	width: 140px;
+}
+
+.dropdown_1column-a {
+	width: 245px;
+	padding: 1.5em 0 1.4em 1.8em;
+}
+
+.dropdown_5columns {
+	width: 700px;
+}
+
+.dropdown_5columns-a {
+	width: 640px;
+}
+
+#menu li:hover .dropdown_1column-a,
+#menu li:hover .dropdown_5columns-a {
+	position: absolute;
+	left: 0;
+}
+
+.col_1,
+.col_5a {
+	display: inline;
+	float: left;
+	position:relative;
+}
+
+.col_1 { width: 100%; }
+.col_1a {
+	width: 95%;
+	margin: auto;
+	}
+
+.col_5 { width: 100%;}
+
+.quart {
+	/* legacy - I'm not sure if this is still being used - erik */
+	float: left;
+	margin: 5px 10px 5px 10px;
+	width: 170px;
+}
+
+.row_1a {
+	-moz-columns: auto 3;
+	-webkit-columns: 3;
+	height: 22em;
+	columns: auto 3;
+}
+.row_1a nav {
+	display: inline-block;
+}
+.row_1b nav {
+	padding-top: 1em;
+}
+
+.row_1b nav ul {
+	-moz-columns: auto 2;
+	-webkit-columns: auto 2;
+	columns: auto 2;
+	height: 7em;
+	width: 66%;
+}
+
+#mm-cross-disciplinary-topic-lists {
+	/*This forces the title of the list to span across all columns*/
+	border-top: 1px solid #999;
+	width: 62%;
+	padding-top: .5em;
+}
+
+#menu span#mm-featured-external-links {
+	/*This is a hack to get some space for second 1-column block element */
+	margin-top:1.5em;
+}
+
+#menu .menu_right {
+	float:right;
+	margin-right:0px;
+}
+
+#menu li .align_right {
+	/* Rounded Corners */
+	-moz-border-radius: 5px 0px 5px 5px;
+    -webkit-border-radius: 5px 0px 5px 5px;
+    border-radius: 5px 0px 5px 5px;
+}
+
+#menu li:hover .align_right {
+	left:auto;
+	right:-1px;
+	top:auto;
+}
+
+#menu li:hover div a {
+	font-size: 1em;
+	color:#b30838;
+}
+
+#menu li:hover div a:hover {
+	color:#ff9000;
+	text-decoration: underline;
+}
+
+#menu li ul {
+	list-style:none;
+	margin: .3em 0;
+}
+
+#menu li ul li {
+	line-height: 2em;
+	background: url(../images/arrow-double-right.png) no-repeat;
+	background-size: .5em .5em;
+	background-position: left center;
+	padding-left: 1em;
+}
+
+/*This styles subsection headline text in the megamenu */
+#menu .nav {
+	display: block;
+	font-family: TitilliumWeb700Bold, Verdana;
+	color: #333;
+	text-transform: none;
+	font-size: 1.3em;
+	font-weight: 200;
+	letter-spacing: 0.5px;
+	line-height: 2;
+}
+
+.mega-courses {
+	background-image:url(../images/bg_mega-courses.png);
+	background-repeat: repeat-y;
+	background-position: top left;
+}
+
+.mega-div-bottom {
+}
+
+.mega-div-top {
+}
+
+.home_icon {
+	vertical-align: middle;
+	height: 25px;
+}
+
+.find_by li {
+	 font-size: 1.2em;
+	 font-weight: bold;
+}
+
+/*
+.find_by li:last-of-type {
+	font-weight: normal;
+	font-size: 1em;
+}
+*/

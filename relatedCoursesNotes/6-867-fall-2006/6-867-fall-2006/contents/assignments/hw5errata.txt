@@ -1,0 +1,38 @@
+Prob 1:
+-------
+
+
+
+Prob 2:
+-------
+
+11/25: 
+======
+There is a bug in the em_gp.m code. 
+At line 131 (in function Overall_Log_Likelihood), please change
+  ll_i = log_likelihood_gp(V(k,:), t, Y_obs);
+to
+  ll_i = log_likelihood_gp(V(i,:), t, Y_obs);
+
+i.e. the index "k" should be "i"
+
+
+
+Also, the "division by zero" warning happens when the current
+cluster has no genes assigned to it. We have changed the code to 
+not throw a warning in such a case.
+The updated code (which includes the bug fix mentioned above)
+is available in hw5/prob2/ sub-directory as code-updated.zip
+
+
+The input argument "init_class" in em_gp.m is optional, as you 
+may have noticed. If not supplied, it is initialized by randomly
+assigning each gene to one of k clusters (1..k)
+
+
+11/27
+======
+  Some students have reported problems in using plot_results().
+This seems to be happening because 't.dat' is being loaded as a
+column vector as a row vector. Using t' (i.e, the transpose) instead
+of t in the function call should fix this.

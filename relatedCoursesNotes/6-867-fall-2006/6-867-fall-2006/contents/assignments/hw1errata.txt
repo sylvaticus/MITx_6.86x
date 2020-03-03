@@ -1,0 +1,77 @@
+Section A 
+==========
+
+Prob 6: 
+------- 
+Typo: the proof gives an equation for u3. The u_2's in one
+term in the numerator and one term in the denominator should be u_1's.
+
+
+
+
+
+
+Section B 
+==========
+
+Prob 1: 
+------- 
+Q. What is the stopping criterion for the Perceptron
+training algorithm?
+
+A. It should stop when it makes no errors at all on the training data. For
+purposes of this assignment, you may assume that the training data is
+always linearly separable and the Perceptron will always stop, after
+enough updates.
+
+
+Q. Should we allow for offsets (i.e. \theta_0) in the classifier?
+
+A. No. The decision boundary should always go through the origin, i.e.,
+\theta_0 = 0 always.
+
+
+
+
+Prob 2: 
+------- 
+Q. I've implemented the SVM in matlab, but it seems to be
+taking a really long time to train the data from Prob #1. Is this normal,
+or am I doing something wrong?
+
+A. We just did a quick svm_train() implementation and it seems to run
+fairly quickly (i.e. in seconds) on data from Prob #1. It also seem to be
+giving the right results as well, so I don't know what's going wrong for
+you. Try the MATLAB on Athena, if you aren't sure your version is the
+latest and greatest.
+
+
+
+Q. When we implement SVM classifier, do we need to include 'c' as one of
+the input?
+
+A. No, you needn't.
+
+
+
+Q. Should we use the generalized rule with the offset etc.?
+
+A. No, you needn't. For this problem, just implement a simple SVM without
+offset or regularization.
+
+
+
+
+
+Prob 3: 
+------- 
+Q. In part (a) we are asked to plot the image which was
+mis-classified. Could you tell me how I should do that? I looked into the
+data file, and it seems to be some integer values. But how can I plot
+them?
+
+A. look at the strimage.m code in the "data" section of the pset:
+http://courses.csail.mit.edu/6.867/hw1/
+
+  Also look at the link to actual PNG images (also available from pset
+page): http://alawi.csail.mit.edu/~alawi/6867/hw1/images/

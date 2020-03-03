@@ -1,0 +1,6 @@
+Problem #1
+===========
+10/24:
+In Eqn 3, the square ("^2") should be inside the expectation, i.e., it should
+read as:
+  E{error_{1}(S_n)} = E{(y- \hat{f}_{S_{n-1}}(x))^2}

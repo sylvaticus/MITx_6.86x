@@ -1,0 +1,73 @@
+Problem #1
+===========
+10/11:
+
+The goal of this problem is to help you appreciate the importance 
+of the feature space in which active learning is performed. We've 
+provided you two feature mappings: phi_1 and phi_2. The first one  
+maps X_in to a space that is essentially the same as the original space 
+(except for an added offset). The second one, on the other hand, 
+maps X_in to a space that is quite different. Thus, if the regression 
+is linear in phi_2's space, the problem discusses what happens when 
+active learning is performed in phi_1's space (which is almost like 
+the original space) vs. phi_2's space.
+
+To clarify this, we're updating the problem set so that the last sentence 
+of Prob 1(c) should instead be:
+  
+ "For each set of points, use the feature mapping $\phi_2$ to perform 
+regression and compute the resulting mean squared prediction errors (MSE)
+over the entire data set (again, using $\phi_2$)."
+  
+Note that this change also effects how regression (and evaluation) is 
+performed in 1(d).
+
+Also, we emphasize that IF YOU HAVE ALREADY SUBMITTED THE SOLUTIONS, 
+YOU NEED NOT RESUBMIT! Solutions adhering to the original problem statement
+will not be penalized.
+
+10/10: Some students had trouble loading the file 'al.mat'.
+This was usually because they were using an older version of MATLAB. 
+We've updated the data file 'al.mat'. The updated file contains exactly 
+the same data, but is saved so as to be compatible with both 
+MATLAB v6 and MATLAB v7. The original data file is still 
+available-- as "al_orig.mat"
+
+
+10/10: When choosing points according to the active learning strategy, at
+each iteration you may (1) restrict your choices to only those points that
+have not been previously selected or (2) choose from all points, even
+those points that have been chosen earlier (i.e., idx will then contain
+repeated entries). Either strategy is acceptable. When
+following (2), you must use y_noisy for each of the instances of the
+repeated data point. We recognize that in a more realistic active
+learning setting, you'd have the opportunity to make multiple distinct
+observations at a single point; that is not the case here.
+
+
+10/10: When computing MSPE, you must compare the predicted values of y 
+to the true value (y_true), not y_noisy. 
+
+
+10/10: The values of k1 and k2 specified in part (c) are also the ones 
+to be used in part (d).
+
+  
+
+Problem #2
+===========
+
+
+
+
+Problem #3
+===========
+10/9: The discriminant function we expect you to write should be of the form: 
+
+f = discriminant function(alpha, X, kernel type, X test) 
+
+X was missing as an argument. 
+
+
+
+10/10: The perceptron update rules should be written with '<=' rather than strict inequality '<' tests for mistakes.  

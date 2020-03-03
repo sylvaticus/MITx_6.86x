@@ -1,0 +1,72 @@
+Prob #1:
+---------
+
+ In Equation 3, the second exponent should be outside the parenthesis,
+i.e., the right-hand side of the equation should read as:
+  
+     \theta_{i|y}^{\frac{x_i+1}{2}} (1-\theta_{i|y})^{\frac{1-x_i}{2}}
+ 
+Also, the "empty" Equation 4 was a LaTeX error on our part :-) There's
+nothing that is supposed to be there.
+
+
+The answers to this problem will not depend upon the particular prior you
+choose for the distribution of y. In other words, if P(y=1) = \theta_y and
+P(y=-1) = 1- \theta_y, your answers will, essentially, not depend on the
+prior distribution of \theta_y. In particular, you are free to choose a
+uniform prior P(\theta_y) = 1, if it simplifies your math. Your answers
+will *not* be penalized on this aspect.
+
+
+1(a) 
+----- 
+The right-hand side of the equation should have a normalization
+constant to ensure that the posterior P(\theta|D) is a valid probability
+distribution, i.e., the expression \prod_{i} \prod_{y} (....) should be
+preceded by a normalization constant. 
+
+
+1(d) 
+---- 
+You may assume that -A2 is positive definite. Also, there is an
+error in the statement: instead of the determinant of A2 i.e. |A2| = n
+C(r) (approx.), it should be that the determinant of -A2 i.e. |-A2| =
+(n^r) C(r), approximately.
+
+
+1(e) 
+---- 
+The d in exponent should be replaced by r, i.e., it should be
+(2\pi/n)^{r/2}
+
+
+
+
+Prob #2: 
+--------
+
+- Please see hw4/prob2/README for some clarifications on what the split
+  function should return.
+- Also, some people were having difficulty loading the cepstra data.
+  Please try the updated files and contact Ali if you still run into
+  problems.  
+- In part (a), t_0 should be 1, and t_m should be N+1.
+
+Hint for (b):
+- A d-dimensional multivariate Gaussian has PDF:
+  f(X; \mu, \Sigma) = {1 \over \sqrt{(2\pi)^d|\Sigma|}} \exp\left(-{1 \over 2}(X - \mu)' \Sigma^{-1} (X - \mu)\right)
+- Maximum likelihood estimators for its parameters are:
+  \mu = {1 \over N}\sum_{i=1}^N X_i
+  \Sigma = {1 \over N}\sum_{i=1}^N (X_i - \mu)(X_i - \mu)'
+- The number of degrees of freedom is d for mu and d(d+1)/2 for Sigma
+  (not one for each).
+- You will need to assume that splitpoints don't occur sufficiently early
+  in the data (skip, say, the first and last 30 possible splitpoints).  This
+  will mitigate small det(Sigma) problems that some of you have encountered
+  and also removes some serious artifiacts.
+
+Prob #3: 
+--------
+
+(e) Only run call_boosting.m for the first 30 iterations.  The m-file 
+    call_boosting.m has been updated.

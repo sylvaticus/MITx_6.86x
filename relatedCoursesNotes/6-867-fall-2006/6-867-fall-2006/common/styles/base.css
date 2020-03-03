@@ -1,0 +1,1863 @@
+@charset "utf-8";
+/*******************************************************************************************
+		MIT OpenCourseWare
+		http://ocw.mit.edu/
+
+		base.css - styles common to all pages
+		v1.1
+		updated 09 February 2017
+********************************************************************************************/
+
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+html {
+	font-size: 62.5%;	/* adjusts base font to 10px, allows rescaling by one-tenth per point (12px=1.2em, 16px=1.6em, 8px=0.8em and so on) */
+	font-family: arial, helvetica, sans-serif;
+
+}
+
+body {
+	min-height: 100%;
+	min-width: 960px;
+	margin: 0 auto;
+	font-size: 1.2em;
+
+}
+
+@font-face {
+	font-family: TitilliumWeb700Bold;
+	src: url('../webfonts/titilliumweb-700bold.woff2') format('woff2'), url('../webfonts/titilliumweb-700bold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: TitilliumWeb400Regular;
+	src: url('../webfonts/titilliumweb-400regular.woff2') format('woff2'),	url('../webfonts/titilliumweb-400regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*
+
+@font-face {
+	font-family: TitilliumText22LRegular;	
+    src: url(../webfonts/TitilliumText22L003-webfont.eot);
+    src: url(../webfonts/TitilliumText22L003-webfont.eot?#iefix) format("embedded-opentype"),
+         url(../webfonts/TitilliumText22L003-webfont.woff) format("woff"),
+         url(../webfonts/TitilliumText22L003-webfont.ttf) format("truetype"),
+         url(../webfonts/TitilliumText22L003-webfont.svg#TitilliumText22LRegular) format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: TitilliumText22LBold;		
+    src: url(../webfonts/TitilliumText22L005-webfont.eot);
+    src: url(../webfonts/TitilliumText22L005-webfont.eot?#iefix) format("embedded-opentype"),
+         url(../webfonts/TitilliumText22L005-webfont.woff) format("woff"),
+         url(../webfonts/TitilliumText22L005-webfont.ttf) format("truetype"),
+         url(../webfonts/TitilliumText22L005-webfont.svg#TitilliumText22LBold) format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+*/
+
+
+
+.clear {
+	clear: both;
+	height: 0;
+	line-height: 0;
+}
+
+a img {
+	border: 0;
+}
+
+p {
+	margin-bottom: 10px;
+	color: #333;
+}
+
+p.zero {					/* use for content FCK forces into an unwanted paragraph */
+	margin-bottom: 0px;
+}
+
+a,
+a:visited {
+	color: #b30838;
+	text-decoration: none;
+}
+
+a:active,
+a:hover {
+	color: #ff9000;
+	text-decoration: underline;
+}
+
+#global_inner a,
+#course_inner_section a,
+#course_inner_media_gallery p a,
+#global_inner li a,
+#course_inner_section li a,
+#global_inner li a,
+#course_inner_section li a,
+#download_inner_main a,
+.caption a,
+#course_info a,
+#course_wrapper ul.bullet p a,
+#course_tabs a,
+#course_tabs li a,
+#media_tabs a,
+#media_tabs li a {
+	text-decoration: underline;
+}
+
+/* Chrome-only fix necessary to fix underline height ---
+#course_inner_section .maintabletemplate table td a {
+	[;font-face: arial;];
+}
+--- */
+
+#global_inner table.courseList a {
+	text-decoration: none;
+}
+
+#global_inner ul,
+#course_inner_section ul {
+	margin-bottom: 1em;
+/*	margin-left: 35px;			This was added to held avoid text collission with TLP previous/next buttons, 
+											but caused other	problems and had to be disabled. Not a matter of # value, just conflict */
+}
+
+#global_inner ul li {
+/*	margin-left: 195px;			Not sure why I made this. Now causing trouble, so
+	margin-bottom: 1em;			disabling until I figure out what it was for */
+}
+
+#course_inner_section li ul,
+#course_inner_section li ol {
+	margin-bottom: 10px;
+}
+
+/* base chevron bullet styles */
+
+ul.chevron {
+	margin-top: 3px;
+	margin-left: 8px;
+}
+
+ul.chevron li {
+	font-size: 1em;
+	margin-left: 2px;
+	text-indent: -0.9em;
+	margin-bottom: 0;
+	line-height: 1.2em;
+	list-style-type: none;
+}
+
+ul.chevron li:before {
+	content: '»';
+	display: inline;
+	color: #b30838;
+	margin-right: 4px;
+	margin-left: 30px;
+	top: -2px;
+	position: relative;
+}
+
+ul.chevron li a,
+ul.chevron li a:visited {
+	text-decoration: none;
+	color: #b30838;
+}
+
+ul.chevron li a:active,
+ul.chevron li a:hover {
+	text-decoration: underline;
+	color: #b30838;
+}
+
+/* end base bullet styles */
+
+
+#top {
+	width: 100%;
+	background-image:url(../images/bg_top.png);
+	background-repeat: repeat-x;
+	background-position: top left;
+}
+
+#center_home {
+	background-image:url(../images/bg_center.png);
+	background-repeat: repeat-y;
+	background-position: top center;
+}
+
+#center_chp,
+#center_media {
+	background-image:url(../images/bg_center2.png);
+	background-repeat: repeat-y;
+	background-position: top center;
+}
+
+#center_global {
+	background-image:url(../images/bg_center3.png);
+	background-repeat: repeat-y;
+	background-position: top center;
+}
+
+#center {
+	/* placeholder - impacts the content area of all pages not specifically addressed by the previous few styles */
+}
+
+#bottom {
+	background-image:url(../images/bg_bottom.png);
+	background-repeat: repeat-x;
+	background-position: top left;
+	padding-bottom: 2em;
+}
+
+.logo {
+	margin: 18px 0;
+}
+
+/* header and footer div dimensions */
+
+#banner {
+	min-height: 98px;
+}
+
+#subscribe {
+	height: 98px;
+	min-width: 472px;
+}
+
+#subscribe .module {
+	height: 39px;
+	width: 436px;
+	float: right;
+	border-top: #000 solid 3px;
+	background-color: #332F2D;
+	background-image: url(../images/bg_social2.png);
+	background-repeat: repeat;
+	background-position: top left;
+	-webkit-border-radius: 0 0 14px 14px;					/* Saf3-4, iOS 1-3.2, Android ≤1.6 */
+	border-radius: 0 0 14px 14px;							/* Opera 10.5, IE9, Saf5, Chrome, FF4+, iOS 4, Android 2.1+ */
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	-webkit-box-shadow: 2px 2px 0px 0px #000; 				/* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+	box-shadow: 2px 2px 0px 0px #000; 						/* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+}
+
+table.social,
+table.search {
+	padding: 0;
+	color: #fff;
+	font-size: 0.9em;
+	font-family: Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+}
+
+table.social {
+	height: 39px;
+	margin: 0;
+}
+
+table.search {
+	float: right;
+	height: 30px;
+	margin: 5px 0 0 11px;
+	margin: 6px 0 0 11px\9;		/* IE-only fix */
+}
+
+/* Chrome/Safari-only mega-menu fix */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+
+	table.search {
+		margin: 6px 0 0 11px;
+	}
+
+}
+
+
+table.social td.text {
+	padding-right: 5px;
+}
+
+table.search td.text2 {
+	text-align: right;
+	padding-left: 6px;
+}
+
+table.social td.black,
+table.search td.black {
+	background-color: #000;
+	margin: 0;
+	padding: 0;
+	cellpadding: 0;
+	cellspacing: 0;
+}
+
+table.social td.socialbutton {
+	background-image:url(../images/news-subscibe_bg.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	width: 247px;
+}
+
+table.social td.socialbutton a {
+	font-family: TitilliumWeb700Bold, Verdana;
+	font-size: 1.2em;
+	color: #fff;
+}
+
+table.social td.socialbutton img {
+	height: 20px;
+	width: 30px;
+	vertical-align: middle;
+	margin: 0 10px 0 8px;
+}
+
+.greytext {
+	color: #fff;
+	background-color: #000;
+	margin-left: 5px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 1.1em;
+}
+
+.emailField {
+	width: 161px;
+}
+
+.searchField {
+	width: 155px;
+}
+
+.sub_button,
+.but {
+	margin-left: -2px;
+	margin-right: 2px;
+	display: block;
+}
+
+.helplinks {
+	float: right;
+	margin: 6px 12px 0 0;
+	color: #fff;
+	font-size: 1.0em;
+}
+.helplinks a,
+.helplinks a:visited,
+table.search a,
+table.search a:visited {
+	color: #fff;
+	text-decoration: underline;
+}
+
+.helplinks a:active,
+.helplinks a:hover,
+table.search a:active,
+table.search a:hover {
+	text-decoration: underline;
+}
+
+.helplinks span {
+	margin: 0 .5em;
+}
+select.transLang {
+	width: 185px;
+	margin-top: 6px;
+	border: 1px solid #333;
+}
+
+#mega {
+	height: 44px;
+	height: 45px\9;				/* IE-only fix */
+}
+
+#search {
+	height: 44px;
+	height: 45px\9;				/* IE-only fix */
+	min-width: 315px;
+}
+
+/* Chrome/Safari-only mega-menu fix */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+
+    #mega {
+		height: 45px;
+	}
+
+	#search {
+		height: 45px;
+	}
+
+}
+
+#footer #foot-c1,
+#footer #foot-c2,
+#footer #foot-c3,
+#footer #foot-c4,
+#footer #foot-c5 {
+	min-height: 255px;
+	margin-top: 35px;
+}
+
+#foot-c5 p.accent {
+	color: #999;
+	font-size: 1.0em;
+	width: 300px;
+	margin-top: 10px;
+	line-height: 2.0em;
+}
+
+ul.foot-bullet {
+	margin-top: 3px;
+	margin-left: 8px;
+}
+
+ul.foot-bullet li {
+	background: url(../images/arrow-double-right.png) no-repeat;
+	background-position: 0 .5em;
+	background-size: .6em;
+	font-size: 0.9em;
+	line-height: 1.6em;
+	list-style-type: none;
+	margin-bottom: 0;
+	margin-left: -1.2em;
+	padding-left: 0.8em;
+}
+
+ul.foot-bullet li a,
+ul.foot-bullet li a:visited {
+	text-decoration: none;
+	color: #b30838;
+}
+
+ul.foot-bullet li a:active,
+ul.foot-bullet li a:hover {
+	text-decoration: underline;
+	color: #b30838;
+}
+
+
+#footer #foot-c5,
+#footer #foot-support {
+	margin-left: 2px;
+	border-left: thin solid #d5c9ba;
+	padding-left: 20px;
+}
+
+/* header styles */
+
+h2.global {
+	font-family: TitilliumWeb700Bold, Verdana;
+	color: #b30838;
+	text-transform: uppercase;
+	font-size: 1.4em;
+	font-weight: 200;
+	letter-spacing: 0.5px;
+}
+
+h2.subhead {
+	font-size: 1.2em;
+	font-family: arial, helvetica, sans-serif;
+	color: #000;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+h3.subsubhead {
+	font-size: 1.1em;
+	font-weight: normal;
+	font-family: arial, helvetica, sans-serif;
+	color: #000;
+	font-style: italic;
+	margin-bottom: 5px;
+}
+
+/* DHP Supplemental Resource link box */
+.dhp-SRbox {
+	width: 670px;
+	margin-top: 15px;
+	background-color: #F3F0EB;
+	padding: 15px;
+}
+
+.dhp-SRbox p {
+	margin-bottom: 0px;
+}
+
+/* This is used to style the title text in the footer menu */
+.footer,
+.dept_link {
+	font-family: TitilliumWeb400Regular, Verdana;
+	color: #363636;
+	text-transform: uppercase;
+	font-size: 1.1em;
+	font-weight: 200;
+	letter-spacing: 0.5px;
+}
+
+p.callout {
+	color: #b30838;
+	font-size: 1.2em;
+	font-weight: bold;
+	line-height: 1.5em;
+}
+
+.pullquote {
+	float: left;
+	width: 132px;
+	border-right: 1px solid #d5c9ba;
+	padding-right: 12px;
+	padding-bottom: 12px;
+	margin: 3px 12px 10px 0;
+	line-height: 1.6em;
+}
+
+.pullquote p {
+	font-size: 1.2em;
+	color: #aaa;
+	margin: 0;
+}
+.pullquote p.quote {
+	text-indent: 2.2em;
+	padding-top: 4px;
+	background-image: URL(../images/quote_open.png);
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+
+.pullquote p.sig {
+	font-family: TitilliumWeb400Regular, Verdana;
+	font-weight: 500;
+	font-size: 1.0em;
+	color: #777;
+	text-align: right;
+	text-transform: uppercase;
+	padding-top: 30px;
+	margin-top: -12px;
+	margin-bottom: 0;
+	background-image: URL(../images/quote_close.png);
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+.pullquote p.stat {
+	font-size: 5em;
+	letter-spacing: 1px;
+	color: #b30838;
+	font-family: TitilliumWeb700Bold, Verdana;
+	font-weight: normal;
+	margin: 0 0 -15px 0;
+}
+
+.pullquote p.sig2 {
+	font-family: TitilliumWeb400Regular, Verdana;
+	font-weight: 500;
+	font-size: 1.0em;
+	color: #777;
+	text-align: right;
+	text-transform: uppercase;
+	margin-bottom: 0;
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+p.red,
+p.red a,
+p.red a:visited {
+	color: #b30838;
+	font-size: 1.0em;
+	text-decoration: none;
+}
+
+p.red a:active,
+p.red a:hover {
+	color: #ff9000;
+	text-decoration: underline;
+}
+
+p.red span.bullet {
+	font-size: 1.2em;
+}
+
+p.shift1 {
+	position: relative;
+	top: -19px;
+	left: 506px;
+	width: 150px;
+	margin-bottom: 0;
+}
+
+#foot-copy {
+	border-top: thin solid #d5c9ba;
+	padding-top: 15px;
+	width: 550px;
+}
+
+/* This style fixes misplaced logos in the site-footer encountered after accessibility updates */
+ #foot-copy a{
+	vertical-align: middle;
+}
+
+#foot-copy a img {
+	margin-right: 31px;
+	margin-bottom: -10px;
+}
+
+#f-about-ocw { /* This forces the about text in the footer to go across the page. I'd prefer to address this on each element, they are inconsistent right now. - Erik */
+	display: block;
+}
+
+p.copyright {
+	color: #7b706b;
+	font-size: 0.9em;
+}
+
+
+/* Course List styles */
+
+h3.deptTitle {
+	font-size: 1.2em;
+	margin-top: 25px;
+	border-bottom: 1px solid #E4E5E0;
+	min-width: 50px;
+}
+
+.courseList {
+	background-color: #fff;
+	margin: 0 0 15px 0;
+	padding: 0 30px 0 0;
+	cellpadding: 0;
+	cellspacing: 0;
+	border: none;
+	border-collapse: collapse;
+	width: 690px;
+	max-width: 690px;
+}
+
+.courseList th {
+	background-color: #fff;
+	font-size: 1.1em;
+	padding: 6px;
+	text-align: left;
+	padding-left: 7px;
+}
+
+th.MCNcol {
+	min-width: 80px;
+	width: 80px;
+}
+
+th.CTcol {
+	min-width: 480px;
+	width: 480px;
+}
+
+th.CTcol2 {
+	min-width: 430px;
+	max-width: 520px;
+}
+
+th.LVcol {
+	min-width: 120px;
+	width: 120px;
+}
+
+p.top {
+	margin-top: -11px;
+	margin-left: 6px;
+	font-size: 0.9em;
+}
+
+img.top {
+	border: 1px solid #000;
+	margin-bottom: -1px;
+}
+
+td.topLink {
+	border-bottom: 1px solid #E4E5E0;
+}
+
+.courseList td {
+	padding: 5px 8px;
+}
+
+.courseList tr.odd {
+	background-color: #f3f0eb;
+}
+
+.courseList tr.even {
+	background-color: #fff;
+}
+
+.courseList tr.preview {
+	background-color: #ffcc66;
+}
+
+.courseList td a,
+.courseList td a:visited {
+	color: #b30838;
+}
+
+.courseList td a:hover,
+.courseList td a:active {
+	color: #ff9000;
+}
+
+
+/* Left-nav TLP expander styles */
+
+.mO {
+	color:#000;
+	font-weight:normal;
+	padding-left: 0px;		/* was 10px */
+	background:transparent url(../images/bg_plus.gif) 0px 5px no-repeat; /* 1st # was 0 */
+	margin:5px 0;
+}
+
+.mC {
+	color:#000;
+	font-weight:normal;
+	padding-left: 0px;		/* was 10px */
+	background:transparent url(../images/bg_minus.gif) 0px 5px no-repeat; /* 1st # was 0 */
+	margin:5px 0;
+}
+
+.tlp_links a {
+	font-size:.74em;
+	position:relative;
+	right: -11px;
+	padding:2px 0;
+	/* display:block; */
+	color:#000;
+	text-decoration:none;
+	margin-bottom: -2px;
+}
+
+.tlp_links .expandCollapseTrans,
+.nav_links .expandCollapseTrans {
+	position:absolute;
+	left: -12px;
+	top: 3px;
+}
+
+.tlp_links ul {
+	display:none;
+	margin-bottom:5px;
+	list-style:none;
+	padding:0;
+}
+
+.tlp_links li {
+	color:#000;
+	font-size:0.7em;
+	font-weight:normal;
+	padding-left:10px;
+	margin-left: 6px;
+	/* background:transparent url(../images/black-arrow.gif) 2px 8px no-repeat; */
+	/* background-position:2px 4px; */
+}
+
+#course_nav .tlp_links ul li a:link,
+#course_nav .tlp_links ul li a:visited {
+	_margin:0;
+	display:block;
+	color:#666666;
+	text-decoration:none;
+	width:130px;
+	padding: 7px 0px;
+	border: none;
+}
+
+#course_nav .tlp_links ul li a:hover,
+#course_nav .tlp_links ul li a:active,
+#course_nav .tlp_links ul li.selected a {
+	color: #b30838;
+}
+
+#course_nav .tlp_links ul li {
+	padding: 0;
+	border: none;
+}
+
+.tlp_links ul.selected{
+	position:static;
+	left:0px;
+	display:block;
+	background:transparent;
+}
+.btn_close {
+			position: relative;
+			left: 440px;
+			top: 30px;
+}
+
+/* cite this course popup styles */
+
+.citeHome {
+    background-color: #E5E0DB;
+	height: auto;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.citeHome .citeInner {
+    background-color: #E5E0DB;
+    float: left;
+    margin: 10px;
+    width: 510px;
+}
+
+.citeHome .citeInner p {
+    float: left;
+    margin: 10px;
+	padding: 10px;
+	background-color: #fff;
+}
+
+
+/* Table Styles (Consolidated)
+================================ */
+
+.maintabletemplate {
+	margin-bottom: 10px;
+}
+
+.maintabletemplate table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: 1px solid #999;
+	empty-cells: show;
+	width: 100%;
+	margin-top: 11px;
+	font-size: 0.92em;
+}
+
+table.tablewidth1,
+table.tablewidth100,
+.maintabletemplate table.tablewidth1,
+.maintabletemplate table.tablewidth100 {
+	width: 100%;
+}
+
+table.tablewidth2,
+table.tablewidth75,
+.maintabletemplate table.tablewidth2,
+.maintabletemplate table.tablewidth75 {
+	width: 75%;
+}
+
+table.tablewidth3,
+table.tablewidth50,
+.maintabletemplate table.tablewidth3,
+.maintabletemplate table.tablewidth50 {
+	width:50%;
+}
+
+table.tablewidth4,
+table.tablewidth25,
+.maintabletemplate table.tablewidth4,
+.maintabletemplate table.tablewidth25 {
+	width:25%;
+}
+
+.maintabletemplate th {
+	border:	1px solid #49423F;					/* safety: all lines were #999; */
+	font-size: 1em;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-weight: bold;
+	background-color: #7F6E6A;				/* safety: pre-redesign color: #727266; */
+	color: #fff;
+	text-transform: uppercase;
+	padding: 8px;
+	text-align: left;
+}
+
+.maintabletemplate table tr td,
+.maintabletemplate table tr.row td,
+.maintabletemplate table tr.alt-row td,
+.maintabletemplate table tr.gray-row td,
+.maintabletemplate table tr.white-row td {
+	border: 1px solid #49423F;
+	padding: 8px;
+	font-family: verdana, arial, helvetica, sans-serif;
+	color: #333333;
+}
+
+.maintabletemplate table tr td.alt-row,
+.maintabletemplate table tr td.white-row {
+	background-color: #fff;
+}
+
+.maintabletemplate table tr.row td,
+.maintabletemplate table tr.gray-row td{
+	background-color: #E5E0DB;				/* safety: pre-redesign color: #e2e1d9; */
+}
+
+.maintabletemplate,
+.maintabletemplate p {
+	margin-top: 0.5em;
+	margin-bottom: 1em;
+}
+
+.maintabletemplate ul li,
+.maintabletemplate ol li {
+	margin: 0 5px 0 15px;
+	padding: 0;
+}
+
+.maintabletemplate ul.nobullet {
+	list-style-type: none;
+}
+
+
+/* General list styles */
+
+ul,
+ol {
+	margin: 10px 0 10px 25px;
+}
+
+li {
+	font-size: 1em;
+	margin-bottom: 4px;
+	color: #333;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+	margin-left: 25px;
+}
+
+
+/* Legacy sidebar container */
+
+.module {
+	margin: 0 0 17px;
+	overflow: hidden;
+	width: 180px;
+}
+
+
+/* Course Champion styles */
+
+.champ_ext {
+border:#b41f24 2px solid;
+width:175px;
+clear:both;
+margin-bottom:0;
+}
+
+.champ_int {
+border:#fff 1px solid;
+background-color:#4a4c45;
+font-family:Verdana;
+color:#fff;
+padding:4px;
+}
+
+.champ_int p.cp1 {
+font-weight:bold;
+color: #fff;
+padding-top:5px;
+padding-bottom:17px;
+margin-left:14px;
+}
+
+.champ_int p.cp3 {
+font-size:0.8em;
+margin-bottom:0;
+padding-top:5px;
+padding-bottom:10px;
+margin-left:14px;
+}
+
+div#right .module .champ_int a:link, div#right .module .champ_int a:visited, div#right .module .champ_int a:hover {
+color:#fff !important;
+text-decoration:underline;
+}
+
+.champ_int p.cp2, .champ_int p.cp2 a:link, .champ_int p.cp2 a:visited, .champ_int p.cp2 a:hover {
+font-weight:bold;
+padding-bottom:14px;
+margin-left:8px;
+color:#FFF !important;
+}
+
+.champ_int p.cp3, .champ_int p.cp3 a:link, .champ_int p.cp3 a:visited, .champ_int p.cp3 a:hover {
+font-weight:normal;
+padding-bottom:14px;
+margin-left:8px;
+color:#FFF !important;
+}
+
+
+/* Google Ads styles */
+
+div#google_ads
+{
+	clear:both;
+}
+
+.messaging,
+.messaging a,
+.messaging a:hover,
+.messaging a:visited {
+	color:#333;
+	padding-top: 8px;
+	padding-bottom:4px;
+	text-transform:uppercase;
+}
+
+.messaging {
+	font-size:0.78em;
+}
+
+.messaging a,
+.messaging a:hover,
+.messaging a:visited {
+	font-size: 1em;
+}
+
+.messaging a:hover, {
+	text-decoration: underline;
+}
+
+
+	/* ad slot A - image credit margin styles - used when campaign or ad has a photo credit */
+
+div#google_ads_div_HOME_SLOT_A span {
+	font-size:0.6em;
+	padding-left:110px;
+	width:300px;
+	color:#000;
+	line-height:2.5em;
+	margin-top:-5px;
+	padding-top:-5px;
+}
+
+div#google_ads_div_HOME_SLOT_A .paddingContent {
+	font-size:0.92em;
+	margin-left:25px;
+}
+
+div#google_ads_div_HOME_SLOT_B .messaging a:link,
+div#google_ads_div_HOME_SLOT_B .messaging a:visited,
+div#google_ads_div_HOME_SLOT_B .messaging a:hover {
+	color:#666;
+	text-decoration:none;
+}
+
+div#google_ads_div_HOME_SLOT_B a img {
+	padding-left:26px;
+}
+
+div#google_ads_div_TERMS_SLOT_A a img,
+div#google_ads_div_DHP_SLOT_A a img,
+div#google_ads_div_RSRC_SLOT_A a img,
+div#google_ads_div_DONATE_SLOT_A a img,
+div#google_ads_div_ABOUT_SLOT_A a img,
+div#google_ads_div_COURSE_SLOT_A a img,
+div#google_ads_div_HELP_SLOT_A a img,
+div#google_ads_div_CHP_SLOT_A a img,
+div#google_ads_div_CHP_SLOT_A_DL a img,
+div#google_ads_div_RHP_SLOT_A a img,
+div#google_ads_div_RHP_SLOT_A_DL a img {
+	padding-bottom:5px;
+}
+
+div#google_ads_div_TERMS_SLOT_A span,
+div#google_ads_div_DHP_SLOT_A span,
+div#google_ads_div_RSRC_SLOT_A span,
+div#google_ads_div_DONATE_SLOT_A span,
+div#google_ads_div_ABOUT_SLOT_A span,
+div#google_ads_div_COURSE_SLOT_A span,
+div#google_ads_div_HELP_SLOT_A span,
+div#google_ads_div_CHP_SLOT_A span,
+div#google_ads_div_CHP_SLOT_A_DL span,
+div#google_ads_div_RHP_SLOT_A span,
+div#google_ads_div_RHP_SLOT_A_DL span{
+	font-size:0.5em;
+	width:180px;
+	color:#000;
+	/* IE-only photo credit adjust */
+	margin-top:-13px;
+	padding-top:-13px;
+}
+
+div#google_ads_div_CHP_SLOT_A,
+div#google_ads_div_CHP_SLOT_A_DL,
+div#google_ads_div_RHP_SLOT_A,
+div#google_ads_div_RHP_SLOT_A_DL {
+	padding-bottom:6px;
+	margin-bottom:6px;
+}
+
+div#google_ads_div_RHP_SLOT_A {
+	margin-top: 20px;
+}
+
+div#google_ads_div_TERMS_SLOT_A span a,
+div#google_ads_div_DHP_SLOT_A span a,
+div#google_ads_div_RSRC_SLOT_A span a,
+div#google_ads_div_DONATE_SLOT_A span a,
+div#google_ads_div_ABOUT_SLOT_A span a,
+div#google_ads_div_COURSE_SLOT_A span a,
+div#google_ads_div_HELP_SLOT_A span a,
+div#google_ads_div_CHP_SLOT_A span a,
+div#google_ads_div_CHP_SLOT_A_DL span a,
+div#google_ads_div_RHP_SLOT_A span a,
+div#google_ads_div_RHP_SLOT_A_DL span a {
+	color:#680a12;
+	text-decoration:underline;
+}
+
+div#google_ads_div_DHP_SLOT_C a img,
+div#google_ads_div_COURSE_SLOT_C a img,
+div#google_ads_div_ABOUT_SLOT_C a img,
+div#google_ads_div_RSRC_SLOT_C a img,
+div#google_ads_div_RSRC_SLOT_C_DL a img {
+
+	margin-left:10px;
+}
+
+/* Class added for fixing the postion of google-ads on MCL */
+.MITxadsContainer{
+      position: relative;
+	  left: 775px;
+	  top: -20px;
+	  width: 200px;
+}
+
+.MITxads{
+   width: 180px;
+   height: 160px;
+}
+
+/* END Google ad styles */
+
+
+.courseNotification {
+    background-color: #AFD0EB;
+    padding: 5px;
+    text-align: center;
+}
+
+.nobr {
+white-space:nowrap;
+}
+
+
+/* Educator Styles - "Teaching This Course" pages */
+
+.edunotice {
+	border-bottom: 1px solid #e4e5e0;
+	padding: 10px 20px;
+	margin: 10px 0px;
+	background-color: #f3f3f3;
+}
+
+.edunotice h2.subhead {
+	border-bottom: none;
+}
+
+.pullquote.right {
+	float: right;
+	border-right: 0;
+	border-left: 1px solid #d5c9ba;
+	padding-right: 0;
+	padding-left: 12px;
+	margin: 3px 0 10px 12px;
+}
+
+.pullquote.rightvideo {
+	float: right;
+	border-right: 0;
+	border-left: 1px solid #d5c9ba;
+	padding-right: 0;
+	padding-left: 12px;
+	margin: -350px 0 10px 12px;
+	width: 220px;
+}
+
+
+/* MIT Press button, 13sep2013 */
+img.mitpress {
+	width: 86px;
+	height: 12px;
+	border: 0;
+	vertical-align: middle;
+}
+
+/* sponsors logo classes in footer */
+.sponsors_google_ads_even {
+    float: left;
+    clear: none;
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+.sponsors_google_ads_odd {
+    float: right;
+    clear: none;
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+/* next */
+
+/* Classes for MO index page, EDx to OCW conversion */
+.wikitable  {
+    border-collapse: collapse;
+    font-size: 16px;
+    margin: 20px 0;
+    width: 100%;
+}
+.wikitable td, .wikitable th {
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin: 20px 0;
+    padding: 10px;
+}
+.wikitable th {
+    background: none repeat scroll 0 0 #eee;
+    font-weight: normal;
+}
+.wikitable * {
+    line-height: 1.4em;
+}
+
+/* Classes for Table in EDx to OCW conversion */
+.tabular {
+    border-collapse: collapse;
+    font-size: 16px;
+    margin: 20px auto;
+    width: 80%;
+	line-height: 1.4em;
+}
+
+/* Class for mathjax equation Table in EDx to OCW conversion */
+.equation  td, .eqnarray  td {
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin: 20px 0;
+    padding: 10px;
+}
+
+.captionx {
+  text-align: center ;
+  margin-bottom:10px;
+}
+
+.problem_text_input{
+	border: 1px solid;
+	margin-top: 10px;
+	margin-bottom:7px;
+	padding-left: 5px;
+	height: 28px;
+	width: 150px;
+}
+
+.problem_radio_input{
+	margin-top: 15px;
+	margin-right: 5px;
+}
+
+.problem_tick_cross_image{
+	margin-top: 8px;
+}
+
+
+
+
+
+.problem_answer{
+	display:none;
+	color: blue;
+	margin-top: 10px;
+	background-color: #dddddd;
+}
+
+.problem_solution{
+	display: none;
+	color: blue;
+	background-color: #dddddd;
+	padding: 7px;
+	margin: 10px;
+}
+
+.problem_solution *{
+	color: blue;
+}
+
+.problem_question{	
+	padding-bottom:20px 
+}
+
+/*Adding class for space on left side of answer hint*/
+.problem_question .answer{
+    margin-left:2%;
+}
+
+.wrong{
+    background: url("/images/cross.jpg") no-repeat scroll center center rgba(0,0,0,0);
+    display: inline-block;
+    height: 20px;
+    width: 25px;
+	margin: 8px 0 0 10px;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+}
+.correct{
+    background: url("/images/tick.jpg") no-repeat scroll center center rgba(0,0,0,0);
+    display: inline-block;
+    height: 20px;
+    width: 25px;
+	margin: 8px 0 0 10px;
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+}
+
+.nostatus{
+    position: absolute  !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	padding:0 !important;
+	border:0 !important;
+	height: 1px !important;
+	width: 1px !important;
+	overflow: hidden;
+	display: none !important;
+}
+
+/* General Button Style */
+
+button, .navigation li, .button {
+  /* This targets all buttons on the site, as well as list items within a navigation class, and styles them the same way. */
+  border: 1px solid rgb(199,192,183);
+  background-color: rgb(229,222,213);
+  color: rgb(88, 86, 84);
+  background: repeating-linear-gradient(
+    135deg,
+    rgb(229,222,213),
+    rgb(229,222,213) 2px,
+    rgb(232,225,216) 2px,
+    rgb(232,225,216) 4px
+  );
+  margin: .4em;
+  text-decoration: none;
+  border-radius: .4em;
+  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+
+.button {
+  /*specific to anchors called out as buttons */
+  display: inline-block;
+
+}
+
+button:active, .navigation li:active, .button:active {
+  /* This adds some animation when the button or list item link is interacted with */
+  background: repeating-linear-gradient(
+    135deg,
+    rgb(219,212,203),
+    rgb(219,212,203) 2px,
+    rgb(222,215,206) 2px,
+    rgb(222,215,206) 4px
+  );
+  box-shadow: 0px 1px 0px rgba(0,0,0,.1);
+}
+
+.navigation ul {
+  /* Shows the list as a table row */
+  display: table-row;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styles consistent with Navigation Buttons and List Items */
+.navigation button, .navigation li, .navigation .button {
+  margin:0;
+  font-size: .9em;
+  border-width: 2px;
+  border-radius: 0em;
+  border-left-width: 1px;
+  border-right-width: 1px;
+}
+
+.navigation li {
+  /* Displays the list items as cells that fit to the overall window size */
+  list-style-type: none;
+  display: table-cell;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#course_inner_section .navigation li a { /*ID is necessary to override site underline for all navigational items*/
+  display: block;
+  text-decoration: none;
+  color: rgb(88, 86, 84);
+}
+
+#course_inner_section .navigation.pagination li.button_selected a{
+    color: red;
+	font-weight:bold;
+}
+
+button, .navigation li a, .button {
+  padding: .5em .8em;
+}
+
+.navigation button:first-of-type, .navigation li:first-of-type, .navigation .button:first-of-type {
+  /* Styles the first button or list item, typically previous or back navigation.  */
+  border-top-left-radius: .4em;
+  border-bottom-left-radius: .4em;
+  border-left-width: 2px;
+}
+
+.navigation button:last-of-type, .navigation li:last-of-type, .navigation .button:last-of-type {
+  /* Styles the last button or list item, typically forward or next navigation.  */
+  border-top-right-radius: .4em;
+  border-bottom-right-radius: .4em;
+  border-right-width: 2px;
+}
+
+/* Pagination Area Style */
+
+.navigation  {
+  /* Groups of buttons to progress through sections */
+  text-align: center;
+  margin: 1em 0;
+  display:table;
+  table-layout: fixed;
+  width: 100%;
+  clear: both;
+}
+.navigation.progress  {
+  /* Back/Continue buttons. */
+  width: auto;
+  float: right;
+  margin: 1em 0 2em 3em !important;
+}
+
+.navigation span, button span, .button span{
+  display: none;
+}
+
+.navigation li:hover span, button:hover span, .button:hover span {
+  display: block;
+  position: absolute;
+  margin-top: -5em;
+  margin-left: -1em;
+  width: 19em;
+  text-align: center;
+  background-color: rgba(229,222,213,.9);
+  background: repeating-linear-gradient(
+    135deg,
+    rgb(229,222,213),
+    rgb(229,222,213) 2px,
+    rgb(232,225,216) 2px,
+    rgb(232,225,216) 4px
+  );
+  border: 1px solid rgb(88, 86, 84);
+  padding: .5em;
+  border-radius: .2em;
+  box-shadow: 0px 3px 2px rgba(88, 86, 84,.2);
+  white-space: normal;
+  overflow: visible;
+
+}
+
+/* exception for AddThis popup button */
+/*
+  #at-cv-toaster .at-cv-button:hover span,
+  #at-cv-toaster .navigation li:hover span,
+  #at-cv-toaster button:hover span, 
+  #at-cv-toaster .button:hover span {
+   	width: 230px;
+    height: 28px;
+	padding-top: 13px;
+    margin-left: -6.95em;
+    margin-top: -1.38em;
+    background: rgb(179, 8, 56) none repeat scroll 0 0;
+    border-radius: 0.4em;
+  }
+*/
+/* IE 10&11-specific exception for AddThis popup button */
+/*
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  #at-cv-toaster .at-cv-button:hover span,
+  #at-cv-toaster .navigation li:hover span,
+  #at-cv-toaster button:hover span, 
+  #at-cv-toaster .button:hover span {
+    margin-left: -0.15em;
+    margin-top: -0.84em;
+  }
+}
+*/
+/* IE Edge-specific exception for AddThis popup button */
+/*
+@supports (-ms-ime-align:auto) {
+  #at-cv-toaster .at-cv-button:hover span,
+  #at-cv-toaster .navigation li:hover span,
+  #at-cv-toaster button:hover span, 
+  #at-cv-toaster .button:hover span {
+	margin-top: -0.75em;
+  }
+}
+*/
+
+#at-cv-lightbox-submit span,#at-cv-lightbox-submit:hover span
+{
+	position:relative;
+	margin:0;
+	width:inherit;
+	height:inherit;
+	padding:0;
+	background:none;
+	border:none;
+	box-shadow:none;
+	}
+#at-cv-lightbox-submit:hover
+{
+	background-color: rgb(179, 8, 56) !important;
+}
+/* Progress Button Area Style */
+
+button.learn_more, .button.learn_more {
+  border-color: #79091f;
+  padding: .5em 2.5em;
+  font-size: 1.25em;
+  color: white;
+  background-color: #ad0e2d;
+  background-image: none;
+  font-variant: small-caps;
+  text-transform: uppercase;
+}
+
+button.learn_more:active, .button.learn_more:active {
+  /* This adds some animation when the button or list item link is interacted with */
+  background: #9b0c28;
+}
+
+
+/* End of Button Styles */
+
+
+.visually-hidden {
+	position: absolute  !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	padding:0 !important;
+	border:0 !important;
+	height: 1px !important;
+	width: 1px !important;
+	overflow: hidden;
+	}
+
+/* removes buttons and form controls from tab order if inside a block with class visually-hidden */
+body:hover .visually-hidden a,
+body:hover .visually-hidden input,
+body:hover .visually-hidden button {
+	display: none !important;
+	}
+.status > *, .explanation > * {display: none;}
+
+/* CSS for OCW EDUcator Portal */
+.educator_top_border{
+	border-top: 1px solid #e4e5e0;
+}
+
+#course_wrapper ul.finder2{
+margin:auto auto 20px 0;
+}
+
+
+#course_wrapper a.finderTeaching, #course_wrapper a.finderInstructional {
+    padding: 6px 115px;
+}
+
+#freeform-bottom.educatorfinderbottom{
+width:100%;
+}
+
+#finderResult div#CourseListDiv .courseList{
+   font-size:1.2em;
+}
+
+/* IE8 support for HTML5 elements */
+header, nav, section, article, aside, footer {
+   display:block;
+}
+
+
+/* Google Ad Campaign CSS*/
+.googleAdCampaign { 
+	position: fixed;
+	bottom:0px;
+	z-index:1000;
+	display:none;
+	}
+	
+#closeAd {
+position:absolute;
+right:0px;
+cursor:pointer;	
+}
+
+
+
+/* table as ul (MIOCS-179) starts  */
+
+.courseListDiv{
+    width: 100%;
+    margin: 0;
+    //padding: 0 0 15px -15px;
+    display: block;
+    margin-bottom: 2px;
+
+}
+
+ul.coursesList{
+   list-style: none;
+   font-size: 1.0em;
+   display: block;
+   width: 100%;
+   margin-left: 0;
+   margin-top: -8px;
+}
+
+ul.coursesList li{
+    display: block;
+}
+
+
+ul.courseRow {
+    background-color: #fff;
+    //padding: 6px;
+    text-align: left;
+    padding-left: 7px;
+}
+ul.courseRow li {
+    float: left;
+    //padding: 1 0 1 0;
+}
+ul.courseRow {
+    width: 100%;
+    float: left;
+    list-style: none;
+}
+ul.courseRow li {
+    display: block;
+    padding: 0 0 0 0;
+    text-decoration: none;
+    //font-weight: bold;
+}
+
+li.courseNumCol{
+    //width: 10.76%;
+	width : 77px !important;
+    margin-left: 1%;
+}
+
+li.courseTitleCol{
+    //width: 69.58%;
+	width : 477px !important;
+    margin-left: 1%;
+}
+
+li.courseLevelCol{
+    //width: 17.00%;
+    width: 117px !important;
+    margin-left: 1%;
+}
+
+li.courseListHeaderRow{
+    background-color: #fff;
+    text-align: left;
+    //padding-left: 7px;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.oddRow{
+    background-color: #f3f0eb;
+}
+
+ul.courseList > li {
+    width : 100%;
+    display: block;
+    padding: 0;
+}
+
+li.courseListHeaderRow >ul, li.courseListRow >ul{
+    display: block;
+    padding: 0;
+    margin : 0;
+
+}
+
+
+li.courseListRow >ul{
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin : 0;
+}
+
+
+
+li.evenRow > ul{
+    background-color: #f3f0eb;
+
+}
+
+ul.courseRow >li{
+    display: block;
+    padding: 5px 8px 5px 0;
+}
+
+h4.course_title
+{
+	font-weight: normal;
+}
+
+
+/* 
+select.courseListSort, select.courseListFilter{
+	 width: 25%;
+*/
+#filterCoursesListDiv
+{
+	height: 58px;
+	width:100%;
+	display:none;
+}
+form#filterCoursesListForm input{
+    width: auto;
+    display:inline;
+}
+form#filterCoursesListForm > div
+{
+   display: inline-block;
+}
+ form#filterCoursesListForm > div> div{
+	 display: inline-block;
+	 margin: 0 1em 2em 1em;
+ }
+
+ form#filterCoursesListForm > div> div > select{  
+ 	width: 142px !important;
+    padding-left: 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: grey;
+	font-size:13px;
+	height:29px;
+    background-color: #fff;
+
+}
+@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) 
+{ @media {
+/* This will reset the select box style in Mac Safari so that it appears closer to other browser appearance.
+   However this also removes the down-arrow appearing in the select box(View in Safari) but it isn't a major concern
+*/
+form#filterCoursesListForm > div> div > select{  
+	-webkit-appearance: none;
+	}
+}
+}
+
+/*form#filterCoursesListForm > div> legend>h3{
+    margin:0 1em 0 0;
+}*/
+
+form#filterCoursesListForm >div>div> label{
+   display:block;
+   margin: 5px 0;
+   color:grey
+}
+
+form#filterCoursesListForm > label{
+    width: 12%;
+    font-weight: bold;
+    margin-left: 0.2%;
+}
+
+li.courseListHeaderRow, li.courseNumCol, li.courseTitleCol, li.courseLevelCol, li.courseListRow, li.courseListRow{
+    margin-bottom: 0px;
+    padding-top: 0px;
+    list-style: none;
+}
+
+div.departmentSectionClass > p.top{
+    margin-top: 3px;
+    margin-left: 6px;
+    font-size: 0.9em;
+}
+
+#instuctionBanner,.noResultsMsg {
+	margin-top: 15px;
+	background-color: #f3efeb;
+	padding:3em;
+	margin-bottom:2em;
+}
+.noResultsMsg > h3{
+	padding-top: 1.3em;
+}
+#coursePreview
+{
+	display: none; 
+	width: 468px;
+}
+#filteringFormDIvId
+{
+	margin-left:20px;
+	display:inline-block;
+}
+/*#filteringFormDIvId legend h3
+{
+	margin-left:1em;
+}*/
+#sortingFormDivId > div
+{
+   margin-left:0;
+}
+.multiselector
+{
+	width:200px !important;
+}
+/* table as ul (MIOCS - 179) ends */
+
+.at-goal-container
+{
+	display:none !important;
+}
+/* Class added to stop selecting FB quote div*/
+.no-copy {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}

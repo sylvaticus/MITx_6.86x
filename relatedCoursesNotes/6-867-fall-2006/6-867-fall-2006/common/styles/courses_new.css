@@ -1,0 +1,1740 @@
+@charset "utf-8"; 
+
+/*******************************************************************************************
+		MIT OpenCourseWare
+		http://ocw.mit.edu/
+	
+		courses_new.css - redesign styles to be added to the current courses.css
+		v0.6
+		17 October 2012
+********************************************************************************************/
+ 
+ 
+ /* Cite popup_box DIV-Styles*/
+#cite_popup_box { 
+	display:none; /* Hide the DIV */
+	position:fixed;  
+	_position:absolute; /* hack for internet explorer 6 */  
+	background:#E5E0DB;
+	border-radius: 10px 10px 10px 10px;
+	left: 30%;
+	top: 30%;
+	z-index:1000; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
+	margin-left: 15px;  	
+	/* additional features, can be omitted */
+	padding:15px;  
+	-moz-box-shadow: 0 0 5px #000000;
+	-webkit-box-shadow: 0 0 5px #000000;
+	box-shadow: 0 0 5px #000000;
+	
+}
+
+/*Overlay Div to make background disabled while pop up is visible*/
+#citeOverlay {
+	position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.3);
+	display: none;
+	z-index:900;
+
+}
+
+/* This is for the positioning of the Close Button */
+#closeCitation {
+	font-size:12px;  
+	line-height:10px;  
+	right:5px;  
+	top:-20px;  
+	position:absolute;  
+	color:#000000;  
+	font-weight:500;  	
+	left:95px;
+}
+ 
+
+/* course finder tab styles */
+
+ul.finder { 
+	margin: -15px 0 20px 0;
+	list-style-type: none;
+	float: left;
+	border-bottom: 1px solid #e4e5e0;
+	padding: 8px 9px 9px 0;
+}
+
+ul.finder2 { 
+	margin: -15px 0 20px 0;
+	list-style-type: none;
+	float: left;
+	border-bottom: 1px solid #e4e5e0;
+	padding: 8px 0 9px 0;
+}
+
+ul.finder li,
+ul.finder2 li { 
+	display: inline;
+}
+
+ul.finder li a,
+ul.finder2 li a { 
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #999;
+	text-decoration: none;
+	position: relative;
+}
+
+a.inactiveFinder {
+	background-color: #f8dce1;
+	border-radius: 8px;
+}
+
+.finderTopic {
+	margin-right: 16px;
+	padding: 6px 94px;
+}
+
+.finderTopic2 {
+	margin-right: 16px;
+	padding: 6px 92px;
+}
+
+.finderTopic3 {
+	margin-right: 6px;
+	padding: 6px 86px;
+}
+
+.finderMCN {
+	padding: 6px 43px;
+	margin-right: 16px;
+}
+
+.finderMCN2 {
+	padding: 6px 43px;
+	margin-right: 16px;
+}
+
+.finderDept {
+	padding: 6px 72px;
+	margin: 0 5px 0 0;
+}
+
+.finderDept2 {
+	padding: 6px 70px;
+	margin-right: 0;
+}
+
+ul.finder li a:hover,
+ul.finder li a.selected:hover,
+ul.finder2 li a:hover,
+ul.finder2 li a.selected:hover  {
+	background-color: #ad0e2d;
+	color: #fff;
+	border-radius: 8px;
+}
+
+ul.finder li a.selected,
+ul.finder2 li a.selected {
+	background-color: #ad0e2d;
+	color: #fff;
+	border-radius: 8px;
+}
+
+ul.finder li a.selected:after,
+ul.finder2 li a.selected:after {
+	content: ' ';
+	height: 0;
+	position: absolute;
+	width: 0;
+	border: 8px solid transparent;
+	border-top-color: #ad0e2d;
+	top: 100%;
+	left: 50%;
+	margin-left: -6px;
+}
+
+ul.deptList {
+	list-style-type: none;	
+}
+
+ul.deptList li {
+	margin-bottom: 10px;
+	text-indent: 2em;
+}
+
+ul.deptList li:before {
+	content: '»';
+	display: inline;
+	color: #000;
+	margin-right: 4px;
+	top: -2px;
+	position: relative;
+}
+
+.deptLinks {
+	margin-bottom: 30px;
+}
+
+.deptLinks a,
+.deptLinks a:hover,
+.deptlinks a:active {
+	text-decoration: underline;
+}
+
+/* Course Finder selection panes */
+
+#browser {
+	position: relative;
+	height: 210px;
+	overflow: hidden;
+	width: 720px;
+}
+
+#br1, #br2, #br3 {
+	float: left;
+	position: relative;
+	width: 225px;
+	border: 1px solid #ccc;
+}
+
+#br1, #br2 {
+	margin-right: 18px;
+}
+
+.browserPane {
+	font-size: 1.1em;
+	height: 170px;
+	margin: 0;
+	overflow-x: auto;
+	overflow-y: visible;
+}
+
+h3.finderTitle {
+	font-family: TitilliumWeb400Regular, Verdana;
+	font-size: 1.2em;
+	font-weight: 200;
+	text-transform: uppercase;
+	color: #000;
+	padding: 3px 3px 3px 7px;
+	border-bottom: 1px solid #ccc;
+}
+
+.scroller p {
+	line-height: 1.2em;
+	padding: 5px;
+	margin: 0;
+}
+
+.scroller p.odd {
+	background-color: #f3efeb;
+}
+
+.scroller p.even {
+	background-color: #fff;
+}
+
+.scroller p.none {
+	font-style: italic;
+	line-height: 1.4em;
+}
+
+.scroller p.selected {
+	background-color: #ff9000;
+	color: #000;
+}
+
+
+/* checkboxes below Finder panes */
+
+.finderColumns {
+	position: relative;
+}
+
+.filters {
+	float: left;
+	margin: 5px 14px 15px 5px;
+	min-width: 225px;
+	position: relative;
+}
+
+.lastCol {
+	margin-right: 0;
+}
+
+.filters input {
+	margin-bottom: 10px;
+}
+
+
+/* Finder results */
+
+.results {
+	width: 718px;
+	border-bottom: 1px solid #333;
+	margin-bottom: 15px;
+}
+
+.results h2.title {
+	margin: 0 310px -11px 310px;
+	padding: 0 14px;
+	font-family: TitilliumWeb700Bold, Verdana;
+	font-weight: 200;
+	font-size: 1.5em;
+	text-transform: uppercase;
+	color: #000;
+	background-color: #fff;
+}
+
+
+/* Course Preview mouseover Window styles */
+
+#coursePreview {
+	display: none;
+	position: fixed;
+	left: 25%;
+	top: 25%;
+	z-index:10000;
+}
+.nodisplay{
+	display: none;
+	
+}
+.coursePreviewTop {
+	min-width: 440px;
+	width: 440px;
+	background-color: #b30838;
+	padding: 1px 13px;
+	margin: 0;
+	-webkit-border-radius: 10px 10px 0 0; /* Saf3-4, iOS 1-3.2, Android =1.6 */
+			border-radius: 10px 10px 0 0; /* Opera 10.5, IE9, Saf5, Chrome, FF4+, iOS 4, Android 2.1+ */
+	-webkit-box-shadow: 2px 2px 5px 0px #000; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+			box-shadow: 2px 2px 5px 0px #000; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+}
+
+.coursePreviewTop h3 {
+	color: #fff;
+	font-size: 1.2em;
+	padding: 7px 25px 7px 0;
+}
+ 
+.coursePreviewBottom {
+	z-index: 1;
+	min-width: 440px;
+	width: 440px;
+	position: absolute;
+	background-color: #f3efeb;
+	color: #333;
+	padding: 13px;
+	-webkit-border-radius: 0 0 10px 10px; /* Saf3-4, iOS 1-3.2, Android =1.6 */
+			border-radius: 0 0 10px 10px; /* Opera 10.5, IE9, Saf5, Chrome, FF4+, iOS 4, Android 2.1+ */		
+	-webkit-box-shadow: 2px 2px 5px 0px #000; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+			box-shadow: 2px 2px 5px 0px #000; /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+}
+
+/* .coursePreviewBottom:after {
+	content: ' ';
+	height: 0;
+	position: absolute;
+	width: 0;
+	border: 25px solid transparent;
+	border-top-color: #f3efeb;
+	top: 100%;
+	left: 25%;
+}	*/
+
+.coursePreviewBottom .images {
+	float: left;
+	padding: 0 13px 0 0;
+}
+
+.coursePreviewBottom img {
+	padding-bottom: 15px;
+}
+
+.coursePreviewBottom a#viewCourse,
+.coursePreviewBottom a#viewCourse img {
+	padding-bottom: 0px;
+	margin-bottom: -4px;
+}
+
+.coursePreviewBottom .info {
+	float: left;
+	position: relative;
+	width: 281px;
+	margin: 0;
+	border-bottom: 1px dotted #333;
+	padding-bottom: 5px;
+}
+
+.coursePreviewBottom p {
+	font-size: 0.9em;
+	padding: 6px 0;
+	margin: 0;
+}
+
+.coursePreviewTable {
+	border-collapse: collapse;
+	margin-top: -8px;
+}
+
+.coursePreviewTable tr {
+	border-bottom: 1px solid #d5c9ba;
+}
+
+.coursePreviewTable td {
+	vertical-align: top;
+}
+
+.coursePreviewTable td.first {
+	width: 100px;
+	min-width: 100px;
+}
+
+.coursePreviewTable tr.last {
+	border-bottom: none;
+}
+
+#courseThumb {
+    width: 120px;
+    height: 90px;
+}
+
+/* Master Course List styles */
+
+.column {
+	float: left;
+	margin: 15px 35px 0 0;
+	width: 300px;
+}
+
+#course_wrapper ul.bullet,
+.column ul {
+	margin-left: 0;
+	margin-bottom: 15px;
+	list-style-type: none;
+}
+
+#course_wrapper ul.bullet li,
+.column ul li {
+	margin-left: 20px;
+}
+
+#course_wrapper ul.bullet li:before,
+.column ul li:before {
+	content: '»';
+	display: inline;
+	color: #000;
+	font-size: 1.2em;
+	margin-right: 4px;
+	top: -1px;
+	position: relative;
+}
+
+#course_wrapper ul.bullet li {
+	color: #333;
+	font-size: 0.9em;
+}
+
+
+#course_wrapper ul.bullet li,
+#course_wrapper ul.bullet li.first {
+	list-style-type: none;
+}
+
+
+/* CHP and Course Section styles */
+
+#left {
+	float: left;
+	width: 720px;
+	margin-right: 28px;
+}
+
+#breadcrumb {
+	min-width: 955px;
+	margin-right: 30px;
+	margin-top: 15px;
+	float: left;
+}
+
+#breadcrumb_chp,
+#breadcrumb_media {
+	width: 720px;
+	margin-top: 15px;
+	float: left;
+}
+
+#breadcrumb p,
+#breadcrumb_chp p,
+#breadcrumb_media p,
+#breadcrumb_global p {
+	font-size: 0.9em;
+	float: right;
+	color: #333;
+}
+
+#breadcrumb p a,
+#breadcrumb p a:visited,
+#breadcrumb_chp p a,
+#breadcrumb_chp p a:visited,
+#breadcrumb_media p a,
+#breadcrumb_media p a:visited,
+#breadcrumb_global p a,
+#breadcrumb_global p a:visited {
+	color: #b30838;
+	text-decoration: none;
+}
+
+#breadcrumb p a:hover,
+#breadcrumb p a:active,
+#breadcrumb_chp p a:hover,
+#breadcrumb_chp p a:active,
+#breadcrumb_media p a:hover,
+#breadcrumb_media p a:active,
+#breadcrumb_global p a:hover,
+#breadcrumb_global p a:active {
+	color: #b30838;
+	text-decoration: underline;
+}
+
+#course_title,
+#media_title {
+	width: 720px;
+	border-bottom: 1px solid #e4e5e0;
+	float: left;	
+}
+
+h1.title {
+	font-family: TitilliumWeb700Bold, Verdana;
+	color: #000;
+	text-decoration: none;
+	font-size: 2.6em;
+	font-weight: 400;
+	letter-spacing: 0.5px;
+	line-height: 1.0em;
+	padding-bottom: 5px;
+}
+
+#course_wrapper {
+	float: left;
+	min-width: 720px;
+	margin-top: 15px;
+	/* margin-right: 30px; */
+}
+
+/* course left-nav styles */
+#course_nav {
+	width: 155px;
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 50px;	
+}
+
+#course_nav ul {
+	list-style-type: none;
+	margin: 0;
+}
+
+#course_nav li {
+	padding: 15px 15px 15px 0;
+	border-bottom: 1px solid #e4e5e0;
+	margin: 0;
+	width: 100%;
+}
+
+#course_nav li a,
+#course_nav li a:visited {
+	font-family: TitilliumWeb700Bold, Verdana;
+	color: #666;
+	font-size: 1.2em;
+	font-weight: 400;
+	line-height: 1.28em;
+	text-decoration: none;
+	text-transform: uppercase;
+	margin: inherit;
+	padding: inherit;
+	width: 125px;
+}
+
+
+#course_nav li a:hover,
+#course_nav li a:active,
+#course_nav li.selected a,
+#course_nav li.selected a:visited
+#course_nav .tlp_links ul li.selected a {
+	color: #b30838;
+}
+
+.tlp_links {
+	max-width: 125px;
+}
+
+
+/* Chrome/Safari-only left-nav text width fix */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+ 
+	#course_nav ul li a,
+	#course_nav ul li a:visited,
+	#course_nav ul li.selected a,
+	#course_nav ul li.selected a:visited {
+		width: 135px;
+		display: block;
+		padding: 0;
+	}
+	
+	#course_nav ul li a img {
+		width: 10px;
+	}
+
+}
+
+
+#course_nav li.selected {
+	background-image: url("../images/bg_course-nav_current.png");
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
+#course_nav ul .tlp_links .expandCollapseTrans { 
+    position:absolute;
+	left: -12px;
+	top: 3px;
+}
+
+/* CHP image, caption, basic info column, and social icons */
+
+#course_inner_chp {
+	width: 545px;
+	float: left;
+	min-height: 350px;
+}
+
+#chpImage {
+	 min-width: 340px;
+	 float: left;
+}
+
+#chpImage .image {
+	 min-width: 320px;
+	 margin-right: 20px;
+	 margin-bottom: 10px;
+	 float: left;
+}
+
+#chpImage .caption {
+	 width: 320px;
+	 margin-right: 20px;
+}
+
+#chpImage .caption p,
+p.caption {
+	color: #666;
+	font-size: 0.9em;
+	margin-top: 5px;
+}
+
+#course_info {
+	float: right;
+	min-width: 203px;
+	width: 203px;
+}
+
+#course_info h3 {
+	color: #333;
+	font-size: 1.2em;
+	font-weight: bold;
+	/* margin-bottom: -2px; */
+}
+
+#course_info h3.divide {
+	/* border-top: 1px solid #E4E5E0; */
+	padding-top: 1px;
+}
+
+#course_info h3.divide2 {
+	/* border-top: 1px solid #E4E5E0; */
+	padding-top: 1px;
+	margin-top: 50px;
+}
+
+#course_info p {
+	color: #333;
+	font-size: 1.0em;
+	font-weight: normal;
+	margin-bottom: 14px;
+}
+
+#course_info p.ins {
+	margin-bottom: 8px;
+}
+
+
+#course_info p.cite {
+	background-color: #b30838;
+	border: 1px solid #333;
+	color: #fff;
+	font-size: 0.8em;
+	text-transform: uppercase;
+	padding: 2px 5px;
+	margin-top: 2px;
+	display: flex;                      /* IE11-only fix for "CITE THIS COURSE" text alignment*/
+	justify-content: center;            /* IE11-only fix for "CITE THIS COURSE" text alignment*/
+	width: 98px;
+	text-align: center\9;               /* IE-only fix for "CITE THIS COURSE" text alignment*/
+	text-align: center;                 /* Safari-only fix for "CITE THIS COURSE" text alignment*/
+}
+#course_info p.cite a,
+#course_info p.cite a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+#course_info p.citeResource {
+	background-color: #b30838;
+	border: 1px solid #333;
+	color: #fff;
+	font-size: 0.8em;
+	text-transform: uppercase;
+	padding: 2px 5px;
+	margin-top: 2px;
+	display: flex;                      /* IE11-only fix for "CITE THIS Resource" text alignment*/
+	justify-content: center;            /* IE11-only fix for "CITE THIS Resource" text alignment*/
+	width: 120px;
+	text-align: center\9;               /* IE-only fix for "CITE THIS Resource" text alignment*/
+	text-align: center;                 /* Safari-only fix for "CITE THIS Resource" text alignment*/
+}
+#course_info p.citeResource a,
+#course_info p.citeResource a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+a.mac{
+  padding: 3px 5px 2px;                 /*Mac firefox-only fix for "CITE THIS COURSE" and "CITE THIS RESOURCE" text alignment*/
+}
+
+/* Social Icons */
+.social-icons {
+    list-style-type: none;
+    margin: 7px -6px 30px 53px;
+    min-width: 565px;
+    padding: 10px 0;
+    position: relative;
+}
+.social-icons li {
+    float: left;
+	margin-right: 0px;
+    position: relative;     
+}
+ 
+.social-icons li.tweet-like {
+	position: relative; 
+	left: 18px;
+	width: 110px;
+	height: 28px;
+}
+
+
+.social-icons li.tweet-like div iframe{
+height:28px;
+width:128px;
+}
+
+
+.social-icons li.googleplus-like {
+	position: relative; 
+    left: -13px;
+}
+
+.social-icons li.linkedin{
+    position: relative; 
+    left: -27px;
+}
+
+
+.social-icons li.reddit {
+	position: relative; 
+    margin: 0;
+	left: -8px;
+}
+
+/* CHP tab styles */
+#course_tabs {
+	min-height: 300px;
+	width: 547px;
+	margin-bottom: 30px;
+	/* margin-right: 30px; */
+}
+
+ul#tabs { 
+	list-style-type: none;
+	margin: 19px 0 0 0;
+	padding: 0 0 5px 0;
+	position: relative;
+	width: 547px;
+}
+
+
+/* Chrome/Safari-only CHP tab border fix */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+ 
+ 	ul#tabs {
+		margin: 19px 0 -1px 0;
+	}
+
+}
+
+
+ul#tabs li { 
+	display: inline-block;
+	font-family: TitilliumWeb700Bold, Verdana;
+	line-height: 1.28em;
+	font-size: 1.3em;
+	font-weight: 100;
+	width: 136.5px;
+	height: 39px;
+	height: 40px\9;              /* IE-only fix for CHP tabs border */
+	margin-bottom: 5px;
+	margin-bottom: 4px\9;		/* IE-only fix */
+	margin-right: -3px;
+	margin-right: -3.1px\9;    /* IE-only fix CHP tabs border */
+	text-align: center;
+	border-top: 1px solid #c9c3ba;
+}
+
+
+ul#tabs li a { 
+	color: #a09b95;
+	padding: 6px 15px 6.5px 15px;
+	padding: 6px 15px 6px 15px\9;			/* IE-only fix */
+	height: 38.13px\9;                     /* IE-only fix CHP tabs border */
+	text-decoration: none;
+	display: block;
+	border-bottom: 1px solid #c9c3ba;
+	border-right: 1px solid #c9c3ba;
+/*	background-color: #ffffff; */
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f3efeb)); /* Saf4+, Chrome */
+	background: -webkit-linear-gradient(top, #ffffff, #f3efeb); /* Chrome 10+, Saf5.1+, iOS 5+ */
+	background:    -moz-linear-gradient(top, #ffffff, #f3efeb); /* FF3.6+ */
+	background: 	-ms-linear-gradient(#FFFFFF, #F3EFEB); /* IE 8 */
+	background:      -o-linear-gradient(top, #ffffff, #f3efeb); /* Opera 11.10+ */
+	background:         linear-gradient(to bottom, #ffffff, #f3efeb); /* IE9+ */
+	-pie-background: 	linear-gradient(#FFFFFF, #F3EFEB); /* IE 6-7 via CSS3Pie */
+}
+ 
+/* Chrome/Safari-only mega-menu and CHP tabs border fix */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+
+	ul#tabs li a {
+		padding: 6px 15px 4px 15px;
+		height: 37.5px;
+	}
+
+}
+
+ 
+ul#tabs li a:hover {
+	color: #b30838;
+}
+
+ul#tabs li a.selected {
+	color: #b30838;
+	padding: 6px 15px 6.49px 15px;         /* Chrome only CHP tabs border fix */
+	border-bottom: 1px solid #fff;
+	background-color: #fff;
+	background: none;
+	-pie-background: none;
+}
+
+/* IE11 only CHP tabs border fix */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	ul#tabs li a.selected { 
+		padding: 6.5px 15px 7px 15px;
+	}
+	ul#tabs li a {
+		height: 38.13px;
+	}
+	
+	ul#tabs li{
+		margin-right: -3.1px;
+	}
+}
+
+ul#tabs li.first a {
+	border-left: 1px solid #c9c3ba;	
+}
+
+ul#tabs li.last a {
+	border-right: 1px solid #c9c3ba;
+}
+
+div.tabContent {
+	border: 1px solid #c9c3ba;
+	padding: 15px;
+	margin-top: 2px;	/* -4px; */
+	background-color: #fff;
+	height: 250px;
+	max-width: 514px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+div.tabContent.hide {
+	display: none;
+}
+
+.tabContent ul li {
+	margin-left: 30px;	
+}
+
+
+/* CHP RSI styles */
+#right {
+	float: left;
+	width: 182px;
+	margin-left: 30px;
+	margin-bottom: 15px;
+}
+
+img.donate {
+	margin: 15px 0;
+}
+
+img.ad {
+	margin-bottom: 15px;
+}
+
+h3.ad_notice {
+	padding-bottom: 10px;
+}
+
+h3.ad_notice a,
+h3.ad_notice a:visited {
+	font-family: TitilliumWeb700Bold, Verdana;
+	color: #a49786;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 1.0em;
+	font-weight: 200;
+	letter-spacing: 0.5px;
+}
+
+h3.ad_notice a:active,
+h3.ad_notice a:hover {
+	color: #b30838;
+	text-decoration: underline;
+}
+
+/* Course section page styles */
+
+#left_section {
+	 float: left;
+	 width: 955px;
+}
+
+#section_title {
+	width: 955px;
+	margin-right: 30px;
+	border-bottom: 1px solid #e4e5e0;
+	float: left;
+}
+
+#course_wrapper_section {
+	float: left;
+	min-width: 955px;
+	margin-top: 15px;
+}
+
+#course_inner_section {
+	width: 785px;
+	float: left;
+	padding-bottom: 25px;
+}
+
+/* ZIP Download section Google Ads adjustment */
+
+#google_ads_div_ZIP_SLOT_ad_container {
+	position: relative;
+	right: 120px;
+	top: 32px;
+}
+
+#google_ads_div_SCHOLAR_DL_ad_container {
+	position: relative;
+	right: 120px;
+	top: 135px;
+}
+
+/* Changes For Video Popup */
+
+#video_popup_fade, #image_popup_fade {
+    background: none repeat scroll 0 0 #000000;
+    display: none;
+    height: 100%;
+    left: 0;
+    opacity: 0.8;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+img.popup_image{
+	width:100%;
+	
+}
+
+.popup_block , .img_popup_block{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 0 solid #DDDDDD;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 20px #000000;
+    display: none;
+    float: left;
+    font-size: 1.2em;
+    left: 50%;
+    padding: 30px 25px 25px 30px;
+    position: fixed;
+    top: 50%;
+    width: 540px;
+    z-index: 99999;
+}
+.img_popup_block
+{
+	left: 0;
+	margin: 0 auto;
+	max-width: 55em;
+	position: absolute;
+	right: 0;
+	top: 10px;
+	width: 70%;
+	} 
+ .caption_img{
+ /* margin-bottom: 3px;
+    margin-top: -15px; */
+	color:black;
+ }
+ 
+ h2#modal-title 
+{display: none;} 
+
+ 
+ 
+img.video_popup_btn_close, .popup_btn_close{
+    float: right;
+    height: 20px;
+    margin: -22px -19px 0 0;
+    width: 20px;
+	left: 0px;
+	top: 3px;
+}
+ 
+p.pop_margin_link {
+    margin: 0;
+    padding-left: 10px;
+}
+
+.pop_margin_title,
+.maintabletemplate p.pop_margin_title {
+    font-size: 0.6em;
+    margin-bottom: 3px;
+    margin-top: -15px;
+}
+ p.pop_margin_title{
+   margin-top: 0px;
+ }
+
+
+a.poplink {
+    font-size: 0.75em;
+    text-decoration: none;
+} 
+
+a.poplink:hover,
+a.poplink:active {
+	text-decoration: underline;
+}
+
+
+/* Hide/Reveal Question Styles - copied from scholar2.css */
+
+ 
+div.toggle1, div.toggle2, div.toggle3, div.toggle4, div.toggle5, 
+div.toggle6, div.toggle7, div.toggle8, div.toggle9, div.toggle10 {
+	margin-left: 35px;
+	width: 490px;
+}
+
+div.reveal1, div.reveal2, div.reveal3, div.reveal4, div.reveal5, 
+div.reveal6, div.reveal7, div.reveal8, div.reveal9, div.reveal10 {
+	margin-left: 35px;
+}
+
+span.reveal_link {
+	color: #680a12;
+	text-decoration: underline;
+	font-style: italic;
+	cursor: pointer;
+}
+
+
+
+/* MATHJAX Styles */
+
+pre.matlab {
+	font-family: Courier, monospace;
+	margin-left: 3em; /* only indent when in a block, not inline */
+}
+
+code.matlab {
+	font-family: Courier, monospace;
+	font-size: 1.1em; /* inline, the font size needs a boost*/
+}
+
+.keystroke {
+	padding-right: .2em;
+	padding-left: .1em;
+	background-color: #CCCCCC;
+	border: .2em outset #999999;
+	font-family: Arial,Helvetica,sans-serif;
+}
+
+pre {
+	font-size: 1.2em;
+	margin-bottom: 10px;
+}
+
+code {
+	font-size: 1.2em;
+}
+
+pre.edx {
+	padding: 6px 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background-color: #f8f8f8;
+}
+
+
+
+/* THIS COURSE AT MIT styles -- to be split off into a new file */
+
+		.edu_grid {
+			margin-left: auto;
+			margin-right: auto;
+			width: 780px;
+		}
+		.edu_grid div {
+			margin-bottom: 6px;
+		}
+		.edu_breakdown_key div {
+			margin-bottom: 10px;
+		}
+		.edu_grid h2.title {
+			background-color: #931101;
+			color: #fff;
+			font-family: TitilliumWeb400Regular, Verdana;
+			font-size: 1.1em;
+			padding: 6px 3px 5px 8px;
+			margin-bottom: 11px;
+			margin-top: 0;
+			text-transform: uppercase;
+			line-height: 17px;
+		}
+		.edu_grid div.quick {
+			background-color: #f3f3f3;
+			color: #555;
+			font-family: TitilliumWeb400Regular, Verdana;
+			text-transform: uppercase;
+		}
+		.edu_grid div.quick ul {
+			margin: 11px 20px 20px 20px;
+			padding-left: 0;
+		}
+		.edu_grid div.quick ul li {
+			list-style-type: none;
+			margin: 5px 0;
+		}
+		.edu_grid div.quick ul li a,
+		.edu_grid div.quick ul li a:visited {
+			color: #555;
+			margin: 6px 8px;
+			font-size: 1.1em;
+		}
+		.edu_grid div.quick ul li a:active,
+		.edu_grid div.quick ul li a:hover {
+			color: #b30838;
+			font-size: 1.1em;
+		}
+		img.question {
+			width: 15px;
+			height: 15px;
+			vertical-align: text-bottom;
+		}
+		.edu_grid div.edu_hours_left {
+			float: left;
+			vertical-align: top;
+			text-align: center;
+			width: 100px;
+			margin-top: 10px;
+		}
+		.edu_grid div.edu_hours_right {
+			float: right;
+			vertical-align: top;
+			width: 275px;
+			margin-bottom: -15px;
+		}
+		.edu_hours_left p,
+		.side_stat p {
+			font-family: TitilliumWeb700Bold, Verdana;
+			font-size: 1.1em;
+		}
+		.side_stat {
+			float: left;
+			vertical-align: top;
+			text-align: center;
+			width: 105px;
+		}
+		.remainder {
+			float: right;
+			vertical-align: top;
+			width: 660px;
+		}
+		.edu_grid h2.subhead {
+			border-bottom: thin solid #000000;
+			padding-bottom: 2px;
+		}
+		.onethird,
+		.onehalf,
+		.twothirds,
+		.full {
+			display:inline;
+			float: left;
+			position: relative;
+			margin-left: 10px;
+			margin-right: 10px;
+			margin-top: 0;
+		}
+		.alpha {
+			margin-left: 0;
+		}
+		.omega {
+			margin-right: 0;
+		}
+		.edu_grid .onethird {
+			width:245px;
+		}
+		.edu_grid .onehalf {
+			width:380px;
+		}
+		.edu_grid .twothirds {
+			width:515px;
+		}
+		.edu_grid .full {
+			width:780px;
+		}
+		.edu_grid div.aboutbox {
+			border: 1px solid #333;
+			background-color: #f3f3f3;
+			padding: 10px;
+			padding-bottom: 0;
+			margin-top: 14px;
+			margin-bottom: 14px;
+			width: 758px;
+		}
+		.edu_breakdown {
+			border: none;
+			border-collapse: collapse;
+			margin-top: 14px;
+		}
+		.edu_breakdown th,
+		.edu_breakdown td {
+			vertical-align: center;
+			text-align: center;
+			font-weight: bold;
+			border-right: 1px solid #ccc;
+			margin: 0;
+			padding: 0;
+		}
+		.edu_breakdown th.week_col {
+			width: 108px;
+		}
+		.edu_breakdown tbody th {
+			background-color: #eee;
+			margin: 2px 0; 
+			border-bottom: 1px solid #fff;
+		}
+		.edu_breakdown th.day_col,
+		.edu_breakdown td {
+			width: 40px;
+			max-height: 24px;
+			padding: 2px 7px;
+		}
+		.edu_breakdown td img {
+			vertical-align: middle;
+		}
+		.edu_breakdown_key {
+			margin-top: 15px;
+		}
+		.edu_breakdown_key img {
+			margin-right: 7px;
+			float: left;
+			margin-top: -3px;
+		}
+		.edu_breakdown_key div {
+			font-size: 8pt;
+			width: 175px;
+			vertical-align: middle;
+		}
+		.edu_pullquote {
+			float: right;
+			margin: -4px 0 auto 20px;
+			padding-left: 20px;
+			width: 150px;
+			border-right: none;
+			border-left: 1px solid #D5C9BA;
+		}
+		
+		div.toggle1, div.toggle2, div.toggle3, div.toggle4, div.toggle5,
+		div.toggle6, div.toggle7, div.toggle8, div.toggle9, div.toggle10 {
+		    margin-left: 0;
+		    width: inherit;
+			display: none;
+		}
+		div.reveal1, div.reveal2, div.reveal3, div.reveal4, div.reveal5,
+		div.reveal6, div.reveal7, div.reveal8, div.reveal9, div.reveal10 {
+		    margin-left: 0;
+		}
+		@media print { 
+			div.toggle1, div.toggle2, div.toggle3, div.toggle4, div.toggle5, 
+			div.toggle6, div.toggle7, div.toggle8, div.toggle9, div.toggle10 {
+				display: block !important;
+				visibility: visible;
+			}
+			div.reveal1, div.reveal2, div.reveal3, div.reveal4, div.reveal5, 
+			div.reveal6, div.reveal7, div.reveal8, div.reveal9, div.reveal10 {
+				display: none;
+			}
+		}
+
+		.edu_grid .classroom {
+			background-color: #f3f3f3;
+			margin-top: -11px;
+			padding: 12px;
+			width: 490px;
+			height: 183px;
+		}
+		.edu_grid .classroom p.nav {
+			text-align: center;
+			padding: 10px 17px 10px 315px;
+		}
+		.edu_grid .classroom p {
+			padding-left: 20px;
+		}
+		.edu_grid .classroom img.photo {
+			float: left;
+			margin: 0 15px 2px 0;
+			border: 1px solid #000;
+		}
+		.edu_grid .classroom img {
+			border: none;
+			vertical-align: text-bottom;
+		}
+		.textSlide {
+			width: 490px;
+		}
+
+/* -- ANYTHING SLIDER SPECIFIC FOR EDUCATOR PAGES -- */
+
+/*
+	AnythingSlider v1.8+ Default theme
+	By Chris Coyier: http://css-tricks.com
+	with major improvements by Doug Neiner: http://pixelgraphics.us/
+	based on work by Remy Sharp: http://jqueryfordesigners.com/
+*/
+
+/*****************************
+  SET DEFAULT DIMENSIONS HERE
+ *****************************/
+/* change the ID & dimensions to match your slider */
+#slider {
+	width: 490px;
+	height: 183px;
+	list-style: none;
+	margin: 0;
+	padding: 0px;
+	/* Prevent FOUC (see FAQ page) and keep things readable if javascript is disabled */
+	overflow-y: hidden;
+	overflow-x: hidden;
+	margin-bottom: 0 !important;
+}
+
+/******************
+  SET STYLING HERE
+ ******************
+ =================================
+ Default state (no keyboard focus)
+ ==================================*/
+/* Overall Wrapper */
+.anythingSlider-default {
+	/* margin: 0 auto; */
+	/* 45px right & left padding for the arrows, 28px @ bottom for navigation */
+	/* padding: 0 45px 28px 45px; */
+}
+/* slider window - top & bottom borders, default state */
+.anythingSlider-default .anythingWindow {
+	border: none;
+}
+/* Navigation buttons + start/stop button, default state */
+.anythingSlider-default .anythingControls a {
+	/* top shadow */
+	background: #777 url(../images/default.png) center -288px repeat-x;
+	color: #000;
+	border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+}
+/* Make sure navigation text is visible */
+.anythingSlider-default .anythingControls a span {
+	visibility: visible;
+}
+/* Navigation current button, default state */
+.anythingSlider-default .anythingControls a.cur {
+	background: #888;
+	color: #000;
+}
+
+/* start-stop button, stopped, default state */
+.anythingSlider-default .anythingControls a.start-stop {
+	background-color: #040;
+	color: #ddd;
+}
+/* start-stop button, playing, default state */
+.anythingSlider-default .anythingControls a.start-stop.playing {
+	background-color: #800;
+}
+
+/* start-stop button, default hovered text color (when visible) */
+/* hide nav/start-stop background image shadow on hover - makes the button appear to come forward */
+.anythingSlider-default .anythingControls a.start-stop:hover,
+.anythingSlider-default .anythingControls a.start-stop.hover,
+.anythingSlider-default .anythingControls a.start-stop .anythingControls ul a:hover {
+	background-image: none;
+	color: #ddd;
+}
+
+/*
+ =================================
+ Active State (has keyboard focus)
+ =================================
+*/
+/* slider window - top & bottom borders, active state */
+.anythingSlider-default.activeSlider .anythingWindow {
+	border-color: #7C9127;
+}
+/* Navigation buttons, active state */
+.anythingSlider-default.activeSlider .anythingControls a {
+	/* background image = top shadow */
+	background-color: #7C9127;
+}
+/* Navigation current & hovered button, active state */
+.anythingSlider-default.activeSlider .anythingControls a.cur,
+.anythingSlider-default.activeSlider .anythingControls a:hover {
+	/* background image removed */
+	background: #7C9127;
+}
+
+/* start-stop button, stopped, active state */
+.anythingSlider-default.activeSlider .anythingControls a.start-stop {
+	background-color: #080;
+	color: #fff;
+}
+/* start-stop button, playing, active state */
+.anythingSlider-default.activeSlider .anythingControls a.start-stop.playing {
+	background-color: #d00;
+	color: #fff;
+}
+/* start-stop button, active slider hovered text color (when visible) */
+.anythingSlider-default.activeSlider .start-stop:hover,
+.anythingSlider-default.activeSlider .start-stop.hover {
+	color: #fff;
+}
+
+/************************
+  NAVIGATION POSITIONING
+ ************************/
+/* Navigation Arrows */
+.anythingSlider-default .arrow {
+	top: 0px;
+	position: absolute;
+	display: block;
+	left: 317px;
+}
+
+
+/* 
+.anythingSlider-default .arrow a {
+	display: block;
+	width: 45px;
+	height: 45px;
+	margin-top: -4px;
+	text-align: center;
+	outline: 0;
+	background: url(../images/default.png) no-repeat;
+}
+*/
+
+
+/* back arrow */
+/*.anythingSlider-default .back { left: 0; }
+.anythingSlider-default .back a { background-position: left top; }
+.anythingSlider-default .back a:hover,
+.anythingSlider-default .back a.hover { background-position: left -140px; }
+/* forward arrow */
+.anythingSlider-default .forward { left: 426px; }
+.anythingSlider-default .forward a { background-position: right top; } 
+.anythingSlider-default .forward a:hover,
+.anythingSlider-default .forward a.hover { background-position: right -140px; }
+
+/* Navigation Links */
+.anythingSlider-default .anythingControls { outline: 0; display: none; }
+.anythingSlider-default .anythingControls ul { margin: 0; padding: 0; float: left; }
+.anythingSlider-default .anythingControls ul li { display: inline; }
+.anythingSlider-default .anythingControls ul a {
+	font: 11px/18px Georgia, Serif;
+	display: inline-block;
+	text-decoration: none;
+	padding: 2px 8px;
+	height: 18px;
+	margin: 0 5px 0 0;
+	text-align: center;
+	outline: 0;
+}
+
+/* navigationSize window */
+.anythingSlider-default .anythingControls .anythingNavWindow {
+	overflow: hidden;
+	float: left;
+}
+
+/* Autoplay Start/Stop button */
+.anythingSlider-default .anythingControls .start-stop {
+	padding: 2px 5px;
+	width: 40px;
+	text-align: center;
+	text-decoration: none;
+	float: right;
+	z-index: 100;
+	outline: 0;
+}
+
+/***********************
+  IE8 AND OLDER STYLING
+ ***********************/
+
+/* Navigation Arrows */
+.as-oldie .anythingSlider-default .arrow {
+	top: 30%;
+}
+.as-oldie .anythingSlider-default .arrow a {
+	margin: 0;
+}
+
+/* margin between nav buttons just looks better */
+.as-oldie .anythingSlider-default .anythingControls li {
+	margin-left: 3px;
+}
+
+/* When using the navigationSize option, the side margins need to be zero
+	None of the navigation panels look good in IE7 now =( */
+.as-oldie .anythingSlider-default .anythingControls a {
+	margin: 0;
+}
+.as-oldie .anythingSlider-default .anythingNavWindow {
+	margin: 0 2px;
+}
+.as-oldie .anythingSlider-default .anythingNavWindow li {
+	padding: 3px 0 0 0;
+}
+
+/***********************
+  COMMON SLIDER STYLING
+ ***********************/
+/* Overall Wrapper */
+.anythingSlider {
+	display: block;
+	overflow: visible !important;
+	position: relative;
+}
+/* anythingSlider viewport window */
+.anythingSlider .anythingWindow {
+	overflow: hidden;
+	position: relative;
+	width: 490px; /* was 100% */
+	height: 100%;
+}
+/* anythingSlider base (original element) */
+.anythingSlider .anythingBase {
+	background: transparent;
+	list-style: none;
+	position: absolute;
+	overflow: visible !important;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+}
+
+/* Navigation arrow text; indent moved to span inside "a", for IE7;
+  apparently, a negative text-indent on an "a" link moves the link as well as the text */
+.anythingSlider .arrow span {
+	display: block;
+	visibility: hidden;
+}
+/* disabled arrows, hide or reduce opacity: opacity: .5; filter: alpha(opacity=50); */
+.anythingSlider .arrow.disabled {
+	display: none;
+}
+/* all panels inside the slider; horizontal mode */
+.anythingSlider .panel {
+	background: transparent;
+	display: block;
+	overflow: hidden;
+	float: left;
+	padding: 0;
+	width: 490px;
+
+}
+/* vertical mode */
+.anythingSlider .vertical .panel {
+	float: none;
+}
+/* fade mode */
+.anythingSlider .fade .panel {
+	float: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+/* fade mode active page - visible & on top */
+.anythingSlider .fade .activePage {
+	z-index: 1;
+}
+
+/***********************
+  RTL STYLING
+ ***********************/
+/* slider autoplay right-to-left, reverse order of nav links to look better */
+.anythingSlider.rtl .anythingWindow {
+	direction: ltr;
+	unicode-bidi: bidi-override;
+}
+.anythingSlider.rtl .anythingControls ul { float: left; } /* move nav link group to left */
+.anythingSlider.rtl .anythingControls ul a { float: right; } /* reverse order of nav links */
+.anythingSlider.rtl .start-stop { /* float: right; */ } /* move start/stop button - in case you want to switch sides */
+
+/* probably not necessary, but added just in case */
+.anythingSlider,
+.anythingSlider .anythingWindow,
+.anythingSlider .anythingControls ul a,
+.anythingSlider .arrow a,
+.anythingSlider .start-stop {
+	transition-duration: 0;
+	-o-transition-duration: 0;
+	-moz-transition-duration: 0;
+	-webkit-transition-duration: 0;
+}
+
+/***********************
+RICH MEDIA PLAYER STYLING
+ ***********************/
+.pages{       
+        margin-top: -351px;	
+		margin-right: 2px;		
+	    float: right;
+}
+
+.pages img {
+        height: 325px;      
+}
+.pages p {
+    max-width: 410px;
+    width: 50em;
+    word-wrap: break-word;
+}
+
+.pop_margin_title_annotation{
+	font-size: 0.6em;
+    margin-bottom: 3px;
+    margin-top: 4px;
+}
+#slidesPageNumber{
+    margin-top: 7px;
+}
+#PopMarginLinkPdf{
+	padding-left:0px;
+}
+
+/***** CHP TAB REMOVAL SETTINGS *****/
+
+#tabs h2,
+#course_tabs h2 {
+	visibility: hidden;
+	height: 0;
+	margin: 0;
+	padding: 0;
+}
+#tabs #description h2.subhead,
+#tabs #description h4.custom,
+#tabs #versions h2.subhead,
+#tabs #versions h4.custom,
+#tabs #related h2.subhead,
+#tabs #related h4.custom,
+#course_tabs #description h2.subhead,
+#course_tabs #description h4.custom,
+#course_tabs #versions h2.subhead,
+#course_tabs #versions h4.custom,
+#course_tabs #related h2.subhead,
+#course_tabs #related h4.custom {
+	visibility: visible;
+	height: inherit;
+	padding-top: 6px;
+	padding-bottom: 7px;
+}
+#tabs #description p,
+#tabs #versions p,
+#tabs #related p,
+#course_tabs #description p,
+#course_tabs #versions p,
+#course_tabs #related p {
+	margin: 10px 0;
+}
+#course_tabs ul {
+  	padding-bottom: 2px;
+}
+#tabs #description {
+	margin-bottom: 20px;
+	padding: 15px;
+	border: 1px solid #8E8C8C;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	box-shadow: 8px 8px 8px #D2D1D1;
+	-webkit-box-shadow: 8px 8px 8px #D2D1D1;
+	-moz-box-shadow: 8px 8px 8px #D2D1D1;
+}
+#tabs #versions {
+	 border-bottom: 1px solid #000;
+}
+
+.screen-reader-only{ 
+   clip: rect(1px, 1px, 1px, 1px); 
+   height: 1px; 
+   width: 1px; 
+   overflow: hidden; 
+   position: absolute !important;
+}
