@@ -184,6 +184,53 @@ At the end of this lecture, you will be able to
 -    use kernel perceptron, kernel linear regression
 -    understand the properties of kernel functions
 
+### 6.2. Higher Order Feature Vectors
+
+Outline
+- Non-linear classification and regression
+- Feature maps, their inner products
+- Kernel functions induced from feature maps
+- Kernel methods, kernel perceptron
+- Other non-linear classifiers (e.g. Random Forest)
+
+This lesson deals with non-linear classification, with the basic idea to expand the feature vector, map it to a higher dimensional space, and then feed this new vector to a linear classifier.
+
+The computational disadvantage of using higher dimensional space can be avoided using so-called kernel functions. We will then see linear models applied to these kernel models, and in particular, for simplicity, the perceptron linear model (that when used with kernel function becomes the "kernel perceptron").
+
+Let's see an example in 1D: we have the real line on which we have our points we want to classify. We can easily see that if we have the set of points {-3: positively labelled, 2: negatively labelled, 5:positively labelled} there is no linear classifier that can correctly classify this data set:
+
+![](assets/images_lec_1dnotseparable.svg)
+
+We can remedy the situation by introducing a feature transformation feeding a different type of example to the linear classifier.
+
+We will always include in the new feature vector the original vector itself, so as to be able to retain the power that was available prior to feature transformation. But we will also add to it additional features.
+Note that, differently from statistics, in Machine Learning we know nothing (assume nothing) about the distribution of our data, so removing the original data to keep only the new added feature would risk to remove information that is not captured in the transformation.
+
+In this case we can add for example $x^2$. So the mapping is $\mathbf{x} \in \mathbb{R^2} = \phi(x \in \mathbb{R}) =  \array{x\\x^2}$. As result also the $\theta$ parameter of the classifier became bidimensional.
+
+Our dataset becomes {(-3,9)[+], (2,4)[-], (5,25)[+]} that can be easily classified by a linear classifier in 2D (i.e. a line) $h(x;\mathbf{\theta},\theta_0) = \text{sign}(\mathbf{\theta} \cdot \phi(\theta) + \theta_0)$:
+
+![](assets/images_lec_1dnotseparable_in2d.svg)
+
+Note that the linear classifier in the new feature space we had found, back in the original space becomes a non-linear classifier: $h(x;\mathbf{\theta},\theta_0) = \text{sign}(\theta_1 * x + \theta_2 * x^2 + \theta_0)$.
+
+An other example would be having our original dataset in 2D as {(2,2)[+],(-2,2)[-],(-2,-2)[+],(2,-2)[-]} that is not separable in 2D, but it becomes separable in 3D when I use a feature transformation like $\mathbf{x} \in \mathbb{R^3} = \phi(\mathbf{x} \in \mathbb{R^2}) =  \array{x_1\\x_2\\x_1 x_2}$, for example by the plane given by $\left( \mathbf{\theta} = \array{0\\0\\1}, \theta_0=0\right)$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Lecture 7. Recommender Systems
