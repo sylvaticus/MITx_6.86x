@@ -137,6 +137,8 @@ On this subject see also:
 
 **Loss Function**
 
+_This argument in details: segments 3.4 (binary linear classification), 5.4 (Linear regression)_
+
 The loss function, aka the _cost function_ or the _race function_, is some way for us to value how far is our model from the data that we have.
 
 We first define an "error" or "Loss". For example in Linear Regression the "error" is the Euclidean distance between the predicted and the observed value:
@@ -146,6 +148,8 @@ $L(x,y;\Theta) = \sum_{i=1}^n |\hat y-y| = \sum_{i=1}^n |\theta_1 x +\theta_2 -y
 The objective is to minimise the loss function by changing the parameter theta. How?
 
 **Gradient Descent**
+
+_This argument in details: segments 4.4 (gradient descent in binary linear classification), 4.5 (stochastic gradient descent) and 5.5 (SGD in linear regression)_
 
 The most common iterative algorithm to find the minimum of a function is the gradient descent.
 

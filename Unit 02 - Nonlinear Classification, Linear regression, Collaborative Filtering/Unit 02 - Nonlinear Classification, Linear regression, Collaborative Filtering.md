@@ -5,14 +5,14 @@ $\newcommand\array[1]{\begin{bmatrix}#1\end{bmatrix}}$ [[MITx 6.86x Notes Index]
 
 ## Lecture 5. Linear Regression
 
-### 1. Unit 2 Overview
+### 5.1. Unit 2 Overview
 
 Building up from the previous unit, in this unit we will introduce:
 - linear regression (output a number in R)
 - non-linear classification methods
 - recommender problems (sometime called collaborative filtering problems)
 
-### 2. Objectives
+### 5.2. Objectives
 
 At the end of this lecture, you will be able to
 
@@ -21,7 +21,7 @@ At the end of this lecture, you will be able to
 - solve closed-form linear regression solution
 - identify regularization term and how it changes the solution, generalization
 
-### 3. Introduction
+### 5.3. Introduction
 
 Today we will see Linear Classification
 In the last unit we saw linear _classification_, where we was trying to land the mapping between the feature vectors of our data ($x^{(t)} \in \mathbb{R}^d$) and the corresponding (binary) label ($y^{(t)} \in \{-1,+1\}$).
@@ -51,7 +51,7 @@ Are we limiting ourself to just linear relations? No, we can still use linear cl
 3. How we do regularisation. How we perform a better generalization to be more
 robust when we don't have enough training data or when the data is noisy
 
-### 4. Empirical Risk
+### 5.4. Empirical Risk
 
 Let's deal with the first question, the objective. We want to measure how much our prediction deviates from the know values of $y$, how far from $y$ they are.
 We call our objective **empirical risk** (here denoted with $R$) and will be a sort of average loss of all our data points, depending from the parameter to estimate.
@@ -79,7 +79,7 @@ There is a trade-off between these two kind of error: on one side, minimising th
 
 In this lesson we remain commit to linear regression, and we want to minimise the empirical risk.
 
-### 5. Gradient Based Approach
+### 5.5. Gradient Based Approach
 
 In this segment we will study the first of the two algorithms to implement the learning phase, the gradient based approach.
 
@@ -97,7 +97,7 @@ The algorithm will then be as follow:
  Note that the parameter updates at each step, not only on some "mistake" like in classification (i.e. we treat all deviations as "mistake"), and that the amount  depends on the deviation itself (i.e. not of a fixed amount like in classification).
  Going against the gradient assure that the algorithm self-correct itself, i.e. we obtain parameters that lead to predictions closer and closer to the actual true $y$.
 
-### 6. Closed Form Solution
+### 5.6. Closed Form Solution
 
 The second learning algorithm we study is the closed form (analytical) solution. This is quite an exception in the machine learning field, as typically closed form solutions do not typically exist. But here the empirical risk happens to be a convex function that we can solve it exactly.
 
@@ -121,7 +121,7 @@ We can invert \mathbf{A} only if the feature vectors $\mathbf{x}^{(1)}, ...,\mat
 
 Also, we should put attention that inverting $\mathbf{A}$ is an operation of order $O(d^3)$, so we should be carefully when $d$ is very large, like in bag of words approaches used in sentiment analysis where $d$ can be easily be in the tens of thousands magnitude.
 
-### 7. Generalization and Regularization
+### 5.7. Generalization and Regularization
 
 We now focus the discussion in how do we assure that the algorithm we found, the parameters we estimated, will be good also for the unknown data, will be robust and not too much negatively impacted by the noise that it is in our training data?
 
@@ -131,7 +131,7 @@ The way to solve this problem is to use a mechanism called regularisation that t
 
 The idea is to introduce something that push the thetas to zero, so that it would be only worth for us to move our parameters if there is really a very strong pattern that justify the move.
 
-### 8. Regularization
+### 5.8. Regularization
 
 The implementation of the regularisation we see in this lesson is called **ridge regression** and it is the same we used in the classification problem:
 
@@ -161,7 +161,7 @@ The difference with the empirical risk without the regularisation term is the $(
 
 In the homework ?
 
-### 9. Closing Comment
+### 5. 9. Closing Comment
 
 By using regularisation, by requiring much more evidence to push the parameters into the right direction we will increase the mistakes of our prediction within the training set, but we will reduce the test error when the fitted thetas are used with respect to data that has not been used for the fitting step.
 
@@ -174,7 +174,7 @@ This is just one way to implement it. We will see some other mechanism to implem
 
 ## Lecture 6. Nonlinear Classification
 
-### 1. Objectives
+### 6.1. Objectives
 
 At the end of this lecture, you will be able to
 

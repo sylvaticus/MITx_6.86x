@@ -335,6 +335,9 @@ The update function $\theta = \theta + x^i*y^i$ becomes then $\array{\theta\\\th
 So now we have a general learning algorithm.
 The simplest one, but it can be generalized to be quite powerful and therefore, hence it is a useful algorithm to understand.
 
+_Code implementation: functions `perceptron_single_step_update()`, `perceptron()`, `average_perceptron()`, `pegasos_single_step_update()` and `pegasos()` in project1._
+
+
 ## Lecture 3 Hinge loss, Margin boundaries and Regularization
 [Slides](https://github.com/sylvaticus/MITx_6.86x/blob/master/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Slides%20lecture%2003.pdf)
 
@@ -421,6 +424,9 @@ Greater $\lambda$ : we will favor large margin solutions but potentially at a co
 
 Optimal value of $\theta$ and $\theta_0$ is obtained by minimizing this objective function.
 So we have turned the learning problem into an optimization problem.
+
+_Code implementation: functions `hinge_loss_single()`, `hinge_loss_full()` in project1._
+
 
 ## Homework 1
 
