@@ -185,7 +185,7 @@ print(dy_dp1)
 
 It may be useful to recognise the chain rule as an application of the _chain map_, that is tracking all the effect from one variable to the other:
 
-![](assets/chain_rule.png)
+![](https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/assets/chain_rule.png)
 
 ## Geometric progressions and series
 

@@ -199,7 +199,8 @@ The computational disadvantage of using higher dimensional space can be avoided 
 
 Let's see an example in 1D: we have the real line on which we have our points we want to classify. We can easily see that if we have the set of points {-3: positively labelled, 2: negatively labelled, 5:positively labelled} there is no linear classifier that can correctly classify this data set:
 
-![](assets/images_lec_1dnotseparable.svg)
+![](https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/assets/images_lec_1dnotseparable.svg)
+
 
 We can remedy the situation by introducing a feature transformation feeding a different type of example to the linear classifier.
 
@@ -210,7 +211,7 @@ In this case we can add for example $x^2$. So the mapping is $\mathbf{x} \in \ma
 
 Our dataset becomes {(-3,9)[+], (2,4)[-], (5,25)[+]} that can be easily classified by a linear classifier in 2D (i.e. a line) $h(x;\mathbf{\theta},\theta_0) = \text{sign}(\mathbf{\theta} \cdot \phi(\theta) + \theta_0)$:
 
-![](assets/images_lec_1dnotseparable_in2d.svg)
+![](https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/assets/images_lec_1dnotseparable_in2d.svg)
 
 Note that the linear classifier in the new feature space we had found, back in the original space becomes a non-linear classifier: $h(x;\mathbf{\theta},\theta_0) = \text{sign}(\theta_1 * x + \theta_2 * x^2 + \theta_0)$.
 
