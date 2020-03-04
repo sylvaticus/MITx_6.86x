@@ -14,3 +14,5 @@ l = mean(map(z -> hinge(z), z))
 
 squared_error(z) = z^2 / 2
 l = mean(map(z -> squared_error(z), z))
+
+# Lecture 6

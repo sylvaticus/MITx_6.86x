@@ -143,6 +143,8 @@ The first term is our empirical risk, and it catches how well we are fitting the
 In other words, we don't want any weak piece of evidence to pull our thetas very strongly.
 We want to keep them grounded in some area and only pulls them when we have enough evidence that it would really, in substantial way, impact the empirical loss.
 
+In other terms, the effect of regularization is to restrict the parameters of a model to freely take on large values. This will make the model function smoother, leveling the 'hills' and filling the 'vallyes'. It will also make the model more stable, as a small perturbation on $x$ will not change $y$ significantly with smaller $∥θ∥$.
+
 What's very nice about using the squared norm as regularisation term is that actually everything that we discussed before, both the gradient and closed form solution, can be very easily adjusted to this new loss function.
 
 #### Gradient based approach with regularisation
@@ -217,7 +219,66 @@ Note that the linear classifier in the new feature space we had found, back in t
 
 An other example would be having our original dataset in 2D as {(2,2)[+],(-2,2)[-],(-2,-2)[+],(2,-2)[-]} that is not separable in 2D, but it becomes separable in 3D when I use a feature transformation like $\mathbf{x} \in \mathbb{R^3} = \phi(\mathbf{x} \in \mathbb{R^2}) =  \array{x_1\\x_2\\x_1 x_2}$, for example by the plane given by $\left( \mathbf{\theta} = \array{0\\0\\1}, \theta_0=0\right)$.
 
+### 6.3. Introduction to Non-linear Classification
+We can get more and more powerful classifiers by adding linearly independent features, $x²$, $x^3$,,...
+This $x$, $x^2$,..., as functions are linearly independent, so the original coordinates always provide something above and beyond what were in the previous ones.
 
+Note that when $\mathbf{x}$ is already multidimensional, even just $\phi(\mathbf{x}) = \mathbf{x}^2$ would result in dimensions exploding, e.g. $\mathbf{x} \in \mathbb{R^5} = \phi(\mathbf{x} \in \mathbb{R^2}) =  \array{x_1\\x_2\\x_1^2\\x_2^2\\\sqrt{2}x_1x_2}$ (the meaning of the scalar associated to the cross term will be discussed later).
+
+Once we have the new feature vector we can make non-linear classification or regression in the original data making a linear classification or regression in the new feature space:
+
+- Classification: $h(x;\mathbf{\theta},\theta_0) = \text{sign}(\mathbf{\theta} \cdot \phi(\theta) + \theta_0)$
+- Regression: $f(x;\mathbf{\theta},\theta_0) = \mathbf{\theta} \cdot \phi(\theta) + \theta_0$
+
+More feature we add (e.g. more polinomian grades we add), better we fit the data. The key question now is when is time to stop adding features ?
+We can use the validation test to test which is the polynomial form that, trained on the training set, respond better in the validation set.
+
+At the extreme, you hold out each of the training example in turn in a procedure called **leave one out cross validation**.
+So you take a single training sample, you remove it from the training set, retrain the method, and then test how well you would predict that particular holdout example, and do that for each training example in turn. And then you average the results.
+
+While very powerful, this explicit mapping into larger dimensions feature vectors is indeed... that the dimensions could become quickly very high as our original data is already multidimensional
+
+Let's our original $\mathbf{x} \in \mathbb{R}^d$. Then a feature transformation:
+- quadratic (order 2 polynomial): would involve $d + \approx d^2$ dimensions (the original dimensions plus all the cross products)
+- cubic (order 3 polynomial): would involve $d +\approx  d^2 + \approx d^3$ dimensions
+
+The exact number of terms of a feature transformation of order $p$ of a vector of $d$ dimensions is $\sum_{i=1}^p {d+i-1 \choose i}$ (the sum of multiset numbers).
+
+So our feature vector becomes very high-dimensional very quickly if we even started from a moderately dimensional vector.
+
+So we would want to have a more efficient way of doing that -- operating with high dimensional feature vectors without explicitly having to construct them. And that is what kernel methods provide us.
+
+### 6.4. Motivation for Kernels: Computational Efficiency
+
+The idea is that you can take inner products between high dimensional feature vectors and evaluate that inner product very cheaply.
+And then, we can turn our algorithms into operating only in terms of these inner products.
+
+We define the kernel function of two feature vectors (two different data pairs) applied to a a given $\phi$ transformation the dot product of the transformed feature vectors of the two data:
+
+$k(x,x';\phi) = \phi(x) \cdot \phi(x')$
+
+For example let's take  $x$ and $x'$ to be two dimensional feature vectors and the feature transformation $\phi(x)$ defined as $\phi(x) = [x_1,x_2,x_1^2, \sqrt(2)x_1x_2,x_2^2]$ (so that $\phi(x')$ is $[x_1^\prime,x_2^\prime,{x_1^\prime}^2, \sqrt(2)x_1^\prime x_2^\prime,{x_2^\prime}^2]$)
+
+This particular $\phi$ transformation allows to compute the kernel function very cheaply and having very few dimensions:
+
+$k(x,x';\phi) = \phi(x) \cdot \phi(x')$
+
+$= \displaystyle {x_1}{x_1^\prime } + {x_2}{x_2^\prime } + {x_1}^2{x_1^\prime }^2 + 2{x_1}{x_1^\prime }{x_2}{x_2^\prime } + {x_2}^2{x_2^\prime }^2$
+
+$= \displaystyle \left({x_1}{x_1^\prime } + {x_2}{x_2^\prime }\right)+ \left({x_1}{x_1^\prime } + {x_2}{x_2^\prime }\right)^2$
+
+$= \displaystyle x \cdot x^\prime + (x \cdot x^\prime )^2$
+
+Note that even if the transformed feature vectors have 5 dimensions, the vector returned by the kernel function has only 2 dimensions. In general, for this kind of feature transformation function $\phi$, the dimensions of the kernel vector will be independent from the original dimensions of $x$ and evaluate as $k(x,x';\phi) = \phi(x) \cdot \phi(x')=(1+x \cdot x^\prime)^p$, where $p$ is the order of the polynomial transformation $\phi$.
+
+However, it is only for _some_ $\phi$ for which the evaluation of the kernel function becomes so nice!
+As soon we can prove that a particular kernel function can be expressed as the dot product of two particular feature transformations (for those interested the _Mercer’s theorem_ stated in [these notes](https://courses.cs.washington.edu/courses/cse546/16au/slides/notes10_kernels.pdf)) the kernel function is _valid_ and we don't actually need to construct the transformed feature vector (the output of $\phi$).
+
+Now our task will be to turn a linear method that previously operated on $\phi(x)$, like $\text{sign}(\theta \cdot \phi(x)+\theta_0)$ to an inter-classifier that only depends on those inner products, that operates in terms of kernels.
+
+And we'll do that in the context of kernel perception just for simplicity. But it applies to any linear method that we've already learned.
+
+### 6.5. The Kernel Perceptron Algorithm
 
 
 
