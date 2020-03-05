@@ -255,9 +255,9 @@ And then, we can turn our algorithms into operating only in terms of these inner
 
 We define the kernel function of two feature vectors (two different data pairs) applied to a a given $\phi$ transformation the dot product of the transformed feature vectors of the two data:
 
-$k(x,x';\phi) = \phi(x) \cdot \phi(x')$
+$k(x,x';\phi)\in \mathbb{R^+} = \phi(x) \cdot \phi(x')$
 
-We can hence think of the kernel function as a kind of similarity measure, how similar the $x$ example is to the $x^\prime$ one.
+We can hence think of the kernel function as a kind of similarity measure, how similar the $x$ example is to the $x^\prime$ one. Note also that being the dot product symmetric and positive, kernel functions are in turn symmetric and positive.
 
 For example let's take  $x$ and $x'$ to be two dimensional feature vectors and the feature transformation $\phi(x)$ defined as $\phi(x) = [x_1,x_2,x_1^2, \sqrt(2)x_1x_2,x_2^2]$ (so that $\phi(x')$ is $[x_1^\prime,x_2^\prime,{x_1^\prime}^2, \sqrt(2)x_1^\prime x_2^\prime,{x_2^\prime}^2]$)
 
@@ -331,6 +331,23 @@ for t in 1:T
 ```
 
 When we have run the algorithm and found the optimal $\alpha^* ~$ we can immediately retrieve the optimal $\theta^* ~$ by the above equation.
+
+### 6.6. Kernel Composition Rules
+
+Now instead of directly constructing feature vectors by adding coordinates and then taking it in the product and seeing how it collapses into a kernel, we can construct kernels directly from simpler kernels by made of the following **kernel composition rules**:
+
+1. $K(x,x^\prime) = 1$ is a valid kernel whose feature representation is $\phi(x) = 1$;
+2. Given a function $f: \mathbb{R}^d \to \mathbb{R}$ and a valid kernel function $K(x,x^\prime)$ whose feature representation is $\phi(x)$, then $\tilde K(x,x^\prime)=f(x)K(x,x^\prime)f(x^\prime)$ is also a valid kernel whose feature representation is $\tilde \phi(x) = f(x)\phi(x)$
+3. Given $K_a(x,x^\prime)$ and $K_b(x,x^\prime)$ being two valid kernels whose feature representations are respectively $\phi_a(x)$ and $\phi_b(x)$, then $K(x,x^\prime)=K_a(x,x^\prime)+K_b(x,x^\prime)$ is also a valid kernel whose feature representation is $\phi(x) = \array{\phi_a(x)\\\phi_b(x)}$
+4. Given $K_a(x,x^\prime)$ and $K_b(x,x^\prime)$ being two valid kernels whose feature representations are respectively $\phi_a(x) \in \mathbb{R}^A$ and $\phi_b(x) \in \mathbb{R}^B$, then $K(x,x^\prime)=K_a(x,x^\prime) * K_b(x,x^\prime)$ is also a valid kernel whose feature representation is $\phi(x) = \array{\phi_{a,1}(x)* \phi_{b,1}(x)\\\phi_{a,1}(x)* \phi_{b,2}(x)\\ \phi_{a,1}(x)* \phi_{b,...}(x)\\ \phi_{a,1}(x)* \phi_{b,B}(x)\\ \phi_{a,2}(x)* \phi_{b,1}(x)\\ \phi_{a,...}(x)* \phi_{b,...}(x)\\ \phi_{a,A}(x)* \phi_{b,B}(x)\\}$ (see [this lecture notes](https://people.cs.umass.edu/~domke/courses/sml2011/07kernels.pdf) for a proof)
+
+Armed with these rules we can build up pretty complex kernels starting from simpler ones.
+
+For example let's start with the identity function as $\phi$, i.e. $\phi_a(x) = x$. Such feature function results in a kernel $K(x,x^\prime;\phi_a) = K_a(x,x^\prime) = (x \cdot x^\prime)$ (this is known as the **linear kernel**).
+
+We can now add to it a squared term to form a new kernel that by virtue of rules (3) and (4) above is still a valid kernel:
+
+$K(x,x^\prime) = K_a(x,x^\prime) + K_a(x,x^\prime)* K_a(x,x^\prime) = (x \cdot x^\prime) + (x \cdot x^\prime)^2$
 
 
 
