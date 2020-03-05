@@ -257,6 +257,8 @@ We define the kernel function of two feature vectors (two different data pairs) 
 
 $k(x,x';\phi) = \phi(x) \cdot \phi(x')$
 
+We can hence think of the kernel function as a kind of similarity measure, how similar the $x$ example is to the $x^\prime$ one.
+
 For example let's take  $x$ and $x'$ to be two dimensional feature vectors and the feature transformation $\phi(x)$ defined as $\phi(x) = [x_1,x_2,x_1^2, \sqrt(2)x_1x_2,x_2^2]$ (so that $\phi(x')$ is $[x_1^\prime,x_2^\prime,{x_1^\prime}^2, \sqrt(2)x_1^\prime x_2^\prime,{x_2^\prime}^2]$)
 
 This particular $\phi$ transformation allows to compute the kernel function very cheaply and having very few dimensions:
@@ -279,6 +281,59 @@ Now our task will be to turn a linear method that previously operated on $\phi(x
 And we'll do that in the context of kernel perception just for simplicity. But it applies to any linear method that we've already learned.
 
 ### 6.5. The Kernel Perceptron Algorithm
+
+Let's show how we can use the kernel function in place of the feature vectors in the perceptron algorithm.
+
+Recall that the perceptron algoritm was (excluding for simplicity $\theta_0$ ):
+
+```
+θ = 0                # initialisation
+for t in 1:T
+  for i in 1:n
+    if yⁱ θ⋅𝛷(xⁱ) ≦ 0   # checking if sign is the same, i.e. data is on the right side of its label
+      θ = θ + yⁱ𝛷(xⁱ)   # update θ if mistake
+```
+
+Which is the final value of the parameter $\theta$ resulting from such updates ?
+We can write it as
+
+$\theta^* = \sum_{j=1}^n \alpha^{(j)} y^{(j)} \phi(x^{(j)})$
+
+where $\alpha$ is the vector of number of mistakes (and hence updates) underwent for each data pair (so $\alpha^{(j)}$ is the (scalar) number of errors occurred with the _j_-th data pair).
+
+Note that we can interpret $\alpha^j$ in terms of the relative importance of the _j_-th training example to the final predictor.
+Because we are doing perceptron, the importance is just in terms of the number of mistakes that we make on that particular example.
+
+When we want to make a prediction of a data pair $(x^{(i)}, y^{(i)})$ using the resulting parameter value $\theta^* ~$ (that is the "optimal" parameter the perceptron algorithm can give us), we take an inner product with that:
+
+$\text{prediction}^{(i)} = \theta^* \cdot \phi(x^{(i)})$
+
+We can rewrite the above equation as :
+
+$\theta^* \cdot \phi(x^{(i)}) = [\sum_{j=1}^n \alpha^{(j)} y^{(j)} \phi(x^{(j)})] \cdot \phi(x^{(i)})$
+
+$~~=  \sum_{j=1}^n [\alpha^{(j)} y^{(j)} \phi(x^{(j)}) \cdot \phi(x^{(i)})]$
+
+$~~=\sum_{j=1}^n \alpha^{(j)} y^{(j)}k(x^{(j)},x^{(i)})$
+
+But this means we can now express success or errors in terms of the $\alpha$ vector and a valid kernel function (typically something cheap to compute) !
+
+An error on the data pair $(x^{(i)}, y^{(i)})$ can then be expressed as $y^{(i)} * \sum_{j=1}^n \alpha^{(j)} y^{(j)}k(x^{(j)},x^{(i)})$. We can then base our perceptron algorithm on this check, where we start with initiating the error vector $\alpha$ to zero, and we run trought the data set checking for errors and, if found, updating the corresponding error term.
+I practice, our endogenous variable to minimise the errors is no longer directly theta, but became the $\alpha$ vector, that as said implicitly gives the contribution of each data pair to the $\theta$ parameter.
+The perceptron algorithm becomes hence the **kernel perceptron algorithm**:
+
+```
+α = 0                # initialisation of the vector
+for t in 1:T
+  for i in 1:n
+    if yⁱ ∑ⱼ[αʲyʲk(xʲ,xⁱ)] ≦ 0   # checking if prediction is right
+      αⁱ += 1  # update αⁱ if mistake
+```
+
+When we have run the algorithm and found the optimal $\alpha^* ~$ we can immediately retrieve the optimal $\theta^* ~$ by the above equation.
+
+
+
 
 
 
