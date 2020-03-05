@@ -16,3 +16,13 @@ squared_error(z) = z^2 / 2
 l = mean(map(z -> squared_error(z), z))
 
 # Lecture 6
+
+# radial basis kernel
+using LinearAlgebra
+radial_kernel(x,xᵖ) = exp(-1/2 * norm(x-xᵖ)^2)
+
+x = [1,0,0]
+
+xᵖ = [0,1,0]
+
+k = radial_kernel(x,xᵖ)

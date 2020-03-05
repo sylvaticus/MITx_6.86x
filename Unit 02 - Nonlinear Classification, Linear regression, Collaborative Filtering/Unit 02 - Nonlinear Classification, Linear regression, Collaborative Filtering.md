@@ -349,20 +349,52 @@ We can now add to it a squared term to form a new kernel that by virtue of rules
 
 $K(x,x^\prime) = K_a(x,x^\prime) + K_a(x,x^\prime)* K_a(x,x^\prime) = (x \cdot x^\prime) + (x \cdot x^\prime)^2$
 
+### 7. The Radial Basis Kernel
+
+We can use kernel functions, and have them in term of simply, cheap-to-evaluate functions, even when the underlying feature representation would have infinite dimensions and would be hence impossible to explicitly construct.
+
+One example is the so called **radial basis kernel**:
+
+$K(x,x^\prime) = e^{-\frac{1}{2} ||x-x^\prime||^2}$
+
+It can be proved that suck kernel is indeed a valid kernel and its corresponding feature representation $\phi(x) \in \mathbb{R}^\infty$, i.e. involves polynomial features up to infinite order.
+
+Does the radial basis kernel looks like a Gaussian (without the normalisation term) ? Well, because indeed it is:
+
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/assets/radial_basis_kernel.png" width="250"/>
+
+The above picture shows the contour lines of the radial basis kernel when we keep fixed $x$ (in 2 dimensions) and we let $x^\prime$ to move away from it: the value of the kernel then reduces in a shape that in 3-d would resemble the classical bell shape of the Gaussian curve.  
 
 
+Because the feature has infinite dimensions, the radial basis kernel has infinite expressive power and can correctly classify any training test.
 
 
+The linear decision boundary in the infinite dimensional space is given by the set $\{x: \sum_{j=1}n \alpha^{(j)} y^{(j)} k(x^{(j)},x) = 0 \}$ and correspond a (possibly) non-linear boundary in the original feature vector space.
 
+The more difficult task it is, the more iterations before this kernel perception with the radial basis kernel will find the separating solution, but it always will in a finite number of times. This is by contrast with the "normal" perceptron algorithm that when the set is not separable would continue run at the infinite changing its parameters unless it is stopped at a certain arbitrary point.
 
+#### Other non-linear classifiers
 
+We have seen as we can have nonlinear classifiers extending to higher dimensional space and evenutally using kernel methods to collapse the calculations and operate only  _implicitly_ in those high dimension spaces.
 
+There are certainly other ways to get nonlinear classifiers.
 
+**Decision trees** make classification operating sequentially on the various dimensions and making first a separation on the first dimension and then, in a subsequent step, on the second dimension and so on. And yo can "learn" these trees incrementally.
 
+There is a way to make these decision trees more robust, called **random forest classifiers**, that adds two type of randomness: the first one is in randomly choosing the dimension on which to operate the cut, the second in randomly selecting the single example on which operate from the data set (with replacement) and then just average the predictions obtained from these trees.
 
+So the procedure of a random forest classifier is:
+- boostrap the sample
+- build a randomized (by dimension) decision tree
+- average the predictions (ensemble)
 
+#### Summary
 
-
+- We can get non-linear classifiers (or regression) methods by simply mapping our data into new feature vectors that include non-linear components, and applying a linear method on these resulting vectors;
+- These feature vectors can be high dimensional, however;
+- We can turn linear methods into kernel methods by casting the computation in terms of inner products;
+- A kernel function is advantageous when the inner products are faster to evaluate than using explicit feature vectors (e.g. when the vectors would be infinite dimensional!)
+- We saw the radial basis kernel that is particularly powerful because it is both (a) cheap to evaluate and (b) has a corresponding infinite dimensional feature vector
 
 
 
