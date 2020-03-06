@@ -223,7 +223,35 @@ An other example would be having our original dataset in 2D as {(2,2)[+],(-2,2)[
 We can get more and more powerful classifiers by adding linearly independent features, $x²$, $x^3$,,...
 This $x$, $x^2$,..., as functions are linearly independent, so the original coordinates always provide something above and beyond what were in the previous ones.
 
+Note that when $\mathbf{x}$ is already multidimensional, even just $\phi(\mathbf{x}) = \mathbf{x}^2$ would result in dimensions exploding, e.g. $\mathbf{x} \in \mathbb{R^5} = \phi(\mathbf{x} \in \mathbb{R^2}) =  \array{x_1\\x_2\\x_1^2\\x_2^2\\\sqrt{2}x_1x_2}### 6.3. Introduction to Non-linear Classification
+We can get more and more powerful classifiers by adding linearly independent features, $x²$, $x^3$,,...
+This $x$, $x^2$,..., as functions are linearly independent, so the original coordinates always provide something above and beyond what were in the previous ones.
+
 Note that when $\mathbf{x}$ is already multidimensional, even just $\phi(\mathbf{x}) = \mathbf{x}^2$ would result in dimensions exploding, e.g. $\mathbf{x} \in \mathbb{R^5} = \phi(\mathbf{x} \in \mathbb{R^2}) =  \array{x_1\\x_2\\x_1^2\\x_2^2\\\sqrt{2}x_1x_2}$ (the meaning of the scalar associated to the cross term will be discussed later).
+
+Once we have the new feature vector we can make non-linear classification or regression in the original data making a linear classification or regression in the new feature space:
+
+- Classification: $h(x;\mathbf{\theta},\theta_0) = \text{sign}(\mathbf{\theta} \cdot \phi(\theta) + \theta_0)$
+- Regression: $f(x;\mathbf{\theta},\theta_0) = \mathbf{\theta} \cdot \phi(\theta) + \theta_0$
+
+More feature we add (e.g. more polinomian grades we add), better we fit the data. The key question now is when is time to stop adding features ?
+We can use the validation test to test which is the polynomial form that, trained on the training set, respond better in the validation set.
+
+At the extreme, you hold out each of the training example in turn in a procedure called **leave one out cross validation**.
+So you take a single training sample, you remove it from the training set, retrain the method, and then test how well you would predict that particular holdout example, and do that for each training example in turn. And then you average the results.
+
+While very powerful, this explicit mapping into larger dimensions feature vectors is indeed... that the dimensions could become quickly very high as our original data is already multidimensional
+
+Let's our original $\mathbf{x} \in \mathbb{R}^d$. Then a feature transformation:
+- quadratic (order 2 polynomial): would involve $d + \approx d^2$ dimensions (the original dimensions plus all the cross products)
+- cubic (order 3 polynomial): would involve $d +\approx  d^2 + \approx d^3$ dimensions
+
+The exact number of terms of a feature transformation of order $p$ of a vector of $d$ dimensions is $\sum_{i=1}^p {d+i-1 \choose i}$ (the sum of multiset numbers).
+
+So our feature vector becomes very high-dimensional very quickly if we even started from a moderately dimensional vector.
+
+So we would want to have a more efficient way of doing that -- operating with high dimensional feature vectors without explicitly having to construct them. And that is what kernel methods provide us.
+$ (the meaning of the scalar associated to the cross term will be discussed later).
 
 Once we have the new feature vector we can make non-linear classification or regression in the original data making a linear classification or regression in the new feature space:
 
@@ -253,7 +281,7 @@ So we would want to have a more efficient way of doing that -- operating with hi
 The idea is that you can take inner products between high dimensional feature vectors and evaluate that inner product very cheaply.
 And then, we can turn our algorithms into operating only in terms of these inner products.
 
-We define the kernel function of two feature vectors (two different data pairs) applied to a a given $\phi$ transformation the dot product of the transformed feature vectors of the two data:
+We define the kernel function of two feature vectors (two different data pairs) applied to a a given $\phi$ transformation as the dot product of the transformed feature vectors of the two data:
 
 $k(x,x';\phi)\in \mathbb{R^+} = \phi(x) \cdot \phi(x')$
 
@@ -271,7 +299,7 @@ $= \displaystyle \left({x_1}{x_1^\prime } + {x_2}{x_2^\prime }\right)+ \left({x_
 
 $= \displaystyle x \cdot x^\prime + (x \cdot x^\prime )^2$
 
-Note that even if the transformed feature vectors have 5 dimensions, the vector returned by the kernel function has only 2 dimensions. In general, for this kind of feature transformation function $\phi$, the dimensions of the kernel vector will be independent from the original dimensions of $x$ and evaluate as $k(x,x';\phi) = \phi(x) \cdot \phi(x')=(1+x \cdot x^\prime)^p$, where $p$ is the order of the polynomial transformation $\phi$.
+Note that even if the transformed feature vectors have 5 dimensions, the kernel function return a scalar. In general, for this kind of feature transformation function $\phi$, the kernel function evaluates as $k(x,x';\phi) = \phi(x) \cdot \phi(x')=(1+x \cdot x^\prime)^p$, where $p$ is the order of the polynomial transformation $\phi$.
 
 However, it is only for _some_ $\phi$ for which the evaluation of the kernel function becomes so nice!
 As soon we can prove that a particular kernel function can be expressed as the dot product of two particular feature transformations (for those interested the _Mercer’s theorem_ stated in [these notes](https://courses.cs.washington.edu/courses/cse546/16au/slides/notes10_kernels.pdf)) the kernel function is _valid_ and we don't actually need to construct the transformed feature vector (the output of $\phi$).
@@ -318,7 +346,7 @@ $~~=\sum_{j=1}^n \alpha^{(j)} y^{(j)}k(x^{(j)},x^{(i)})$
 
 But this means we can now express success or errors in terms of the $\alpha$ vector and a valid kernel function (typically something cheap to compute) !
 
-An error on the data pair $(x^{(i)}, y^{(i)})$ can then be expressed as $y^{(i)} * \sum_{j=1}^n \alpha^{(j)} y^{(j)}k(x^{(j)},x^{(i)})$. We can then base our perceptron algorithm on this check, where we start with initiating the error vector $\alpha$ to zero, and we run trought the data set checking for errors and, if found, updating the corresponding error term.
+An error on the data pair $(x^{(i)}, y^{(i)}) \leq 0$ can then be expressed as $y^{(i)} * \sum_{j=1}^n \alpha^{(j)} y^{(j)}k(x^{(j)},x^{(i)})$. We can then base our perceptron algorithm on this check, where we start with initiating the error vector $\alpha$ to zero, and we run trought the data set checking for errors and, if found, updating the corresponding error term.
 I practice, our endogenous variable to minimise the errors is no longer directly theta, but became the $\alpha$ vector, that as said implicitly gives the contribution of each data pair to the $\theta$ parameter.
 The perceptron algorithm becomes hence the **kernel perceptron algorithm**:
 
@@ -330,7 +358,7 @@ for t in 1:T
       αⁱ += 1  # update αⁱ if mistake
 ```
 
-When we have run the algorithm and found the optimal $\alpha^* ~$ we can immediately retrieve the optimal $\theta^* ~$ by the above equation.
+When we have run the algorithm and found the optimal $\alpha^* ~$ we may immediately retrieve the optimal $\theta^* ~$ by the above equation, even if at this point we really do not need $\theta$ (or sometimes can't, i.e. when $\theta$ has infinite dimensions) to make predictions.
 
 ### 6.6. Kernel Composition Rules
 
@@ -345,11 +373,11 @@ Armed with these rules we can build up pretty complex kernels starting from simp
 
 For example let's start with the identity function as $\phi$, i.e. $\phi_a(x) = x$. Such feature function results in a kernel $K(x,x^\prime;\phi_a) = K_a(x,x^\prime) = (x \cdot x^\prime)$ (this is known as the **linear kernel**).
 
-We can now add to it a squared term to form a new kernel that by virtue of rules (3) and (4) above is still a valid kernel:
+We can now add to it a squared term to form a new kernel, that by virtue of rules (3) and (4) above is still a valid kernel:
 
 $K(x,x^\prime) = K_a(x,x^\prime) + K_a(x,x^\prime)* K_a(x,x^\prime) = (x \cdot x^\prime) + (x \cdot x^\prime)^2$
 
-### 7. The Radial Basis Kernel
+### 6.7. The Radial Basis Kernel
 
 We can use kernel functions, and have them in term of simply, cheap-to-evaluate functions, even when the underlying feature representation would have infinite dimensions and would be hence impossible to explicitly construct.
 
@@ -357,21 +385,20 @@ One example is the so called **radial basis kernel**:
 
 $K(x,x^\prime) = e^{-\frac{1}{2} ||x-x^\prime||^2}$
 
-It can be proved that suck kernel is indeed a valid kernel and its corresponding feature representation $\phi(x) \in \mathbb{R}^\infty$, i.e. involves polynomial features up to infinite order.
+It [can be proved](http://pages.cs.wisc.edu/~matthewb/pages/notes/pdf/svms/RBFKernel.pdf) that suck kernel is indeed a valid kernel and its corresponding feature representation $\phi(x) \in \mathbb{R}^\infty$, i.e. involves polynomial features up to an infinite order.
 
-Does the radial basis kernel looks like a Gaussian (without the normalisation term) ? Well, because indeed it is:
+Does the radial basis kernel look like a Gaussian (without the normalisation term) ? Well, because indeed it is:
 
 <img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/assets/radial_basis_kernel.png" width="250"/>
 
-The above picture shows the contour lines of the radial basis kernel when we keep fixed $x$ (in 2 dimensions) and we let $x^\prime$ to move away from it: the value of the kernel then reduces in a shape that in 3-d would resemble the classical bell shape of the Gaussian curve.  
-
+The above picture shows the contour lines of the radial basis kernel when we keep fixed $x$ (in 2 dimensions) and we let $x^\prime$ to move away from it: the value of the kernel then reduces in a shape that in 3-d would resemble the classical bell shape of the Gaussian curve. We could even parametrise the radial basis kernel replacing the fixed $1/2$ term with a parameter $\gamma$ that would determine the   width of the bell-shaped curve (the larger the value of $\gamma$ the narrower will be the bell, i.e. small values of $\gamma$ yield wide bells).
 
 Because the feature has infinite dimensions, the radial basis kernel has infinite expressive power and can correctly classify any training test.
 
 
-The linear decision boundary in the infinite dimensional space is given by the set $\{x: \sum_{j=1}n \alpha^{(j)} y^{(j)} k(x^{(j)},x) = 0 \}$ and correspond a (possibly) non-linear boundary in the original feature vector space.
+The linear decision boundary in the infinite dimensional space is given by the set $\{x: \sum_{j=1}n \alpha^{(j)} y^{(j)} k(x^{(j)},x) = 0 \}$ and corresponds to a (possibly) non-linear boundary in the original feature vector space.
 
-The more difficult task it is, the more iterations before this kernel perception with the radial basis kernel will find the separating solution, but it always will in a finite number of times. This is by contrast with the "normal" perceptron algorithm that when the set is not separable would continue run at the infinite changing its parameters unless it is stopped at a certain arbitrary point.
+The more difficult task it is, the more iterations before this kernel perception (with the radial basis kernel) will find the separating solution, but it always will in a finite number of times. This is by contrast with the "normal" perceptron algorithm that when the set is not separable would continue to run at the infinite, changing its parameters unless it is stopped at a certain arbitrary point.
 
 #### Other non-linear classifiers
 
@@ -379,11 +406,12 @@ We have seen as we can have nonlinear classifiers extending to higher dimensiona
 
 There are certainly other ways to get nonlinear classifiers.
 
-**Decision trees** make classification operating sequentially on the various dimensions and making first a separation on the first dimension and then, in a subsequent step, on the second dimension and so on. And yo can "learn" these trees incrementally.
+**Decision trees** make classification operating sequentially on the various dimensions and making first a separation on the first dimension and then, in a subsequent step, on the second dimension and so on. And you can "learn" these trees incrementally.
 
 There is a way to make these decision trees more robust, called **random forest classifiers**, that adds two type of randomness: the first one is in randomly choosing the dimension on which to operate the cut, the second in randomly selecting the single example on which operate from the data set (with replacement) and then just average the predictions obtained from these trees.
 
 So the procedure of a random forest classifier is:
+
 - boostrap the sample
 - build a randomized (by dimension) decision tree
 - average the predictions (ensemble)
@@ -396,10 +424,19 @@ So the procedure of a random forest classifier is:
 - A kernel function is advantageous when the inner products are faster to evaluate than using explicit feature vectors (e.g. when the vectors would be infinite dimensional!)
 - We saw the radial basis kernel that is particularly powerful because it is both (a) cheap to evaluate and (b) has a corresponding infinite dimensional feature vector
 
-
-
-
 ## Lecture 7. Recommender Systems
+
+### 7.1. Objectives
+
+At the end of this lecture, you will be able to
+
+- understand the problem definition and assumptions of recommender systems
+- understand the impact of similarity measures in the K-Nearest Neighbor method
+- understand the need to impose the low rank assumption in collaborative filtering
+- iteratively find values of $U$ and $V$ (given $X=UV^T$) in collaborative filtering
+
+
+
 
 ## Homework 3
 
