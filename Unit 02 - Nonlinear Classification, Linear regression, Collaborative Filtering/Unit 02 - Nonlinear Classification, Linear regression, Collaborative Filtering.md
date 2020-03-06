@@ -435,7 +435,118 @@ At the end of this lecture, you will be able to
 - understand the need to impose the low rank assumption in collaborative filtering
 - iteratively find values of $U$ and $V$ (given $X=UV^T$) in collaborative filtering
 
+### 7.2. Introduction
 
+This lesson deals about recommender systems, when the algorithm try to guess preferences based on choices already made by the user (like film to watch or products to buy).
+
+We'll see:
+
+- the exact problem definition
+- the historically used algorithm, the K-Nearest Neighbor algorithm (KNN);
+- the algorithm in use today, the matrix factorization or collaborative filtering.
+
+### Problem definition
+
+We keep as example across the lecture the recommendation of movies.
+
+We start with a $(n,m)$ matrix $Y$ of preferences for user $a = 1,...,n$ of movie $i = 1,...,m$. While there are many ways to store preferences, we will use a real number.
+
+The goal is to base the prediction on the prior choices of the users, considering that this $Y$ matrix could be very sparse (e.g. out of 18000 films, each individual ranked very few of them!), i.e. we want to fill these "empty spaces" of the matrix.
+
+Why not to use classification/regression based on feature vectors as learned in Lectures 1? For two reasons:
+
+1. Deciding which feature to use or extracting them from data could be hard/infeasible (e.g. where can I get the info if a film has a happy or bad ending ?), or the feature vector could become very very large (things about in general "products" for Amazon, could be everything)
+2. Often we have little data about a single users preferences, while to make a recommendation based on its own previous choices we would need lot of data.
+
+The "trick" is then to "borrow" preferences from the other users and trying to measure how much a single user is closer to the other ones in our dataset.
+
+### 7.3. K-Nearest Neighbor Method
+
+The number K here means, how big should be your advisory pool on how many neighbors you want to look at.
+And this can be one of the hyperparameters of the algorithm.
+
+We look at the k closest users that did score the element I am interested to, look at their score for it, and average their score.
+
+$\hat Y_{a,i} = \frac{\sum_{b \in KNN(a,i;K)} Y_{b,i}}{K}$
+
+where $KNN(a,i;K)$ is the set of K users close to user a that have a score for item $i$
+
+Now, the question is of course how do I define this similarity? We can use any method to define similarity between vectors, like cosine similarity ($\cos \theta = \frac{x_ a\cdot x_ b}{\left\|  x_ a \right\| \left\|  x_ b \right\| }$) or Euclidean distance ($\left\|  x_ a-x_ b \right\|$).
+
+We can make the algorithm a bit more sophisticated by weighting the  neighbour scores to the level of similarity rather than just take their unweighted average:
+
+$\hat Y_{a,i} = \frac{\sum_{b \in KNN(a,i;K)} sim(a,b) *  Y_{b,i}}{\sum_{b \in KNN(a,i;K)} |sim(a,b)|}$
+
+where $sim(a,b)$ is some similarity measure between users $a$ and $b$.
+
+There has been many improvements that has been added to this kind of algorithm, like adjusting for the different "average" score that each user gives to the items (i.e. they compare the deviations from user's averages rather than the raw score itself).
+
+Still they are very far from today's methods. The problem of KNN is that it doesn't enable us to detect the hidden structures that is there in the data, which is that users may be similar to some pool of other users in one dimension, but similar to some other set of users in a different dimension. For example, loving machine learning books, and having there some "similarity" with other readers of machine learning books on some hidden characteristics (e.g. liking equation-rich books or more discursive ones), and plant books, where the similarity with other plant-reading users would be based on completely different hidden features (e.g. loving photos or having nice tabular descriptions of plants).
+
+Conversely in collaborative filtering, the algorithm would be able to detect these hidden groupings among the users, both in terms of products and in terms of users.
+So we don't have to explicitly engineer very sophisticated similarity measure, the algorithm would be able to pick up these very complex dependencies that for us, as humans, would be definitely not tractable to come up with.
+
+### 7.4. Collaborative Filtering: the Naive Approach
+
+Let's start with a _naive_ approach where we just try to apply the same method we used in regression to this problem, i.e. minimise a function $J$ made of a distance between the observed score in the matrix and the estimated one and a regularisation term.
+
+For now, we treat each individual score independently.. and this will be the reason for which (we will see) this method will not work.
+
+So, we have our (sparse) matrix $Y$ and we want to find a dense matrix $X$ that is able to replicate at best the observed points of $Y_{a,i}$ when these are available, and fill the missing ones when $Y_{a,i} = missing$.
+
+Let's first define as $D$ the set of points for which a score in $Y$ is given: $D = \{(a,i) | Y_{a,i} \neq \text{missing}\}$.
+
+The J function then takes any possible X matrix and minimise the distance between the points in the $D$ set less a regularisation parameter (we keep the individual scores to zero unless we have strong belief to move them from such state):
+
+$J(X;Y,\lambda) = \frac{\sum_{(a,i) \in D} (Y_{a,i} - X_{a,i})^2}{2} + \frac{\lambda}{2}\sum_{(a,i)} X_{a,i}^2$
+
+To find the optimal $X_{a,i}^* ~$ that minimise the FOC $(\partial X_{a,i} / \partial Y_{a,i}) = 0$ we have to distinguish if $(a,i)$ is in $D$ or not:
+
+- $(a,i) \in D$: $X_{a,i}^* = \frac{Y_(a,i)}{1+\lambda}$
+- $(a,i) \notin D$: $X_{a,i}^* = 0$
+
+Clearly this result doesn't make sense: for data we already know we obtain a bad estimation (as worst as we increase lambda) and for unknown scores we are left with zeros.
+
+### 7.5. Collaborative Filtering with Matrix Factorization
+
+What we need to do is to actually relate scores together instead of considering them independently.
+
+The idea is then to constrain the matrix X to have a lower rank, as rank captures how much independence is present between the entries of the matrix.
+
+At one extreme, constraining the matrix to be rank 1, would means that we could factorise the matrix $X$ as just the matrix product of two single vectors, one defining a sort of  general sentiment about the items for each user ($u$), and the other one ($v$) representing the average sentiment for a given item, i.e. $X=uv^T$.
+
+But representing users and items with just a single number takes us back to the KNN problem of not being able to distinguish the possible multiple groups hidden in each user or in each item.
+
+We could then decide to divide the users and/or the items in respectively $(n,2) U$ and $(2,m) V^T$ matrices and constrain our X matrix to be a product of these two matrices (hence with rank 2 in this case): $X=UV^T$
+
+The exact numbers $K$ of vectors to use in the user/items factorisation matrices (i.e. the rank of X) is then a hyperparameter that can be selected using the validation set.
+
+Still for simplicity, in this lesson we will see the simplest case of constraining the matrix to be factorisable by a pair of single vectors.
+
+### 7.6. Alternating Minimization
+
+Using rank 1, we can adapt the $J$ function to take the two vectors $u$ and $v$ instead of the whole $X$ matrix, and our objective becomes to found their elements that minimise such function:
+
+$J(\mathbf{u},\mathbf{v}; Y, \lambda) = \frac{\sum_{a,i \in D} (Y_{a,i} - u_a * v_i)^2}{2} + \frac{\lambda}{2}\sum_a^n u_a^2 + \frac{\lambda}{2}\sum_i^m v_i^2$
+
+How do we minimise J ? We can take an iterative approach where we start by randomly sampling values for one of the vector and minimise for the other vector (by setting the derivatives with respect on its elements equal to zero), then fix this second vector and going minimise for the first one, etc., until the value of the function J doesn't move behind a certain threshold, in an alternating minimisation exercise that will guarantee us to find a local minima (but not a global one!).
+
+Note also that when we minimise for the individual component of one of the two vectors, we obtain derivatives with respect to the individual vector elements that are independent, so the first order condition can be expressed each time in terms of a single variable.
+
+#### Numerical example
+
+Let's consider a value of $\lambda$ equal to $1$ and the following score dataset:
+
+$Y = \begin{bmatrix}5 & ? & 7 \\ 1 & 2 & ?\end{bmatrix}$
+
+and let start out minimisation algorithm with $v = [2,7,8]$
+
+L becomes :
+
+$J(\mathbf{u}; \mathbf{v}, Y, \lambda) = \frac{(5-2u_1)^2+(7_8u-1)^2+(1-2u_2)^2+(2-7u_2)^2}{2}+\frac{u_1^2+u_2^2}{2}+\frac{2^2+7^2+8^2}{2}$
+
+From where, setting $\partial L/\partial u_1 = 0$ and $\partial L/\partial u_2 = 0$ we can retrieve the minimising values of $(u_1,u_2)$ as 22/23 and 8/27.
+We can now compute $J(\mathbf{v}; \mathbf{u}, Y, \lambda)$ with these values of $u$ to retrieve the minimising values of $v$ and so on.
 
 
 ## Homework 3
