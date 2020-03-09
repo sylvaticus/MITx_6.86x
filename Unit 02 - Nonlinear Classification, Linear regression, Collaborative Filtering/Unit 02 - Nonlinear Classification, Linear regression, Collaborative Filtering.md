@@ -515,7 +515,7 @@ and let start out minimisation algorithm with $v = [2,7,8]$
 
 L becomes :
 
-$J(\mathbf{u}; \mathbf{v}, Y, \lambda) = \frac{(5-2u_1)^2+(7_8u-1)^2+(1-2u_2)^2+(2-7u_2)^2}{2}+\frac{u_1^2+u_2^2}{2}+\frac{2^2+7^2+8^2}{2}$
+$J(\mathbf{u}; \mathbf{v}, Y, \lambda) = \frac{(5-2u_1)^2+(7-8u_1)^2+(1-2u_2)^2+(2-7u_2)^2}{2}+\frac{u_1^2+u_2^2}{2}+\frac{2^2+7^2+8^2}{2}$
 
 From where, setting $\partial L/\partial u_1 = 0$ and $\partial L/\partial u_2 = 0$ we can retrieve the minimising values of $(u_1,u_2)$ as 22/23 and 8/27.
 We can now compute $J(\mathbf{v}; \mathbf{u}, Y, \lambda)$ with these values of $u$ to retrieve the minimising values of $v$ and so on.
