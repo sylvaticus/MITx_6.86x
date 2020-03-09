@@ -253,7 +253,7 @@ So we would want to have a more efficient way of doing that -- operating with hi
 The idea is that you can take inner products between high dimensional feature vectors and evaluate that inner product very cheaply.
 And then, we can turn our algorithms into operating only in terms of these inner products.
 
-We define the kernel function of two feature vectors (two different data pairs) applied to a a given $\phi$ transformation as the dot product of the transformed feature vectors of the two data:
+We define the kernel function of two feature vectors (two different data pairs) applied to a given $\phi$ transformation as the dot product of the transformed feature vectors of the two data:
 
 $k(x,x';\phi)\in \mathbb{R^+} = \phi(x) \cdot \phi(x')$
 
@@ -261,7 +261,7 @@ We can hence think of the kernel function as a kind of similarity measure, how s
 
 For example let's take  $x$ and $x'$ to be two dimensional feature vectors and the feature transformation $\phi(x)$ defined as $\phi(x) = [x_1,x_2,x_1^2, \sqrt(2)x_1x_2,x_2^2]$ (so that $\phi(x')$ is $[x_1^\prime,x_2^\prime,{x_1^\prime}^2, \sqrt(2)x_1^\prime x_2^\prime,{x_2^\prime}^2]$)
 
-This particular $\phi$ transformation allows to compute the kernel function very cheaply and having very few dimensions:
+This particular $\phi$ transformation allows to compute the kernel function very cheaply:
 
 $k(x,x';\phi) = \phi(x) \cdot \phi(x')$
 
@@ -318,7 +318,7 @@ $~~=\sum_{j=1}^n \alpha^{(j)} y^{(j)}k(x^{(j)},x^{(i)})$
 
 But this means we can now express success or errors in terms of the $\alpha$ vector and a valid kernel function (typically something cheap to compute) !
 
-An error on the data pair $(x^{(i)}, y^{(i)}) \leq 0$ can then be expressed as $y^{(i)} * \sum_{j=1}^n \alpha^{(j)} y^{(j)}k(x^{(j)},x^{(i)})$. We can then base our perceptron algorithm on this check, where we start with initiating the error vector $\alpha$ to zero, and we run trought the data set checking for errors and, if found, updating the corresponding error term.
+An error on the data pair $(x^{(i)}, y^{(i)})$ can then be expressed as $y^{(i)} * \sum_{j=1}^n \alpha^{(j)} y^{(j)}k(x^{(j)},x^{(i)}) \leq 0$. We can then base our perceptron algorithm on this check, where we start with initiating the error vector $\alpha$ to zero, and we run trought the data set checking for errors and, if found, updating the corresponding error term.
 I practice, our endogenous variable to minimise the errors is no longer directly theta, but became the $\alpha$ vector, that as said implicitly gives the contribution of each data pair to the $\theta$ parameter.
 The perceptron algorithm becomes hence the **kernel perceptron algorithm**:
 
@@ -368,7 +368,7 @@ The above picture shows the contour lines of the radial basis kernel when we kee
 Because the feature has infinite dimensions, the radial basis kernel has infinite expressive power and can correctly classify any training test.
 
 
-The linear decision boundary in the infinite dimensional space is given by the set $\{x: \sum_{j=1}n \alpha^{(j)} y^{(j)} k(x^{(j)},x) = 0 \}$ and corresponds to a (possibly) non-linear boundary in the original feature vector space.
+The linear decision boundary in the infinite dimensional space is given by the set $\{x: \sum_{j=1}^n \alpha^{(j)} y^{(j)} k(x^{(j)},x) = 0 \}$ and corresponds to a (possibly) non-linear boundary in the original feature vector space.
 
 The more difficult task it is, the more iterations before this kernel perception (with the radial basis kernel) will find the separating solution, but it always will in a finite number of times. This is by contrast with the "normal" perceptron algorithm that when the set is not separable would continue to run at the infinite, changing its parameters unless it is stopped at a certain arbitrary point.
 
