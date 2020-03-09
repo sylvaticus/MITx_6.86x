@@ -421,7 +421,7 @@ We'll see:
 
 We keep as example across the lecture the recommendation of movies.
 
-We start with a $(n,m)$ matrix $Y$ of preferences for user $a = 1,...,n$ of movie $i = 1,...,m$. While there are many ways to store preferences, we will use a real number.
+We start with a $(n \times m)$ matrix $Y$ of preferences for user $a = 1,...,n$ of movie $i = 1,...,m$. While there are many ways to store preferences, we will use real numbers.
 
 The goal is to base the prediction on the prior choices of the users, considering that this $Y$ matrix could be very sparse (e.g. out of 18000 films, each individual ranked very few of them!), i.e. we want to fill these "empty spaces" of the matrix.
 
@@ -441,7 +441,7 @@ We look at the k closest users that did score the element I am interested to, lo
 
 $\hat Y_{a,i} = \frac{\sum_{b \in KNN(a,i;K)} Y_{b,i}}{K}$
 
-where $KNN(a,i;K)$ is the set of K users close to user a that have a score for item $i$
+where $KNN(a,i;K)$ defines the set of K users closer to the user $a$ that have a score for item $i$.
 
 Now, the question is of course how do I define this similarity? We can use any method to define similarity between vectors, like cosine similarity ($\cos \theta = \frac{x_ a\cdot x_ b}{\left\|  x_ a \right\| \left\|  x_ b \right\| }$) or Euclidean distance ($\left\|  x_ a-x_ b \right\|$).
 
@@ -466,7 +466,7 @@ For now, we treat each individual score independently.. and this will be the rea
 
 So, we have our (sparse) matrix $Y$ and we want to find a dense matrix $X$ that is able to replicate at best the observed points of $Y_{a,i}$ when these are available, and fill the missing ones when $Y_{a,i} = missing$.
 
-Let's first define as $D$ the set of points for which a score in $Y$ is given: $D = \{(a,i) | Y_{a,i} \neq \text{missing}\}$.
+Let's first define as $D$ the set of points for which a score in $Y$ is given: $D = \{(a,i) : Y_{a,i} \neq \text{missing}\}$.
 
 The J function then takes any possible X matrix and minimise the distance between the points in the $D$ set less a regularisation parameter (we keep the individual scores to zero unless we have strong belief to move them from such state):
 
@@ -489,15 +489,15 @@ At one extreme, constraining the matrix to be rank 1, would means that we could 
 
 But representing users and items with just a single number takes us back to the KNN problem of not being able to distinguish the possible multiple groups hidden in each user or in each item.
 
-We could then decide to divide the users and/or the items in respectively $(n,2) U$ and $(2,m) V^T$ matrices and constrain our X matrix to be a product of these two matrices (hence with rank 2 in this case): $X=UV^T$
+We could then decide to divide the users and/or the items in respectively $(n \times 2) U$ and $(2 \times m) V^T$ matrices and constrain our X matrix to be a product of these two matrices (hence with rank 2 in this case): $X=UV^T$
 
 The exact numbers $K$ of vectors to use in the user/items factorisation matrices (i.e. the rank of X) is then a hyperparameter that can be selected using the validation set.
 
-Still for simplicity, in this lesson we will see the simplest case of constraining the matrix to be factorisable by a pair of single vectors.
+Still for simplicity, in this lesson we will see the simplest case of constraining the matrix to be factorisable by a pair of single vectors (i.e. $K=1$).
 
 ### 7.6. Alternating Minimization
 
-Using rank 1, we can adapt the $J$ function to take the two vectors $u$ and $v$ instead of the whole $X$ matrix, and our objective becomes to found their elements that minimise such function:
+Using rank 1, we can adapt the $J$ function to take the two vectors $u$ and $v$ instead of the whole $X$ matrix, and our objective becomes to find their elements that minimise such function:
 
 $J(\mathbf{u},\mathbf{v}; Y, \lambda) = \frac{\sum_{a,i \in D} (Y_{a,i} - u_a * v_i)^2}{2} + \frac{\lambda}{2}\sum_a^n u_a^2 + \frac{\lambda}{2}\sum_i^m v_i^2$
 
