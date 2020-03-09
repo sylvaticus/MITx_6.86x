@@ -1,4 +1,4 @@
-# Unit 02 - Nonlinear Classification, Linear regression, Collaborative Filtering
+ # Unit 02 - Nonlinear Classification, Linear regression, Collaborative Filtering
 
 # Lecture 5
 
@@ -26,3 +26,28 @@ x = [1,0,0]
 xᵖ = [0,1,0]
 
 k = radial_kernel(x,xᵖ)
+
+# Homework 3, 1. Collaborative Filtering, Kernels, Linear Regression
+
+Y = [5 missing 7; missing 2 missing; 4 missing missing; missing 3 6]
+λ = 1
+u₀ = [6,0,3,6]
+v₀ = [4,2,1]
+(n,m) = size(Y)
+
+X₀ = u₀ * v₀'
+L₁ = sum(skipmissing((Y-X₀) .^ 2))/2
+ϵ₁ = (λ/2) * (norm(u₀)^2 + norm(v₀)^2)
+
+#using SymPy, LinearAlgebra
+#u,v,Y,λ = symbols("u,v,Y,λ", real=true, positive=true)
+
+J(u,v,Y,λ) =  sum(skipmissing((Y-(u * v')) .^ 2))/2 + (λ/2) * (norm(u)^2 + norm(v)^2)
+#J2 =  sum(skipmissing((Y-(u * v')) .^ 2))/2 + (λ/2) * (norm(u)^2 + norm(v)^2)
+#dJ_dU(u,v,Y,λ)  = ( - (Y-u * v') * v) + λ * u
+
+#dJ_dU(u₀,v₀,Y,λ)
+
+J([27/18,4/5,16/17,12/6],v₀,Y,λ)
+
+# 3. Kernels
