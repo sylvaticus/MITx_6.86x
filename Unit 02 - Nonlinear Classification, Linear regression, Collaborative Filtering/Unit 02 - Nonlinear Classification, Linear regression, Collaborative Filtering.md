@@ -109,15 +109,15 @@ $R_n(\mathbf{\hat \theta}) = \frac{1}{n} \sum_{t=1}^n \frac{(y^{(t)} - \mathbf{\
 
 $\nabla_\theta R_n(\hat \theta) = \frac{1}{n} \sum_{t=1}^n \nabla_\theta (\frac{(y^{(t)} - \mathbf{\hat \theta} \cdot \mathbf{x}^{(t)})^2}{2}) = - \frac{1}{n} \sum_{t=1}^n (y^{(t)} - \mathbf{\hat \theta} \cdot \mathbf{x}^{(t)}) * \mathbf{x}^{(t)}$
 
-$\nabla_\theta R_n(\hat \theta) = \frac{1}{n} \sum_{t=1}^n y^{(t)} * \mathbf{x}^{(t)} + \frac{1}{n} \sum_{t=1}^n \mathbf{x}^{(t)} * (\mathbf{x}^{(t)})^T * \hat \theta$
+$\nabla_\theta R_n(\hat \theta) = -\frac{1}{n} \sum_{t=1}^n y^{(t)} * \mathbf{x}^{(t)} + \frac{1}{n} \sum_{t=1}^n \mathbf{x}^{(t)} * (\mathbf{x}^{(t)})^T * \hat \theta$
 
-$\nabla_\theta R_n(\hat \theta) = -b + \mathbf{A} \mathbf{\hat \theta} = 0$
+$\nabla_\theta R_n(\hat \theta) = -\mathbf{b} + \mathbf{A} \mathbf{\hat \theta} = 0$
 
 
 
-With $b = \frac{1}{n} \sum_{t=1}^{n} y^{(t)} x^{(t)}$ is a scalar and $\mathbf{A} = \frac{1}{n} \sum_{t=1}^{n} x^{(t)} ( x^{(t)})^ T$ is an $(dxd)$ matrix. If $\mathbf{A}$ is invertible we can finally write $\mathbf{\hat \theta} = \mathbf{A}^{-1} b$.
+With $b = \frac{1}{n} \sum_{t=1}^{n} y^{(t)} x^{(t)}$ is a $(d \times 1)$ vector and $\mathbf{A} = \frac{1}{n} \sum_{t=1}^{n} x^{(t)} ( x^{(t)})^ T$ is an $(d \times d)$ matrix. If $\mathbf{A}$ is invertible we can finally write $\mathbf{\hat \theta} = \mathbf{A}^{-1} b$.
 
-We can invert \mathbf{A} only if the feature vectors $\mathbf{x}^{(1)}, ...,\mathbf{x}^{(n)}$ span over $R^d$, that is if $n >> d$.
+We can invert $\mathbf{A}$ only if the feature vectors $\mathbf{x}^{(1)}, ...,\mathbf{x}^{(n)}$ span over $R^d$, that is if $n >> d$.
 
 Also, we should put attention that inverting $\mathbf{A}$ is an operation of order $O(d^3)$, so we should be carefully when $d$ is very large, like in bag of words approaches used in sentiment analysis where $d$ can be easily be in the tens of thousands magnitude.
 
@@ -210,7 +210,7 @@ Note that, differently from statistics, in Machine Learning we know nothing (ass
 
 In this case we can add for example $x^2$. So the mapping is $\mathbf{x} \in \mathbb{R^2} = \phi(x \in \mathbb{R}) =  \array{x\\x^2}$. As result also the $\theta$ parameter of the classifier became bidimensional.
 
-Our dataset becomes {(-3,9)[+], (2,4)[-], (5,25)[+]} that can be easily classified by a linear classifier in 2D (i.e. a line) $h(x;\mathbf{\theta},\theta_0) = \text{sign}(\mathbf{\theta} \cdot \phi(\theta) + \theta_0)$:
+Our dataset becomes {(-3,9)[+], (2,4)[-], (5,25)[+]} that can be easily classified by a linear classifier in 2D (i.e. a line) $h(x;\mathbf{\theta},\theta_0) = \text{sign}(\mathbf{\theta} \cdot \phi(x) + \theta_0)$:
 
 <img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/assets/images_lec_1dnotseparable_in2d.png" width="250"/>
 
@@ -223,40 +223,12 @@ An other example would be having our original dataset in 2D as {(2,2)[+],(-2,2)[
 We can get more and more powerful classifiers by adding linearly independent features, $x²$, $x^3$,,...
 This $x$, $x^2$,..., as functions are linearly independent, so the original coordinates always provide something above and beyond what were in the previous ones.
 
-Note that when $\mathbf{x}$ is already multidimensional, even just $\phi(\mathbf{x}) = \mathbf{x}^2$ would result in dimensions exploding, e.g. $\mathbf{x} \in \mathbb{R^5} = \phi(\mathbf{x} \in \mathbb{R^2}) =  \array{x_1\\x_2\\x_1^2\\x_2^2\\\sqrt{2}x_1x_2}### 6.3. Introduction to Non-linear Classification
-We can get more and more powerful classifiers by adding linearly independent features, $x²$, $x^3$,,...
-This $x$, $x^2$,..., as functions are linearly independent, so the original coordinates always provide something above and beyond what were in the previous ones.
-
 Note that when $\mathbf{x}$ is already multidimensional, even just $\phi(\mathbf{x}) = \mathbf{x}^2$ would result in dimensions exploding, e.g. $\mathbf{x} \in \mathbb{R^5} = \phi(\mathbf{x} \in \mathbb{R^2}) =  \array{x_1\\x_2\\x_1^2\\x_2^2\\\sqrt{2}x_1x_2}$ (the meaning of the scalar associated to the cross term will be discussed later).
 
 Once we have the new feature vector we can make non-linear classification or regression in the original data making a linear classification or regression in the new feature space:
 
-- Classification: $h(x;\mathbf{\theta},\theta_0) = \text{sign}(\mathbf{\theta} \cdot \phi(\theta) + \theta_0)$
-- Regression: $f(x;\mathbf{\theta},\theta_0) = \mathbf{\theta} \cdot \phi(\theta) + \theta_0$
-
-More feature we add (e.g. more polinomian grades we add), better we fit the data. The key question now is when is time to stop adding features ?
-We can use the validation test to test which is the polynomial form that, trained on the training set, respond better in the validation set.
-
-At the extreme, you hold out each of the training example in turn in a procedure called **leave one out cross validation**.
-So you take a single training sample, you remove it from the training set, retrain the method, and then test how well you would predict that particular holdout example, and do that for each training example in turn. And then you average the results.
-
-While very powerful, this explicit mapping into larger dimensions feature vectors is indeed... that the dimensions could become quickly very high as our original data is already multidimensional
-
-Let's our original $\mathbf{x} \in \mathbb{R}^d$. Then a feature transformation:
-- quadratic (order 2 polynomial): would involve $d + \approx d^2$ dimensions (the original dimensions plus all the cross products)
-- cubic (order 3 polynomial): would involve $d +\approx  d^2 + \approx d^3$ dimensions
-
-The exact number of terms of a feature transformation of order $p$ of a vector of $d$ dimensions is $\sum_{i=1}^p {d+i-1 \choose i}$ (the sum of multiset numbers).
-
-So our feature vector becomes very high-dimensional very quickly if we even started from a moderately dimensional vector.
-
-So we would want to have a more efficient way of doing that -- operating with high dimensional feature vectors without explicitly having to construct them. And that is what kernel methods provide us.
-$ (the meaning of the scalar associated to the cross term will be discussed later).
-
-Once we have the new feature vector we can make non-linear classification or regression in the original data making a linear classification or regression in the new feature space:
-
-- Classification: $h(x;\mathbf{\theta},\theta_0) = \text{sign}(\mathbf{\theta} \cdot \phi(\theta) + \theta_0)$
-- Regression: $f(x;\mathbf{\theta},\theta_0) = \mathbf{\theta} \cdot \phi(\theta) + \theta_0$
+- Classification: $h(x;\mathbf{\theta},\theta_0) = \text{sign}(\mathbf{\theta} \cdot \phi(x) + \theta_0)$
+- Regression: $f(x;\mathbf{\theta},\theta_0) = \mathbf{\theta} \cdot \phi(x) + \theta_0$
 
 More feature we add (e.g. more polinomian grades we add), better we fit the data. The key question now is when is time to stop adding features ?
 We can use the validation test to test which is the polynomial form that, trained on the training set, respond better in the validation set.
