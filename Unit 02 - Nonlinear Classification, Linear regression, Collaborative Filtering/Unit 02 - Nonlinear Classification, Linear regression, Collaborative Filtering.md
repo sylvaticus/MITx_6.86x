@@ -335,7 +335,7 @@ When we have run the algorithm and found the optimal $\alpha^* ~$ we can either:
 - immediately retrieve the optimal $\theta^* ~$ by the above equation and make predictions using  $\hat y^{(i)} =\theta^* \cdot \phi(x^{(i)})$
 - entirely skip $\phi(x^{(i)})$ making predictions on $x^{(i)}$ just using $\hat y^{(i)} =\sum_{j=1}^n \alpha^{(j)} y^{(j)}k(x^{(j)},x^{(i)})$
 
-Which method to use depends on which one is easier to compute, noting that when $\theta$ has infinite dimensions we are forced to use the second one.
+Which method to use depends on which one is easier to compute, noting that when $\phi(x)$ has infinite dimensions we are forced to use the second one.
 
 ### 6.6. Kernel Composition Rules
 
