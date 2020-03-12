@@ -539,7 +539,7 @@ Summary from: https://en.wikipedia.org/wiki/Softmax_function
 
 The softmax function is a "normalisation function" defined as:
 
-$\text{Softmax}(\mathbf{Z} \in \mathbb{R}^{K}) \in \mathbb{R}^{+K} = PMF(\mathbf{Z}) = \frac{1}{\sum_{j=1}^k e^{Z_j}} * e^{\mathbf{Z}}$
+$\text{Softmax}(\mathbf{Z} \in \mathbb{R}^{K}) \in \mathbb{R}^{+K}  = \frac{1}{\sum_{j=1}^k e^{Z_j}} * e^{\mathbf{Z}}$
 
 - it maps a vector in $\mathbb{R}^{K}$ to a new vector in $\mathbb{R}^{+K}$ where all values are positive and sum up to 1, hence loosing one degree of freedom and with the output interpretable as probabilities
 - the larger (in relative term) is the input $Z_K$, the larger will be its output probability
@@ -552,9 +552,9 @@ $P(y=j\mid \mathbf{x}) = \frac{e^{\mathbf{x}^\mathsf{T}\mathbf{w}_j}}{\sum_{k=1}
 
 It can be parametrised by a parameter $\tau$ referred as "temperature" in allusion to statical mechanics:
 
-$PMF(\mathbf{Z};\tau \in \mathbb{R}) = \frac{1}{\sum_{j=1}^k e^{Z_j/\tau}} * e^{\mathbf{Z}/\tau}$
+$\text{softmax}(\mathbf{Z};\tau \in \mathbb{R}) = \frac{1}{\sum_{j=1}^k e^{Z_j/\tau}} * e^{\mathbf{Z}/\tau}$
 
 - For high temperatures ($\tau \to \infty$), all actions have nearly the same probability and the lower the temperature, the more expected rewards affect the probability.
-- For a low temperature ($ \tau \to 0^{+}}$), the probability of the action with the highest expected reward tends to 1. 
+- For a low temperature ($\tau \to 0^{+}}$), the probability of the action with the highest expected reward tends to 1.
 
 [[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)
