@@ -51,3 +51,11 @@ J(u,v,Y,λ) =  sum(skipmissing((Y-(u * v')) .^ 2))/2 + (λ/2) * (norm(u)^2 + nor
 J([27/18,4/5,16/17,12/6],v₀,Y,λ)
 
 # 3. Kernels
+
+# 4. Kernels-II
+
+# 5. Linear Regression and Regularization
+
+x = [2,4,6]
+
+x^2

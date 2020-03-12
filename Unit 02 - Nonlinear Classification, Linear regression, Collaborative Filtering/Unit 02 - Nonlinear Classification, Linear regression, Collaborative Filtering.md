@@ -161,7 +161,13 @@ The difference with the empirical risk without the regularisation term is the $(
 
 #### The closed form approach with regularisation
 
-In the homework ?
+First solve for $\theta_O$ and then solve for $\theta$ (see exercise given in Homework 3, tab "5. Linear Regression and Regularization").
+
+In matrix form the closed form solution is:
+
+$\theta = (X^ T X + \lambda I)^{-1} X^ T Y$  (also known as [Tikikhonov regularisation](https://en.wikipedia.org/wiki/Tikhonov_regularization))
+
+Note that again we can consider $\theta_0$ just as a further dimension of $\theta$ where the $X$ are all ones.
 
 ### 5. 9. Closing Comment
 
@@ -526,8 +532,29 @@ From where, setting $\partial L/\partial u_1 = 0$ and $\partial L/\partial u_2 =
 We can now compute $J(\mathbf{v}; \mathbf{u}, Y, \lambda)$ with these values of $u$ to retrieve the minimising values of $v$ and so on.
 
 
-## Homework 3
-
 ## Project 2: Digit recognition (Part 1)
+
+### The softmax function
+Summary from: https://en.wikipedia.org/wiki/Softmax_function
+
+The softmax function is a "normalisation function" defined as:
+
+$\text{Softmax}(\mathbf{Z} \in \mathbb{R}^{K}) \in \mathbb{R}^{+K} = PMF(\mathbf{Z}) = \frac{1}{\sum_{j=1}^k e^{Z_j}} * e^{\mathbf{Z}}$
+
+- it maps a vector in $\mathbb{R}^{K}$ to a new vector in $\mathbb{R}^{+K}$ where all values are positive and sum up to 1, hence loosing one degree of freedom and with the output interpretable as probabilities
+- the larger (in relative term) is the input $Z_K$, the larger will be its output probability
+- note that, for each $K$, the map $Z_K \to P(Z_K)$ is continuous
+- it can be seen as a smooth approximation to the arg max function: the function whose value is which index has the maximum
+
+The softmax function can be used in multinomial logistic regression to represent the predicted probability for the _j_'th class given a sample vector $\mathbf{x}$ and a weighting vector $\mathbf{w}$:
+
+$P(y=j\mid \mathbf{x}) = \frac{e^{\mathbf{x}^\mathsf{T}\mathbf{w}_j}}{\sum_{k=1}^K e^{\mathbf{x}^\mathsf{T}\mathbf{w}_k}}$
+
+It can be parametrised by a parameter $\tau$ referred as "temperature" in allusion to statical mechanics:
+
+$PMF(\mathbf{Z};\tau \in \mathbb{R}) = \frac{1}{\sum_{j=1}^k e^{Z_j/\tau}} * e^{\mathbf{Z}/\tau}$
+
+- For high temperatures ($\tau \to \infty$), all actions have nearly the same probability and the lower the temperature, the more expected rewards affect the probability.
+- For a low temperature ($ \tau \to 0^{+}}$), the probability of the action with the highest expected reward tends to 1. 
 
 [[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)
