@@ -555,6 +555,6 @@ It can be parametrised by a parameter $\tau$ referred as "temperature" in allusi
 $\text{softmax}(\mathbf{Z};\tau \in \mathbb{R}) = \frac{1}{\sum_{j=1}^k e^{Z_j/\tau}} * e^{\mathbf{Z}/\tau}$
 
 - For high temperatures ($\tau \to \infty$), all actions have nearly the same probability and the lower the temperature, the more expected rewards affect the probability.
-- For a low temperature ($\tau \to 0^{+}}$), the probability of the action with the highest expected reward tends to 1.
+- For a low temperature ($\tau \to 0^{+}$), the probability of the action with the highest expected reward tends to 1.
 
 [[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)
