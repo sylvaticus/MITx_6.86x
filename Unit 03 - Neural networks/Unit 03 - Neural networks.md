@@ -173,7 +173,7 @@ If we have (as it is normally) multiple nodes per layer, we can thing on a serie
 
 Let's consider as example a case in 2-D where we have a cloud of negative points (red) in the bottom-left and top-right corners and a cloud of positive points (blue) in the center, like in the following chart (left side):
 
- <img src="assets/hidden_layer_representation.png" width="500"/>
+ <img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 03 - Neural networks/assets/hidden_layer_representation.png" width="500"/>
 
 Such problem is clearly non linearly separable.
 
@@ -183,7 +183,7 @@ The appearance that it draws exactly as a line derives from the fact that the tw
 
 However, when we use $tanh(x)$ as activation function we obtain the output as depicted in the following chart (left), where the problem now is clearly linearly separable.
 
-<img src="assets/hidden_layer_representation2.png" width="500"/>
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 03 - Neural networks/assets/hidden_layer_representation2.png" width="500"/>
 
 This is really where the power of the hidden layer lies. It gives us a transformation of the input signal into a representation that makes the problem easier to solve.
 
