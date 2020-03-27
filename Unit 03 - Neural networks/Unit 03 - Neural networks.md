@@ -98,7 +98,10 @@ Our objective will be to learn the weights that make this node, in the context o
 
 #### Overall architecture
 
-In **deep forward neural networks**, neural network units are arranged in **layers**, from the _input layer_, where each unit holds the input coordinate, through various _hidden layer_ transformations, until the actual _output_ of the model.
+In **deep forward neural networks**, neural network units are arranged in **layers**, from the _input layer_, where each unit holds the input coordinate, through various _hidden layer_ transformations, until the actual _output_ of the model:
+
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 03 - Neural networks/assets/nn_scheme.png" width="500"/>
+
 In this layerwise computation, each unit in a particular layer takes input from _all_ the preceding layer units. And it has its own parameters that are adjusted to perform the overall computation. So parameters are different even between different units of the same layer.
 A deep (feedforward) neural network refers hence to a neural network that contains not only the input and output layers, but also hidden layers in between.
 
@@ -243,10 +246,50 @@ At the end of this lecture, you will be able to
 - Recognize when a network has overcapacity .
 
 
-
 ### 9.2. Back-propagation Algorithm
 
 We start now to consider how to learn from data (feedforward) neural network, that is estimate its weights.
+
+We recall that feed-forward neural networks, with multiple hidden layers mediating the calculation from the input to the output, are complicated models that are trying to capture the representation of the examples towards the output unit in such a way as to facilitate the actual prediction task.
+
+It is this representation learning part -- we're learning the feature representation as well as how to make use of it -- that makes the learning problem difficult.
+But it turns out that a simple stochastic gradient descent algorithm actually succeeds in finding typically a good solution to the parameters, provided that we give the model a little bit of overcapacity.
+The main algorithmic question, then, is how to actually evaluate that gradient, the derivative of the Loss with respect to the parameters.
+And that can be computed efficiently using so-called back propagation algorithm.
+
+Given an input $X$, a neural network characterised by the overall weigth set $W$ (so that its output, a scalar here for simplicity, is $f(X;W)$), and the "correct" target vector $Y$, the task in the training step is find the $W$ that minimise a given loss function $\mathcal{L}(f(X;W),Y)$.
+We do that by computing the derivative of the loss function for each weight $w_{i,j}^l$ applied by the $j$-th unit at each $l$-th layer in relation to the output of the $i$-th node at the previous $l-1$ layer: $\frac{\partial \mathcal{L}(f(X;W),Y)}{\partial w_{i,j}}$.
+
+Then we simply apply the SDG algorithm in relation to this $w_{i,j}^l$:
+
+$w_{i,j}^l \leftarrow w_{i,j}^l - \eta * \frac{\partial \mathcal{L}(f(X;W),Y)}{\partial w_{i,j}}$
+
+The question turns now on how do we evaluate such gradient, as the mapping from the weight to the final output of the network can be very complicated (so much for the weights in the first layers!).
+
+This computation can be efficiently done using a so called **back propagation algorithm** that essentially exploits the chain rule.
+
+Let's take as example a deep neural network with a single unit per node, with both input and outputs as scalars, as in the following diagram:
+
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 03 - Neural networks/assets/nn_chain.png" width="500"/>
+
+Let's also assume that the activation function is $\tanh(z)$, also in the last layer (in reality the last unit is often a linear function, so that the forecast is in $\mathbb{R}$ and not just in $(-1,+1)$), that there is no offset parameter and that the specific loss function for each individual example is $Loss = \frac{1}{2}(y-f_L)^2$.
+
+Then, for such network, we can write $z_1 = xw_1$ and, more in general, for $i = 2,...,L$: $z_i = f_{i-1}w_i$ where $f_{i-1} = f(z_{i-1})$.
+
+So, specifically, $f_1 = tanh(z_1) = tanh(x w_1)$, $f_2 = tanh(z_2) = tanh(f_1 w_2)$,....
+
+In order to find $\frac{\partial Loss}{\partial w_i}$ we can use the chain rule by start evaluating the derivative of the loss function, then evaluate the last layer, and then eventually go backward until the first layer:
+
+$\frac{\partial Loss}{\partial w_1} = \frac{\partial f_1}{\partial w_1} * \frac{\partial f_2}{\partial f_1} * \frac{\partial f_3}{\partial f_2} * ... * \frac{\partial f_L}{\partial f_{L-1}} * \frac{\partial Loss}{\partial f_L}$
+
+$\frac{\partial Loss}{\partial w_1} = [(1-tanh^2(xw_1))x] * [(1-tanh^2(f_1 w_2))w_2] * [(1-tanh^2(f_2 w_3))w_3] * ...[(1-tanh^2(f_{L-1} w_L))w_L] * [f_L - y]$
+
+Now based on the nature the calculator, the fact that we evaluate the loss at the very output, then multiply by these Jacobians also highlights how this can go wrong.
+Imagine if these Jacobians here, the value is the derivatives of the layer-wise mappings, are very small. Then the gradient vanishes very quickly as the depth of the architecture increases.
+If these derivatives are large, then the gradients can also explode.
+
+So there are issues that we need to deal with when the architecture is deep.
+
 
 ## Lecture 10. Recurrent Neural Networks 1
 
