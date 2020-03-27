@@ -272,7 +272,7 @@ Let's take as example a deep neural network with a single unit per node, with bo
 
 <img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 03 - Neural networks/assets/nn_chain.png" width="500"/>
 
-Let's also assume that the activation function is $\tanh(z)$, also in the last layer (in reality the last unit is often a linear function, so that the forecast is in $\mathbb{R}$ and not just in $(-1,+1)$), that there is no offset parameter and that the specific loss function for each individual example is $Loss = \frac{1}{2}(y-f_L)^2$.
+Let's also assume that the activation function is $\tanh(z)$, also in the last layer (in reality the last unit is often a linear function, so that the prediction is in $\mathbb{R}$ and not just in $(-1,+1)$), that there is no offset parameter and that the specific loss function for each individual example is $Loss = \frac{1}{2}(y-f_L)^2$.
 
 Then, for such network, we can write $z_1 = xw_1$ and, more in general, for $i = 2,...,L$: $z_i = f_{i-1}w_i$ where $f_{i-1} = f(z_{i-1})$.
 
@@ -289,6 +289,26 @@ Imagine if these Jacobians here, the value is the derivatives of the layer-wise 
 If these derivatives are large, then the gradients can also explode.
 
 So there are issues that we need to deal with when the architecture is deep.
+
+### 9.3. Training Models with 1 Hidden Layer, Overcapacity, and Convergence Guarantees
+
+When the problem is complex, a neural network with just the capacity in terms of number of nodes that would be theoretically enough to find a separable solution (classify all the example correctly) may not actually arrive to such optimal classification. More in general, for multi-layer neural networks, stochastic gradient descent (SGD) is not guaranteed to reach a global optimum (but they can find a locally optimal solution,
+which is typically quite good).
+
+We can facilitate the optimization of these architectures by giving them **overcapacity** (increasing the number of nodes in the layer(s)), making them a little bit more complicated than they need to be to actually solve the task.
+
+Using overcapacity however can lead to artefacts in the classifiers. To limit these artefacts and have good models even with overcapacity one can use two tricks:
+1. Consider random initialisation of the parameters (rather than start from zero). And as we learn and arrive at a perfect solution in terms of end-to-end mapping from inputs to outputs, then in that solution, not all the hidden units need to be doing something useful, so long as many of them do. The randomization inherent in the initialization creates some smoothness. And we end up with a smooth decision boundary even when we have given the model quite a bit of overcapacity.
+2. Use the ReLU activation function ($max(0,z)$) rather than $tanh(z)$. ReLU is cheap to evaluate , works well with sparsity and make parameters easier to be estimated in large models.
+
+We will later talk about regularization -- how to actually squeeze the capacity of these models a little bit, while in terms of units, giving them overcapacity.
+
+#### Summary
+
+- Neural networks can be learned with SGD similarly to linear classifiers
+- The derivatives necessary for SGD can be evaluated effectively via back-propagation
+- Multi-layer neural network models are complicated. We are no longer guaranteed to reach global (only local) optimum with SGD
+- Larger models tend to be easier to learn because their units only need to be adjusted so that they are, collectively, sufficient to solve the task
 
 
 ## Lecture 10. Recurrent Neural Networks 1
