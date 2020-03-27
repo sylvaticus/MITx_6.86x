@@ -155,6 +155,13 @@ Many more underway (to perform prediction and/or control):
   - common representations, diversity of architectural choices
   - we can easily compose these models together to perform very interesting computations.In other words, they can serve as very flexible computational Lego pieces that can be adapted overall to perform a useful role as part of much larger, richer computational architectures.
 
+Why #3 (large models are easier to learn) ?
+
+We can think about the notions of width (number of units in a layer) and depth (number of layers). Small models (low width and low depth) are quite rigid and don't allow for a good abstraction of reality i.e. learning the underlying structures based on observations. Large models can use more width and more depth to generate improved abstractions of reality i.e. improved learning.
+
+See also the conclusion of the video on the next segment: "Introducing redundancy will make the optimization problem that we have to solve easier."
+
+
 #### 8.6. Hidden Layer Models
 
 Let's now specifically consist a deep neural network consisting of the input layer $\mathbf{x}$, a single hidden layer $\mathbf{z}$ performing the aggregation $z_i = \sum_j x_j * w_{j,i} + w_{0,i}$ and using $tanh(\mathbf{z})$ as activation function $f$, and the output node with a linear activation function.
@@ -169,6 +176,14 @@ The difference is that instead of having a binary output (like in $sign(\mathbf{
 
 If we have (as it is normally) multiple nodes per layer, we can thing on a series of linear classifiers on the same $depth_{i-1}$ space, each one identified by its norm $\mathbf{w}_1, \mathbf{w}_2, ..., \mathbf{w}_{depth_{i}}$.
 
+Given a neural network with one hidden layer for classification, we can view the hidden layer as a feature representation, and the output layer as a classifier using the learned feature representation.
+
+There're also other parameters that will affect the learning process and the performance of the model, such as the learning rate and parameters that control the network architecture (e.g. number of hidden units/layers) etc. These are often called hyper-parameters.
+
+Similar to the linear classifiers that we covered in previous lectures, we need to learn the parameters for the classifier. However, in this case we also learn the parameters that generate a representation for the data.
+The dimensions and the hyper-parameters are decided with the structure of the model and are not optimized directly during the learning process but can be chosen by performing a grid search with the evaluation data or by more advanced techniques (such as meta-learning).
+
+
 #### 2-D Example
 
 Let's consider as example a case in 2-D where we have a cloud of negative points (red) in the bottom-left and top-right corners and a cloud of positive points (blue) in the center, like in the following chart (left side):
@@ -179,7 +194,7 @@ Such problem is clearly non linearly separable.
 
 The chart on the right depicts the same points in the space resulting from the application of the two classifiers, using just a linear activation, i.e. the dot product between $w$ and $x$.
 
-The appearance that it draws exactly as a line derives from the fact that the two planes are parallel, but the general idea is that still we have a problem that is not separable.
+The appearance that it draws exactly as a line derives from the fact that the two planes are parallel, but the general idea is that still we have a problem that is not separable, as any linear transformation of the feature space of a linearly in-separable classification problem would still continue to remain linearly inseparable.
 
 However, when we use $tanh(x)$ as activation function we obtain the output as depicted in the following chart (left), where the problem now is clearly linearly separable.
 
@@ -218,6 +233,20 @@ The next lecture will deal with actually learning these representations together
 ## Lecture 9. Feedforward Neural Networks, Back Propagation, and Stochastic Gradient Descent (SGD)
 
 
+### 9.1. Objectives
+
+At the end of this lecture, you will be able to
+
+- Write down recursive relations with back-propagation algorithm to compute the gradient of the loss function with respect to the weight parameters.
+- Use the stochastic descent algorithm to train a feedforward neural network.
+- Understand that it is not guaranteed to reach global (only local) optimum with SGD to minimize the training loss.
+- Recognize when a network has overcapacity .
+
+
+
+### 9.2. Back-propagation Algorithm
+
+We start now to consider how to learn from data (feedforward) neural network, that is estimate its weights.
 
 ## Lecture 10. Recurrent Neural Networks 1
 
