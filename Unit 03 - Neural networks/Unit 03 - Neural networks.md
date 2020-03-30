@@ -169,7 +169,7 @@ See also the conclusion of the video on the next segment: "Introducing redundanc
 
 Let's now specifically consist a deep neural network consisting of the input layer $\mathbf{x}$, a single hidden layer $\mathbf{z}$ performing the aggregation $z_i = \sum_j x_j * w_{j,i} + w_{0,i}$ and using $tanh(\mathbf{z})$ as activation function $f$, and the output node with a linear activation function.
 
-We can see each layer (one in thiscase) as a "box" that takes as input $\mathbf{x}$ and return output $\mathbf{f}$, mediated trough its weigths $\mathbf{W}$, and the output layer as those box taking $\mathbf{f}$ as input and returning the final output $f$, mediated trough its weigths $\mathbf{W^\prime}$
+We can see each layer (one in thiscase) as a "box" that takes as input $\mathbf{x}$ and return output $\mathbf{f}$, mediated trough its weights $\mathbf{W}$, and the output layer as those box taking $\mathbf{f}$ as input and returning the final output $f$, mediated trough its weights $\mathbf{W^\prime}$
 
 And we are going to try to understand how this computation changes as a function of $W$ and $W^\prime$.
 
@@ -257,7 +257,7 @@ But it turns out that a simple stochastic gradient descent algorithm actually su
 The main algorithmic question, then, is how to actually evaluate that gradient, the derivative of the Loss with respect to the parameters.
 And that can be computed efficiently using so-called back propagation algorithm.
 
-Given an input $X$, a neural network characterised by the overall weigth set $W$ (so that its output, a scalar here for simplicity, is $f(X;W)$), and the "correct" target vector $Y$, the task in the training step is find the $W$ that minimise a given loss function $\mathcal{L}(f(X;W),Y)$.
+Given an input $X$, a neural network characterised by the overall weight set $W$ (so that its output, a scalar here for simplicity, is $f(X;W)$), and the "correct" target vector $Y$, the task in the training step is find the $W$ that minimise a given loss function $\mathcal{L}(f(X;W),Y)$.
 We do that by computing the derivative of the loss function for each weight $w_{i,j}^l$ applied by the $j$-th unit at each $l$-th layer in relation to the output of the $i$-th node at the previous $l-1$ layer: $\frac{\partial \mathcal{L}(f(X;W),Y)}{\partial w_{i,j}}$.
 
 Then we simply apply the SDG algorithm in relation to this $w_{i,j}^l$:
@@ -292,7 +292,10 @@ So there are issues that we need to deal with when the architecture is deep.
 
 ### 9.3. Training Models with 1 Hidden Layer, Overcapacity, and Convergence Guarantees
 
-When the problem is complex, a neural network with just the capacity in terms of number of nodes that would be theoretically enough to find a separable solution (classify all the example correctly) may not actually arrive to such optimal classification. More in general, for multi-layer neural networks, stochastic gradient descent (SGD) is not guaranteed to reach a global optimum (but they can find a locally optimal solution,
+Using the SGD, the average hinge loss evolves at each iterations (or epochs), where the algorithm runs through all the training examples (in sample order), performing a stochastic gradient descent update
+Typically, after a few runs over the training examples, the network actually succeeds in finding a solution that has zero hinge loss.
+
+When the problem is however complex, a neural network with just the capacity in terms of number of nodes that would be theoretically enough to find a separable solution (classify all the example correctly) may not actually arrive to such optimal classification. More in general, for multi-layer neural networks, stochastic gradient descent (SGD) is not guaranteed to reach a global optimum (but they can find a locally optimal solution,
 which is typically quite good).
 
 We can facilitate the optimization of these architectures by giving them **overcapacity** (increasing the number of nodes in the layer(s)), making them a little bit more complicated than they need to be to actually solve the task.
@@ -312,6 +315,153 @@ We will later talk about regularization -- how to actually squeeze the capacity 
 
 
 ## Lecture 10. Recurrent Neural Networks 1
+
+### 10.1. Objective
+
+Introduction to recurrent neural networks (RNNs)
+
+At the end of this lecture, you will be able to:
+
+- Know the difference between feed-forward and recurrent neural networks(RNNs).
+- Understand the role of gating and memory cells in long-short term memory (LSTM).
+- Understand the process of encoding of RNNs in modeling sequences.
+
+### 10.2. Introduction to Recurrent Neural Networks
+
+In this and in the next lecture we will use neural networks to model sequences, using so called **recurrent neural networks** (_RNN_).
+
+This lecture introduces the topic: the problem of modelling sequences, what are RNN, how they relate to the feedforward neural network we saw in the previous lectures and how to _encode_ sequences into vector representations.
+Next lecture will focus on how to _decode_ such vectors so that we can use them to predict properties of the sequences, or what comes next in the sequence.
+
+#### Exchange rate example
+
+Let's consider a time serie of the exchange rate between US Dollar and the Euro, with an objective of predict its value in the future.
+
+We already saw how to solve this kind of problem with linear predictors or feedforward neural networks.
+
+In both case the first task is to compile a feature vector, for example of the values of the exchange rate at various times, for example, at time $t-1$ to $t-4$ for a prediction at time $t$.
+
+As we have long time-serie available we can use some of the observation as training, some as validation and some as test (ideally by random sampling).
+
+#### Language completion example
+
+In a similar way we can see a text as a sequence of words, and try to predict the next world based on the previous words, for example using the previous two words, where each of them is coded as a 1 in a sparse array of all the possible words (à la bag of words approach).
+
+#### Limitations of these approaches
+
+While we could use linear classifiers or feedforward neural networks to predict sequences we are still left with the problem of how much "history" look at in the creation of the feature vector and the fact that this history length may be variable, for example there may be words at the beginning of the sentence that are quite relevant for predicting what happens towards the end, and we would have to somehow retain that information in the feature representation that we are using for predicting what happens next.
+
+Recurrent Neural Networks can be used in place of feedforwrd neural networks to learn not only the weight given the feature vectors, but also how to encode in the first instance the history into the feature vector.
+
+### 10.3. Why we need RNNs
+
+The way we chose how to encode data in feature vectors depends on the task we need. For example, sentiment analysis, language translation, and next word suggestion all requires a different feature representation as they focus on different parts of the sentence: while sentiment analysis focuses on the holistic meaning of a sentence, translation or next word suggestion focuses instead more on individual words.
+
+While in feed-forward networks we have to manually engineer how history is mapped to a feature vector (representation) for the specific task at hand, using RNN's this task is also part of the learning process and hence automatised.
+
+Note that very different types of objects can be encoded in feature vectors, like images, events, words or videos, and once they are encoded, all these different kind of objects can be used together.
+
+In other words, RNNs can not only process single data points (such as images), but also entire sequences of data (such as speech or video).
+
+While this lecture deals with **encoding**, the mapping of a sequence to a feature vector, the next lecture deals with **decoding**, the mapping of a feature vector to a sequence.
+
+### 10.4. Encoding with RNN
+
+While in feedforward neural network the input is only at the beginning of the chain and the parameter matrix $W$ is different at each layer, in recurrent neural networks the "external input" arrives at each layer and contribute to the argument of the activation function together with the flow of information coming from the previous layer.
+
+One simple implementation of each layer transformation (that here we can see it as an "update") is hence (omitting the offset parameters):
+
+$s_ t = \tanh (W^{s,s}s_{t-1} + W^{s,x}x_ t)$
+
+Where:
+
+- $s_{t-1}$ is a  $m \times 1$ vector of the old "context" or "state" (the data coming from the previous layer)
+- $W^{s,s}$ is a  $m \times m$ matrix of the weights associated to the existing state, whose role is to deciding what part of the previous information should be keep (and note that this is not changing in each layer. It is _recurrent_ across the chain.). Can also be interpreted as giving how the state would evolve in absence of any new information.
+- $x_t$ is a $d \times 1$ feature representation of the new information (e.g. a new word)
+- $W^{s,x}$ is a $m \times m$ weights whose role is deciding how to take into account the new information, so that the result of $wx$ multiplication is specific to each new information arriving;
+- $tanh(\cdot)$ is the activation function (to be applied elementwise)
+- $s_{t}$ is a  $m \times 1$ vector of the new "context" or "state" (the updated state with the new information taken into account)
+
+RNN have hence a number of layers equal to the data in the sequence, like the words in a sentence. So there is a single, evolving, NN for the whole sequence rather than a different NN for each element of the sequence.
+The initial state ($S_0$) is a vector of $m$ zeros.
+
+Note that this parametric approach let the way we introduce new data ($W^{s,x}$) to adjust to the way we use the network, i.e. to be learned according to the specific problem on hand..
+
+In other words, we can adjust those parameters to make this representation of a sequence appropriate for the task that we are trying to solve.
+
+### 10.5. Gating and LSTM
+
+#### Learning RNNs
+
+Learning a RNN is similar to learning a feedforward neural network: the first task is to define a Loss function and then find the weights that minimise it, for example using a SGD algorithm where the gradient with respect to the weights is computed using back-propagation.
+The fact that the parameters are shared in RNN's means that we add the contribution of each of the suggested modifications for parameters at each of these positions where the transformation is flagged.
+One problem of simple RNN models is that the gradient can vanish or explode. Here even more than in feedforward NN, as the sequences can be quite long and we apply this transformation repeatedly.
+In real cases, the design of the transformation can be improved to counter this issue.
+
+#### Simple gated RNN
+
+Further, in simple RNN the state information is _always_ updated with new data, so far away information is easily "forget". It is often helpful to retain (or learn to retain) some control over what is written over and what is incorporated as new information.
+We can apply this control over what we overwrite and what instead we retain from the old state when meet new data using a form of RNN called **gated recursive neural networks**.
+Gated networks adds _gates_ controlling the flow of information.
+Its simplest implementation can be written as:
+
+$g_t = \text {sigmoid}(W^{g,s}s_{t-1}+W^{g,x}x_{t})  =  \frac{1}{1 + e^{-(W^{g,s}s_{t-1}+W^{g,x}x_{t})}}$
+
+$s_t = (1-g_ t) \odot s_{t-1} + g_ t \odot \tanh (W^{s,s}s_{t-1} + W^{s,x}x_t)$
+
+Where the first equation defines a **gate** responsible to filter in the new information (trough its own parameters to be learn as well) and results in a continuous value between 0 and 1.
+
+The second equation then uses the gate to define, for each individual value of the state vector (the $\odot$ symbol stands for element-wise multiplication), how much to retain and how much to update with the new information. For example, if $g_t[2]$ (the second element of the gate at the $t$ transformation) is $0$ (an extreme value!), it means we keep in that transformation the old value of the state for the second element, ignoring the transformation deriving from the new information.
+
+#### Long Short Term Memory neural networks
+
+Real in-use gated RNN are even more complicated. In particular, **Long Short Term Memory** (recursive neural) networks (shortered as LSTM) are well-suited to classifying, processing and making predictions based on time series data, since there can be lags of unknown duration between important events in a time series and have the following gates defined:
+
+$\begin{split}
+ f_t  & = & sigmoid(W^{f,h} h_{t-1} + W^{f,x} x_{t}) & ~\text{forget gate}\\
+ i_t  & = & sigmoid(W^{i,h} h_{t-1} + W^{i,x} x_{t}) & ~\text{input gate}\\
+ o_t  & = & sigmoid(W^{o,h} h_{t-1} + W^{o,x} x_{t}) & ~\text{output gate}\\
+ c_t  & = & f_ t \odot c_{t-1} + i_ t \odot \tanh (W^{c,h}h_{t-1} + W^{c,x}x_t) & ~\text{memory cell}\\
+ h_t  & = & o_t \odot tanh(c_t) & ~\text{visible state}\\
+\end{split}$
+
+The input, forget, and output gates control respectively how to read information into the memory cell, how to forget information that we've had previously, and how to output information from the memory cell into a visible form.
+
+The "state" is now represented collectively by the memory cell $c_t$ 'sometimes indicated as _long-term memory_) and its "visible" state $h_t$ (sometimes indicated as _working memory_ or _hidden state_).
+
+LSTM cells have hence the following diagram:
+
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 03 - Neural networks/assets/LSTM_cell.png" width="500"/>
+
+The memory cell update is helpful to retain information
+over a longer sequences.
+But we keep his memory cell hidden and instead only reveal the visible portion of this tape. And it is this $h_t$ then at the end of the whole sequence applying this box along the sequence that we will use as the vector representation for the sequence.
+
+On the LSTM topic one could also look at these external resources:
+
+- http://blog.echen.me/2017/05/30/exploring-lstms/
+- https://colah.github.io/posts/2015-08-Understanding-LSTMs/
+- https://machinelearningmastery.com/handle-long-sequences-long-short-term-memory-recurrent-neural-networks/
+
+#### Key things
+
+- Neural networks for sequences: encoding
+- RNNs, unfolded
+  - state evolution, gates
+  - relation to feed-forward neural networks
+  - back-propagation (conceptually)
+- Issues: vanishing/exploding gradient
+- LSTM (operationally)
+
+---
+
+- RNN's turn sequences into vectors (encoding)
+- They can be understood as feed-forward neural networks whose architecture has changed from one sequence to another
+- Can be learned with back-propagation of the error signal like for feedforward NN
+- They too suffer of vanishing or exploding gradient issues
+- Specific architectures such as the LSTM  maintain a better control over the information that's retained or updated along the sequence, and they are therefore easier to train
+
+
 
 ## Lecture 11. Recurrent Neural Networks 2
 

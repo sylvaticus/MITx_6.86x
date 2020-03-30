@@ -46,3 +46,12 @@ scatter(Fa[:,1],Fa[:,2], colour=colors, label="", title="Out a")
 scatter(Fb[:,1],Fb[:,2], colour=colors, label="", title="Out b")
 scatter(Fc[:,1],Fc[:,2], colour=colors, label="", title="Out c")
 scatter(Fe[:,1],Fe[:,2], colour=colors, label="", title="Out e")
+
+
+## Lecture 10 Recurrent Neural Network
+
+### 10.5
+
+a = tanh(6)
+
+b = tanh(2)
