@@ -465,6 +465,47 @@ On the LSTM topic one could also look at these external resources:
 
 ## Lecture 11. Recurrent Neural Networks 2
 
+### 11.1. Objective
+
+From Markov model to recurrent neural networks (RNNs)
+
+- Formulate, estimate and sample sequences from Markov models.
+- Understand the relation between RNNs and Markov model for generating sequences.
+- Understand the process of decoding of RNN in generating sequences.
+
+### 11.2. Markov Models
+While in the last lesson we saw how to transform a sentence into a vector, in a parametrized way that can be optimized for what we want the vector to do, today we're going to be talking about how to generate sequences using recurrent neural networks (decoding). For example, in the translation domain, how to unravel the output vector as a sentence in an other language.
+
+One way to implement prediction in a sequence is to just first define probabilities for any possible combination looking at existing data (for example, in a next word prediction, look at all two-word combinations in a serie of texts) and then, once we observe a case, sample the next element from this discrete probability function.
+
+#### Markov textual bigram model exemple
+
+In this example we want to predict the next word based exclusively on the previous one.
+
+We first learn the probability of any pair of words from data ("corpus"). For practical reasons, we consider a vocabulary $V$ of the $n$ more frequent words (and symbols), labelling all the others as `UNK` (for unknown). To this vocabulary we also add two special symbols `<beg>` and `<end>` to mark respectively the beginning and the ending of the sentence.
+So a pair `(<beg>,w)` would represent a word $w \in V$ starting the sentence and `(w,<end>)` would represent the world $w$ ending the sentence.
+
+We can now estimate the probability for each words $w$ and $w^\prime \in V$ that $w^\prime$ follows $w$, that is the conditional probability that next word is $w^\prime$ given the previous one was $w$, by a normalised counting of the successive occurrences of the pair $(w,w^\prime)$ (matching statistics):
+
+$\hat P(w^\prime|w) = \frac{count(w,w^\prime)}{\sum_{w_i \in V} count(w,w_i)}$
+
+For a bigram we would obtain a probability table like the following one:
+
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 03 - Neural networks/assets/markov_bigram_probabilities.png" width="500"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Homework 4
 
 ## Lecture 12. Convolutional Neural Networks
