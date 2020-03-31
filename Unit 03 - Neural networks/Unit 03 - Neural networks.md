@@ -367,7 +367,7 @@ While this lecture deals with **encoding**, the mapping of a sequence to a featu
 
 ### 10.4. Encoding with RNN
 
-While in feedforward neural network the input is only at the beginning of the chain and the parameter matrix $W$ is different at each layer, in recurrent neural networks the "external input" arrives at each layer and contribute to the argument of the activation function together with the flow of information coming from the previous layer.
+While in feedforward neural network the input is only at the beginning of the chain and the parameter matrix $W$ is different at each layer, in recurrent neural networks the "external input" arrives at each layer and contribute to the argument of the activation function together with the flow of information coming from the previous layer (_recurrent_ refers to this state information that, properly transformed, flows across the various layers).
 
 One simple implementation of each layer transformation (that here we can see it as an "update") is hence (omitting the offset parameters):
 
@@ -376,7 +376,7 @@ $s_ t = \tanh (W^{s,s}s_{t-1} + W^{s,x}x_ t)$
 Where:
 
 - $s_{t-1}$ is a  $m \times 1$ vector of the old "context" or "state" (the data coming from the previous layer)
-- $W^{s,s}$ is a  $m \times m$ matrix of the weights associated to the existing state, whose role is to deciding what part of the previous information should be keep (and note that this is not changing in each layer. It is _recurrent_ across the chain.). Can also be interpreted as giving how the state would evolve in absence of any new information.
+- $W^{s,s}$ is a  $m \times m$ matrix of the weights associated to the existing state, whose role is to deciding what part of the previous information should be keep (and note that this is not changing in each layer.). Can also be interpreted as giving how the state would evolve in absence of any new information.
 - $x_t$ is a $d \times 1$ feature representation of the new information (e.g. a new word)
 - $W^{s,x}$ is a $m \times m$ weights whose role is deciding how to take into account the new information, so that the result of $wx$ multiplication is specific to each new information arriving;
 - $tanh(\cdot)$ is the activation function (to be applied elementwise)
@@ -474,24 +474,129 @@ From Markov model to recurrent neural networks (RNNs)
 - Understand the process of decoding of RNN in generating sequences.
 
 ### 11.2. Markov Models
+
+#### Outline
+
+- Modeling sequences: language models
+  - Markov models
+  - as neural networks
+  - hidden state, Recurrent Neural Networks (RNNs)
+- Example: decoding images into sentences
+
 While in the last lesson we saw how to transform a sentence into a vector, in a parametrized way that can be optimized for what we want the vector to do, today we're going to be talking about how to generate sequences using recurrent neural networks (decoding). For example, in the translation domain, how to unravel the output vector as a sentence in an other language.
 
-One way to implement prediction in a sequence is to just first define probabilities for any possible combination looking at existing data (for example, in a next word prediction, look at all two-word combinations in a serie of texts) and then, once we observe a case, sample the next element from this discrete probability function.
+#### Markov models
+
+One way to implement prediction in a sequence is to just first define probabilities for any possible combination looking at existing data (for example, in a next word prediction - "language modelling", look at all two-word combinations in a serie of texts) and then, once we observe a case, sample the next element from this conditional (discrete) probability distribution. This is a first order Markov model.
 
 #### Markov textual bigram model exemple
 
 In this example we want to predict the next word based exclusively on the previous one.
 
-We first learn the probability of any pair of words from data ("corpus"). For practical reasons, we consider a vocabulary $V$ of the $n$ more frequent words (and symbols), labelling all the others as `UNK` (for unknown). To this vocabulary we also add two special symbols `<beg>` and `<end>` to mark respectively the beginning and the ending of the sentence.
+We first learn the probability of any pair of words from data ("corpus"). For practical reasons, we consider a vocabulary $V$ of the $n$ more frequent words (and symbols), labelling all the others as `UNK` (a catch-all for "unknown"). To this vocabulary we also add two special symbols `<beg>` and `<end>` to mark respectively the beginning and the ending of the sentence.
 So a pair `(<beg>,w)` would represent a word $w \in V$ starting the sentence and `(w,<end>)` would represent the world $w$ ending the sentence.
 
 We can now estimate the probability for each words $w$ and $w^\prime \in V$ that $w^\prime$ follows $w$, that is the conditional probability that next word is $w^\prime$ given the previous one was $w$, by a normalised counting of the successive occurrences of the pair $(w,w^\prime)$ (matching statistics):
 
 $\hat P(w^\prime|w) = \frac{count(w,w^\prime)}{\sum_{w_i \in V} count(w,w_i)}$
 
+(we could be a bit smarter and consider at the denominator only the set of pairs whose first element is $w$ rather than the whole $V \in n^2$)
+
 For a bigram we would obtain a probability table like the following one:
 
 <img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 03 - Neural networks/assets/markov_bigram_probabilities.png" width="500"/>
+
+At this point we can generate a sentence by each time sampling from the conditional probability mass function  of the last observed word, starting with `<beg>` (first row in the table) and until we sample a `<end>`.
+
+We can use the table also to define the probability of any given sentence by just using the probability multiplication rule. The probability of any $N$ words sentence (including `<beg>` and `<end>`) is then $P = \prod_{i=2}^N P(w_i|w_{i-1})$.
+For example, given the above table, the probability of the sentence "Course is great" would be $0.1 * 0.7 * 0.6 * 0.2$.
+
+Note that, using the counting approach, the model maximise the probability that the generated sequences correspond to the observed sequences in the corpus, i.e. counting corresponds here to the Maximum Likelihood Estimation of the conditional probabilities.
+Also, the same approach can be used to model words characted by character rather than sentences world by world.
+
+
+#### Outline detailed
+
+In this segment we considered language modelling, using the very simple sequence model called Markov model.
+In the next segments of this lecture we're going to turn those Markov models into a neural network models, first as feed-forward neural network models.
+And then we will add a hidden state and turn them into recurrent neural network models.
+And finally, we'll just consider briefly an example of unraveling a vector representation, in this case, coming from an image to a sequence.
+
+### 11.3. Markov Models to Feedforward Neural Nets
+
+We can represent the first order Markov model described in the previous segment as a feed-forward neural network,
+
+We start by a one-hot encoding of the words, i.e. each input word would activate one unique node on the input layer of the network ($\mathbf{x}$). In other words, if the vocabulary is composed of $K$ words, the input layer of the neural network has width $K$, and it is filed all with zeros except for the specific word encoded as 1.
+
+We want as output of the neural network the PMF conditional to that specific word in the input. So the output layer has too one unit for each possible word, returning each node the probability that the next word is that specific one given that the previous one was those encoded in $x$: $P_k = P(w_i = k| w_{i-1})$
+
+Given the weights of this neural network W (not to be confused with the words $w$), the argument of the activation function of each node of the output layer is $z_k = \mathbf{x} \cdot \mathbf{W}_k + W_{0,k}$.
+
+These $z$ are real numbers. To transform in probabilities (all positive, sum equal to 1) we use as activation function the non-linear Softmax function:
+
+$P_k = \frac{e^{Z_k}}{\sum_{j=1}^K e^{Z_j}}$
+
+(and the output layer is then called **softmax output layer**).
+
+#### Advantages of neural network representation
+
+**Frexibility**
+
+We can use as input of the neural network a vector x coposed of the one-hot econding of the previous world, _plus_ the vector of the one-hot encoding of the second previous word, obtaining the probability that the next word is $w_k$ conditional to the two preceding words (roughly similar to a second order Markov model).
+
+Further, we could also insert an hidden layer in between th input and output layers, in order to look at more complex combinations of the preceding two words, in terms of how they are mapped to the probability values over the next word.
+
+**Parsimony**
+
+For the tri-gram model above, the neural network would need a weight matrix $W$ of $2K \times K$ parameters, i.e; a total og $2K^2$ parameters.
+
+Using a second order Markov model would require instead $K^3$ parameters: we take two preceding words, and for any such combination, we predict a probability of what the next word is. So if we have here the possible words roughly speaking, then each combination of preceding words, the square root of them, and then for each of those combinations, we have to have a probability value of each of the next words.
+So we will look at that times the number of parameters in the tri-gram model. So roughly, the number of words to the power of 3.
+
+As a result, the neural network representation for a tri-gram model is not as general, but it is much more feasible in terms of the number of parameters that we have to estimate. But we can always increase the complexity of the model in the neural network representation by adding a hidden layer.
+
+### 11.4. RNN Deeper Dive
+
+We can now translate the feedforward rural network in a Recursive Neural Network that accepts a _sequence_ of words as input and can account for a variable history in making predictionsfor the next word rather than on a fixed number of elements (as 1 or 2 in bigrams and trigrams respectively).
+
+The framework is similar to the RNN we saw in the previous lesson, with a state (initially set to $\mathbf{0} \in R^K$)
+that is updated, at each new information, with a function of the previous state and the new observed word (typically with something like $s_t = tanh(W^{s,s}s_{t-1} + W^{s,w} x_t)$ ). Note that $x_t$ is the one hot encoding of the new observed word.
+
+The difference is that in addition, at each step, we have also an output that transforms the state in probability (representing the new, conditional PMF): $p_t = softmax(W^0 s_t)$.
+
+Note that the state here retains information of all the history of the sentence, hence the probability is conditional to all the previous history in the sentence.
+
+In other words, while $W^{s,s}$ and $W^{s,w}$ role is to select and encode the relevant features from the previous history and the new data respectively, $W^0$ role is to extract the relevant features from the memorised state with the aim of making a prediction.
+
+Finally we can have more complex structures, like LSTM networks, with forget, input and output gates and the state divided in a memory cell and a visible state. Also in this case we would however have a further transformation that output the conditional PMF as function of the visible state ($p_t = softmax(W^0 h_t)$).
+
+Note that the training phase is done computing the average loss at the level of sentences, i.e. our labels are the full sentences, and are these that are compared in the loss function with those obtained by sampling the PMFs resulting from the RNN.
+While in _training_ we use the true words specified as input for the next time step, in _testing_ instead we let the rural network to predict the sentence on its own, using the sampled output at one time step as the input for the next step.
+
+
+### 11.5. RNN Decoding
+
+The question is how to use now these (trained) RNN models to generate a sentence from a given encoded state (e.g. in testing)?
+
+The only difference is that the initial state is not a vector of zero, but the "encoded sentence". We just start with that state and the `<beg>` symbol as $x$ and then let the RNN produce a PDF, sample from that and use that sampled data as the new $x$ for the next step and so on until we sample an `<end>`.
+
+We don't just have to take a vector from a sentence and translate it into another sentence.
+We can take a vector of representation of an image that we have learned or are learning in the same process and translate that into a sentence.
+
+So we could take an image, translate into a state using a convolutional neural network and then this state is the initial state of an other neural network predicting the caption sentence associated to that image (e.g. "A person riding a motorcycle on a dirt road")
+
+#### Key summary
+
+- Markov models for sequences
+  - how to formulate, estimate, sample sequences from
+- RNNs for generating (decoding) sequences
+  - relation to Markov models (how to translate Markov models into RNN )
+  - evolving hidden state
+  - sampling from the RNN at each point
+- Decoding vectors into sequences (once we have this architecture that can generate sequences, such as sentences, we can start any vector coming from a sentence, image, or other context and unravel it as a sequence, e.g. as a natural language sentence.)
+
+
+
 
 
 
