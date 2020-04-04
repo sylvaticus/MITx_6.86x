@@ -618,15 +618,15 @@ The problem: image classification, i.e. multi-way classification of images mappi
 
 Why we don't use "normal" feed-forward neural networks ?
 
-1. It would need too many parameters.
+1. _It would need too many parameters_.
 If an image is mid-size resolution $1000 \times 1000$, each layer would need a weight matrix connecting all these 10^6 pixel in input with 10^6 pixel in output, i.e. 10^12 weights
-2. Local learning (in the image) would not extend to global learning. If we train the network to recognise cars, and it happens that our training photos have the cars all in the bottom half, then the network would not recognise a car in the top half, as these would activate different neurons.
+2. _Local learning (in the image) would not extend to global learning_. If we train the network to recognise cars, and it happens that our training photos have the cars all in the bottom half, then the network would not recognise a car in the top half, as these would activate different neurons.
 
-We solve these problems employing specialised network architectures called convolution neural network.
+We solve these problems employing specialised network architectures called **convolution neural network**.
 
-In these networks the layer $l$ is obtained by operating over the image at layer $l-1$ a small **filter** (or **kernel**) that is slid across the image with a step of 1 (typically) or more pixels at the time. The step is called **stride**, while the whole process of sliding the filter can be mathematically seen as a **convolution**.
+In these networks the layer $l$ is obtained by operating over the image at layer $l-1$ a small **filter** (or **kernel**) that is slid across the image with a step of 1 (typically) or more pixels at the time. The step is called **stride**, while the whole process of sliding the filter throughout the whole image can be mathematically seen as a **convolution**.
 
-So, while we slide the filter, at each location of the filter, the output is composed of the dot product between the values of the filter and the corresponding location in the image (both vectorised), where the values of the filters are the weigths that we want to learn, and they remain constant across the sliding. If our filter is a $10 \times 10$ matrix, we have only 10 weights to learn by layer (plus one for the offset). As in feedforward neural network then the dot product undergo an activation function, here typically the ReLU function ($max(0,x)$).
+So, while we slide the filter, at each location of the filter, the output is composed of the dot product between the values of the filter and the corresponding location in the image (both vectorised), where the values of the filters are the weigths that we want to learn, and they remain constant across the sliding. If our filter is a $10 \times 10$ matrix, we have only 10 weights to learn by layer (plus one for the offset). Exactly as for feedforward neural networks, then the dot product is passed through an activation function, here typically the `ReLU` function ($max(0,x)$) rather than `tanh`.
 
 For example, given an image $x =
 \begin{bmatrix}
@@ -656,13 +656,30 @@ Finally, the output of the layer would be (using ReLU) $\begin{bmatrix}
  0 &  5 & 0 \\
 \end{bmatrix}$.
 
-You can notice that we obtain a dimensionality reduction applying the filter, that depends on the dimension of the filter and the stride (sliding step). In order to avoid this a padding of zeros can be applied to the image in order to keep the same dimensions in the output (in the above example a padding of one zeros on both sides - and both dimensions - would suffice).
+For example you can obtain the above with the following Julia code:
 
-Because the weight of the filters are the same, it doesn't really matter where the object is learned, in which part of the image. The lecture explains this with a mushroom example: ff the mushroom is in a different place, in a feed-forward neural network the weight matrix parameters at that location need to learn to recognize the mushroom anew. With convolutional layers, we have translational invariance as the same filter is passed over the entire image. Therefore, it will detect the mushroom regardless of location.
+    ReLU(x) = max(0,x)
+    x = [1 1 2 1 1;
+         3 1 4 1 1;
+         1 3 1 2 2;
+         1 2 1 1 1;
+         1 1 2 1 1]
+    w = [ 1 -2  0;
+          1  0  1;
+         -1  1  0]
+    (xr,xc) = size(x)
+    (wr,wc) = size(w)
+    z = [sum(x[r:r+wr-1,c:c+wc-1] .* w) for c in 1:xc-wc+1 for r in 1:xr-wr+1] # Julia is column mayor
+    u = ReLU.(z)
+    final = reshape(u, 1:xr-wr+1, 1:xc-wc+1)
+
+You can notice that, applying the filter, we obtain a dimensionality reduction. This reduction depends on both the dimension of the filter and the stride (sliding step). In order to avoid this, a padding of one or more zeros can be applied to the image in order to keep the same dimensions in the output (in the above example a padding of one zeros on both sides - and both dimensions - would suffice).
+
+Because the weight of the filters are the same, it doesn't really matter where the object is learned, in which part of the image. The lecture explains this with a mushroom example: ff the mushroom is in a different place, in a feed-forward neural network the weight matrix parameters at that location need to learn to recognize the mushroom anew. With convolutional layers, we have translational invariance as the same filter is passed over the entire image. Therefore, it will detect the mushroom regardless of its location.
 
 Still, it is often convenient to operate some **data augmentation** to the training set, that is to add slightly modified images (rotated, mirrored..) in order to improve this translational invariance.
 
-An further way  to improve translational invariance, but also have some dimensionality reduction, it called **pooling** and is adding a layer with a filter whose output is the max of the corresponding area in the input. Note that this layer would have no weights!
+A further way  to improve translational invariance, but also have some dimensionality reduction, it called **pooling** and is adding a layer with a filter whose output is the `max` of the corresponding area in the input. Note that this layer would have no weights!
 With pooling we contribute to start separating what is in the image from where it is in the image, that is pooling does a fine-scale, local translational invariance, while convolution does more a large-scale one.
 
 Keeping the output of the above example as input, a pooling layer with a $2 \times 2$ filter and a stride of 1 would result in $\begin{bmatrix}
@@ -679,28 +696,28 @@ Concerning the topic of CNN, see also the superb lecture of Andrej Karpathy on Y
 ### 12.3. CNN - Continued
 
 
-CNN's are architectures combine these type of layers successively in a variety of different ways.
+CNN's architectures combine these type of layers successively in a variety of different ways.
 
-Typically one single layer is formed by applying multiple filter, not just one. This is because we want to learn different kind of features.. for example one filter will activated to catch vertical lines in the image, an other obliques ones.. and maybe an other different colours. And by the way the image and the filter have normally a further dimensions to account for colour (typically of size 3):
+Typically, one single layer is formed by applying multiple filter, not just one. This is because we want to learn different kind of features.. for example one filter will specialize to catch vertical lines in the image, an other obliques ones.. and maybe an other different colours. Indeed in real implementation, both the image and the filter have normally a further dimensions to account for colours, so they can modelled as volumes rather than areas:
 
 <img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 03 - Neural networks/assets/convolutional_filters.png" width="500"/>
 
-96 convolutional filters on the first layer (filters are of size 11x11x3, applied across input images of size 224x224x3). They all have been learned from random initialisation.
+96 convolutional filters on the first layer (filters are of size 11x11x3, applied across input images of size 224x224x3). They all have been learned starting from random initialisation.
 
 So in each layer we are going to map the original image into multiple feature maps where each feature map is generated by a little weight matrix, the filter, that defines the little classifier that's run through the original image to get the associated feature map. Each of these feature maps defines a channel for information.
 
 I can then combine these convolution, looking for features, and pooling,
 compressing the image a little bit, forgetting the information of where things are, but maintaining what is there.
 
-These layers are finally followed by some "normal", "fully connected" layers (_à la_ feed-forward neural network) and a final softmax layer indicating the probability that each image represents one of the possible categories (there could be thousand of them).
+These layers are finally followed by some "normal", "fully connected" layers (_à la_ feed-forward neural networks) and a final `softmax` layer indicating the probability that each image represents one of the possible categories (there could be thousand of them).
 
-The best network implementation are tested in so called "competitions"; like the yearly ImageNet context.
+The best network implementation are tested in so called "competitions", like the yearly ImageNet context.
 
 Note that we can train this networks exactly like for feedformard NN, defining a loss function and finding the weights that minimise the loss function. In particular we can apply the stochastic gradient descendent algorithm (with a few tricks based on getting pairs of image and the corresponding label), where the gradient with respect to the various parameters (weights) is obtained by backpropagation.
 
 #### Take home
 
-- Understand what a convolution is
+- Understand what a convolution is;
 - Understand the pooling, that tries to generate a slightly more compressed image forgetting where things are, but maintaining information about what's there, what was activated.
 
 
@@ -708,9 +725,9 @@ Note that we can train this networks exactly like for feedformard NN, defining a
 
 Convolution (of continuous functions): $(f*g)(t) := \int_{-\infty}^{\infty} f(\tau )g(t-\tau )d\tau$
 
-Cross-correlation: $(f*g)(t) := \int_{-\infty}^{\infty} f(\tau )g(t+\tau )d\tau$ (i.e. the g function is not reversed)
+Cross-correlation: $(f*g)(t) := \int_{-\infty}^{\infty} f(\tau )g(t+\tau )d\tau$ (i.e. like convolution, but where the g function is not reversed)
 
-In neural network we use the cross-correlation rather than the convolution. Indeed, in such context $f$ is he data signal and $g$ is the filter. But the filter needs to be learn, so if it expressed straight or reversed doesn't really matter, so we just use the cross-correlation and save one operation.
+In neural network we use the cross-correlation rather than the convolution. Indeed, in such context, $f$ is the data signal and $g$ is the filter. But the filter needs to be learn, so if it is expressed straight or reversed, doesn't really matter, so we just use the cross-correlation and save one operation.
 
 #### 1-D Discrete version
 
@@ -734,7 +751,7 @@ h(t=4) 0|           1 2
 
 In 2-D the cross correlation becomes:  $(f*g)(x,y) := \sum_{\tau_1 = -\infty}^{\infty} \sum_{\tau_2 = -\infty}^{\infty}f(\tau_1,\tau_2 )g(\tau_1+x,\tau_2 + y )$.
 
-Graphically it is the sliding of the filter (first row, left to right, second row, left to right, ...) that we saw in the previous segment.
+Graphically, it is the sliding of the filter (first row, left to right, second row, left to right, ...) that we saw in the previous segment.
 
 
 

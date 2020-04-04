@@ -161,17 +161,18 @@ h(1) 5|   1 2
 h(2) 8|     1 2
 h(3) 3|       1 2
 
+
+ReLU(x) = max(0,x)
 x = [1 1 2 1 1;
      3 1 4 1 1;
      1 3 1 2 2;
      1 2 1 1 1;
      1 1 2 1 1]
-
 w = [ 1 -2  0;
       1  0  1;
      -1  1  0]
-
 (xr,xc) = size(x)
 (wr,wc) = size(w)
-
-z = [sum(x[r:r+wr-1,c:c+wc-1] .* w) for r in 1:xr-wr+1 for c in 1:xc-wc+1]
+z = [sum(x[r:r+wr-1,c:c+wc-1] .* w) for c in 1:xc-wc+1 for r in 1:xr-wr+1] # Julia is column mayor
+u = ReLU.(z)
+final = reshape(u, 1:xr-wr+1, 1:xc-wc+1)
