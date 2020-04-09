@@ -671,7 +671,9 @@ For example you can obtain the above with the following Julia code:
     (wr,wc) = size(w)
     z = [sum(x[r:r+wr-1,c:c+wc-1] .* w) for c in 1:xc-wc+1 for r in 1:xr-wr+1] # Julia is column mayor
     u = ReLU.(z)
-    final = reshape(u, 1:xr-wr+1, 1:xc-wc+1)
+    final = reshape(u, xr-wr+1, xc-wc+1)
+
+(You can play with the above code snippet online without registration on https://bitly.com/convLayer)
 
 You can notice that, applying the filter, we obtain a dimensionality reduction. This reduction depends on both the dimension of the filter and the stride (sliding step). In order to avoid this, a padding of one or more zeros can be applied to the image in order to keep the same dimensions in the output (in the above example a padding of one zeros on both sides - and both dimensions - would suffice).
 
@@ -725,7 +727,7 @@ Note that we can train this networks exactly like for feedformard NN, defining a
 
 Convolution (of continuous functions): $(f*g)(t) := \int_{-\infty}^{\infty} f(\tau )g(t-\tau )d\tau$
 
-Cross-correlation: $(f*g)(t) := \int_{-\infty}^{\infty} f(\tau )g(t+\tau )d\tau$ (i.e. like convolution, but where the g function is not reversed)
+Cross-correlation: $(f*g)(t) := \int_{-\infty}^{\infty} f(\tau )g(t+\tau )d\tau$ (i.e. like convolution, but where the g function is not reversed/flipped)
 
 In neural network we use the cross-correlation rather than the convolution. Indeed, in such context, $f$ is the data signal and $g$ is the filter. But the filter needs to be learn, so if it is expressed straight or reversed, doesn't really matter, so we just use the cross-correlation and save one operation.
 

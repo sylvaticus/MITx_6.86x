@@ -175,4 +175,4 @@ w = [ 1 -2  0;
 (wr,wc) = size(w)
 z = [sum(x[r:r+wr-1,c:c+wc-1] .* w) for c in 1:xc-wc+1 for r in 1:xr-wr+1] # Julia is column mayor
 u = ReLU.(z)
-final = reshape(u, 1:xr-wr+1, 1:xc-wc+1)
+final = reshape(u, xr-wr+1, xc-wc+1)
