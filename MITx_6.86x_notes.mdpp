@@ -1,0 +1,78 @@
+<!--
+sudo -H python3 -m pip install MarkdownPP
+markdown-pp -o MITx_6.86x_notes.md MITx_6.86x_notes.mdpp -e latexrender
+
+changes in MarkdownPP source code:
+
+sudo gedit /usr/local/lib/python3.6/dist-packages/MarkdownPP/Modules/TableOfContents.py
+
+section = (".".join([str(x) for x in stack]) +
+           ".%d\\. " % headernum)
+sectionintoc = "".join("   " for x in stack)+"- "
+sectioninbody = ""
+
+#tocdata += ("%s [%s](#%s)  \n" %
+#            (section, TableOfContents.clean_title(title), short))
+tocdata += ("%s [%s](#%s)  \n" %
+        (sectionintoc, TableOfContents.clean_title(title), short))
+
+#transforms.append(Transform(linenum, "swap",
+#                  data[linenum].replace(title, section + title)))
+transforms.append(Transform(linenum, "swap",
+              data[linenum].replace(title, sectioninbody + title)))
+transforms.append(Transform(linenum, "prepend",
+              "<a name=\"%s\"></a>\n\n" % short))
+
+
+-->
+
+----
+
+# MITx 6.86x - Machine Learning with Python: from Linear Models to Deep Learning
+
+https://www.edx.org/course/machine-learning-with-python-from-linear-models-to
+
+Lecturers: [Regina Barzilay](https://www.edx.org/bio/regina-barzilay), [Tommi Jaakkola](https://www.edx.org/bio/tommi-jaakkola), [Karene Chu](https://www.edx.org/bio/karene-chu)
+
+
+**Student's notes (2020 run)**
+
+_Disclaimer: The following notes are a mesh of my own notes, selected transcripts, some useful forum threads and various course material. I do not claim any authorship of these notes, but at the same time any error could well be arising from my own interpretation of the material._
+
+**Contributions are really welcome**. If you spot an error , want to specify something in a better way (English is not my primary language), add material or just have comments, you can clone, make your edits and make a pull request (preferred) or just open an issue.
+
+(This PDF versions may be outdated ! Please refer to the [GitHub repository source files](https://github.com/sylvaticus/MITx_6.86x) for latest version.)
+
+## Table of contents
+
+<!-- manual TOC
+1. [Introduction](#introduction)
+2. [Some paragraph](#paragraph1)
+    1. [Sub paragraph](#subparagraph1)
+3. [Test paragraph](#test)
+
+1. [Introduction](#test)
+
+-->
+
+----
+
+!TOC
+
+----
+
+!INCLUDE "Unit 00 - Course Overview, Homework 0, Project 0/Unit 00 - Course Overview, Homework 0, Project 0.md", 1
+
+----
+
+!INCLUDE "Unit 01 - Linear Classifiers and Generalizations/Unit 01 - Linear Classifiers and Generalizations.md", 1
+
+----
+
+!INCLUDE "Unit 02 - Nonlinear Classification, Linear regression, Collaborative Filtering/Unit 02 - Nonlinear Classification, Linear regression, Collaborative Filtering.md", 1
+
+----
+
+!INCLUDE "Unit 03 - Neural networks/Unit 03 - Neural networks.md", 1
+
+----

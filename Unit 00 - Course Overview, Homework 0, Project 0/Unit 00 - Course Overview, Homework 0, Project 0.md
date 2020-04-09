@@ -133,7 +133,7 @@ On this subject see also:
 - https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/dot-cross-products/v/point-distance-to-plane
 
 
-## Loss Function, Gradient Descent, and Chain Rule
+## Loss Function, Gradient Descent, and Chain Rule  <a name="test"></a>
 
 **Loss Function**
 

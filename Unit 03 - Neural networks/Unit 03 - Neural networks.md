@@ -451,15 +451,13 @@ On the LSTM topic one could also look at these external resources:
 - Issues: vanishing/exploding gradient
 - LSTM (operationally)
 
----
+In other words:
 
 - RNN's turn sequences into vectors (encoding)
 - They can be understood as feed-forward neural networks whose architecture has changed from one sequence to another
 - Can be learned with back-propagation of the error signal like for feedforward NN
 - They too suffer of vanishing or exploding gradient issues
 - Specific architectures such as the LSTM  maintain a better control over the information that's retained or updated along the sequence, and they are therefore easier to train
-
-
 
 ## Lecture 11. Recurrent Neural Networks 2
 

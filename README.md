@@ -13,6 +13,10 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 
 (PDF versions may be slightly outdated)
 
+[PDF all in one document](MITx_6.86x_notes.md.pdf)
+
+By unit:
+
 - Unit 00 - Course Overview, Homework 0, Project 0:  [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200.md)][[pdf](Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200.md.pdf)][[src](Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200.md)]
 
 - Unit 01 - Linear Classifiers and Generalizations:  [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations.md)][[pdf](Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations.md.pdf)][[src](Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations.md)]
