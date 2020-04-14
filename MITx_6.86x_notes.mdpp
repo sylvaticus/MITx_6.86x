@@ -34,14 +34,17 @@ https://www.edx.org/course/machine-learning-with-python-from-linear-models-to
 
 Lecturers: [Regina Barzilay](https://www.edx.org/bio/regina-barzilay), [Tommi Jaakkola](https://www.edx.org/bio/tommi-jaakkola), [Karene Chu](https://www.edx.org/bio/karene-chu)
 
+Notes assembled by: [Antonello Lobianco](http://lobianco.org/antonello)
 
 **Student's notes (2020 run)**
 
-_Disclaimer: The following notes are a mesh of my own notes, selected transcripts, some useful forum threads and various course material. I do not claim any authorship of these notes, but at the same time any error could well be arising from my own interpretation of the material._
+_Disclaimer: The following notes are a mesh of my own notes, selected transcripts, some useful forum threads and various course material. I do not claim any authorship of these notes, but at the same time any error could well be arising from my own interpretation of the course material._
 
 **Contributions are really welcome**. If you spot an error , want to specify something in a better way (English is not my primary language), add material or just have comments, you can clone, make your edits and make a pull request (preferred) or just open an issue.
 
 (This PDF versions may be outdated ! Please refer to the [GitHub repository source files](https://github.com/sylvaticus/MITx_6.86x) for latest version.)
+
+----
 
 ## Table of contents
 
@@ -55,7 +58,6 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 
 -->
 
-----
 
 !TOC
 
