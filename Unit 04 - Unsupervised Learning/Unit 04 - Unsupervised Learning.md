@@ -34,6 +34,8 @@ In unsupervised learning, we will still have a training set, but we will not hav
 
 So in this case, we are provided with just a set of feature vectors, and we are trying to learn some meaningful structure which would represent this set. In this lesson in particolar we will cover _clustering_ algorithms.
 
+We will first start from the definition of a cluster.
+
 While in a _classification_ problem we already have the possible categories and the label associated to it in the training data, in clustering we need to find a structure in the data and associate it with features of the data itself, in order to predict the category from the data itself without the need for a explicit label.
 
 For example take this chart:
@@ -44,7 +46,7 @@ It is intuitive that the points belong to two different categories, in this case
 
 Similarly, in many cases the meaningful structure is actually quite intuitive in the context of a specific application.
 
-Find a structure is however not enough. We need to be able to describe how the structure we found is good in representing the data, how good is the cluster, the partitioning of the data. And we will need for that a measure of similarity between points.
+Find a structure is however not enough. We need to be able to describe how the structure we found is good in representing the data, how good is the cluster, the partitioning of the data (the "clustering cost"). And we will need for that a measure of similarity between points.
 
 We will finish the lecture dealing with the K-means algorithm, an important and widely used algorithm which actually can take any set of training point and find a partitioning to K clusters.
 
@@ -75,7 +77,85 @@ Still, to get the compressed image we need to undergo the three steps described 
 
 ### 13.5. Clustering Definition
 
+There are two concepts related to a cluster. The first one is the partitioning of the data, how the different data records are distributed among the clusters. The second one is the representativeness, how we aggregate the cluster members in a representative element per each cluster.
 
+#### Partitioning
+
+Let's $S_n = \{x^{(i)} | i = 1,...,n\}$ be the set of $n$ feature vectors indexed by $i$ and $C_K = \{C_j | j=1,...,K\}$ being the set of K clusters containing the _indexes_ of the data points, then $C_1,...,C_j,...,C_K$ forms a K-partition of the data if, at the same time, their union contain all the data indexes and their intersection is empty: $\cup (C_1,...,C_j,...,C_K) = \{1,2,...,n\}$ and $\cap (C_1,...,C_j,...,C_K) = \{\}$
+
+This partitioning define a so-called **hard clustering**, where every element just
+belongs to one cluster.
+
+#### Representativeness
+
+The representativeness view of clustering is the problem of how to select the feature vector to be used as representative of the cluster, like the new story to put as header on each event in Google News or the colour to be use for each palette item.
+Note that the representative element for each cluster doesn't necessarily be one existing element of the cluster set, can be also a combination of them, like the average.
+
+We will see later in this lesson what is the connection between these two views.
+Clearly they are connected, because if you know what is your partitioning, you may be able to guess who is the representative.
+If you know who is a representative, you may be able to guess who is a constituent, but we will see how we can actually unify these two views together.
+
+Note that finding the optimal number of K is itself another problem, as $K$ is not part of the clustering algorithm, it is an input (parameter) to it. That is, K is a hyperparameter of the clustering algorithm.
+
+### 13.6. Similarity Measures-Cost functions
+
+Given the same set of feature vectors, we can have multiple clustering results, multiple way to partition the set.
+We need to define a "cost" to each possible partition of our data set, in order to rank them (and find the one that minimise the cost).
+We will make the assumption that the cost of a given partition is the sum of the cost of its individual clusters, where we can intuitively associate the cost to some measure of the cluster heterogeneity, like (a) the cluster diameter (the distance between the most extreme feature vectors, i.e. the outliers), (b) the average distance or (c) (what we will use) the sum of the distances between every member and $z_j$, the representative vector of cluster $C_j$.
+
+In turn we have to choose which metric we use to measure such distance. We have several approaches, among which:
+
+- cosine distance, $dist(x^{(i)},x^{(j)}) = \frac{x^{(i)} \cdot x^{(j)}}{||x^{(i)}|| * ||x^{(j)}||}$
+- square euclidean distance, $dist(x^{(i)},x^{(j)}) = ||x^{(i)} - x^{(j)}||^2$
+
+The cosine distance has the merit of being invariant to the magnitude of the vectors. For example, in terms of the Google News application, if we choose cosine to compare between two vectors representing two different stories, this measurement will not take it into account how long are the stories.
+On the other hand, the Euclidean distance would be sensitive to the lengths of the story.
+
+While cosine looks at the angle between vectors (thus not taking into regard their weight or magnitude), euclidean distance is similar to using a ruler to actually measure the distance (and so cosine is essentially the same as euclidean on normalized data)
+
+Cosine similarity is generally used as a metric for measuring distance when the magnitude of the vectors does not matter. This happens for example when working with text data represented by word counts. We could assume that when a word (e.g. `science`) occurs more frequent in document 1 than it does in document 2, that document 1 is more related to the topic of science. However, it could also be the case that we are working with documents of uneven lengths (Wikipedia articles for example). Then, `science` probably occurred more in document 1 just because it was way longer than document 2. Cosine similarity corrects for this (from
+https://cmry.github.io/notes/euclidean-v-cosine).
+
+While we'll need to understand which metric is most suited for a specific application (and where it matters in the first instance), for now we will employ the Euclidean distance.
+
+Given these two choices, our cost function for a specific partition becomes:
+
+$cost(C_1,...,C_j,...C_Z, z^{(1)},...,z^{(j)},...,z^{(Z)}) = \sum_{j=1}^Z \sum_{i \in C_j} ||x^{(i)} - z^{(j)}||^2$
+
+Note that for now we are giving this cost function as a function of both the partition and the representative vectors, but when we will determine how to compute the representative vectors $z_j$ endogenously, this will be a function of the partition alone.
+
+### 13.7. The K-Means Algorithm: The Big Picture
+
+How to find the specific partition that minimise the cost ?
+We can't iterate over all partitions, measure the cost and select the smaller one, as the number of (non empty) k-partitions of a set of n elements is huge.
+
+To be exact it is known as the "Stirling numbers of the second kind" and it is equal to:
+
+$\left\{{n \atop k}\right\}={\frac {1}{k!}}\sum_{i=0}^{k}(-1)^{i}{\binom{k}{i}}(k-i)^{n}$
+
+For example, $\left\{{3 \atop 2}\right\}=3$, but $\left\{{100 \atop 3}\right\} \approx 8.58e+46$
+
+The K-M algorithm helps in finding the minimal distance in a computationally feasible way.
+
+In a nutshell, it involves (a) to first randomly select k representative points. Then (b) iterate for each point to assign the point to the cluster of the closest representative (according with the adopted metric), and (c) move each representative at the center of its newly acquired cluster (where "center" depends again from the metric).
+Steps (b) and (c) are reiterated until the algorithm converge, i.e. the tentative k representative points (and their relative cluster) don't move any more.
+
+Graphically:
+
+Random selection of three representative points in 2D:
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMalgo1.png" width="500"/>
+
+Assignment of the "constituent" of each representative:
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMalgo2.png" width="500"/>
+
+Moving the representative at the center of (the previous step) constituency:
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMalgo3.png" width="500"/>
+
+Redefinition of the constituencies (note that some points have changed their representative):
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMalgo4.png" width="500"/>
+
+Moving again the representatives and redefinition of the constituencies:
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMalgo5.png" width="500"/>
 
 
 
