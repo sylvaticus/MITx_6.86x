@@ -3,7 +3,7 @@ $\newcommand\array[1]{\begin{bmatrix}#1\end{bmatrix}}$ [[MITx 6.86x Notes Index]
 # Unit 04 - Unsupervised Learning
 
 
-## Lecture 13. Clustering 1 (17 Questions)
+## Lecture 13. Clustering 1
 
 ### 13.1. Unit 4: Unsupervised Learning
 
@@ -169,6 +169,7 @@ Let's describe this process a bit more formally in terms of the cluster costs.
    - 2.1. Given $z^{(1)},...,z^{(j)},...,z^{(Z)}$, assign each data point $x^{(i)}$ to the closest representative $z^{(1)},...,z^{(j)},...,z^{(Z)}$, so that the resulting cost will be $cost(z^{(1)},...,z^{(j)},...,z^{(Z)}) = \sum_{i=1}^n min_{j = 1,...,K}||x^{(i)} - z^{(j)}||^2$
    - 2.2. Given partition $C_1,...,C_j,...,C_K$, find the best representatives $z^{(1)},...,z^{(j)},...,z^{(Z)}$ such to minimise the total cluster cost, where now the cost is driven by the clusters: $cost(C_1,..,C_j,...,C_K) = min_{z^{(1)},...,z^{(j)},...,z^{(Z)}}\sum_{j=1}^K \sum_{i \in C_J} ||x^{(i)} - z^{(j)}||^2$
 
+Note that in both step 1 and step 2.2 we are not restricted that the initial and final representatives are part of the data sets. The fact that the final representatives will be guarantee to be part of the dataset is instead one of the advantages of the K-medoids algorithm presented in the next Lesson.
 
 ### 13.8. The K-Means Algorithm: The Specifics
 
@@ -202,6 +203,12 @@ While there are improvements to the K_Mean algorithm to perform a better initial
 
 #### Other drawbacks of K-M algorithm
 
+In general we can say there are two classes of drawbacks of the K-M algorithm.
+
+The first class is that the measure doesn't describe what we consider as a natural classification, so the cost function doesn't represent what we would like the cost of the partition to be, it does not return a useful information concerning the partition ranking.
+
+The second class of problems  involves instead the computational aspects to reach the minimum of this cost, like the ability to find a global minimum.
+
 While  K-M algorithm scale well to large datasets, it has many other drawbacks.
 
 One is that vanilla K-M algorithm tries to find spherical clusters in the data, even when the groups have other spatial grouping:
@@ -215,17 +222,103 @@ Other drawbacks, includes the so called "curse of dimensionality", where k-means
 These further drawbacks are discussed, for example, [here](https://developers.google.com/machine-learning/clustering/algorithm/advantages-disadvantages), [here](https://stats.stackexchange.com/questions/99171/why-is-euclidean-distance-not-a-good-metric-in-high-dimensions) or [here](https://marckhoury.github.io/counterintuitive-properties-of-high-dimensional-space/).
 
 
-
-## Lecture 14. Clustering 2 (8 Questions)
-
+## Lecture 14. Clustering 2
 
 
-## Lecture 15. Generative Models (21 Questions)
+### 14.1. Clustering Lecture 2
 
-## Lecture 16. Mixture Models; EM algorithm (9 Questions)
+Objectives:
 
-## Homework 5 (14 Questions)
+- Understand the limitations of the K-Means algorithm
+- Understand how K-Medoids algorithm is different from the K-Means algorithm
+- Understand the computational complexity of the K-Means and the K-Medoids algorithms
+- Understand the importance of choosing the right number of clusters
+- Understand elements that can be supervised in unsupervised learning
 
-## Project 4: Collaborative Filtering via Gaussian Mixtures (14 Questions)
+### 14.2. Limitations of the K Means Algorithm
+
+On top of the limitations already described in segment 13.8 (computational problem to reach the minimum and the cost function not really measuring what we want) there is further significant limitation of the K-Mean algorithm: the fact that the z's are actually not guaranteed to be the members of the original set of points x.
+
+In some applications this is not a concern, but it is for others. For example, looking at Google News, if we create a representative of the cluster of the story which doesn't correspond to any story, we actually have nothing to show.
+
+We will now introduce the K-medoids algorithm that modifies the k-means one to consider any kind of distance (not only the squared Euclidean one) and return a set of representative vectors that are always part of the original data set.
+
+We will finish the lesson discussing how to choose K, the number of K.
+
+### 14.3. Introduction to the K-Medoids Algorithm
+
+In K-means, whenever we randomly selected the initial representative points, we were not constrained to select within the data set points, we could select any point on the plane.
+
+In K-Medoids algorithm instead we start by selecting the representatives only from within the data points.
+
+The step 2.1 (determining the constituencies of the representatives) remains the same, while in step 2.2, instead of choosing the new representatives as centroids, we constrain again that these have to be one of the point of the cluster. This allow to just loop over all the points of the cluster to see which minimise the cluster cost. And as in both step 2.1 and 2.2 we explicitly use a "distance" function we can employ any kind of distance definition we want, i.e. we are no longer restricted to use the squared Euclidean one.
+
+The algorithm becomes then:
+
+- 1. Randomly select the representatives $z^{(1)},...,z^{(j)},...,z^{(K)}$ from within $X^{(1)},...,X^{(j)},...,X^{(n)}$
+- 2. Iterate:
+   - 2.1. Given $z^{(1)},...,z^{(j)},...,z^{(Z)}$, assign each data point $x^{(i)}$ to the closest representative $z^{(1)},...,z^{(j)},...,z^{(Z)}$, so that the resulting cost will be $cost(z^{(1)},...,z^{(j)},...,z^{(Z)}) = \sum_{i=1}^n min_{j = 1,...,K}||x^{(i)} - z^{(j)}||^2$
+   - 2.2. Given partition $C_1,...,C_j,...,C_K$, find the best representatives $z^{(1)},...,z^{(j)},...,z^{(Z)}$ from within $X^{(1)},...,X^{(j)},...,X^{(n)}$ such to minimise the total cluster cost, where now the cost is driven by the clusters: $cost(C_1,..,C_j,...,C_K) = \sum_{j=1}^K min_{z^{(j)}}\sum_{i \in C_J} dist(x^{(i)} - z^{(j)})$
+
+
+### 14.4. Computational Complexity of K-Means and K-Medoids
+
+#### The Big-O notation
+
+Let't now compare the computational complexity of the two algorithms, using the capital O (or "Big-O") notation, which talks to us about the order of growth, which means that we are going to look at the asymptotic growth and eliminate all the constants.
+
+We often describe computational complexity using the “Big-O" notation. For example, if the number of steps involved is $5n^2+n+1$, then we say it is “of order $n^2$" and denote this by $O(n^2)$. When $n$ is large, the highest order term $5n^2$ dominates and we drop the scaling constant $5$.
+
+More formally, a function $f(n)$ is of order $g(n)$, and we write $f(n)∼O(g(n))$, if there exists a constant $C$ such that $f(n) < Cg(n)$ as $n$ grows large.
+
+In other words, the function $f$ does not grow faster than the function $g$ as $n$ grows large.
+
+The big-O notation can be used also when there are more input variables. For example, in this problem, the number of steps necessary to complete one iteration depends on the number of data points $n$, the number of clusters $K$, the dimension $d$ of each vector $x_i$. Hence, the number of steps required are of $O(g(n,K,d))$ for some function $g(n,K,d)$.
+
+#### The computational complexity of the two algorithms
+
+We don't know how many iterations the algorithms take, so let's compare only the complexity of a single iteration.
+
+The order of computation for the step 2.1 of the K-Mean algorithm is $O(n*k*d)$ as we need to go trough each point (n), compute the distance with each representative (k) and account that we deal with multidimensional vectors (d).
+The step 2.2 is the same, but because we're talking about the asymptotic growth, whenever we sum them up, we're still staying within the same order of complexity.
+
+For the K-Medoids algorithm instead we can see that is much more complex, as in the step 2.2 we need to go trough all the clusters, and then all the point.
+Depending how the data is distributed across the cluster, we can go from the best case of all points in one cluster, and then we would have a computational complexity of $O(n^2 * d)$ to a situation where the points are homogeneously distributed across the clusters, and in such case we would have $n/k$ points in each cluster and a total complexity $O(\frac{n}{k} * \frac{n}{k} * k * d) = O(\frac{n^2}{k} * d)$.
+
+Given that normally $n \gg k$, what makes the difference is the $n^2$ term, and even in the best scenario the computational complexity of the K-Medoids algorithm is much higher than those of the K-Mean one, so for some applications with big datasets the K-Mean algorithm would be preferable.
+
+At this point we already have seen two clustering algorithms, but there are hundreds of them available for our use.
+Each one has different strengths and weaknesses, and whenever we are selecting a clustering algorithm which fits for our application, we should account for all of them in order to find the best clustering algorithm for our needs.
+
+### 14.5. Determining the Number of Clusters
+
+First, let's recognise that more K we add to a model, more the cost function decreases, as the distances from each point and the closer representative will decrease, until the degenerated case where the number of clusters equals the number of data and the cost is zero.
+
+When is it time then to stop the number of clusters ? To decide which is the "optimal" number K ?
+There are three general settings.
+In the first one the number of clusters is fixed, is really given to us by the application. For example we need to cluster our course content in 5 recitations, this is the space we have. Problem "solved" :-)
+
+In the second setting, the number of clusters is driven by the specific application, in the sense that the optimal level of the trade-off between cluster cost and K is determined by the application, for example how many colours to include in  a palette vs the compression rate of the image depends from the context of the application and our needs.
+
+Finally, the "optimal" number of clusters could be determined in a cross-validation step when clustering is used as a pre-processing tool for a supervised learning tool (for example to add a dimension "distance from the cluster centroid" when we have few labelled data and many unlabelled ones). The supervised task algorithm would then have more information to perform its separation task. Here it is the result of the supervised learning task during validation that would determine the "optimal" number of clusters.
+
+Finally let's have a thought on the word "unsupervised". One common misunderstaning is that in "usupervised" tasks, as there is no labels, we don't provide our system with any knowledge, we just "let the data speak", decide the algorithm and let it provide with a solution.
+Indeed, the people who develop those unsupervised algorithms actually provide quite a bit of indirect supervision, of expert knowledge.
+
+In clustering for example we decide about which similarity measure to use and we decide about how many clusters to give and, as we saw, ow many clusters provide.
+And if you're thinking about bag of words approach of representing text, these algorithms cannot figure out which words are more semantically important than
+other words.
+So it would be up to use to do some weighting, so that the clustering results is actually acceptable.
+
+Therefore, we should think very carefully how to do these decision choices so that our clustering is consistent with the expectation.
+
+
+## Lecture 15. Generative Models
+
+## Lecture 16. Mixture Models; EM algorithm
+
+## Homework 5
+
+## Project 4: Collaborative Filtering via Gaussian Mixtures
 
 [[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)
