@@ -13,6 +13,8 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 
 (PDF versions may be slightly outdated)
 
+For a (cool!) implementation of the algorithms _in Julia_, see the companion repository https://github.com/sylvaticus/lmlj (Lear Machine Learning in Julia).
+
 [PDF all in one document](MITx_6.86x_notes.md.pdf)
 
 By unit:
@@ -24,3 +26,5 @@ By unit:
 - Unit 02 - Nonlinear Classification, Linear regression, Collaborative Filtering:   [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering.md)][[pdf](Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering.md.pdf)][[src](Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering.md)]
 
 - Unit 03 - Neural networks:   [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2003%20-%20Neural%20networks/Unit%2003%20-%20Neural%20networks.md)][[pdf](Unit%2003%20-%20Neural%20networks/Unit%2003%20-%20Neural%20networks.md.pdf)][[src](Unit%2003%20-%20Neural%20networks/Unit%2003%20-%20Neural%20networks.md)]
+
+- Unit 04 - Unsupervised Learning (ongoing):   [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md)][[pdf](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md.pdf)][[src](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md)]

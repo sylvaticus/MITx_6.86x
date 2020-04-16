@@ -137,27 +137,82 @@ For example, $\left\{{3 \atop 2}\right\}=3$, but $\left\{{100 \atop 3}\right\} \
 
 The K-M algorithm helps in finding the minimal distance in a computationally feasible way.
 
-In a nutshell, it involves (a) to first randomly select k representative points. Then (b) iterate for each point to assign the point to the cluster of the closest representative (according with the adopted metric), and (c) move each representative at the center of its newly acquired cluster (where "center" depends again from the metric).
-Steps (b) and (c) are reiterated until the algorithm converge, i.e. the tentative k representative points (and their relative cluster) don't move any more.
+In a nutshell, it involves ( a ) to first randomly select k representative points. Then ( b ) iterate for each point to assign the point to the cluster of the closest representative (according with the adopted metric), and ( c ) move each representative at the center of its newly acquired cluster (where "center" depends again from the metric).
+Steps ( b ) and ( c ) are reiterated until the algorithm converge, i.e. the tentative k representative points (and their relative clusters) don't move any more.
 
 Graphically:
 
-Random selection of three representative points in 2D:
+Random selection of 3 representative points in 2D:
+
 <img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMalgo1.png" width="500"/>
 
 Assignment of the "constituent" of each representative:
+
 <img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMalgo2.png" width="500"/>
 
 Moving the representative at the center of (the previous step) constituency:
+
 <img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMalgo3.png" width="500"/>
 
 Redefinition of the constituencies (note that some points have changed their representative):
+
 <img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMalgo4.png" width="500"/>
 
 Moving again the representatives and redefinition of the constituencies:
+
 <img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMalgo5.png" width="500"/>
 
+Let's describe this process a bit more formally in terms of the cluster costs.
 
+- 1. Randomly select the representatives $z^{(1)},...,z^{(j)},...,z^{(K)}$
+- 2. Iterate:
+   - 2.1. Given $z^{(1)},...,z^{(j)},...,z^{(Z)}$, assign each data point $x^{(i)}$ to the closest representative $z^{(1)},...,z^{(j)},...,z^{(Z)}$, so that the resulting cost will be $cost(z^{(1)},...,z^{(j)},...,z^{(Z)}) = \sum_{i=1}^n min_{j = 1,...,K}||x^{(i)} - z^{(j)}||^2$
+   - 2.2. Given partition $C_1,...,C_j,...,C_K$, find the best representatives $z^{(1)},...,z^{(j)},...,z^{(Z)}$ such to minimise the total cluster cost, where now the cost is driven by the clusters: $cost(C_1,..,C_j,...,C_K) = min_{z^{(1)},...,z^{(j)},...,z^{(Z)}}\sum_{j=1}^K \sum_{i \in C_J} ||x^{(i)} - z^{(j)}||^2$
+
+
+### 13.8. The K-Means Algorithm: The Specifics
+
+#### Finding the best representatives
+
+While for step (2.1) we can just iterate for each point and each representative to find the representative for each point that minimise the cost, we still need to define how to do exactly the step (2.2). We will see later extensions to the KM algorithm with other distance metrics, but for now let's stuck with the squared geometric distance and note that each cluster select its own representative independently.
+
+Using the squared Euclidean distance, the "new" $z_j$ representative vector for each cluster, must satisfy $j: min_{z_j} cost(z_j;C_j) = min_{z_j}  \sum_{i \in C_J} ||x^{(i)} - z_j||^2$.
+
+When we compute the gradient of the cost function with respect to $z_j$ and set it to zero, we retrieve the optimal $z_j$ as $z_j = \frac{\sum_{i \in C_J} x^{(i)}}{|C_J|}$, where $|C_J|$ is the number of elements of the cluster $C_J$.
+Intuitively the optimal representative vector is at the center of the cluster, i.e. it is the centroid of the group.
+
+We stress however that this solution is linked to the specific definition of distance used, the squared Euclidean one.
+
+#### Impact of initialisation
+
+Note that the KM algorithm is guarantee to converge and find a _local_ cost minimisation, because at each iteration the cost can only decrease, the cost function is non-negative and the number of possible partitions, however large, is finite.
+
+It _doesn't_ however guarantee to find a _global_  cost minimisation, and it is indeed very sensitive to the choice of the initial representative vectors. If we start with a different initialization,
+we may get a very different partitioning.
+
+Take the case of the above picture:
+
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMbadinit.png" width="500"/>
+
+In the upper part we see the initial random assignation of the representative vectors, and in the bottom picture we see the final assignment of the clusters. While the feature vectors moved a bit, the final partition is clearly not the optimal one (where the representative vectors would be at the center of the three groups).
+
+In particular, we may run into troubles when the initial representative vectors are close to each others rather than spread up across the multidimensional space.
+
+While there are improvements to the K_Mean algorithm to perform a better initialisation than a random one, that take this consideration into account, we will use in class a vanilla KM algorithm with simple random initialisation. An example of a complete such KM algorithm in Julia can be found on https://github.com/sylvaticus/lmlj/blob/master/km.jl
+
+#### Other drawbacks of K-M algorithm
+
+While  K-M algorithm scale well to large datasets, it has many other drawbacks.
+
+One is that vanilla K-M algorithm tries to find spherical clusters in the data, even when the groups have other spatial grouping:
+
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit 04 - Unsupervised Learning/assets/KMdrawback.jpg" width="500"/>
+
+To account for this, k-means can be kernelized, where separation of arbitrary shapes can be reached theoretically using higher dimensional spaces. Or there could be used a regularized gaussian mixture model, like in this [paper](http://people.cs.uchicago.edu/~xiaofei/TKDE2011-He.pdf) or in these [slides](http://www.cs.cmu.edu/%7Eguestrin/Class/10701-S07/Slides/clustering.pdf).
+
+Other drawbacks, includes the so called "curse of dimensionality", where k-means algorithm becomes less effective at distinguishing between examples, the manual choice of the number of clusters (that need to be solved using cross-validation), the fact of not being robust to outliers.
+
+These further drawbacks are discussed, for example, [here](https://developers.google.com/machine-learning/clustering/algorithm/advantages-disadvantages), [here](https://stats.stackexchange.com/questions/99171/why-is-euclidean-distance-not-a-good-metric-in-high-dimensions) or [here](https://marckhoury.github.io/counterintuitive-properties-of-high-dimensional-space/).
 
 
 

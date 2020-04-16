@@ -311,6 +311,8 @@ We will later talk about regularization -- how to actually squeeze the capacity 
 - Multi-layer neural network models are complicated. We are no longer guaranteed to reach global (only local) optimum with SGD
 - Larger models tend to be easier to learn because their units only need to be adjusted so that they are, collectively, sufficient to solve the task
 
+An example of fully-connected feed-forward neural network in Julia can be found on https://github.com/sylvaticus/lmlj/blob/master/fnn.jl
+
 
 ## Lecture 10. Recurrent Neural Networks 1
 

@@ -618,6 +618,7 @@ This is a problem quadratic in the objective and with linear constraints, and it
 
 Relaxing the loss constraint and incorporate the loss in the objective would still leave the problem as a quadratic one.
 
+This case is also called **maximum margin separator** or **hard margin SVM** to distinguish it from the **soft margin SVM** we saw earlier where, even in cases of separable problems, we allow to trade some misclassifications for a better regularisation.
 
 ## Homework 2
 
