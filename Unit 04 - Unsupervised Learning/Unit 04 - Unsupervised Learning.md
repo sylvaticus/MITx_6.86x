@@ -312,8 +312,159 @@ So it would be up to use to do some weighting, so that the clustering results is
 
 Therefore, we should think very carefully how to do these decision choices so that our clustering is consistent with the expectation.
 
-
 ## Lecture 15. Generative Models
+
+### 15.1. Objectives
+
+- Understand what Generative Models are and how they work
+- Understand estimation and prediction phases of generative models
+- Derive a relation connecting generative and discriminative models
+- Derive Maximum Likelihood Estimates (MLE) for multinomial and Gaussian generative models
+
+### 15.2. Generative vs Discriminative models
+
+The model we studies up to now were **discriminative models** that learn explicit decision boundary between classes. For instance, SVM classifier, which is a discriminative model, learns its decision boundary by maximising the distance between training data points and a learned decision boundary.
+
+At the contrary, **generative models** work by explicitly modelling the probability distribution of each of the individual classes in the training data. For instance, Gaussian generative models fit a Gaussian probability distribution to the training data in order to estimate the probability of a new data point belonging to different classes during prediction.
+
+We will study two types of generative models, **Multinomial generative models** and **Gaussian generative models**, where for both we will ask two type of questions: (1) how do estimate the model ? How do we fit our data (the "estimation" question) and (2) how do we actually do prediction with a (fitted) model ? (the "prediction" question)
+
+TODO: Complete this when I have a better picture of the topic
+
+
+### 3. Simple Multinomial Generative model
+
+We now think to a data-generator probabilistic model where we have different categories and hence a discrete probability distribution (a PMF, Probability Mass Function).
+
+We name $θ_w$ the probability for a given class $w$, so that $θ_w ≥ 0 ∀ w$ and $\sum_w θ_w = 1$.
+
+Given such probabilistic model, the _generative model_ $p(w|\theta) is nothing else than the _statistical model_ to estimate the parameters $θ_w$ given the observed data $w$, or more formally the statistical model described by the pair $(E,\{P_\theta\}_{\theta \in \Theta})$, where $E$ is the sample space of the data and $\{P_\theta\}_{\theta \in \Theta})$ is the family of distributions parametrized by $\theta$.
+
+For example the probabilistic model may be a words generating model, given fixed vocabulary of $W$ words and where each word would have its own probability. Then we could see a document as a serie of random (independent) extraction of these words so that a document with common words have more probabilities to be generated compared to a document made of uncommon words. As the words are independent in this model, the likelihood of the whole document to be generated is just the product of the likelihood of each world being generated.
+
+If we are interested in the document as a specific sequence of words, for example "IT WILL RAIN IT WILL" then it's probability is P("IT") * P("WILL") * P("RAIN") * P("IT") * P("WILL") = P("IT")² * P("WILL")² * P("RAIN"). More in general it is $P(D|θ) = \prod_{w \in W} \theta_w^{count(w)}$.
+The underlying probabilistic model is then the categorical distribution, where the sample space $E$ is then the set ${1,....,K}$ mapped to all the possible words, and $\{P_\theta\}$ is the categorical distribution parametrized by the probabilities $\theta$. $\Theta$, the space of the possible parameters of the probability distribution, is the set of K positive floats that sum to one.
+
+If we are interested instead in all the possible combination of documents that use that specific number of words (in whatever order), {"IT":2,"WILL":2,"RAIN":1}, we have to consider and count all the possible combinations, like "IT WILL IT WILL RAIN", and there are $\frac{n!}{w_1!,...,w_i!,...w_k!}$ of them.
+The sample space $E$ is then the set of all the possible documents, encoded as count of the different words, and $\{P_\theta\}$ is the multinomial distribution parametrized by the probabilities $\theta$. $\Theta$, the space of the possible parameters of the probability distribution, remains the set of K positive floats that sum to one.
+
+Note that the categorical and multinomial distributions are nothing else than an extension of respectively the Bernoulli and binomial distributions to multiple classes (rather than just a binary 0/1 ones).
+They model the probability of respectively one or multiple, independent, categorical trials, i.e. the outcome for the categorical distribution is the single word, while those for the multinomial distribution is the whole document (encoded as world count).
+
+For completion, there are $\frac{n!}{w_1!,...,w_i!,...w_k!}$ possible combinations of sequences of a document with $w_1,...,w_i,...w_k$ worlds count (with $\sum_{i = 1}^k w_i = n$), so the PMF of the multinomial is  $p(w_1,..,w_i,...,w_k;\theta_1,...,\theta_i,...,\theta_k) = \frac{n!}{w_1!,...,w_i!,...w_k!}\prod_{i=1}^k \theta_i^{w_i}$.
+
+
+### 15.4. Likelihood Function
+
+Even if we will use the term "multinomial generative model", in this lecture we will consider the first approach of encoding a document and its relative probabilistic model (the categorical distribution)
+
+Note indeed that in some fields, such as machine learning and natural language processing, the categorical and multinomial distributions are conflated, and it is common to speak of a "multinomial distribution" when a "categorical distribution" would be more precise.
+
+So, for a particular document D it's probability to be generated by a sequence of samples from a categorical distribution with parameter $\theta$ is $P(D|θ) = \prod_{w \in W} \theta_w^{count(w)}$.
+
+Given an observed document and compelling probabilistic models (with different thetas) we can then determine wich is the one with the highest probability of having generated the observed document.
+
+Let's consider for example a vocabulary of just two words, "cat" and "dog" and an observed Document "cat cat dog".
+Let's also assume that we have just two compelling models to choose from. The first (probabilistic) model has $\theta_{\text{cat}} =  O.3$ and $\theta_{\text{dog}} =  O.7$. The second model has $\theta_{\text{cat}} =  O.9$ and $\theta_{\text{dog}} =  O.1$
+It is intuitive that it is more probable that is the second model that generated the document, but let's compute it. The probability of the document being generated by the first model is $0.3^2 * 0.7 = 0.0189$. The probability that D has been generated instead by the second model is $0.9^2 * 0.1 = 0.081$, that is higher than those for the first model.
+
+
+### 15.5. Maximum Likelihood Estimate
+The joint probability of a set of given outcomes when we want to stress it as a function of the parameters of the probabilistic model (thus treating the random variables as fixed at the observed values) is known as the likelihood.
+
+While often used synonymously in common speech, the terms “likelihood” and “probability” have distinct meanings in statistics. _Probability_ is a property of the sample, specifically how probable it is to obtain a particular sample for a given value of the parameters of the distribution; _likelihood_ is a property of the parameter values.
+
+We want now to find which are the parameters that maximise the likelihood.
+
+For the multinomial model it is $\text{argmax}_\theta \{L(D|\theta_0) = \prod_{w \in W} \theta_w^{\text{count}(w)}\}$.
+
+It turns out that maximising its log (known as the log-likelihood) is computationally simpler while equivalent (in terms of the argmax, not in terms of its value) because the log function is a monotonically increasing function: wherever the likelihood is on its maximum, its log it is on its maximum as well.
+
+We hence compute the first order conditions in terms of theta for the log-likelihood to find the theta that maximise it:
+
+$\text{argmax}_\theta \{lL(D|\theta_0) = \sum_w \text{count}(w) log(\theta_w)\}$
+
+#### Max likelihood estimate for the cat/dog example
+
+Let's first consider the specific case of just two categories to later generalise (and let's calling the outcomes just 0/1 instead of cat/dog).
+
+In such setting we have really just one parameter, $\theta_0$, (the probability of a 0) as we can write $\theta_1$ as $1-\theta_0$
+The log_Likelihood of a given document is then:
+
+$lL(D|\theta_0) = \text{count}(0) log(\theta_0) + \text{count}(1) log(1-\theta_0)$
+
+Taking the derivative with respect to $\theta_0$ and setting it equal to zero we obtain:
+
+$\frac{\partial lL}{\partial \theta_0} = \frac{\text{count}(0)}{\theta_0}-\frac{\text{count}(1)}{1-\theta_0}$
+
+$\frac{\partial lL}{\partial \theta_0} = 0 \to \tilde \theta_0 = \frac{\text{count}(0)}{\text{count}(0)+\text{count}(1)}$
+
+Note the symbol of the tilde to indicate an estimated parameter. This is our "best guess" parameter given the observed data.
+
+### 15.6. MLE for Multinomial Distribution
+
+Let's now consider the full multinomial case.
+So given a document (or, as the words are assumed to be independent, a whole set of documents.. just concatenated one to the other) and a vocabulary W we want to find $\theta_w \forall w \in W$ as to maximise $$\{L(D|\theta_0) = \prod_{w \in W} \theta_w^{\text{count}(w)}\}$.
+
+The problem is however that the thetas are not actually free, but we have the constrain that the thetas have to sum to one (we have actually also those that the thetas need to be positive, but for the nature of this maximisation problem we can ignore this constraint).
+
+#### The method of Lagangian multipliers for constrained optimisation
+
+We have hence a constrained optimisation problem that we can solve with the method of the **Lagrange multipliers**, a method to find the stationary values (min or max) of a function subject to _equality_ constraints.
+
+Let's consider a case of an objective function of two variables $z = f(x,y)$ subject to a single constraint $g(x,y) = c$, where $c$ is a constant (both the objective function and the constraint doesn't need to be necessarily linear).
+
+We can then write the so-called _Lagrangian function_ as $ℒ = f(x,y)  + \lambda [ c-g (x,y)]$, i.e. we "augment" the original function we want to find the extremes with a term made by a new variable (the Lagrangian multiplier) that multiplies the relative constraint (if we have multiple contraints, we would have multiple additional terms and Lagrangian multipliers).
+
+All we need to do now is to find the stationary values of ℒ, regarded as a function of the original variables $x$ and $y$ but also of the new variable(s) $λ$ we introduced.
+
+The First Order necessary Condition (FOC) are:
+
+$\begin{split}
+ ℒ_x        & = & f_x -\lambda g_x & = & 0\\
+ ℒ_y        & = & f_y -\lambda g_y & = & 0\\
+ ℒ_\lambda  & = & c-g(x,y) & = & 0\\
+\end{split}$
+
+Solving this system of 3 equations in 3 unknown will equivalently find the stationary point of the unconstrained function ℒ and original function $f$, as the third equation in the FOC guarantee that indeed the constrain is respected and, at the stationary point, the two functions have the same value.
+
+For a numerical example, let's the function to optimize be $z=xy$ and be it subjected tothe constraint $x+y=6$. We can write the Lagrangian as $ℒ = xy + \lambda [6-x-y]$ whose FOC are:
+
+$\begin{split}
+ ℒ_x        & = & y -\lambda & = & 0\\
+ ℒ_y        & = & x -\lambda & = & 0\\
+ ℒ_\lambda  & = & 6 - x - y  & = & 0\\
+\end{split}$
+
+Solving for $(x,y,\lambda)$ we find the optimal values $x^* = 3$, $y^* = 3$, $\lambda^* = 3$ and $z^* = 9$.
+
+#### The constrained multinomial log-likelihood
+
+As the sum of \thetas must sum to one, the Lagrangian of the log-likelihood is:
+
+$ℒ = \log P(D | \theta ) + \lambda \left(\sum_{w \in W} \theta_w - 1\right) = \sum_{w \in W} n_w \log \theta_ w + \lambda \left(\sum_{w \in W} \theta_w - 1\right)$
+
+where $n_w$ is the count of word $w$ in the document.
+
+The FOC of the lagrangian are then:
+
+$\begin{split}
+ ℒ_w        & = & \frac{n_w}{\theta_w} -\lambda & = & 0\\
+ ℒ_\lambda  & = & \sum_{w \in W} \theta_w - 1= & 0\\
+\end{split}$
+
+Where the first equation is actually a gradient with respect to all the $w$.
+
+Solving the above system of equation we obtain $\hat \theta_w = \frac{n_w}{\sum_{w \in W} n_w} \forall w \in W$.
+
+These set of $θ_w$ parameters are the **maximum likelihood estimates**, the values of $θ$ that maximize the likelihood function for the observed data and this multinomial generative model.
+
+
+### 15.7. Prediction
+
+
+
+
 
 ## Lecture 16. Mixture Models; EM algorithm
 
