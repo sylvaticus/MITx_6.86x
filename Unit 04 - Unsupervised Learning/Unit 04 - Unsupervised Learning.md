@@ -440,7 +440,7 @@ Solving for $(x,y,\lambda)$ we find the optimal values $x^* = 3$, $y^* = 3$, $\l
 
 #### The constrained multinomial log-likelihood
 
-As the sum of \thetas must sum to one, the Lagrangian of the log-likelihood is:
+As the sum of thetas must be one, the Lagrangian of the log-likelihood is:
 
 $ℒ = \log P(D | \theta ) + \lambda \left(\sum_{w \in W} \theta_w - 1\right) = \sum_{w \in W} n_w \log \theta_ w + \lambda \left(\sum_{w \in W} \theta_w - 1\right)$
 
@@ -461,6 +461,109 @@ These set of $θ_w$ parameters are the **maximum likelihood estimates**, the val
 
 
 ### 15.7. Prediction
+
+Let's now see how can we actually use generative Multinomial Models to make predictions, for example deciding if a document is in Spanish of Portuguese language.
+
+For that we have first given a large set of documents in both languages, together with their label (the language).
+
+From there we can estimate the PMF of the words using the MLE estimator (i.e., counting the relative proportions) for both Spanish and Italian (so our vocabulary would have both Spanish and Italian terms).
+
+We are now given a new document without the language label.
+Calling the two languages as "+" and "-", we compute the likelihood of the document under the first hypothesis ($P(D|\theta^+)$) as the joint probability using the first PMF , and the likelihood under the second hypothesis ($P(D|\theta^-)$) using the second PMF, and we decide how to classify the document according to which one is bigger.
+
+The probability of a data item to belong to a given class, conditional to the probabilities of its feature vector is known also as class-conditional probability.
+
+We can equivalently say that we category the document as "+" if $log( \frac{P(D|\theta^+)}{P(D|\theta^-)})>0$.
+
+
+But $\log \frac{P ( D | \theta ^+)}{P(D|\theta ^{-})} = \log P (D | \theta ^{+}) - \log P (D | \theta ^{-})$
+
+$= \log \prod_{w \in W} (\theta_w^{+})^{\text {count}(w)} - \log \prod_{w \in W} (\theta_w^{-})^{\text {count}(w)}$
+
+$= \sum_{w \in W} \text {count}(w) \log \theta_w^{+} - \sum_{w \in W} \text {count}(w) \log \theta_w^{-}$
+
+$= \sum_{w \in W} \text {count}(w) \log \frac{\theta_w^{+}}{\theta_w^{-}}$
+
+$= \sum_{w \in W} \text {count}(w) \hat \theta_w$
+
+where  $\hat \theta_w$ is just a symbol for $\log \frac{\theta_w^{+}}{\theta_w^{-}}$.
+
+The last expression shows that this classifier, derived looking through a generative view on classification, should actually remind us a linear classifier that goes through origin with respect to this parameter $\hat \theta_w$.
+
+
+### 15.8. Prior, Posterior and Likelihood
+
+Let's now try to compute $P(\theta|D)$, i.e. the  probability of the language of the document (that is the probability of the generating PMF being those of the Spanish or Portuguese language) given the observed document.
+
+To compute it, we will apply the **Bayesian rule** that states:
+
+$P(A|B) = \frac{P(B|A) * P(A)}{P(B)}$
+
+and the **total probability law** that states:
+
+$P(X=x) = \sum_y P(Y=y) * P(X=x | Y=y)$
+
+$P(lang=spanish|D) = \frac{P(D|lang=Spanish) * P(lang=Spanish)}{P(D)}$
+
+Where $P(D) = P(D|lang=Spanish) * P(lang=Spanish) + P(D|lang=Portuguese) * P(lang=Portuguese)$
+
+We can think for example to a bilingual colleague giving us a document in either Spanish or Portuguese. $P(lang=Spanish)$ is the **prior** probability that the document is Spanish (because maybe we know that this guy works more with Spanish documents than Portuguese ones). Then $P(D| lang=Spanish)$ and $P(D|lang=Portuguese)$ are the two conditional probabilities that depends on the world frequencies of the two languages respectively and $P(D)$ is the probability that our colleague gave us exactly that document. $P((lang=spanish|D)$ is known as the **posterior** probability, as it is the one we have once we observe document $D$.
+
+Going back to our plus/minus class notation instead of the languages, we can compute the log of the ratio between the posteriors for the two classes as:
+
+$log(\frac{P(y=+|D)}{P(y=-|D)}) = log(\frac{P(D|y=+)* P(y=+)}{P(D|y=-)* P(y=-)})$
+$= log(\frac{P(D|y=+)}{P(D|y=-)}) + log(\frac{P(y=+)}{P(y=-)})$
+
+Using the expression from the previous segment for the first term and $\hat \theta_0$ as a symbol representing the second term, we can rewrite the equation as:
+
+$log(\frac{P(y=+|D)}{P(y=-|D)}) = \sum_{w \in W} \text {count}(w) \hat \theta_w + \hat \theta_0$.
+
+So now what we actually see here that we translated it again to a linear classifier.
+But in contrast to the previous case, when we had a linear classifier that went through origin, now we have a linear classifier with an offset, and the offset itself would be actually guided by our prior, which will drive the location of the separator.
+
+So what we've seen here that in this model we can very easily incorporate our prior knowledge about the likelihood of certain classes.
+And at the end, what we got, that even though we're talking about generative models and we're using a different mechanism on some ways of estimating the parameters of this multinomial, at the end, we actually are getting the same linear separators that we see in our discriminative modelling.
+
+### 15.9. Gaussian Generative models
+
+We will now switch, in place to a categorical distribution, to a generative (probabilistic) model based on the multidimensional Normal (or "Gaussian") distribution.
+
+While the categorical distribution was opportune for modelling discrete random variables, like classes, the Normal is the analogous counterpart for continuous random variables.
+
+The multidimensional Normal has Probability Density Function (PDF):
+
+$p_{\mathbf{X}}(\mathbf x; \mathbf  \mu, \mathbf \Sigma) = \frac{1}{\sqrt{\left(2\pi \right)^ d \text {det}(\Sigma )}}e^{-\frac{1}{2}(\mathbf x-\mu )^ T \Sigma ^{-1} (\mathbf x-\mu )}, ~ ~ ~ \mathbf x\in \mathbb {R}^ d$
+
+where $\mathbf x \in \mathbb {R}^d$, $\mathbf \mu \in \mathbb {R}^d$ is the vector of the means in the $d$ dimensions and $\mathbf \Sigma \in \mathbb {R}^{d \times d}$ is the covariance matrix (with $\text {det}(\Sigma)$ being its determinant).
+
+So the PDF has a single spike in correpondance of $x=\mu$ and then gradually declines in a typical "bell shape". The "speed" of the decline is regulated by the sigma parameter: more sigma is high, more the spike is low and the tails are "fat"; making the whole curve "flatted".
+
+When all the components (dimensions) are uncorrelated (i.e. the  covariant matrix $\Sigma$ is diagonal) and have the same standard deviation $\sigma$, the Normal PDF reduces to:
+
+$p_{\mathbf{X}}(\mathbf x; \mathbf \mu,\sigma^2) = \frac{1}{(2 \pi \sigma^2)^{d/2}}* e^{-\frac{1}{2 \sigma^2} * ||x-\mu||^2}$
+
+We should also specify that a random vector $\mathbf{X}=(X^{(1)},\ldots ,X^{(d)})^ T$ is defined as a **Gaussian vector**, or "multivariate Gaussian" or "normal variable", if any linear combination of its components is a (univariate) Gaussian variable or a constant (a “Gaussian" variable with zero variance), i.e., if $\alpha ^ T \mathbf{X}$ is (univariate) Gaussian or constant for any constant non-zero vector $\alpha \in \mathbb {R}^ d$.
+
+It is important to note that in generative models we are introducing a specific functional form for the probabilistic model (here the gaussian), and our freedom relates only on the parameters of the model, not on the form itself. Hence we first need to consider if our data, our specific case, is appropriate to be modelled by such functional form or not.
+
+### 15.10. MLE for Gaussian Distribution
+
+As for the multinomial case, if we have a training set $S_n = \{x^{(t)} | t= 1...n\}$ we can compute the -log-likelihood of this set and find the $(\mu,\sigma^2)$ that maximise it:
+
+The likelihood is $p(\mu,\sigma^2;S_n) = \prod_{t=1}^n p(\mu,\sigma^2;x^{(t)}) = \prod_{t=1}^n \frac{1}{(2 \pi \sigma^2)^{d/2}}* e^{-\frac{1}{2 \sigma^2} * ||x-\mu||^2}$
+
+
+The log-likelihood is then:
+
+$logp(\mu,\sigma^2;S_n) = log(\prod_{t=1}^n \frac{1}{(2 \pi \sigma^2)^{d/2}}* e^{-\frac{1}{2 \sigma^2} * ||x^{(t)}-\mu||^2} )$
+
+$= -\frac{nd}{2}log(2 \pi \sigma^2 ) + \frac{1}{2\sigma^2} ||x^{(t)}-\mu||^2$
+
+From this expression we can take the derivatives of $\mu$ and $\sigma$ and equal them to zero to find the MLE estimators $\hat \mu = \frac{1}{n} \sum_{t=1}^n x^{(t)}$ and $\hat \sigma^2 = \frac{\sum_{t=1}^n ||x^{(t)}-\mu||^2}{nd}$.
+
+
+
+
 
 
 

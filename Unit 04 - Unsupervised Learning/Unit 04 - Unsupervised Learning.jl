@@ -175,3 +175,14 @@ function kmedoids(X,K;dist=(x,y) -> norm(x-y)^2)
 end
 
 clIdx = kmedoids([1 10.5;1.5 10.8; 1.8 8; 1.7 15; 3.2 40; 3.6 32; 3.6 38],2,dist = (x,y) -> norm(x-y)^2)
+
+# 15.9
+
+x = [1/sqrt(π), 2]
+μ = [0,2]
+σ = sqrt(1/2π)
+
+normal(x,μ,σ²) = (1/(2π*σ²)^(length(x)/2)) * exp(-1/(2σ²)*norm(x-μ)^2)
+
+p = normal(x,μ,σ^2)
+lp = log(p)
