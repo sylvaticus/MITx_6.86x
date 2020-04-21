@@ -27,4 +27,6 @@ By unit:
 
 - Unit 03 - Neural networks:   [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2003%20-%20Neural%20networks/Unit%2003%20-%20Neural%20networks.md)][[pdf](Unit%2003%20-%20Neural%20networks/Unit%2003%20-%20Neural%20networks.md.pdf)][[src](Unit%2003%20-%20Neural%20networks/Unit%2003%20-%20Neural%20networks.md)]
 
-- Unit 04 - Unsupervised Learning (ongoing):   [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md)][[pdf](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md.pdf)][[src](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md)]
+- Unit 04 - Unsupervised Learning:   [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md)][[pdf](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md.pdf)][[src](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md)]
+
+- Unit 05 - Reinforcement Learning: (to be started next)  

@@ -3,6 +3,7 @@
 using LinearAlgebra
 using Random
 using Distributions
+using Statistics
 
 # Lecture 13
 
@@ -184,5 +185,95 @@ x = [1/sqrt(π), 2]
 
 normal(x,μ,σ²) = (1/(2π*σ²)^(length(x)/2)) * exp(-1/(2σ²)*norm(x-μ)^2)
 
-p = normal(x,μ,σ^2)
+p = normal(x',μ',σ^2)
 lp = log(p)
+
+# 16.4
+
+# Checking log(sum(x)) = sum(log(x))
+x = [0.2,0.8,1,4.5,7]
+
+log(sum(x))
+sum(log.(x))
+
+K = 2
+X = [-1.2 -0.8; -1 -1.2; -0.8 -1; 1.2 0.8; 1 1.2; 0.8 1]
+cIdx = [1,1,1,2,2,2]
+X₁ = X[cIdx .== 1,:]
+X₂ = X[cIdx .== 2,:]
+
+μ₁ = mean(X₁ , dims=1)
+μ₂ = mean(X₂ , dims=1)
+
+# Checking log(sum(x * p(x))) = sum(log(x) * px)
+x = [0.2,0.8,1,4.5,7]
+px = [0.1,0.4,0.2,0.1,0.2]
+
+log(sum(x .* px))
+sum(log.(x) .* px)
+sum(log.(x .* px))
+
+
+""" PDF of a multidimensional normal with no covariance and shared variance across dimensions"""
+normalFixedSd(x,μ,σ²) = (1/(2π*σ²)^(length(x)/2)) * exp(-1/(2σ²)*norm(x-μ)^2)
+
+# 16.5 The E-M Algorithm
+"""
+  em(X,K;p₀,μ₀,σ²₀,tol)
+
+Compute Expectation-Maximisation algorithm to identify K clusters of X data assuming a Gaussian Mixture probabilistic Model.
+
+# Parameters:
+* `X`: a (n x d) data to clusterise
+* `K`: Number of cluster wanted
+* `p₀`: Initial probabilities of the categorical distribution (K x 1) [default: `nothing`]
+* `μ₀`: Initial means (K x d) of the Gaussian [default: `nothing`]
+* `σ²₀`: Initial variance of the gaussian (K x 1). We assume here that the gaussian has the same variance across all the dimensions [default: `nothing`]
+* `tol`: Initial tolerance to stop the algorithm [default: 0.0001]
+
+# Returns:
+* A matrix of size n x K of the probabilities of each point i to belong to cluster j
+
+# Notes:
+* Some returned clusters could be empty
+
+# Example:
+```julia
+julia> clIdx = em([1 10.5;1.5 10.8; 1.8 8; 1.7 15; 3.2 40; 3.6 32; 3.6 38],2)
+```
+"""
+function em(X,K;p₀=nothing,μ₀=nothing,σ²₀=nothing,tol=0.0001)
+# debug:
+X = [1 10.5;1.5 10.8; 1.8 8; 1.7 15; 3.2 40; 3.6 32; 3.6 38]
+K = 3
+p₀=nothing; μ₀=nothing; σ²₀=nothing; tol=0.0001
+(N,D) = size(X)
+# Random choice of initial representative vectors (any point, not just in X!)
+minX = minimum(X,dims=1)
+maxX = maximum(X,dims=1)
+varX = mean(var(X,dims=1))/K^2
+
+# Initialisation of the parameters if not provided
+p = isnothing(p₀) ? fill(1/K,K) : p₀
+if !isnothing(μ₀)
+    μ = μ₀
+else
+    μ = zeros(Float64,K,D)
+    tempμ = collect(range(minX, stop=maxX, length=K))
+    for k in K
+        for d in D
+            μ[k,d] = tempμ[k][d]
+        end
+    end
+end
+σ² = isnothing(σ²₀) ? fill(varX,K) : σ²₀
+
+pⱼₓ = zeros(Float64,N,K)
+
+for n in 1:N
+    println([p[j] for j in 1:K])
+    px = sum([p[j]*normalFixedSd(x[n,:],μ[j,:],σ²[j]) for j in 1:K])
+    for k in 1:K
+    #    pⱼₓ[n,k] = p[k]*normalFixedSd(x[n,:],μ[k,:],σ²[k])/px
+    end
+end

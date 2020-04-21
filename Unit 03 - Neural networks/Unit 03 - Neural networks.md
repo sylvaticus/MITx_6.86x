@@ -555,7 +555,7 @@ As a result, the neural network representation for a tri-gram model is not as ge
 
 ### 11.4. RNN Deeper Dive
 
-We can now translate the feedforward rural network in a Recursive Neural Network that accepts a _sequence_ of words as input and can account for a variable history in making predictionsfor the next word rather than on a fixed number of elements (as 1 or 2 in bigrams and trigrams respectively).
+We can now translate the feedforward neural network in a Recursive Neural Network that accepts a _sequence_ of words as input and can account for a variable history in making predictionsfor the next word rather than on a fixed number of elements (as 1 or 2 in bigrams and trigrams respectively).
 
 The framework is similar to the RNN we saw in the previous lesson, with a state (initially set to $\mathbf{0} \in R^K$)
 that is updated, at each new information, with a function of the previous state and the new observed word (typically with something like $s_t = tanh(W^{s,s}s_{t-1} + W^{s,w} x_t)$ ). Note that $x_t$ is the one hot encoding of the new observed word.
@@ -569,7 +569,7 @@ In other words, while $W^{s,s}$ and $W^{s,w}$ role is to select and encode the r
 Finally we can have more complex structures, like LSTM networks, with forget, input and output gates and the state divided in a memory cell and a visible state. Also in this case we would however have a further transformation that output the conditional PMF as function of the visible state ($p_t = softmax(W^0 h_t)$).
 
 Note that the training phase is done computing the average loss at the level of sentences, i.e. our labels are the full sentences, and are these that are compared in the loss function with those obtained by sampling the PMFs resulting from the RNN.
-While in _training_ we use the true words specified as input for the next time step, in _testing_ instead we let the rural network to predict the sentence on its own, using the sampled output at one time step as the input for the next step.
+While in _training_ we use the true words specified as input for the next time step, in _testing_ instead we let the neural network to predict the sentence on its own, using the sampled output at one time step as the input for the next step.
 
 
 ### 11.5. RNN Decoding
