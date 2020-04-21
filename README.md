@@ -13,7 +13,7 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 
 (PDF versions may be slightly outdated)
 
-For a (cool!) implementation of the algorithms _in Julia_, see the companion repository https://github.com/sylvaticus/lmlj ("Learn Machine Learning in Julia").
+For an implementation of the algorithms _in Julia_, see the companion repository "Learn Machine Learning in Julia" [on GitHub](https://github.com/sylvaticus/lmlj.jl ) or in [myBinder](https://mybinder.org/v2/gh/sylvaticus/lmlj.jl/master) to run the code online by yourself (and if you are looking for an introductory book on Julia, have a look on [my one](https://www.julia-book.com/)).
 
 [PDF all in one document](MITx_6.86x_notes.md.pdf)
 

@@ -661,7 +661,7 @@ By maximising the likelihood, we would find the following estimators:
 - $\hat n_j$, the number of points of each cluster: $\hat n_j= sum_{i=1}^n \mathbf {1}(j;i)$ (this actually just derives from our assumption to know the indicator function output)
 - $\hat p_j = \frac{\hat n_j}{n}$
 - $\hat \mu^{(j)} = \frac{1}{\hat n_j} \sum_{i=1}^n \mathbf {1}(j;i) * x^{(i)}$
-- $\hat \sigma_j^2 = \frac{1}{\hat n_j d} \sum_{i=1}^n \mathbf {1}(j;i) * ||x^{(t)}-\mu||^2$
+- $\hat \sigma_j^2 = \frac{1}{\hat n_j d} \sum_{i=1}^n \mathbf {1}(j;i) * ||x^{(t)}-\mu^{(j)}||^2$
 
 These equations show how, given the observed case, when we know to which component each point belong, we can estimate all the parameters that we need to define our mixture of Gaussian.
 
