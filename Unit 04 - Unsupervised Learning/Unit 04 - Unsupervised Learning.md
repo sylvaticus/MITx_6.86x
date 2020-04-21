@@ -221,6 +221,7 @@ Other drawbacks, includes the so called "curse of dimensionality", where k-means
 
 These further drawbacks are discussed, for example, [here](https://developers.google.com/machine-learning/clustering/algorithm/advantages-disadvantages), [here](https://stats.stackexchange.com/questions/99171/why-is-euclidean-distance-not-a-good-metric-in-high-dimensions) or [here](https://marckhoury.github.io/counterintuitive-properties-of-high-dimensional-space/).
 
+An implementation of K-Means algorithm in Julia: https://github.com/sylvaticus/lmlj.jl/blob/master/src/clusters.jl#L65
 
 ## Lecture 14. Clustering 2
 
@@ -311,6 +312,8 @@ other words.
 So it would be up to use to do some weighting, so that the clustering results is actually acceptable.
 
 Therefore, we should think very carefully how to do these decision choices so that our clustering is consistent with the expectation.
+
+An implementation of K-Medoids algorithm in Julia: https://github.com/sylvaticus/lmlj.jl/blob/master/src/clusters.jl#L133
 
 ## Lecture 15. Generative Models
 
@@ -701,6 +704,8 @@ Of course we are still left with the problem of how to initiate all the paramete
 The EM algorithm indeed is very sensitive to initial conditions as it guarantee to find only a _local_ maximisation of the $p(\theta,S_n)$, not a global one.
 
 We could either do a random initialization of the parameter set $\theta$ or we could employ k-means to find the initial cluster centers of the $K$ clusters and use the global variance of the dataset as the initial variance of all the $K$ clusters. In the latter case, the mixture weights can be initialized to the proportion of data points in the clusters as found by the k-means algorithm.
+
+An implementation of E-M algorithm in Julia: https://github.com/sylvaticus/lmlj.jl/blob/master/src/clusters.jl#L222
 
 <!--The EM iteration alternates between performing an expectation (E) step, which creates a function for the expectation of the log-likelihood evaluated using the current estimate for the parameters, and a maximization (M) step, which computes parameters maximizing the expected log-likelihood found on the E step. These parameter-estimates are then used to determine the distribution of the latent variables in the next E step.
 

@@ -27,10 +27,10 @@ sterling(BigInt(40),BigInt(3))
 sterling(100,3)
 
 # 13.7 The K-Means Algorithm
-https://github.com/sylvaticus/lmlj/blob/master/src/clusters.jl
+https://github.com/sylvaticus/lmlj.jl/blob/master/src/clusters.jl#L65
 
 # 14.3 - K-Medoids algorithm
-https://github.com/sylvaticus/lmlj/blob/master/src/clusters.jl
+https://github.com/sylvaticus/lmlj.jl/blob/master/src/clusters.jl#L133
 
 # 15.9
 
@@ -70,4 +70,4 @@ sum(log.(x .* px))
 
 
 # 16.5 The E-M Algorithm
-https://github.com/sylvaticus/lmlj/blob/master/src/clusters.jl
+https://github.com/sylvaticus/lmlj.jl/blob/master/src/clusters.jl#L222
