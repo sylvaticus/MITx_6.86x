@@ -693,7 +693,7 @@ We need hence to break these dependence with a solving procedure in two parts: g
 - $\hat n_j$, the number of points of each cluster: $\hat n_j= sum_{i=1}^n p(j|i)$ (this is actually a weighted sum of the points, where the weights are the relative probability of the points to belong to cluster $j$)
 - $\hat p_j = \frac{\hat n_j}{n}$
 - $\hat \mu^{(j)} = \frac{1}{\hat n_j} \sum_{i=1}^n p(j|i) * x^{(i)}$
-- $\hat \sigma_j^2 = \frac{1}{\hat n_j d} \sum_{i=1}^n p(j|i) * ||x^{(t)}-\mu||^2$
+- $\hat \sigma_j^2 = \frac{1}{\hat n_j d} \sum_{i=1}^n p(j|i) * ||x^{(t)}-\mu^{(j)}||^2$
 
 At this point I can re-compute the $p(j|x^{(i)})$ and so on until my results don't change any more or change very little.
 
