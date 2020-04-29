@@ -705,6 +705,38 @@ The EM algorithm indeed is very sensitive to initial conditions as it guarantee 
 
 We could either do a random initialization of the parameter set $\theta$ or we could employ k-means to find the initial cluster centers of the $K$ clusters and use the global variance of the dataset as the initial variance of all the $K$ clusters. In the latter case, the mixture weights can be initialized to the proportion of data points in the clusters as found by the k-means algorithm.
 
+#### Summary of Likelihood and EM algorithm
+
+Which is the Likelihood of the observed dataset $S_n$ ? It is the joined PDF of each $x_i$:
+
+$L(S_n) = \prod_{i = 1}^n \sum_{j=1}^K p_j N(x_i;\mu_j,\sigma_j^2)$
+
+We could try to directly maximize that for all the $p_j$, $\mu_j$ and $\sigma_j^2$ but there are too many parameters interconnected, the FOC would not have a closed form.
+
+Rather let's try to implement a Likelihood for each single cluster, and try to maximise them.
+
+The fist step is to find the weights to relate each $x_i$ to a given cluster $j$, that is $p(J=j|X=x)$, the probability that given a certain $x_i$, the category for which it belongs is $j$.
+
+Let's use the Bayes rule for that, noticing that the joined density to have both class $j$ and data $x_i$ is $f(J=j,X=x_i) = p(J=j) * f(X=x_i| J=j )$ , that is; $p_j * N(x_i;\mu_j,\sigma_j^2)$. But this is also equal to $f(X=x_i) * p(J=j | X = x_i)$ where the last term is the one we want to find.
+
+Given that $f(X=x_i)$ by the total probability theorem is $f(X=x_i) = \sum_{j=1}^K p(J=j) * f(X=x_i| J=j )$ that is $\sum_{j=1}^K p_j * N(x_i;\mu_j,\sigma_j^2)$
+
+$p(J=j | X = x_i)$ is then equal to $\frac{p(J=j) * f(X=x_i| J=j )}{f(X=x_i)}$, that is $p(J=j | X = x_i) = \frac{p_j * N(x_i;\mu_j,\sigma_j^2)}{\sum_{j=1}^K p_j * N(x_i;\mu_j,\sigma_j^2)}$
+
+We can now rewrite the likelihood using a different probability for each $x_i$ rather than a single $p_j$:
+
+$L(S_n) =  \prod_{i = 1}^n \sum_{j=1}^K p(J=j | X = x_i) N(x_i;\mu_j,\sigma_j^2)$. The key point is that once we replaced $p(J=j | X = x_i)$ with some values find in the previous step (the E step), we can now (in the M step) treat the problem as if it would be separable, i.e. writing the likelihood of the data for each cluster as $L(S_n;j) = \prod_{i = 1}^n p(J=j | X = x_i) N(x_i;\mu_j,\sigma_j^2)$ where we can easily write the FOC in terms of two parameters $\mu_j, \sigma_j^2$ that at this time do not depend from the other js.
+
+At this point we go back to the E step until the likelihood converges to a (local) maximum.
+
+
+
+
+
+
+
+
+
 An implementation of E-M algorithm in Julia: https://github.com/sylvaticus/lmlj.jl/blob/master/src/clusters.jl#L222
 
 <!--The EM iteration alternates between performing an expectation (E) step, which creates a function for the expectation of the log-likelihood evaluated using the current estimate for the parameters, and a maximization (M) step, which computes parameters maximizing the expected log-likelihood found on the E step. These parameter-estimates are then used to determine the distribution of the latent variables in the next E step.
@@ -769,5 +801,36 @@ to different clusters, and then use it to do the computation.
 ## Homework 5
 
 ## Project 4: Collaborative Filtering via Gaussian Mixtures
+
+We would like to extend our EM algorithm for the case of the problem of matrix completion, which is a very important problem in machine
+learning.
+We've already seen how to do matrix completion using K nearest and Matrix Factorisation approaches (Lecture 7), and this is another approach to do matrix completion, which assumes a statistical model for the underlying data that we observe.
+
+In this model there are $N$ users and $D$ items to rate, and each rating is the outcome of a Gaussian Mixture Model where each user soft-belongs to one of the $k$-user types (the Gaussian mixtures with mean $μ_k$), and then a random component determines the exact rating $x_{n,d}$.
+
+Our task is to run the EM algorithm to find the posteriors $p_{(n,k)}$ and the mean of the mixtures $μ_k$, so that in a second step we can fill the empty rating with their expected values: $E[x_{n,d}] = \sum_{k=1}^K p_{(n,k)} * E[\text{mixture}_k] = \sum_{k=1}^K p_{(n,k)} * \mu_k$.
+
+The only differences with the EM algorithm we saw earlier is that:
+
+- (1) we need to account that the learning of the parameters have to come only from the available data, i.e. we need to "mask" our $x_n$ and $\mu_k$ arrays for accounting only of the dimensions we have.
+  The computation of the posteriors in the M step becomes:
+  $p(k \mid n) = \frac{\pi_{k}N(x_{C_{n}}^{(n)};\mu_{C_{n}}^{(k)},\sigma_{k}^{2}I_{C_{n}\times C_{n}}) }{ \sum_{k=1}^{K}\pi_{k}N(x_{C_{n}}^{(n)};\mu_{C_{n}}^{(k)},\sigma_{k}^{2}I_{C_{n}\times C_{n}}) }$.
+
+  The FOC for $\mu$ and $\sigma^2$ that maximise the likelihood in the m step become:
+  - $\widehat{\mu_d^{(k)}} = \frac{\sum_{n = 1}^N p(k \mid n) C_{(n,d)} x_d^{(n)}}{\sum_{n=1}^N p(k \mid n) C_{(n,d)}}$
+  - $\widehat{\sigma _ k^2} = \frac{1}{\sum_{n=1}^N |C_n| p(k \mid n)} \sum_{n = 1}^N p(k \mid n) \| x_{C_n}^{(n)} - \widehat{\mu_{C_n}^{(k)}}\| ^2$
+
+  Where $C$ is the mask matrix.
+
+- (2) When the dimensions are so much, or when there are few (or even none) observations for a user, would lead to numerical instabilities (very low value of the normal PDf, or divisions by zero). Some _computational tricks_ are then needed, like working ion the log-domain (including computing the log-Normal instead of the "normal" Normal ;-) ), updating the $\mu$ only when its denominator is higher than zero (to avoid erratic behaviour) or keeping a minimum variance (suggested: `0.25`).
+
+
+
+
+
+
+### P4.3. Expectation–maximization algorithm
+
+#### Data Generation Models
 
 [[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)
