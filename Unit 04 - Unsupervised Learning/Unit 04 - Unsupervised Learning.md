@@ -800,6 +800,8 @@ to different clusters, and then use it to do the computation.
 
 ## Homework 5
 
+The reason while the EM is guarantee to converge (although on a local extreme) is to be found in the Jensen's inequality (details in tab 3 or [this thread](https://courses.edx.org/courses/course-v1:MITx+6.86x+1T2020/discussion/forum/686x_1T2020_discussion_lec16_gm-tab5_discussion/threads/5e8b501c3b790108330a31c3)).
+
 ## Project 4: Collaborative Filtering via Gaussian Mixtures
 
 We would like to extend our EM algorithm for the case of the problem of matrix completion, which is a very important problem in machine
