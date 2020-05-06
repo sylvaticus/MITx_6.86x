@@ -15,8 +15,13 @@ For example, in "playing" a game like Chess or [Go](https://www.youtube.com/watc
 So we will start approaching the problem of reinforcement learning by looking at a more simplified scenario, which is called **Markov Decision Processes (MDPs)**, where the machine needs to identify the best action plan when it knows all possible rewards and transition between states (more on these terms soon).
 Then, we are going to lift some of the assumptions and look at the case of full reinforcement learning, when we experience different transitions without knowing their implicit reward, and collect them only at the end, which is a typical case in life.
 
-In the project at the end of this unit we will implement an agent that
-can play text-based games.
+In the project at the end of this unit we will implement an agent that can play text-based games.
+
+Summary:
+
+- Lesson 17: How to provide the optimal policy for a Markov Decision Process (using Bellman equations) when you know all the state probabilities/rewards
+- Lesson 18: How to do the same while you don't know them and you need to learn them little by little with experience. Very interesting concept of exploration vs exploitation
+- Lesson 19: Qualitative lesson (but with some interesting concepts) on the ML research in Natural Language Processing
 
 ## 17.2. Learning to Control: Introduction to Reinforcement Learning
 
@@ -330,6 +335,8 @@ $Q_{i+1}(s,a) = Q_i(s,a) - \alpha (Q_i(s,a)-sample_i(s,a))$
 $Q_{i+1}(s,a) = Q_i(s,a) - \alpha (Q_i(s,a)- (R(s, a, s_i') + \gamma \max_{a'} Q^* (s_i', a')))$
 
 where $s_i$ is the state I ended up in sample $i$.
+
+Attention that here $Q-i(s,a)$ is not the Q-value of the sample i, but the average Q-value up to the sample i including. It already embed all the experience up to sample i.
 
 The above equation should recall those of the stochastic gradient descent, where we have our prior estimate, plus alpha, and the update factor. It's just a different form of this update.
 

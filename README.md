@@ -11,7 +11,8 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 
 **Contributions are really welcome**. If you spot an error , want to specify something in a better way (English is not my primary language), add material or just have comments, you can clone, make your edits and make a pull request (preferred) or just open an issue.
 
-(PDF versions <del>may be </del> are <del>slightly</del> outdated)
+<!--(PDF versions <del>may be </del> are <del>slightly</del> outdated)-->
+(PDF versions may be slightly outdated)
 
 For an implementation of the algorithms _in Julia_, see the companion repository "Learn Machine Learning in Julia" [on GitHub](https://github.com/sylvaticus/lmlj.jl ) or in [myBinder](https://mybinder.org/v2/gh/sylvaticus/lmlj.jl/master) to run the code online by yourself (and if you are looking for an introductory book on Julia, have a look on [my one](https://www.julia-book.com/)).
 
@@ -29,4 +30,4 @@ By unit:
 
 - Unit 04 - Unsupervised Learning:   [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md)][[pdf](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md.pdf)][[src](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md)]
 
-- Unit 05 - Reinforcement Learning (ongoing): [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2005%20-%20Reinforcement%20Learning/Unit%2005%20-%20Reinforcement%20Learning.md)][[pdf](Unit%2005%20-%20Reinforcement%20Learning/Unit%2005%20-%20Reinforcement%20Learning.md.pdf)][[src](Unit%2005%20-%20Reinforcement%20Learning/Unit%2005%20-%20Reinforcement%20Learning.md)]
+- Unit 05 - Reinforcement Learning: [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2005%20-%20Reinforcement%20Learning/Unit%2005%20-%20Reinforcement%20Learning.md)][[pdf](Unit%2005%20-%20Reinforcement%20Learning/Unit%2005%20-%20Reinforcement%20Learning.md.pdf)][[src](Unit%2005%20-%20Reinforcement%20Learning/Unit%2005%20-%20Reinforcement%20Learning.md)]
