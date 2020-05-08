@@ -336,7 +336,7 @@ $Q_{i+1}(s,a) = Q_i(s,a) - \alpha (Q_i(s,a)- (R(s, a, s_i') + \gamma \max_{a'} Q
 
 where $s_i$ is the state I ended up in sample $i$.
 
-Attention that here $Q-i(s,a)$ is not the Q-value of the sample i, but the average Q-value up to the sample i including. It already embed all the experience up to sample i.
+Attention that here $Q_i(s,a)$ is not the Q-value of the sample i, but the average Q-value up to the sample i including. It already embed all the experience up to sample i.
 
 The above equation should recall those of the stochastic gradient descent, where we have our prior estimate, plus alpha, and the update factor. It's just a different form of this update.
 
@@ -566,5 +566,24 @@ There are lots and lots of exciting things that are happening in NLP everyday. T
 ## Homework 6
 
 ## Project 5: Text-Based Game
+
+High level pseudocode of the provided functions in agent_tabular_ql.py:
+
+- main():
+  - load game constants
+  - for NUM_RUNS:
+    - run() --append--> epoch_rewards_test (list of list of floats):
+      - q_func = 0
+      - for NUM_EPOCHS:
+        - run_epoch() --append--> single_run_epoch_rewards_test (list of floats):
+          - for NUM_EPIS_TRAIN:
+            - run_episode(for_training=True) # update q_func
+          - for NUM_EPIS_TEST
+            - run_episodes(for_training=False) --append--> reward
+          - return mean(reward)
+      - return single_run_epoch_rewards_test
+  - transform list of list of float  epoch_rewards_test in (NUM_RUNS,NUM_EPOCHS) matrix
+  - plot NUM_EPOCHS agains mean(epoch_rewards_test) over NUM_RUNS
+
 
 [[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)
