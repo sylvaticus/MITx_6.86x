@@ -33,6 +33,7 @@ transforms.append(Transform(linenum, "prepend",
 
 
 -->
+<span style="text-align:justify">
 
 ----
 
@@ -118,3 +119,5 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 !INCLUDE "Unit 05 - Reinforcement Learning/Unit 05 - Reinforcement Learning.md", 1
 
 ----
+
+</span>
