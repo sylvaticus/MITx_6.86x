@@ -567,6 +567,7 @@ There are lots and lots of exciting things that are happening in NLP everyday. T
 
 ## Project 5: Text-Based Game
 
+### P5.
 High level pseudocode of the provided functions in agent_tabular_ql.py:
 
 - main():
@@ -584,6 +585,52 @@ High level pseudocode of the provided functions in agent_tabular_ql.py:
       - return single_run_epoch_rewards_test
   - transform list of list of float  epoch_rewards_test in (NUM_RUNS,NUM_EPOCHS) matrix
   - plot NUM_EPOCHS agains mean(epoch_rewards_test) over NUM_RUNS
+
+### P5.7. Introduction to Q-Learning with Linear Approximation
+
+
+#### Intuition for the  approximation of the state/action spaces
+
+MDQ and Q-learning are great tools, but they assume a categorical nature of the states/action spaces,  i.e., each state/action is treated categorically, where each item is completely independent from the other. In learning, observing the result of state/action $(s1,a1)$ doesn't influence $(s2,a2)$. Indeed, there is no concept of "distance" between states or actions. The sets of states/action itself is not ordered.
+
+In many problems however this is a suboptimal representation of the world. For example, if I am in a state `1000€ saving` and do action `100€ consumption`, intuitively I could borrow the learning from that state/action pair to the (state `1001€ saving`, action `101€ consumption`) pair, as the outcome shouldn't be too much different, or at least should be less different than (state `200€ saving`, action `199€ spending`).
+
+And their (linear or non-linear) approximation try to exactly first learn, and then exploit, this relation between elements of the state/action spaces. In project 5, setting a feature vector based on bag of words allows to introduce a metric on the sentences, where sentences that change by just a word are closer than completely different sentences.
+
+This is really cool, as it allows to map continuous spaces to discrete features and apply a MDP on top of it, well intended, if the nature of the problem admits a metric across these spaces.
+
+
+#### Q-Learning with Linear Approximation
+
+We need to create a vector representation for any possible states. In our case, being the states textual description, one immediate way is to use a bag of words approach, that, given a dictionary of size nV (i.e. of the vocabulary for the language of the sentences), returns for each concatenated description of room + description of quest, a fixed length representation as a vector of size nV, with `1` if the word in the dictionary is present in the concatenated sentence, `0` otherwise. We call this `state_vector`.
+
+The idea is that nV should be much smaller of the possible number of original states (descriptions).
+
+Given $nA$ the number of actions, we then set a matrix $\theta$ of $(nA,nV)$ that represents the weights we need to learn, such that the q_values associated to all the possible actions of a state s is $q\_value(s) = \theta * \text{state_vector}_s$, that is the matrix multiplication between the weights $\theta$ and the (column) vector representation of the specific state. The resulting vector has length nA, where each individual element is the q_value for the specific (state,action) pair $q\_value(s,a_i) = \sum_{j = 1}^{nV} \theta_{i,j} * \text{state_vector}_s$.
+
+Our tasks is then to learn the $\theta$s, and we can use a squared loss function applied to our flow of data coming from the game, where the value of the "estimated" y is the q_value so computed (from the thetas), and the one acting as the "real" one is those computed using the Bellman equation for the q_value: $y=q\_value(s,a) = R(s,a)+\gamma \max_{a'}Q(s',a',\theta)$ where $s'$ is the destination state observed as result of the action.
+
+The loss function is then $L(\theta; s,a )=\frac{1}{2}(y-Q(s,a,\theta ))^{2}$.
+
+The gradient with respect to the thetas _of that specific action row_ is then
+$g(\theta )=\frac{\partial }{\partial \theta }L(\theta )=(Q(s, a, \theta)-y)* \text{state_vector}_s = (Q(s, a, \theta)-R(s,a)-\gamma \max_{a'}Q(s',a',\theta))* \text{state_vector}_s$ (the thetas in the max q_value for the destination state are here as given).
+
+Finally the update rule of the gradient descent is then:
+
+$\theta \leftarrow \theta -\alpha g(\theta )=\theta -\alpha \big [Q(s,a,\theta )-R(s,a)-\gamma \max_{a'}Q(s',a',\theta )\big ]* \text{state_vector}_s$
+
+Note that the `state_vector` so described encodes only the states, but one can choose an other form where both states and actions are represented, making it a matrix rather than a vector, and still using a matrix multiplication with a weight matrix in order to get a linear approximation of it.
+
+
+#### Q-Learning with non-linear Approximation
+
+And we can now think of why do we even have a linear approximation for the q_value ?
+Can we not parametrize it by using a deep neural network, where we plug in the state and the action as a specific vector representation, this vector representation goes through a neural network, which gets not necessarily just an inner product with the (unknown) parameters, and the out comes as the corresponding q_value ?
+And at this point we can train the parameters associated with that deep neural network in the same way as we did for the linear case, with a loss function where we compare the q_value obtained by the neural network in evaluating (s,a) with those arising from the Bellman equation.
+
+This is then why we don't want to store potentially all possible (state,action) pairs.
+Instead, we will just be storing a parameter theta, and every time we want to compute the q_value, we kind of come up with a vector that represents the (state,action) pair, and then feed it through either a linear function or a neural network,
+and get the q_value(s,a) that we're supposed to get.
 
 
 [[MITx 6.86x Notes Index]](https://github.com/sylvaticus/MITx_6.86x)

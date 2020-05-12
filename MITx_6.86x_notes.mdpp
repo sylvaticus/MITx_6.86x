@@ -5,23 +5,31 @@ markdown-pp -o MITx_6.86x_notes.md MITx_6.86x_notes.mdpp -e latexrender
 changes in MarkdownPP source code:
 
 sudo gedit /usr/local/lib/python3.6/dist-packages/MarkdownPP/Modules/TableOfContents.py
+or
+gedit ~/.local/lib/python3.8/site-packages/MarkdownPP/Modules/TableOfContents.py
 
-section = (".".join([str(x) for x in stack]) +
-           ".%d\\. " % headernum)
-sectionintoc = "".join("   " for x in stack)+"- "
-sectioninbody = ""
+if depth == 1:
+    section = "%d\\. " % headernum
+    sectionintoc = "- "
+    sectioninbody = ""
+
+else:
+    section = (".".join([str(x) for x in stack]) +
+               ".%d\\. " % headernum)
+    sectionintoc = "".join("   " for x in stack)+"- "
+    sectioninbody = ""
 
 #tocdata += ("%s [%s](#%s)  \n" %
 #            (section, TableOfContents.clean_title(title), short))
 tocdata += ("%s [%s](#%s)  \n" %
-        (sectionintoc, TableOfContents.clean_title(title), short))
+            (sectionintoc, TableOfContents.clean_title(title), short))
 
 #transforms.append(Transform(linenum, "swap",
 #                  data[linenum].replace(title, section + title)))
 transforms.append(Transform(linenum, "swap",
-              data[linenum].replace(title, sectioninbody + title)))
+                  data[linenum].replace(title, sectioninbody + title)))
 transforms.append(Transform(linenum, "prepend",
-              "<a name=\"%s\"></a>\n\n" % short))
+                  "<a name=\"%s\"></a>\n\n" % short))
 
 
 -->
@@ -63,7 +71,15 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 
 ----
 
+<p style="page-break-before: always"></p>
+
+----
+
 !INCLUDE "Unit 00 - Course Overview, Homework 0, Project 0/Unit 00 - Course Overview, Homework 0, Project 0.md", 1
+
+----
+
+<p style="page-break-before: always"></p>
 
 ----
 
@@ -71,7 +87,15 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 
 ----
 
+<p style="page-break-before: always"></p>
+
+----
+
 !INCLUDE "Unit 02 - Nonlinear Classification, Linear regression, Collaborative Filtering/Unit 02 - Nonlinear Classification, Linear regression, Collaborative Filtering.md", 1
+
+----
+
+<p style="page-break-before: always"></p>
 
 ----
 
@@ -79,9 +103,18 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 
 ----
 
+<p style="page-break-before: always"></p>
+
+----
+
 !INCLUDE "Unit 04 - Unsupervised Learning/Unit 04 - Unsupervised Learning.md", 1
 
 ----
+
+<p style="page-break-before: always"></p>
+
+----
+
 !INCLUDE "Unit 05 - Reinforcement Learning/Unit 05 - Reinforcement Learning.md", 1
 
 ----
