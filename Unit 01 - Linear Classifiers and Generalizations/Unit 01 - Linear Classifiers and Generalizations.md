@@ -335,6 +335,9 @@ The update function $\theta = \theta + x^i*y^i$ becomes then $\array{\theta\\\th
 So now we have a general learning algorithm.
 The simplest one, but it can be generalized to be quite powerful and therefore, hence it is a useful algorithm to understand.
 
+For example, we saw here a binary classification, but it can be easily be extended to a multiclass classification employing a "one vs all" strategy, as explained in [this SO answer](https://stats.stackexchange.com/a/87585/263905) or on [wikipedia](http://en.wikipedia.org/wiki/Multiclass_classification).
+
+
 _Code implementation: functions `perceptron_single_step_update()`, `perceptron()`, `average_perceptron()`, `pegasos_single_step_update()` and `pegasos()` in project1._
 
 

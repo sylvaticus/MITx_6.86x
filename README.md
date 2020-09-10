@@ -14,7 +14,14 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 <!--(PDF versions <del>may be </del> are <del>slightly</del> outdated)-->
 (PDF versions may be slightly outdated)
 
-For an implementation of the algorithms _in Julia_, see the companion repository "Beta Machine Learning Toolkit" [on GitHub](https://github.com/sylvaticus/Bmlt.jl ) or in [myBinder](https://mybinder.org/v2/gh/sylvaticus/Bmlt.jl/master) to run the code online by yourself (and if you are looking for an introductory book on Julia, have a look on [my one](https://www.julia-book.com/)).
+--------------------------------------------------------------------------------
+For an implementation of the algorithms _in Julia_ (a relatively recent language incorporating the best of R, Python and Matlab features with the efficiency of compiled languages like C or Fortran), see the companion repository "Beta Machine Learning Toolkit" [on GitHub](https://github.com/sylvaticus/BetaML.jl ) or in [myBinder](https://mybinder.org/v2/gh/sylvaticus/BetaML.jl/master) to run the code online by yourself (and if you are looking for an introductory book on Julia, have a look on [my one](https://www.julia-book.com/)).
+BetaML currently implements:
+- Linear, average and kernel Perceptron (units 1 and 2)
+- Feed-forward Neural Networks (unit 3)
+- Clustering (k-means, k-medoids and EM algorithm), recommandation system based on EM (unit 4)
+- Decision Trees / Random Forest (mentioned on unit 2)
+--------------------------------------------------------------------------------
 
 [PDF all in one document](MITx_6.86x_notes.md.pdf)
 
