@@ -389,7 +389,7 @@ We have seen as we can have nonlinear classifiers extending to higher dimensiona
 
 There are certainly other ways to get nonlinear classifiers.
 
-**Decision trees** make classification operating sequentially on the various dimensions and making first a separation on the first dimension and then, in a subsequent step, on the second dimension and so on. And you can "learn" these trees incrementally.
+**Decision trees** make classification or regression operating sequentially on the various dimensions and making at each step a separation of the data in two subsets and continue recursivelly to "split" the data like in a tree. And you can "learn" these trees incrementally: the idea is that at each step you will look for the best criteria for splitting by iterating over every feature and each value for each ferature and calculating the information gain that you would obtain from splitting the data using that criteria, that is looking on how much you gained in homogeneity in the splitted data compared with the unsplitted one (frequently used function to measure the (dis)homogeneity are `gini` or `entropy` for categorical tasks and `variance` for numerical tasks).
 
 There is a way to make these decision trees more robust, called **random forest classifiers**, that adds two type of randomness: the first one is in randomly choosing the dimension on which to operate the cut, the second in randomly selecting the single example on which operate from the data set (with replacement) and then just average the predictions obtained from these trees.
 
@@ -399,6 +399,8 @@ So the procedure of a random forest classifier is:
 - build a randomized (by dimension) decision tree
 - average the predictions (ensemble)
 
+The biggest advantage of Decision trees / random forests is that they can "crunch" almost any kind of data without any transformation. On top of coninuous numerical values, they can direclty work on any categorical or ordinal feature, and can be used for either regression or classification. Further, trained decision trees are relatively easy to interpret.
+ 
 #### Summary
 
 - We can get non-linear classifiers (or regression) methods by simply mapping our data into new feature vectors that include non-linear components, and applying a linear method on these resulting vectors;
