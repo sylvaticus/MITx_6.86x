@@ -15,26 +15,29 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 (PDF versions may be slightly outdated)
 
 --------------------------------------------------------------------------------
-For an implementation of the algorithms _in Julia_ (a relatively recent language incorporating the best of R, Python and Matlab features with the efficiency of compiled languages like C or Fortran), see the companion repository "Beta Machine Learning Toolkit" [on GitHub](https://github.com/sylvaticus/BetaML.jl ) or in [myBinder](https://mybinder.org/v2/gh/sylvaticus/BetaML.jl/master) to run the code online by yourself (and if you are looking for an introductory book on Julia, have a look on [my one](https://www.julia-book.com/)).
+For an implementation of the algorithms _in Julia_ (a relatively recent language incorporating the best of R, Python and Matlab features with the efficiency of compiled languages like C or Fortran), see the companion repository [Beta Machine Learning Toolkit (BetaML)](https://github.com/sylvaticus/BetaML.jl )(and if you are looking for an introductory book on Julia, have a look on [my one](https://www.julia-book.com/)).
+
 BetaML currently implements:
 - Linear, average and kernel Perceptron (units 1 and 2)
 - Feed-forward Neural Networks (unit 3)
 - Clustering (k-means, k-medoids and EM algorithm), recommandation system based on EM (unit 4)
 - Decision Trees / Random Forest (mentioned on unit 2)
+- _many_ utility functions to help prepare the data for the analysis, sample the data or evaluate the algorithms
+
 --------------------------------------------------------------------------------
 
 [PDF all in one document](MITx_6.86x_notes.md.pdf)
 
 By unit:
 
-- Unit 00 - Course Overview, Homework 0, Project 0:  [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200.md)][[pdf](Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200.md.pdf)][[src](Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200.md)]
+- Unit 00 - Course Overview, Homework 0, Project 0: [[pdf](Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200.md.pdf)] [[src](Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200.md)]
 
-- Unit 01 - Linear Classifiers and Generalizations:  [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations.md)][[pdf](Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations.md.pdf)][[src](Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations.md)]
+- Unit 01 - Linear Classifiers and Generalizations:[[pdf](Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations.md.pdf)] [[src](Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations/Unit%2001%20-%20Linear%20Classifiers%20and%20Generalizations.md)]
 
-- Unit 02 - Nonlinear Classification, Linear regression, Collaborative Filtering:   [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering.md)][[pdf](Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering.md.pdf)][[src](Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering.md)]
+- Unit 02 - Nonlinear Classification, Linear regression, Collaborative Filtering: [[pdf](Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering.md.pdf)] [[src](Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering/Unit%2002%20-%20Nonlinear%20Classification%2C%20Linear%20regression%2C%20Collaborative%20Filtering.md)]
 
-- Unit 03 - Neural networks:   [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2003%20-%20Neural%20networks/Unit%2003%20-%20Neural%20networks.md)][[pdf](Unit%2003%20-%20Neural%20networks/Unit%2003%20-%20Neural%20networks.md.pdf)][[src](Unit%2003%20-%20Neural%20networks/Unit%2003%20-%20Neural%20networks.md)]
+- Unit 03 - Neural networks:  [[pdf](Unit%2003%20-%20Neural%20networks/Unit%2003%20-%20Neural%20networks.md.pdf)] [[src](Unit%2003%20-%20Neural%20networks/Unit%2003%20-%20Neural%20networks.md)]
 
-- Unit 04 - Unsupervised Learning:   [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md)][[pdf](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md.pdf)][[src](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md)]
+- Unit 04 - Unsupervised Learning: [[pdf](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md.pdf)] [[src](Unit%2004%20-%20Unsupervised%20Learning/Unit%2004%20-%20Unsupervised%20Learning.md)]
 
-- Unit 05 - Reinforcement Learning: [[html](https://stackedit.io/viewer#!url=https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2005%20-%20Reinforcement%20Learning/Unit%2005%20-%20Reinforcement%20Learning.md)][[pdf](Unit%2005%20-%20Reinforcement%20Learning/Unit%2005%20-%20Reinforcement%20Learning.md.pdf)][[src](Unit%2005%20-%20Reinforcement%20Learning/Unit%2005%20-%20Reinforcement%20Learning.md)]
+- Unit 05 - Reinforcement Learning:[[pdf](Unit%2005%20-%20Reinforcement%20Learning/Unit%2005%20-%20Reinforcement%20Learning.md.pdf)] [[src](Unit%2005%20-%20Reinforcement%20Learning/Unit%2005%20-%20Reinforcement%20Learning.md)]
