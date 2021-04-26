@@ -46,7 +46,7 @@ Vectors whose starting point is the origin are called _position vectors_ and the
 Let's be _a_ and _b_ two (not necessary unit) vectors.
 We want to compute the vector _c_ being the projection of _a_ on _b_ and its l-2 norm (or length):
 
-![vector projection](./assets/vectorProjection.png "Vector projection")
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/assets/vectorProjection.png" width="400"/>
 
 Let's start from the length. We know from a well-known trigonometric equation that
 
@@ -94,8 +94,7 @@ Besides to this analytical definition, a plane can be uniquely identified also i
 - *Normal* of a plane: any n-dimensional vector perpendicular to the plane.
 - *Offset of the plane with the origin*: the distance of the plan with the origin, that is the specific normal between the origin and the plane
 
-
-![plane geometric definition](./assets/planeGeomdefinition.png)
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/assets/planeGeomdefinition.png" width="600"/>
 
 Given a point $x_p$ known to sit on the plane and $\vec{x_p}$ its positional vector, a generic point $x$ and corresponding positional vector $\vec{x}$, the point $x$ is part of the plane if and only if ("iff") the vector connecting the two points, that is $\vec{x-x_p}$, lies on the plane. In turn this is true iff such vector is orthogonal to the normal of the plane $\vec{v}$, that we can check using the dot product.
 
@@ -119,8 +118,7 @@ Using the above example ($x_p = [3,1]$, $\vec{v} = [2,2]$), we find that the alg
 Given a plan defined by its norm $\theta$ and the relative offset $\theta_0$, which is the distance of a generic point $x$ from such plane ?
 Let's start by calling $\vec{f}$ the vector between any point on the plan $x_p$ and the point $x$, that is $\vec{f} = \vec{x} - \vec{x_p}$. The distance $\|\vec{d}\|$ of the point with the plane is then  $\|\vec{d}\| = \|\vec{f}\| * cos(\alpha)$, where $\alpha$ is the angle between the vector $\vec{f}$ and $\vec{d}$.
 
-![distance point ot a plane](./assets/distancePointToPlane.png)
-
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/assets/distancePointToPlane.png" width="600"/>
 
 But we know also that $\vec{f} \cdot \vec{\theta} = \|\vec{f}\| * \|\vec{\theta}\| * cos(\alpha)$ from the definition of the dot product.
 
@@ -137,7 +135,7 @@ For example the distance between the point $x = (6,2)$ and the plane as define e
 
 We can easily find the projection of a point on a plane by summing to the positional vector of the point, the vector of the distance from the point to the plan, in turn obtained multiplying the distance (as found earlier) by the _negative_ of the unit vector of the normal to the plane.
 
-![projection of a point on a plane](./assets/projectionPointToPlane.png)
+<img src="https://github.com/sylvaticus/MITx_6.86x/raw/master/Unit%2000%20-%20Course%20Overview%2C%20Homework%200%2C%20Project%200/assets/projectionPointToPlane.png" width="600"/>
 
 Algebraically: $\vec{x_p} = \vec{x} - \frac{\vec{x} \cdot \vec{\theta} + \theta_0}{\|\vec{\theta}\|} * \frac{\vec{\theta}}{\| \vec{\theta} \|} = \vec{x} - \vec{\theta}* \frac{\vec{x} \cdot \vec{\theta} + \theta_0}{\|\vec{\theta}\|^2}$
 
