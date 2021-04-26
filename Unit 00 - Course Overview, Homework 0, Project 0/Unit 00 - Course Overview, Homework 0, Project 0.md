@@ -38,7 +38,7 @@ Geometrically, the elements of a vector can be seen as the coordinates of the po
 
 For example the vector [-2,0] could refer to the vector from the point (4,2) to the point (2,2) but could also represent the vector going from (6,4) to (4,4).
 
-Vectors whose starting point is the origin are called "position vectors" and they define the coordinates in the n-space of the points where they arrive to.
+Vectors whose starting point is the origin are called _position vectors_ and they define the coordinates in the n-space of the points where they arrive to.
 
 
 ### Vector projections
@@ -85,18 +85,21 @@ c = (np.dot(a,b)/np.linalg.norm(b)**2) * b
 
 ### Planes
 
-An (hyper)plane in n dimensions is any n−1 dimensional subspace defined by a linear relation. For example, in 3 dimensions, hyperplanes span 2 dimensions (and they are just called "planes") and can be defined by the vector formed by the coefficients {A,B,C,D} in the equation $Ax + By + Cz + D = 0$. Note that the vector is not unique: in relation to the A-D coefficients, the equation is homogeneous, i.e. if we multiply all the A-D coefficients by the same number, the equation remains valid.
+An (hyper)plane in n dimensions is any n−1 dimensional subspace defined by a linear relation. For example, in 3 dimensions, hyperplanes span 2 dimensions (and they are just called "planes") and can be defined by the vector formed by the coefficients {A,B,C,D} in the equation $Ax + By + Cz + D = 0$. Note that while the plane is unique, the vector defining it is not: in relation to the A-D coefficients, the equation is homogeneous, i.e. if we multiply all the A-D coefficients by the same number, the equation remains valid.
 
 As hyperplanes separate the space into two sides, we can use (hyper)planes to set boundaries in classification problems, i.e. to discriminate all points on one side of the plane vs all the point on the other side.
 
-- *Normal* of a plane: any vector perpendicular to the plane.
+Besides to this analytical definition, a plane can be uniquely identified also in a geometrical way starting from a point $x_p$ on the plane and a vector $\vec{v}$ normal to the plane (not necessarily departing from the point or even from the plane):. Let's define:
+
+- *Normal* of a plane: any n-dimensional vector perpendicular to the plane.
 - *Offset of the plane with the origin*: the distance of the plan with the origin, that is the specific normal between the origin and the plane
 
-A plane can now be uniquely identified in an other way, starting from a point $x_p$ on the plane and a vector $\vec{v}$ normal to the plane (not necessarily departing from the point or even from the plane).
 
-Given a generic point $x$, we call $\vec{x}$ its position vector and we call $\vec{x_p}$ the position vector of the point $x_p$ sitting on the plane. The point $x$ is part of the plane iff the vector connecting the two points, that is $\vec{x-x_p}$, lies on the plane. In turn this is true iff such vector is orthogonal to the normal of the plane $\vec{v}$, where we can check this using the dot product.
+![plane geometric definition](./assets/planeGeomdefinition.png)
 
-To sum up, we can define the plane as the set of all points x $x$ such that $(\vec{x-x_p}) \cdot \vec{v} =0$.
+Given a point $x_p$ known to sit on the plane and $\vec{x_p}$ its positional vector, a generic point $x$ and corresponding positional vector $\vec{x}$, the point $x$ is part of the plane if and only if ("iff") the vector connecting the two points, that is $\vec{x-x_p}$, lies on the plane. In turn this is true iff such vector is orthogonal to the normal of the plane $\vec{v}$, that we can check using the dot product.
+
+To sum up, we can define the plane as the set of all points x $x$ such that $(\vec{x-x_p}) \cdot \vec{v} = 0$.
 
 As from the coefficients A-D in the equation, while $x_p$ and $⃗\vec{v}$ unambiguously identify the plane, the converse is not true: any plane has indeed infinite points and normal vectors.
 
@@ -109,16 +112,22 @@ Starting from the information on the point and the normal we can retrieve the al
 
 Note that when $\theta$ is a unit vector (a vector whose 2-norm is equal to 1) the offset $\theta_0$ is equal to the offset of the plane with the origin.
 
-Using the above example, we find that the algebraic equation of the plane is $2x_1+2x_2-(6+2)=0$, or, equivalently, $\frac{x_1}{\sqrt{2}}+\frac{x_2}{\sqrt{2}}-\frac{4}{\sqrt{2}}=0$.
+Using the above example ($x_p = [3,1]$, $\vec{v} = [2,2]$), we find that the algebraic equation of the plane is $2x_1+2x_2-(3*2 + 1*2)=0$, or, equivalently, $\frac{x_1}{\sqrt{2}}+\frac{x_2}{\sqrt{2}}-\frac{4}{\sqrt{2}}=0$.
 
 **Distance of a point to a plane**
 
 Given a plan defined by its norm $\theta$ and the relative offset $\theta_0$, which is the distance of a generic point $x$ from such plane ?
 Let's start by calling $\vec{f}$ the vector between any point on the plan $x_p$ and the point $x$, that is $\vec{f} = \vec{x} - \vec{x_p}$. The distance $\|\vec{d}\|$ of the point with the plane is then  $\|\vec{d}\| = \|\vec{f}\| * cos(\alpha)$, where $\alpha$ is the angle between the vector $\vec{f}$ and $\vec{d}$.
 
-But we know also that $\vec{f} \cdot \vec{\theta} = \|\vec{f}\| * \|\vec{\theta}\| * cos(\alpha)$.
+![distance point ot a plane](./assets/distancePointToPlane.png)
 
-By substitution, we find that $\|\vec{d}\| = \|\vec{f}\| * \frac{\vec{f} \cdot \vec{\theta}}{\|\vec{f}\| * \|\vec{\theta}\|} =  \frac{(\vec{x} - \vec{x_p}) \cdot \vec{\theta}}{\|\vec{\theta}\|} = \frac{\vec{x} \cdot \vec{\theta} + \theta_0}{\|\vec{\theta}\|}$
+
+But we know also that $\vec{f} \cdot \vec{\theta} = \|\vec{f}\| * \|\vec{\theta}\| * cos(\alpha)$ from the definition of the dot product.
+
+By substitution, we find that $\|\vec{d}\| = \|\vec{f}\| * \frac{\vec{f} \cdot \vec{\theta}}{\|\vec{f}\| * \|\vec{\theta}\|} = \frac{\vec{f} \cdot \vec{\theta}}{\|\vec{\theta}\|}$ (we could have arrived to the same conclusion by considering that $\|\vec{d}\|$ is the component of $\vec{f}$ in direction of $\vec{\theta}$).
+
+
+By expanding $\vec{f}$ we find that $\|\vec{d}\| = \frac{(\vec{x} - \vec{x_p}) \cdot \vec{\theta}}{\|\vec{\theta}\|} = \frac{\vec{x} \cdot \vec{\theta} + \theta_0}{\|\vec{\theta}\|}$
 
 The distance is positive when $x$ is on the same side of the plane as $\vec{\theta}$ points and negative when $x$ is on the opposite side.
 
@@ -128,9 +137,11 @@ For example the distance between the point $x = (6,2)$ and the plane as define e
 
 We can easily find the projection of a point on a plane by summing to the positional vector of the point, the vector of the distance from the point to the plan, in turn obtained multiplying the distance (as found earlier) by the _negative_ of the unit vector of the normal to the plane.
 
-Algebraically: $\vec{x_p} = \vec{x} - \frac{\vec{x} \cdot \vec{\theta} + \theta_0}{\|\vec{\theta}\|} * \frac{\vec{\theta}}{\|\theta\|} = \vec{x} - \vec{\theta}* \frac{\vec{x} \cdot \vec{\theta} + \theta_0}{\|\vec{\theta}\|^2}$
+![projection of a point on a plane](./assets/projectionPointToPlane.png)
 
-For the example before, the point $x_p$ is given by $\array{6\\2}-\frac{\array{1\\1}}{\sqrt{2}} * 2 * \sqrt{2} = \array{6\\2} - \array{2\\2} = \array{4\\0}$
+Algebraically: $\vec{x_p} = \vec{x} - \frac{\vec{x} \cdot \vec{\theta} + \theta_0}{\|\vec{\theta}\|} * \frac{\vec{\theta}}{\| \vec{\theta} \|} = \vec{x} - \vec{\theta}* \frac{\vec{x} \cdot \vec{\theta} + \theta_0}{\|\vec{\theta}\|^2}$
+
+For the example before, the point $x_p$ is given by $\array{6\\2}-\array{1\\1} * \frac{\array{6\\2} \cdot \array{1\\1} -4 }{2} = \array{6\\2} - \array{2\\2} = \array{4\\0}$
 
 On this subject see also:
 - https://www.khanacademy.org/math/linear-algebra/vectors-and-spaces/dot-cross-products/v/defining-a-plane-in-r3-with-a-point-and-normal-vector
