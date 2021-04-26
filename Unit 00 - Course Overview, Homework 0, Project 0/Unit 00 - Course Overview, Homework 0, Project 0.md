@@ -14,7 +14,7 @@ Norm: Answer the question how big is a vector
 - Julia: `norm(x)`
 - NumPy: `numpy.linalg.norm(x)`
 
-If l is not specified, it is assumed to be the 2-norm, i.e. the Euclidian distance. It is also known as "length".
+If l is not specified, it is assumed to be 2, i.e. the Euclidian distance. It is also known as "length", "2-norm", "l2 norm", ...
 
 **Dot product of vector**
 
@@ -22,12 +22,14 @@ Aka "scalar product" or "inner product".
 
 It has a relationship on how vectors are arranged relative to each other
 
-- Algebraic definition: $x \cdot y \equiv x' y := \sum_{i=1}^n x_i * y_i$
-- Geometric definition: $x \cdot y := \|x\| * \|y\| * cos(\theta)$ (where $\theta$ is the angle between the two vectors)
+- Algebraic definition: $x \cdot y \equiv x' y := \sum_{i=1}^n 2x_i * y_i$
+- Geometric definition: $x \cdot y := \|x\| * \|y\| * cos(\theta)$ (where $\theta$ is the angle between the two vectors and $\|x\|$ is the 2-norm)
 - Julia: `dot(x,y)`
 - Numpy: `np.dot(x,y)`
 
-Note that using the two definitions and the `arccos`, the inverse function for the cosene, you can retrieve the angle between two functions as `angle_x_y = acos(dot(x,y)/(norm(x)*norm(y)))`.
+Note that using the two definitions and the `arccos`, the inverse function for the cosine, you can retrieve the angle between two functions as `angle_x_y = arccos(dot(x,y)/(norm(x)*norm(y)))`.
+
+- Julia: `angle_x_y = acos(dot(x,y)/(norm(x)*norm(y)))`
 
 
 **Geometric interpretation of a vector**
@@ -42,11 +44,13 @@ Vectors whose starting point is the origin are called "position vectors" and the
 ### Vector projections
 
 Let's be _a_ and _b_ two (not necessary unit) vectors.
-We want to compute the vector _c_ being the projection of _a_ on _b_ and its l-2 norm (or length).
+We want to compute the vector _c_ being the projection of _a_ on _b_ and its l-2 norm (or length):
+
+![vector projection](./assets/vectorProjection.png "Vector projection")
 
 Let's start from the length. We know from a well-known trigonometric equation that
 
-$\|c\| = \|a\| * cos(\alpha)$, where $\alpha$ is the angle between the two vectors _a_ and _b_.
+$\|c\| = \|a\| * cos(\alpha)$, where $\alpha$ is the angle between the two vectors _a_ and _b_:
 
 But we also know that the dot product $a \cdot b$ is equal to $\|a\| * \|b\| * cos(\alpha)$.
 
