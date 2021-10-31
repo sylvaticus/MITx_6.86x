@@ -147,6 +147,8 @@ In other terms, the effect of regularization is to restrict the parameters of a 
 
 What's very nice about using the squared norm as regularisation term is that actually everything that we discussed before, both the gradient and closed form solution, can be very easily adjusted to this new loss function.
 
+Alternative regularisation forms are the **Lasso regression** that use l-1 norm instead of l-2 and has the advantage to push the theta coefficients for unesplicative variables to zero, rather than to small numbers, hence acting as a sort of automatic selection of the regressors. A further alternative, **elastic-net**, combine the two appraoches and offer sparse results (like Lasso), even when the regressors are much more numerous than the observations. 
+
 #### Gradient based approach with regularisation
 
 With respect to a single point the gradient of $J$ is :
