@@ -15,7 +15,7 @@ _Disclaimer: The following notes are a mesh of my own notes, selected transcript
 (PDF versions may be slightly outdated)
 
 --------------------------------------------------------------------------------
-For an implementation of the algorithms _in Julia_ (a relatively recent language incorporating the best of R, Python and Matlab features with the efficiency of compiled languages like C or Fortran), see the companion repository [Beta Machine Learning Toolkit (BetaML)](https://github.com/sylvaticus/BetaML.jl )(and if you are looking for an introductory book on Julia, have a look on [my one](https://www.julia-book.com/)).
+For an implementation of the algorithms _in Julia_ (a relatively recent language incorporating the best of R, Python and Matlab features with the efficiency of compiled languages like C or Fortran), see the companion repository [Beta Machine Learning Toolkit (BetaML)](https://github.com/sylvaticus/BetaML.jl) (and if you are looking for an introductory book on Julia, have a look on [my one](https://www.julia-book.com/)).
 
 BetaML currently implements:
 - Linear, average and kernel Perceptron (units 1 and 2)
@@ -23,6 +23,10 @@ BetaML currently implements:
 - Clustering (k-means, k-medoids and EM algorithm), recommandation system based on EM (unit 4)
 - Decision Trees / Random Forest (mentioned on unit 2)
 - _many_ utility functions to help prepare the data for the analysis, sample the data or evaluate the algorithms
+
+--------------------------------------------------------------------------------
+
+**NEW 2022**: You may be interested in a new whole MOOC on [_Scientific Programming and Machine Learning with Julia_](https://sylvaticus.github.io/SPMLJ/) that covers most (but not yet all) of the topics in MITx_6.86x, with somehow a different approach, prioritising more intuition and code implementation.
 
 --------------------------------------------------------------------------------
 
