@@ -30,6 +30,10 @@ BetaML currently implements:
 
 --------------------------------------------------------------------------------
 
+For a compact cheatsheets see the MicroMaster repository: https://github.com/sylvaticus/MITx-MicroMaster-Statistics-and-Data-Science
+
+--------------------------------------------------------------------------------
+
 [PDF all in one document](MITx_6.86x_notes.md.pdf)
 
 By unit:
